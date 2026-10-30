@@ -1,7 +1,7 @@
 # 9. Architecture Decisions (ADRs)
 
 > [!INFO] **Architecture Provenance & Freshness**
-> - **Verified Commit**: `6b5d798` (branch: `main`)
+> - **Verified Commit**: `c06f553` (branch: `main`)
 > - **Verified Timestamp**: `2026-10-30T20:22:42+07:00`
 > - **Tracked Paths**: `src/`, `schemas/`, `phases/`
 > - **Drift Status**: `verified`
