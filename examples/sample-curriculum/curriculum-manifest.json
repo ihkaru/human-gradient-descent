@@ -1,14 +1,14 @@
 {
   "schemaVersion": "2026.1",
   "curriculumId": "quantum-computing",
-  "title": "quantum_computing",
+  "title": "Quantum Computing Foundations",
+  "description": "A comprehensive curriculum on quantum information theory, superposition, entanglement, and algorithmic speedups.",
   "domain": "KnowledgeBase",
   "domainType": "general",
   "compositionalPrimitives": [
-    "quantum computing foundations",
     "qubits and superposition",
-    "quantum entanglement and non-locality",
     "unitary operations and reversibility",
+    "quantum entanglement and non-locality",
     "quantum no-cloning theorem",
     "grover's search and quadratic speedup"
   ],
@@ -18,10 +18,10 @@
     "ihkaru"
   ],
   "scale": {
-    "totalNodes": 6,
+    "totalNodes": 5,
     "totalShards": 2,
-    "approxWordCount": 314,
-    "estimatedLearningHours": 2.1
+    "approxWordCount": 668,
+    "estimatedLearningHours": 1.8
   },
   "pacing": {
     "defaultMode": "time_bounded",
@@ -34,14 +34,20 @@
     "checkpoints": [
       {
         "checkpointId": "cp-01",
-        "title": "Milestone Checkpoint: Quantum Entanglement and Non-Locality",
-        "milestoneNodeId": "hgd://knowledgebase/quantum-computing/node-003",
+        "title": "Milestone Checkpoint: Unitary Operations and Reversibility",
+        "milestoneNodeId": "hgd://knowledgebase/quantum-computing/node-002",
         "requiredMasteryTheta": 0.9
       },
       {
         "checkpointId": "cp-02",
+        "title": "Milestone Checkpoint: Quantum No-Cloning Theorem",
+        "milestoneNodeId": "hgd://knowledgebase/quantum-computing/node-004",
+        "requiredMasteryTheta": 0.9
+      },
+      {
+        "checkpointId": "cp-03",
         "title": "Milestone Checkpoint: Grover's Search and Quadratic Speedup",
-        "milestoneNodeId": "hgd://knowledgebase/quantum-computing/node-006",
+        "milestoneNodeId": "hgd://knowledgebase/quantum-computing/node-005",
         "requiredMasteryTheta": 0.9
       }
     ]
@@ -60,11 +66,10 @@
     {
       "shardId": "shard_002",
       "filePath": "shards/shard_002.json",
-      "nodeCount": 3,
+      "nodeCount": 2,
       "nodeIds": [
         "hgd://knowledgebase/quantum-computing/node-004",
-        "hgd://knowledgebase/quantum-computing/node-005",
-        "hgd://knowledgebase/quantum-computing/node-006"
+        "hgd://knowledgebase/quantum-computing/node-005"
       ]
     }
   ],
@@ -73,13 +78,13 @@
       {
         "id": "hgd://knowledgebase/quantum-computing/node-001",
         "shardId": "shard_001",
-        "title": "Quantum Computing Foundations",
+        "title": "Qubits and Superposition",
         "cognitiveLevel": "understand"
       },
       {
         "id": "hgd://knowledgebase/quantum-computing/node-002",
         "shardId": "shard_001",
-        "title": "Qubits and Superposition",
+        "title": "Unitary Operations and Reversibility",
         "cognitiveLevel": "apply"
       },
       {
@@ -91,20 +96,14 @@
       {
         "id": "hgd://knowledgebase/quantum-computing/node-004",
         "shardId": "shard_002",
-        "title": "Unitary Operations and Reversibility",
+        "title": "Quantum No-Cloning Theorem",
         "cognitiveLevel": "evaluate"
       },
       {
         "id": "hgd://knowledgebase/quantum-computing/node-005",
         "shardId": "shard_002",
-        "title": "Quantum No-Cloning Theorem",
-        "cognitiveLevel": "understand"
-      },
-      {
-        "id": "hgd://knowledgebase/quantum-computing/node-006",
-        "shardId": "shard_002",
         "title": "Grover's Search and Quadratic Speedup",
-        "cognitiveLevel": "apply"
+        "cognitiveLevel": "understand"
       }
     ],
     "edges": [
@@ -114,23 +113,28 @@
         "relationType": "prerequisite"
       },
       {
-        "from": "hgd://knowledgebase/quantum-computing/node-002",
+        "from": "hgd://knowledgebase/quantum-computing/node-001",
         "to": "hgd://knowledgebase/quantum-computing/node-003",
         "relationType": "prerequisite"
       },
       {
-        "from": "hgd://knowledgebase/quantum-computing/node-003",
+        "from": "hgd://knowledgebase/quantum-computing/node-001",
         "to": "hgd://knowledgebase/quantum-computing/node-004",
         "relationType": "prerequisite"
       },
       {
-        "from": "hgd://knowledgebase/quantum-computing/node-004",
+        "from": "hgd://knowledgebase/quantum-computing/node-002",
+        "to": "hgd://knowledgebase/quantum-computing/node-004",
+        "relationType": "prerequisite"
+      },
+      {
+        "from": "hgd://knowledgebase/quantum-computing/node-002",
         "to": "hgd://knowledgebase/quantum-computing/node-005",
         "relationType": "prerequisite"
       },
       {
-        "from": "hgd://knowledgebase/quantum-computing/node-005",
-        "to": "hgd://knowledgebase/quantum-computing/node-006",
+        "from": "hgd://knowledgebase/quantum-computing/node-003",
+        "to": "hgd://knowledgebase/quantum-computing/node-005",
         "relationType": "prerequisite"
       }
     ]

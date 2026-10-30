@@ -1,12 +1,12 @@
 {
   "schemaVersion": "2026.1",
   "curriculumId": "contract-law-basics",
-  "title": "contract_law_basics",
+  "title": "Contract Law Foundations",
+  "description": "A comprehensive curriculum on mutual assent, consideration doctrine, material breach, and expectation damages.",
   "domain": "KnowledgeBase",
   "domainType": "general",
   "compositionalPrimitives": [
-    "contract law foundations",
-    "offer and mutual assent",
+    "objective mutual assent",
     "consideration and bargained-for exchange",
     "material breach and constructive conditions",
     "expectation damages and mitigation"
@@ -17,10 +17,10 @@
     "ihkaru"
   ],
   "scale": {
-    "totalNodes": 5,
+    "totalNodes": 4,
     "totalShards": 2,
-    "approxWordCount": 209,
-    "estimatedLearningHours": 1.8
+    "approxWordCount": 520,
+    "estimatedLearningHours": 1.4
   },
   "pacing": {
     "defaultMode": "time_bounded",
@@ -34,13 +34,13 @@
       {
         "checkpointId": "cp-01",
         "title": "Milestone Checkpoint: Consideration and Bargained-for Exchange",
-        "milestoneNodeId": "hgd://knowledgebase/contract-law-basics/node-003",
+        "milestoneNodeId": "hgd://knowledgebase/contract-law-basics/node-002",
         "requiredMasteryTheta": 0.9
       },
       {
         "checkpointId": "cp-02",
         "title": "Milestone Checkpoint: Expectation Damages and Mitigation",
-        "milestoneNodeId": "hgd://knowledgebase/contract-law-basics/node-005",
+        "milestoneNodeId": "hgd://knowledgebase/contract-law-basics/node-004",
         "requiredMasteryTheta": 0.9
       }
     ]
@@ -59,10 +59,9 @@
     {
       "shardId": "shard_002",
       "filePath": "shards/shard_002.json",
-      "nodeCount": 2,
+      "nodeCount": 1,
       "nodeIds": [
-        "hgd://knowledgebase/contract-law-basics/node-004",
-        "hgd://knowledgebase/contract-law-basics/node-005"
+        "hgd://knowledgebase/contract-law-basics/node-004"
       ]
     }
   ],
@@ -71,32 +70,26 @@
       {
         "id": "hgd://knowledgebase/contract-law-basics/node-001",
         "shardId": "shard_001",
-        "title": "Contract Law Foundations",
+        "title": "Objective Mutual Assent",
         "cognitiveLevel": "understand"
       },
       {
         "id": "hgd://knowledgebase/contract-law-basics/node-002",
         "shardId": "shard_001",
-        "title": "Offer and Mutual Assent",
+        "title": "Consideration and Bargained-for Exchange",
         "cognitiveLevel": "apply"
       },
       {
         "id": "hgd://knowledgebase/contract-law-basics/node-003",
         "shardId": "shard_001",
-        "title": "Consideration and Bargained-for Exchange",
+        "title": "Material Breach and Constructive Conditions",
         "cognitiveLevel": "analyze"
       },
       {
         "id": "hgd://knowledgebase/contract-law-basics/node-004",
         "shardId": "shard_002",
-        "title": "Material Breach and Constructive Conditions",
-        "cognitiveLevel": "evaluate"
-      },
-      {
-        "id": "hgd://knowledgebase/contract-law-basics/node-005",
-        "shardId": "shard_002",
         "title": "Expectation Damages and Mitigation",
-        "cognitiveLevel": "understand"
+        "cognitiveLevel": "evaluate"
       }
     ],
     "edges": [
@@ -113,11 +106,6 @@
       {
         "from": "hgd://knowledgebase/contract-law-basics/node-003",
         "to": "hgd://knowledgebase/contract-law-basics/node-004",
-        "relationType": "prerequisite"
-      },
-      {
-        "from": "hgd://knowledgebase/contract-law-basics/node-004",
-        "to": "hgd://knowledgebase/contract-law-basics/node-005",
         "relationType": "prerequisite"
       }
     ]

@@ -59,6 +59,31 @@ flowchart TD
 
 ---
 
+## 🤖 Agent Curriculum Authoring & Synthesis Protocol
+
+When an AI Coding Agent is requested to create, expand, or tutor a curriculum:
+1. **Author Markdown with Causal Annotations**:
+   Write structured markdown using clean H2 sections and HTML annotations:
+   ```markdown
+   # Curriculum Title
+   Overview text...
+
+   ## Section Title
+   <!-- hgd:tier: 2_boundary_perturbation -->
+   <!-- hgd:prereqs: ["Prerequisite Section Title"] -->
+   <!-- hgd:probe: "Predict: What happens when parameter X approaches zero?" -->
+   <!-- hgd:truth: "State Y collapses because invariant Z is violated." -->
+   <!-- hgd:models: ["parameter x", "state y", "invariant z"] -->
+   Section content explaining the concept...
+   ```
+2. **Compile to Sharded DAG**:
+   `bun run cli compile <input.md> -o <output_dir>`
+3. **Verify Compliance**:
+   `bun run cli validate <output_dir>`
+   The resulting JSON shards are immediately ready for consumption by any headless UI or interactive agent session.
+
+---
+
 ## 🛠️ CLI & Automated Tooling
 
 * **Compile Markdown Corpus (Domain-Agnostic)**:

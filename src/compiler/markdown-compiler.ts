@@ -6,6 +6,7 @@ import type {
   PacingMode,
   DomainType,
   DifficultyTier,
+  ConceptualVariant,
 } from "../types/curriculum.js";
 
 export interface CompileOptions {
@@ -18,12 +19,29 @@ export interface CompileOptions {
   defaultPacingMode?: PacingMode;
 }
 
+interface RawSection {
+  title: string;
+  body: string;
+  annotations: Record<string, string>;
+}
+
 export class MarkdownCurriculumCompiler {
   public compile(
     markdownContent: string,
     options: CompileOptions
   ): { manifest: CurriculumManifest; shards: NodeShard[] } {
-    const rawNodes = this.extractNodesFromMarkdown(markdownContent, options);
+    const { docTitle, docDesc, sections } = this.parseMarkdown(markdownContent, options);
+    const titleToIdMap = new Map<string, string>();
+
+    sections.forEach((s, idx) => {
+      const id = `hgd://${options.domain.toLowerCase()}/${options.curriculumId}/node-${String(idx + 1).padStart(3, "0")}`;
+      titleToIdMap.set(s.title.toLowerCase(), id);
+    });
+
+    const rawNodes = sections.map((s, idx) =>
+      this.synthesizeNode(s, idx, options, titleToIdMap)
+    );
+
     const nodesPerShard = options.nodesPerShard || 3;
     const shards: NodeShard[] = [];
     const shardCatalog: CurriculumManifest["shards"] = [];
@@ -35,13 +53,7 @@ export class MarkdownCurriculumCompiler {
       const shardId = `shard_${String(shardIndex).padStart(3, "0")}`;
       const chunk = rawNodes.slice(i, i + nodesPerShard);
 
-      const shard: NodeShard = {
-        shardId,
-        curriculumId: options.curriculumId,
-        nodes: chunk,
-      };
-
-      shards.push(shard);
+      shards.push({ shardId, curriculumId: options.curriculumId, nodes: chunk });
       shardCatalog.push({
         shardId,
         filePath: `shards/${shardId}.json`,
@@ -58,17 +70,13 @@ export class MarkdownCurriculumCompiler {
         });
 
         for (const p of node.prerequisites) {
-          dagEdges.push({
-            from: p,
-            to: node.id,
-            relationType: "prerequisite",
-          });
+          dagEdges.push({ from: p, to: node.id, relationType: "prerequisite" });
         }
       }
     }
 
     const checkpoints = rawNodes
-      .filter((_, idx) => (idx + 1) % 3 === 0 || idx === rawNodes.length - 1)
+      .filter((_, idx) => (idx + 1) % 2 === 0 || idx === rawNodes.length - 1)
       .map((n, idx) => ({
         checkpointId: `cp-${String(idx + 1).padStart(2, "0")}`,
         title: `Milestone Checkpoint: ${n.title}`,
@@ -79,7 +87,8 @@ export class MarkdownCurriculumCompiler {
     const manifest: CurriculumManifest = {
       schemaVersion: "2026.1",
       curriculumId: options.curriculumId,
-      title: options.title,
+      title: docTitle || options.title,
+      description: docDesc || undefined,
       domain: options.domain,
       domainType: options.domainType || "general",
       compositionalPrimitives: rawNodes.map((n) => n.title.toLowerCase()),
@@ -103,147 +112,191 @@ export class MarkdownCurriculumCompiler {
         checkpoints,
       },
       shards: shardCatalog,
-      dag: {
-        nodes: dagNodes,
-        edges: dagEdges,
-      },
+      dag: { nodes: dagNodes, edges: dagEdges },
     };
 
     return { manifest, shards };
   }
 
-  private extractNodesFromMarkdown(
+  private parseMarkdown(
     content: string,
     options: CompileOptions
-  ): CompetencyNode[] {
+  ): { docTitle?: string; docDesc?: string; sections: RawSection[] } {
     const lines = content.split("\n");
-    const nodes: CompetencyNode[] = [];
+    let docTitle = "";
+    let docDescLines: string[] = [];
+    const sections: RawSection[] = [];
     let currentTitle = "";
     let currentBody: string[] = [];
-    let nodeIndex = 0;
+    let isIntro = true;
 
-    const flushNode = () => {
+    const flush = () => {
       if (currentTitle && currentBody.length > 0) {
-        nodeIndex++;
-        const id = `hgd://${options.domain.toLowerCase()}/${options.curriculumId}/node-${String(nodeIndex).padStart(3, "0")}`;
-        const bodyText = currentBody.join("\n").trim();
-        const prevId =
-          nodes.length > 0 ? [nodes[nodes.length - 1].id] : [];
+        const bodyRaw = currentBody.join("\n").trim();
+        const annotations: Record<string, string> = {};
+        const cleanedBodyLines: string[] = [];
 
-        nodes.push(this.synthesizeNode(id, currentTitle, bodyText, prevId, nodeIndex));
+        for (const line of bodyRaw.split("\n")) {
+          const m = line.match(/<!--\s*hgd:([a-zA-Z0-9_-]+):\s*(.*?)\s*-->/);
+          if (m) {
+            annotations[m[1]] = m[2];
+          } else {
+            cleanedBodyLines.push(line);
+          }
+        }
+
+        sections.push({
+          title: currentTitle,
+          body: cleanedBodyLines.join("\n").trim(),
+          annotations,
+        });
       }
       currentTitle = "";
       currentBody = [];
     };
 
     for (const line of lines) {
-      if (line.startsWith("# ") || line.startsWith("## ") || line.startsWith("### ")) {
-        flushNode();
+      if (line.startsWith("# ") && isIntro) {
+        docTitle = line.replace(/^#\s*/, "").trim();
+      } else if (line.startsWith("## ") || line.startsWith("### ")) {
+        isIntro = false;
+        flush();
         currentTitle = line.replace(/^#+\s*/, "").trim();
+      } else if (isIntro && line.trim().length > 0) {
+        docDescLines.push(line.trim());
       } else {
         currentBody.push(line);
       }
     }
-    flushNode();
+    flush();
 
-    if (nodes.length === 0 && content.trim().length > 0) {
-      const id = `hgd://${options.domain.toLowerCase()}/${options.curriculumId}/node-001`;
-      nodes.push(this.synthesizeNode(id, options.title, content.trim(), [], 1));
-    }
-
-    return nodes;
+    return {
+      docTitle: docTitle || options.title,
+      docDesc: docDescLines.join(" "),
+      sections,
+    };
   }
 
   private synthesizeNode(
-    id: string,
-    title: string,
-    body: string,
-    prereqs: string[],
-    index: number
+    s: RawSection,
+    idx: number,
+    options: CompileOptions,
+    titleMap: Map<string, string>
   ): CompetencyNode {
+    const id = `hgd://${options.domain.toLowerCase()}/${options.curriculumId}/node-${String(idx + 1).padStart(3, "0")}`;
+    const ann = s.annotations;
+
     const cognitiveLevels: CognitiveLevel[] = ["understand", "apply", "analyze", "evaluate"];
-    const cognitiveLevel = cognitiveLevels[(index - 1) % cognitiveLevels.length];
-    const tiers: DifficultyTier[] = [
-      "1_foundational_fluency",
-      "2_boundary_perturbation",
-      "3_isomorphic_transfer",
-      "4_adversarial_dilemma",
+    const cognitiveLevel = cognitiveLevels[idx % cognitiveLevels.length];
+
+    const difficultyTier: DifficultyTier = (ann.tier as DifficultyTier) ||
+      (idx === 0 ? "1_foundational_fluency" : (idx % 2 === 1 ? "2_boundary_perturbation" : "3_isomorphic_transfer"));
+
+    let prereqs: string[] = [];
+    if (ann.prereqs) {
+      try {
+        const parsed = JSON.parse(ann.prereqs);
+        if (Array.isArray(parsed)) {
+          prereqs = parsed.map((t) => titleMap.get(String(t).toLowerCase()) || t).filter(Boolean);
+        }
+      } catch {
+        prereqs = [];
+      }
+    } else if (idx > 0) {
+      const prevId = `hgd://${options.domain.toLowerCase()}/${options.curriculumId}/node-${String(idx).padStart(3, "0")}`;
+      prereqs = [prevId];
+    }
+
+    const invariantSentence = this.extractInvariantSentence(s.body) || `${s.title} defines the fundamental system invariant.`;
+    const prompt = ann.probe || `Predict: Under what conditions does the core invariant of ${s.title} collapse?`;
+    const groundTruth = ann.truth || invariantSentence;
+
+    let mentalModels = [s.title.toLowerCase(), "invariant", "boundary"];
+    if (ann.models) {
+      try {
+        const parsed = JSON.parse(ann.models);
+        if (Array.isArray(parsed)) mentalModels = parsed;
+      } catch {}
+    }
+
+    const formulaMatch = s.body.match(/\$\$([\s\S]*?)\$\$/);
+    const conceptualVariants: ConceptualVariant[] = [
+      { representationType: "verbal", content: invariantSentence },
     ];
-    const difficultyTier = tiers[(index - 1) % tiers.length];
-    const excerpt = body.slice(0, 250).trim();
-    const prompt = `Predict: How does ${title} behave when boundary constraints are inverted?`;
+    if (formulaMatch) {
+      conceptualVariants.push({ representationType: "symbolic" as const, content: formulaMatch[1].trim() });
+    }
 
     return {
       id,
-      title,
+      title: s.title,
       cognitiveLevel,
       difficultyTier,
-      workingMemoryBudget: {
-        wordCount: prompt.split(/\s+/).length,
-        estimatedReadingSeconds: 3,
-      },
+      workingMemoryBudget: { wordCount: prompt.split(/\s+/).length, estimatedReadingSeconds: 3 },
       prerequisites: prereqs,
-      conceptSummary: body.slice(0, 1000).trim(),
+      conceptSummary: s.body.slice(0, 1000).trim(),
       pacing: {
         timeLimitSeconds: 60,
         recommendedEpochs: 3,
-        isCheckpoint: index % 3 === 0,
-        rollbackNodeId: prereqs.length > 0 ? prereqs[0] : undefined,
+        isCheckpoint: (idx + 1) % 2 === 0,
+        rollbackNodeId: prereqs[0],
       },
       variationProbes: {
-        conceptualVariants: [
-          { representationType: "verbal", content: `${title} invariant: ${excerpt.slice(0, 120)}` },
-          { representationType: "symbolic", content: `Invariant_${title.replace(/\s+/g, "_")} : State -> State'` },
-        ],
+        conceptualVariants,
         proceduralPerturbations: [
           {
-            parameter: "input_boundary",
-            perturbation: "extreme_edge_case",
-            probe: `If boundary inputs collapse, does ${title} preserve consistency?`,
-            expectedBoundaryBehavior: "Preserves state continuity without unhandled failure.",
+            parameter: "boundary_condition",
+            perturbation: "inverse_constraint",
+            probe: `If boundary inputs invert, how does ${s.title} preserve state?`,
+            expectedBoundaryBehavior: groundTruth,
           },
         ],
       },
       forwardPass: {
         probeType: "prediction_what_if",
-        readingContext: excerpt,
+        readingContext: s.body.slice(0, 250).trim(),
         prompt,
-        expectedMentalModel: [title.toLowerCase(), "invariant", "mechanism"],
-        groundTruth: `${title} operates via core invariants preserving stability and state.`,
+        expectedMentalModel: mentalModels,
+        groundTruth,
       },
       lossRubric: {
         conceptGapCriteria: [
-          "Fails to identify the core invariant mechanism",
+          `Fails to identify core mechanism: ${invariantSentence.slice(0, 80)}`,
           "Confuses cause and effect in state transitions",
         ],
-        missingPrerequisiteMap: prereqs.length > 0 ? { [prereqs[0]]: "Parent foundational concept" } : undefined,
-        notationCriteria: ["Uses non-standard terminology", "Confuses variables"],
-        strategyCriteria: ["Suggests an invalid or brute-force approach"],
-        reasoningCriteria: ["Off-by-one or boundary omission in prediction"],
+        missingPrerequisiteMap: prereqs.length > 0 ? { [prereqs[0]]: "Foundational upstream concept" } : undefined,
+        notationCriteria: ["Uses ambiguous notation", "Confuses variables"],
+        strategyCriteria: ["Applies inapplicable heuristics"],
+        reasoningCriteria: ["Off-by-one or boundary condition omission"],
       },
       backwardPass: {
         learningRate: 0.25,
         hintLadder: {
-          level0Reflective: `Re-examine your premise regarding ${title}: what underlying invariant was assumed?`,
-          level1Directional: `Focus on how ${title} handles boundary conditions and resource constraints.`,
-          level2Constraint: `Eliminate linear unconstrained assumptions. Consider conservation laws or state gates.`,
-          level3WorkedExample: `Consider an isomorphic case: when input X increases, mechanism M bounds output Y to invariant Z.`,
+          level0Reflective: `What fundamental invariant governs ${s.title}?`,
+          level1Directional: `Examine how ${s.title} handles boundary conditions: ${invariantSentence.slice(0, 60)}.`,
+          level2Constraint: `Eliminate unconstrained assumptions. Recall: ${groundTruth.slice(0, 80)}.`,
+          level3WorkedExample: `Worked Example: Step 1 verifies invariant '${groundTruth.slice(0, 60)}'. Step 2 applies boundary rule.`,
         },
         microRemediations: {
-          conceptGap: `Key Invariant: ${title} fundamentally ensures causal state continuity.`,
-          missingPrerequisite: prereqs.length > 0 ? `Review prerequisite concept: ${prereqs[0]}` : undefined,
-          notationBreakdown: `Ensure accurate notation when describing system parameters.`,
-          methodChoice: `Select deductive causal tracing rather than empirical guessing.`,
-          reasoningBug: `Trace the boundary edge cases step-by-step.`,
+          conceptGap: `Core Invariant: ${groundTruth}`,
+          missingPrerequisite: prereqs.length > 0 ? `Review prerequisite: ${prereqs[0]}` : undefined,
+          notationBreakdown: `Ensure accurate notation and units for ${s.title}.`,
+          methodChoice: "Apply deductive causal reasoning rather than guessing.",
+          reasoningBug: "Trace boundary edge cases step-by-step.",
         },
       },
-      sources: [
-        {
-          sourceRef: "markdown-source",
-          locationTag: `Section: ${title}`,
-          verbatimQuote: excerpt.slice(0, 120),
-        },
-      ],
+      sources: [{ sourceRef: "markdown-source", locationTag: `Section: ${s.title}`, verbatimQuote: s.body.slice(0, 100) }],
     };
+  }
+
+  private extractInvariantSentence(text: string): string | undefined {
+    const sentences = text.split(/(?<=[.!?])\s+/);
+    for (const sent of sentences) {
+      const lower = sent.toLowerCase();
+      if (lower.includes("invariant") || lower.includes("states that") || lower.includes("requires") || lower.includes("fundamental")) {
+        return sent.trim();
+      }
+    }
+    return sentences[0]?.trim();
   }
 }

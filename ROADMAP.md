@@ -52,7 +52,10 @@ flowchart LR
 | **014** | [`phases/014_bianshi_variation_and_adversarial_probes.md`](./phases/014_bianshi_variation_and_adversarial_probes.md) | Bianshi Variation Engine & Adversarial Probes | ✅ Completed |
 | **015** | [`phases/015_anti_fatigue_governor_and_gradient_analytics.md`](./phases/015_anti_fatigue_governor_and_gradient_analytics.md) | Anti-Fatigue Safety Governor & Gradient Analytics | ✅ Completed |
 | **016** | [`phases/016_agent_skill_packaging_and_ui_showcase.md`](./phases/016_agent_skill_packaging_and_ui_showcase.md) | Universal Agent Skill Packaging & Headless UI Showcase | ✅ Completed |
-| **017–020** | Reserved for advanced domain adapters (Law, Medicine, Codebases). | | 📋 Planned |
+| **017** | [`phases/017_deep_causal_synthesis_and_ast_chunker.md`](./phases/017_deep_causal_synthesis_and_ast_chunker.md) | Deep Causal Synthesis & AST Chunker | ✅ Completed |
+| **018** | [`phases/018_branching_dag_dependency_resolver.md`](./phases/018_branching_dag_dependency_resolver.md) | Branching DAG Dependency Resolver | ✅ Completed |
+| **019** | [`phases/019_agent_synthesis_prompt_protocol.md`](./phases/019_agent_synthesis_prompt_protocol.md) | Agent Synthesis Prompt Protocol | ✅ Completed |
+| **020** | Reserved for Automated Cross-Shard Tarjan Cycle Verification. | | 📋 Planned |
 
 ---
 

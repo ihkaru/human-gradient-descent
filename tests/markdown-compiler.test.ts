@@ -31,8 +31,8 @@ Each transaction reads a consistent snapshot of the database identified by trans
     });
 
     expect(manifest.curriculumId).toBe("db-internals");
-    expect(manifest.scale.totalNodes).toBe(4); // 1 root + 3 sections
-    expect(manifest.scale.totalShards).toBe(2); // 4 nodes with 2 per shard = 2 shards
+    expect(manifest.scale.totalNodes).toBe(3); // 3 substantive sections
+    expect(manifest.scale.totalShards).toBe(2); // 3 nodes with 2 per shard = 2 shards
     expect(shards).toHaveLength(2);
 
     // Validate manifest against schema

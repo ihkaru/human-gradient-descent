@@ -4,187 +4,91 @@
   "nodes": [
     {
       "id": "hgd://knowledgebase/contract-law-basics/node-004",
-      "title": "Material Breach and Constructive Conditions",
+      "title": "Expectation Damages and Mitigation",
       "cognitiveLevel": "evaluate",
       "difficultyTier": "4_adversarial_dilemma",
       "workingMemoryBudget": {
-        "wordCount": 14,
+        "wordCount": 22,
         "estimatedReadingSeconds": 3
       },
       "prerequisites": [
         "hgd://knowledgebase/contract-law-basics/node-003"
       ],
-      "conceptSummary": "When one party commits a material breach, the non-breaching party's constructive duties under the contract are suspended.\nThe core invariant is substantial performance: if a breach is minor and immaterial, the non-breaching party must still perform their obligations and may only sue for damages, rather than terminating the contract.",
+      "conceptSummary": "Remedies for breach aim to place the aggrieved party in the position they would have occupied had the contract been fully performed.\nThe fundamental invariant is the duty to mitigate: an injured party cannot recover damages for losses that could reasonably have been avoided without undue risk, burden, or humiliation.",
       "pacing": {
         "timeLimitSeconds": 60,
         "recommendedEpochs": 3,
-        "isCheckpoint": false,
+        "isCheckpoint": true,
         "rollbackNodeId": "hgd://knowledgebase/contract-law-basics/node-003"
       },
       "variationProbes": {
         "conceptualVariants": [
           {
             "representationType": "verbal",
-            "content": "Material Breach and Constructive Conditions invariant: When one party commits a material breach, the non-breaching party's constructive duties under the contract are suspended"
-          },
-          {
-            "representationType": "symbolic",
-            "content": "Invariant_Material_Breach_and_Constructive_Conditions : State -> State'"
+            "content": "The fundamental invariant is the duty to mitigate: an injured party cannot recover damages for losses that could reasonably have been avoided without undue risk, burden, or humiliation."
           }
         ],
         "proceduralPerturbations": [
           {
-            "parameter": "input_boundary",
-            "perturbation": "extreme_edge_case",
-            "probe": "If boundary inputs collapse, does Material Breach and Constructive Conditions preserve consistency?",
-            "expectedBoundaryBehavior": "Preserves state continuity without unhandled failure."
-          }
-        ]
-      },
-      "forwardPass": {
-        "probeType": "prediction_what_if",
-        "readingContext": "When one party commits a material breach, the non-breaching party's constructive duties under the contract are suspended.\nThe core invariant is substantial performance: if a breach is minor and immaterial, the non-breaching party must still perform t",
-        "prompt": "Predict: How does Material Breach and Constructive Conditions behave when boundary constraints are inverted?",
-        "expectedMentalModel": [
-          "material breach and constructive conditions",
-          "invariant",
-          "mechanism"
-        ],
-        "groundTruth": "Material Breach and Constructive Conditions operates via core invariants preserving stability and state."
-      },
-      "lossRubric": {
-        "conceptGapCriteria": [
-          "Fails to identify the core invariant mechanism",
-          "Confuses cause and effect in state transitions"
-        ],
-        "missingPrerequisiteMap": {
-          "hgd://knowledgebase/contract-law-basics/node-003": "Parent foundational concept"
-        },
-        "notationCriteria": [
-          "Uses non-standard terminology",
-          "Confuses variables"
-        ],
-        "strategyCriteria": [
-          "Suggests an invalid or brute-force approach"
-        ],
-        "reasoningCriteria": [
-          "Off-by-one or boundary omission in prediction"
-        ]
-      },
-      "backwardPass": {
-        "learningRate": 0.25,
-        "hintLadder": {
-          "level0Reflective": "Re-examine your premise regarding Material Breach and Constructive Conditions: what underlying invariant was assumed?",
-          "level1Directional": "Focus on how Material Breach and Constructive Conditions handles boundary conditions and resource constraints.",
-          "level2Constraint": "Eliminate linear unconstrained assumptions. Consider conservation laws or state gates.",
-          "level3WorkedExample": "Consider an isomorphic case: when input X increases, mechanism M bounds output Y to invariant Z."
-        },
-        "microRemediations": {
-          "conceptGap": "Key Invariant: Material Breach and Constructive Conditions fundamentally ensures causal state continuity.",
-          "missingPrerequisite": "Review prerequisite concept: hgd://knowledgebase/contract-law-basics/node-003",
-          "notationBreakdown": "Ensure accurate notation when describing system parameters.",
-          "methodChoice": "Select deductive causal tracing rather than empirical guessing.",
-          "reasoningBug": "Trace the boundary edge cases step-by-step."
-        }
-      },
-      "sources": [
-        {
-          "sourceRef": "markdown-source",
-          "locationTag": "Section: Material Breach and Constructive Conditions",
-          "verbatimQuote": "When one party commits a material breach, the non-breaching party's constructive duties under the contract are suspended"
-        }
-      ]
-    },
-    {
-      "id": "hgd://knowledgebase/contract-law-basics/node-005",
-      "title": "Expectation Damages and Mitigation",
-      "cognitiveLevel": "understand",
-      "difficultyTier": "1_foundational_fluency",
-      "workingMemoryBudget": {
-        "wordCount": 13,
-        "estimatedReadingSeconds": 3
-      },
-      "prerequisites": [
-        "hgd://knowledgebase/contract-law-basics/node-004"
-      ],
-      "conceptSummary": "Remedies for breach aim to place the aggrieved party in the position they would have occupied had the contract been fully performed.\nThe fundamental invariant is the duty to mitigate: an injured party cannot recover damages for losses that could reasonably have been avoided without undue risk, burden, or humiliation.",
-      "pacing": {
-        "timeLimitSeconds": 60,
-        "recommendedEpochs": 3,
-        "isCheckpoint": false,
-        "rollbackNodeId": "hgd://knowledgebase/contract-law-basics/node-004"
-      },
-      "variationProbes": {
-        "conceptualVariants": [
-          {
-            "representationType": "verbal",
-            "content": "Expectation Damages and Mitigation invariant: Remedies for breach aim to place the aggrieved party in the position they would have occupied had the contract been full"
-          },
-          {
-            "representationType": "symbolic",
-            "content": "Invariant_Expectation_Damages_and_Mitigation : State -> State'"
-          }
-        ],
-        "proceduralPerturbations": [
-          {
-            "parameter": "input_boundary",
-            "perturbation": "extreme_edge_case",
-            "probe": "If boundary inputs collapse, does Expectation Damages and Mitigation preserve consistency?",
-            "expectedBoundaryBehavior": "Preserves state continuity without unhandled failure."
+            "parameter": "boundary_condition",
+            "perturbation": "inverse_constraint",
+            "probe": "If boundary inputs invert, how does Expectation Damages and Mitigation preserve state?",
+            "expectedBoundaryBehavior": "\"Recovery is reduced by the avoidable salary under the doctrine of avoidable consequences: an aggrieved party has an affirmative duty to mitigate damages with reasonable effort.\""
           }
         ]
       },
       "forwardPass": {
         "probeType": "prediction_what_if",
         "readingContext": "Remedies for breach aim to place the aggrieved party in the position they would have occupied had the contract been fully performed.\nThe fundamental invariant is the duty to mitigate: an injured party cannot recover damages for losses that could reas",
-        "prompt": "Predict: How does Expectation Damages and Mitigation behave when boundary constraints are inverted?",
+        "prompt": "\"Predict whether an wrongfully terminated employee who rejects an identical job in the same city can recover their full unpaid contract salary.\"",
         "expectedMentalModel": [
-          "expectation damages and mitigation",
-          "invariant",
-          "mechanism"
+          "mitigation",
+          "avoidable consequences",
+          "expectation damages",
+          "reduction"
         ],
-        "groundTruth": "Expectation Damages and Mitigation operates via core invariants preserving stability and state."
+        "groundTruth": "\"Recovery is reduced by the avoidable salary under the doctrine of avoidable consequences: an aggrieved party has an affirmative duty to mitigate damages with reasonable effort.\""
       },
       "lossRubric": {
         "conceptGapCriteria": [
-          "Fails to identify the core invariant mechanism",
+          "Fails to identify core mechanism: The fundamental invariant is the duty to mitigate: an injured party cannot recov",
           "Confuses cause and effect in state transitions"
         ],
         "missingPrerequisiteMap": {
-          "hgd://knowledgebase/contract-law-basics/node-004": "Parent foundational concept"
+          "hgd://knowledgebase/contract-law-basics/node-003": "Foundational upstream concept"
         },
         "notationCriteria": [
-          "Uses non-standard terminology",
+          "Uses ambiguous notation",
           "Confuses variables"
         ],
         "strategyCriteria": [
-          "Suggests an invalid or brute-force approach"
+          "Applies inapplicable heuristics"
         ],
         "reasoningCriteria": [
-          "Off-by-one or boundary omission in prediction"
+          "Off-by-one or boundary condition omission"
         ]
       },
       "backwardPass": {
         "learningRate": 0.25,
         "hintLadder": {
-          "level0Reflective": "Re-examine your premise regarding Expectation Damages and Mitigation: what underlying invariant was assumed?",
-          "level1Directional": "Focus on how Expectation Damages and Mitigation handles boundary conditions and resource constraints.",
-          "level2Constraint": "Eliminate linear unconstrained assumptions. Consider conservation laws or state gates.",
-          "level3WorkedExample": "Consider an isomorphic case: when input X increases, mechanism M bounds output Y to invariant Z."
+          "level0Reflective": "What fundamental invariant governs Expectation Damages and Mitigation?",
+          "level1Directional": "Examine how Expectation Damages and Mitigation handles boundary conditions: The fundamental invariant is the duty to mitigate: an injure.",
+          "level2Constraint": "Eliminate unconstrained assumptions. Recall: \"Recovery is reduced by the avoidable salary under the doctrine of avoidable con.",
+          "level3WorkedExample": "Worked Example: Step 1 verifies invariant '\"Recovery is reduced by the avoidable salary under the doctr'. Step 2 applies boundary rule."
         },
         "microRemediations": {
-          "conceptGap": "Key Invariant: Expectation Damages and Mitigation fundamentally ensures causal state continuity.",
-          "missingPrerequisite": "Review prerequisite concept: hgd://knowledgebase/contract-law-basics/node-004",
-          "notationBreakdown": "Ensure accurate notation when describing system parameters.",
-          "methodChoice": "Select deductive causal tracing rather than empirical guessing.",
-          "reasoningBug": "Trace the boundary edge cases step-by-step."
+          "conceptGap": "Core Invariant: \"Recovery is reduced by the avoidable salary under the doctrine of avoidable consequences: an aggrieved party has an affirmative duty to mitigate damages with reasonable effort.\"",
+          "missingPrerequisite": "Review prerequisite: hgd://knowledgebase/contract-law-basics/node-003",
+          "notationBreakdown": "Ensure accurate notation and units for Expectation Damages and Mitigation.",
+          "methodChoice": "Apply deductive causal reasoning rather than guessing.",
+          "reasoningBug": "Trace boundary edge cases step-by-step."
         }
       },
       "sources": [
         {
           "sourceRef": "markdown-source",
           "locationTag": "Section: Expectation Damages and Mitigation",
-          "verbatimQuote": "Remedies for breach aim to place the aggrieved party in the position they would have occupied had the contract been full"
+          "verbatimQuote": "Remedies for breach aim to place the aggrieved party in the position they would have occupied had th"
         }
       ]
     }

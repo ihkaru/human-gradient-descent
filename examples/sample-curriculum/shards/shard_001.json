@@ -4,15 +4,15 @@
   "nodes": [
     {
       "id": "hgd://knowledgebase/quantum-computing/node-001",
-      "title": "Quantum Computing Foundations",
+      "title": "Qubits and Superposition",
       "cognitiveLevel": "understand",
       "difficultyTier": "1_foundational_fluency",
       "workingMemoryBudget": {
-        "wordCount": 12,
+        "wordCount": 22,
         "estimatedReadingSeconds": 3
       },
       "prerequisites": [],
-      "conceptSummary": "",
+      "conceptSummary": "In classical computing, a bit is strictly either 0 or 1. A quantum bit (qubit) is a two-state quantum-mechanical system described as a linear superposition:\n$$|\\psi\\rangle = \\alpha |0\\rangle + \\beta |1\\rangle$$\nWhere $\\alpha, \\beta \\in \\mathbb{C}$ and $|\\alpha|^2 + |\\beta|^2 = 1$. The fundamental invariant is that measurement collapses the superposition into a definite state with probability $|\\alpha|^2$ or $|\\beta|^2$.",
       "pacing": {
         "timeLimitSeconds": 60,
         "recommendedEpochs": 3,
@@ -22,85 +22,176 @@
         "conceptualVariants": [
           {
             "representationType": "verbal",
-            "content": "Quantum Computing Foundations invariant: "
+            "content": "The fundamental invariant is that measurement collapses the superposition into a definite state with probability $|\\alpha|^2$ or $|\\beta|^2$."
           },
           {
             "representationType": "symbolic",
-            "content": "Invariant_Quantum_Computing_Foundations : State -> State'"
+            "content": "|\\psi\\rangle = \\alpha |0\\rangle + \\beta |1\\rangle"
           }
         ],
         "proceduralPerturbations": [
           {
-            "parameter": "input_boundary",
-            "perturbation": "extreme_edge_case",
-            "probe": "If boundary inputs collapse, does Quantum Computing Foundations preserve consistency?",
-            "expectedBoundaryBehavior": "Preserves state continuity without unhandled failure."
+            "parameter": "boundary_condition",
+            "perturbation": "inverse_constraint",
+            "probe": "If boundary inputs invert, how does Qubits and Superposition preserve state?",
+            "expectedBoundaryBehavior": "\"Measurement collapses the equal superposition (1/sqrt(2)|0> + 1/sqrt(2)|1>) into |0> with 50% probability and |1> with 50% probability.\""
           }
         ]
       },
       "forwardPass": {
         "probeType": "prediction_what_if",
-        "readingContext": "",
-        "prompt": "Predict: How does Quantum Computing Foundations behave when boundary constraints are inverted?",
+        "readingContext": "In classical computing, a bit is strictly either 0 or 1. A quantum bit (qubit) is a two-state quantum-mechanical system described as a linear superposition:\n$$|\\psi\\rangle = \\alpha |0\\rangle + \\beta |1\\rangle$$\nWhere $\\alpha, \\beta \\in \\mathbb{C}$ an",
+        "prompt": "\"If a qubit initialized in state |0> is transformed by a Hadamard gate, predict the probability distribution of measuring |0> versus |1>.\"",
         "expectedMentalModel": [
-          "quantum computing foundations",
-          "invariant",
-          "mechanism"
+          "hadamard",
+          "superposition",
+          "equal probability",
+          "collapse"
         ],
-        "groundTruth": "Quantum Computing Foundations operates via core invariants preserving stability and state."
+        "groundTruth": "\"Measurement collapses the equal superposition (1/sqrt(2)|0> + 1/sqrt(2)|1>) into |0> with 50% probability and |1> with 50% probability.\""
       },
       "lossRubric": {
         "conceptGapCriteria": [
-          "Fails to identify the core invariant mechanism",
+          "Fails to identify core mechanism: The fundamental invariant is that measurement collapses the superposition into a",
           "Confuses cause and effect in state transitions"
         ],
         "notationCriteria": [
-          "Uses non-standard terminology",
+          "Uses ambiguous notation",
           "Confuses variables"
         ],
         "strategyCriteria": [
-          "Suggests an invalid or brute-force approach"
+          "Applies inapplicable heuristics"
         ],
         "reasoningCriteria": [
-          "Off-by-one or boundary omission in prediction"
+          "Off-by-one or boundary condition omission"
         ]
       },
       "backwardPass": {
         "learningRate": 0.25,
         "hintLadder": {
-          "level0Reflective": "Re-examine your premise regarding Quantum Computing Foundations: what underlying invariant was assumed?",
-          "level1Directional": "Focus on how Quantum Computing Foundations handles boundary conditions and resource constraints.",
-          "level2Constraint": "Eliminate linear unconstrained assumptions. Consider conservation laws or state gates.",
-          "level3WorkedExample": "Consider an isomorphic case: when input X increases, mechanism M bounds output Y to invariant Z."
+          "level0Reflective": "What fundamental invariant governs Qubits and Superposition?",
+          "level1Directional": "Examine how Qubits and Superposition handles boundary conditions: The fundamental invariant is that measurement collapses the .",
+          "level2Constraint": "Eliminate unconstrained assumptions. Recall: \"Measurement collapses the equal superposition (1/sqrt(2)|0> + 1/sqrt(2)|1>) int.",
+          "level3WorkedExample": "Worked Example: Step 1 verifies invariant '\"Measurement collapses the equal superposition (1/sqrt(2)|0>'. Step 2 applies boundary rule."
         },
         "microRemediations": {
-          "conceptGap": "Key Invariant: Quantum Computing Foundations fundamentally ensures causal state continuity.",
-          "notationBreakdown": "Ensure accurate notation when describing system parameters.",
-          "methodChoice": "Select deductive causal tracing rather than empirical guessing.",
-          "reasoningBug": "Trace the boundary edge cases step-by-step."
+          "conceptGap": "Core Invariant: \"Measurement collapses the equal superposition (1/sqrt(2)|0> + 1/sqrt(2)|1>) into |0> with 50% probability and |1> with 50% probability.\"",
+          "notationBreakdown": "Ensure accurate notation and units for Qubits and Superposition.",
+          "methodChoice": "Apply deductive causal reasoning rather than guessing.",
+          "reasoningBug": "Trace boundary edge cases step-by-step."
         }
       },
       "sources": [
         {
           "sourceRef": "markdown-source",
-          "locationTag": "Section: Quantum Computing Foundations",
-          "verbatimQuote": ""
+          "locationTag": "Section: Qubits and Superposition",
+          "verbatimQuote": "In classical computing, a bit is strictly either 0 or 1. A quantum bit (qubit) is a two-state quantu"
         }
       ]
     },
     {
       "id": "hgd://knowledgebase/quantum-computing/node-002",
-      "title": "Qubits and Superposition",
+      "title": "Unitary Operations and Reversibility",
       "cognitiveLevel": "apply",
       "difficultyTier": "2_boundary_perturbation",
       "workingMemoryBudget": {
-        "wordCount": 12,
+        "wordCount": 20,
         "estimatedReadingSeconds": 3
       },
       "prerequisites": [
         "hgd://knowledgebase/quantum-computing/node-001"
       ],
-      "conceptSummary": "In classical computing, a bit is strictly either 0 or 1. A quantum bit (qubit) is a two-state quantum-mechanical system described as a linear superposition:\n$$|\\psi\\rangle = \\alpha |0\\rangle + \\beta |1\\rangle$$\nWhere $\\alpha, \\beta \\in \\mathbb{C}$ and $|\\alpha|^2 + |\\beta|^2 = 1$. The fundamental invariant is that measurement collapses the superposition into a definite state with probability $|\\alpha|^2$ or $|\\beta|^2$.",
+      "conceptSummary": "All quantum logic gates operating on closed systems must be represented by unitary operators $U^\\dagger U = I$.\nBecause unitary transformations preserve the inner product and norm of vectors, all quantum computation without measurement is strictly reversible. No quantum gate can perform irreversible erasure of quantum information without increasing thermodynamic entropy.",
+      "pacing": {
+        "timeLimitSeconds": 60,
+        "recommendedEpochs": 3,
+        "isCheckpoint": true,
+        "rollbackNodeId": "hgd://knowledgebase/quantum-computing/node-001"
+      },
+      "variationProbes": {
+        "conceptualVariants": [
+          {
+            "representationType": "verbal",
+            "content": "All quantum logic gates operating on closed systems must be represented by unitary operators $U^\\dagger U = I$."
+          }
+        ],
+        "proceduralPerturbations": [
+          {
+            "parameter": "boundary_condition",
+            "perturbation": "inverse_constraint",
+            "probe": "If boundary inputs invert, how does Unitary Operations and Reversibility preserve state?",
+            "expectedBoundaryBehavior": "\"Quantum operations must be unitary (U dagger U = I), which strictly preserves inner products and vector norms, guaranteeing 100% reversibility without entropy dissipation.\""
+          }
+        ]
+      },
+      "forwardPass": {
+        "probeType": "prediction_what_if",
+        "readingContext": "All quantum logic gates operating on closed systems must be represented by unitary operators $U^\\dagger U = I$.\nBecause unitary transformations preserve the inner product and norm of vectors, all quantum computation without measurement is strictly re",
+        "prompt": "\"Predict why an irreversible classical operation like bit-erasure (reset to 0) cannot be represented as an isolated quantum logic gate.\"",
+        "expectedMentalModel": [
+          "unitary",
+          "reversibility",
+          "norm preservation",
+          "entropy"
+        ],
+        "groundTruth": "\"Quantum operations must be unitary (U dagger U = I), which strictly preserves inner products and vector norms, guaranteeing 100% reversibility without entropy dissipation.\""
+      },
+      "lossRubric": {
+        "conceptGapCriteria": [
+          "Fails to identify core mechanism: All quantum logic gates operating on closed systems must be represented by unita",
+          "Confuses cause and effect in state transitions"
+        ],
+        "missingPrerequisiteMap": {
+          "hgd://knowledgebase/quantum-computing/node-001": "Foundational upstream concept"
+        },
+        "notationCriteria": [
+          "Uses ambiguous notation",
+          "Confuses variables"
+        ],
+        "strategyCriteria": [
+          "Applies inapplicable heuristics"
+        ],
+        "reasoningCriteria": [
+          "Off-by-one or boundary condition omission"
+        ]
+      },
+      "backwardPass": {
+        "learningRate": 0.25,
+        "hintLadder": {
+          "level0Reflective": "What fundamental invariant governs Unitary Operations and Reversibility?",
+          "level1Directional": "Examine how Unitary Operations and Reversibility handles boundary conditions: All quantum logic gates operating on closed systems must be .",
+          "level2Constraint": "Eliminate unconstrained assumptions. Recall: \"Quantum operations must be unitary (U dagger U = I), which strictly preserves i.",
+          "level3WorkedExample": "Worked Example: Step 1 verifies invariant '\"Quantum operations must be unitary (U dagger U = I), which '. Step 2 applies boundary rule."
+        },
+        "microRemediations": {
+          "conceptGap": "Core Invariant: \"Quantum operations must be unitary (U dagger U = I), which strictly preserves inner products and vector norms, guaranteeing 100% reversibility without entropy dissipation.\"",
+          "missingPrerequisite": "Review prerequisite: hgd://knowledgebase/quantum-computing/node-001",
+          "notationBreakdown": "Ensure accurate notation and units for Unitary Operations and Reversibility.",
+          "methodChoice": "Apply deductive causal reasoning rather than guessing.",
+          "reasoningBug": "Trace boundary edge cases step-by-step."
+        }
+      },
+      "sources": [
+        {
+          "sourceRef": "markdown-source",
+          "locationTag": "Section: Unitary Operations and Reversibility",
+          "verbatimQuote": "All quantum logic gates operating on closed systems must be represented by unitary operators $U^\\dag"
+        }
+      ]
+    },
+    {
+      "id": "hgd://knowledgebase/quantum-computing/node-003",
+      "title": "Quantum Entanglement and Non-Locality",
+      "cognitiveLevel": "analyze",
+      "difficultyTier": "3_isomorphic_transfer",
+      "workingMemoryBudget": {
+        "wordCount": 26,
+        "estimatedReadingSeconds": 3
+      },
+      "prerequisites": [
+        "hgd://knowledgebase/quantum-computing/node-001"
+      ],
+      "conceptSummary": "Entanglement occurs when a multi-qubit system cannot be factored into the tensor product of individual qubit states:\n$$|\\Phi^+\\rangle = \\frac{1}{\\sqrt{2}}(|00\\rangle + |11\\rangle)$$\nMeasuring the first qubit immediately forces the state of the second qubit, regardless of spatial separation. The core invariant is that entanglement does not allow faster-than-light communication because local marginal probabilities remain invariant.",
       "pacing": {
         "timeLimitSeconds": 60,
         "recommendedEpochs": 3,
@@ -111,166 +202,74 @@
         "conceptualVariants": [
           {
             "representationType": "verbal",
-            "content": "Qubits and Superposition invariant: In classical computing, a bit is strictly either 0 or 1. A quantum bit (qubit) is a two-state quantum-mechanical system "
+            "content": "The core invariant is that entanglement does not allow faster-than-light communication because local marginal probabilities remain invariant."
           },
           {
             "representationType": "symbolic",
-            "content": "Invariant_Qubits_and_Superposition : State -> State'"
+            "content": "|\\Phi^+\\rangle = \\frac{1}{\\sqrt{2}}(|00\\rangle + |11\\rangle)"
           }
         ],
         "proceduralPerturbations": [
           {
-            "parameter": "input_boundary",
-            "perturbation": "extreme_edge_case",
-            "probe": "If boundary inputs collapse, does Qubits and Superposition preserve consistency?",
-            "expectedBoundaryBehavior": "Preserves state continuity without unhandled failure."
-          }
-        ]
-      },
-      "forwardPass": {
-        "probeType": "prediction_what_if",
-        "readingContext": "In classical computing, a bit is strictly either 0 or 1. A quantum bit (qubit) is a two-state quantum-mechanical system described as a linear superposition:\n$$|\\psi\\rangle = \\alpha |0\\rangle + \\beta |1\\rangle$$\nWhere $\\alpha, \\beta \\in \\mathbb{C}$ an",
-        "prompt": "Predict: How does Qubits and Superposition behave when boundary constraints are inverted?",
-        "expectedMentalModel": [
-          "qubits and superposition",
-          "invariant",
-          "mechanism"
-        ],
-        "groundTruth": "Qubits and Superposition operates via core invariants preserving stability and state."
-      },
-      "lossRubric": {
-        "conceptGapCriteria": [
-          "Fails to identify the core invariant mechanism",
-          "Confuses cause and effect in state transitions"
-        ],
-        "missingPrerequisiteMap": {
-          "hgd://knowledgebase/quantum-computing/node-001": "Parent foundational concept"
-        },
-        "notationCriteria": [
-          "Uses non-standard terminology",
-          "Confuses variables"
-        ],
-        "strategyCriteria": [
-          "Suggests an invalid or brute-force approach"
-        ],
-        "reasoningCriteria": [
-          "Off-by-one or boundary omission in prediction"
-        ]
-      },
-      "backwardPass": {
-        "learningRate": 0.25,
-        "hintLadder": {
-          "level0Reflective": "Re-examine your premise regarding Qubits and Superposition: what underlying invariant was assumed?",
-          "level1Directional": "Focus on how Qubits and Superposition handles boundary conditions and resource constraints.",
-          "level2Constraint": "Eliminate linear unconstrained assumptions. Consider conservation laws or state gates.",
-          "level3WorkedExample": "Consider an isomorphic case: when input X increases, mechanism M bounds output Y to invariant Z."
-        },
-        "microRemediations": {
-          "conceptGap": "Key Invariant: Qubits and Superposition fundamentally ensures causal state continuity.",
-          "missingPrerequisite": "Review prerequisite concept: hgd://knowledgebase/quantum-computing/node-001",
-          "notationBreakdown": "Ensure accurate notation when describing system parameters.",
-          "methodChoice": "Select deductive causal tracing rather than empirical guessing.",
-          "reasoningBug": "Trace the boundary edge cases step-by-step."
-        }
-      },
-      "sources": [
-        {
-          "sourceRef": "markdown-source",
-          "locationTag": "Section: Qubits and Superposition",
-          "verbatimQuote": "In classical computing, a bit is strictly either 0 or 1. A quantum bit (qubit) is a two-state quantum-mechanical system "
-        }
-      ]
-    },
-    {
-      "id": "hgd://knowledgebase/quantum-computing/node-003",
-      "title": "Quantum Entanglement and Non-Locality",
-      "cognitiveLevel": "analyze",
-      "difficultyTier": "3_isomorphic_transfer",
-      "workingMemoryBudget": {
-        "wordCount": 13,
-        "estimatedReadingSeconds": 3
-      },
-      "prerequisites": [
-        "hgd://knowledgebase/quantum-computing/node-002"
-      ],
-      "conceptSummary": "Entanglement occurs when a multi-qubit system cannot be factored into the tensor product of individual qubit states:\n$$|\\Phi^+\\rangle = \\frac{1}{\\sqrt{2}}(|00\\rangle + |11\\rangle)$$\nMeasuring the first qubit immediately forces the state of the second qubit, regardless of spatial separation. The core invariant is that entanglement does not allow faster-than-light communication because local marginal probabilities remain invariant.",
-      "pacing": {
-        "timeLimitSeconds": 60,
-        "recommendedEpochs": 3,
-        "isCheckpoint": true,
-        "rollbackNodeId": "hgd://knowledgebase/quantum-computing/node-002"
-      },
-      "variationProbes": {
-        "conceptualVariants": [
-          {
-            "representationType": "verbal",
-            "content": "Quantum Entanglement and Non-Locality invariant: Entanglement occurs when a multi-qubit system cannot be factored into the tensor product of individual qubit states:\n$$|"
-          },
-          {
-            "representationType": "symbolic",
-            "content": "Invariant_Quantum_Entanglement_and_Non-Locality : State -> State'"
-          }
-        ],
-        "proceduralPerturbations": [
-          {
-            "parameter": "input_boundary",
-            "perturbation": "extreme_edge_case",
-            "probe": "If boundary inputs collapse, does Quantum Entanglement and Non-Locality preserve consistency?",
-            "expectedBoundaryBehavior": "Preserves state continuity without unhandled failure."
+            "parameter": "boundary_condition",
+            "perturbation": "inverse_constraint",
+            "probe": "If boundary inputs invert, how does Quantum Entanglement and Non-Locality preserve state?",
+            "expectedBoundaryBehavior": "\"Alice cannot transmit information faster than light because Bob's local marginal probability remains exactly 50/50 until classical measurement correlations are communicated.\""
           }
         ]
       },
       "forwardPass": {
         "probeType": "prediction_what_if",
         "readingContext": "Entanglement occurs when a multi-qubit system cannot be factored into the tensor product of individual qubit states:\n$$|\\Phi^+\\rangle = \\frac{1}{\\sqrt{2}}(|00\\rangle + |11\\rangle)$$\nMeasuring the first qubit immediately forces the state of the second",
-        "prompt": "Predict: How does Quantum Entanglement and Non-Locality behave when boundary constraints are inverted?",
+        "prompt": "\"If Alice and Bob share a Bell state (|00> + |11>)/sqrt(2), predict whether Alice can transmit an instantaneous binary message to Bob by measuring her qubit.\"",
         "expectedMentalModel": [
-          "quantum entanglement and non-locality",
-          "invariant",
-          "mechanism"
+          "no-signaling",
+          "marginal probability",
+          "bell state",
+          "faster than light"
         ],
-        "groundTruth": "Quantum Entanglement and Non-Locality operates via core invariants preserving stability and state."
+        "groundTruth": "\"Alice cannot transmit information faster than light because Bob's local marginal probability remains exactly 50/50 until classical measurement correlations are communicated.\""
       },
       "lossRubric": {
         "conceptGapCriteria": [
-          "Fails to identify the core invariant mechanism",
+          "Fails to identify core mechanism: The core invariant is that entanglement does not allow faster-than-light communi",
           "Confuses cause and effect in state transitions"
         ],
         "missingPrerequisiteMap": {
-          "hgd://knowledgebase/quantum-computing/node-002": "Parent foundational concept"
+          "hgd://knowledgebase/quantum-computing/node-001": "Foundational upstream concept"
         },
         "notationCriteria": [
-          "Uses non-standard terminology",
+          "Uses ambiguous notation",
           "Confuses variables"
         ],
         "strategyCriteria": [
-          "Suggests an invalid or brute-force approach"
+          "Applies inapplicable heuristics"
         ],
         "reasoningCriteria": [
-          "Off-by-one or boundary omission in prediction"
+          "Off-by-one or boundary condition omission"
         ]
       },
       "backwardPass": {
         "learningRate": 0.25,
         "hintLadder": {
-          "level0Reflective": "Re-examine your premise regarding Quantum Entanglement and Non-Locality: what underlying invariant was assumed?",
-          "level1Directional": "Focus on how Quantum Entanglement and Non-Locality handles boundary conditions and resource constraints.",
-          "level2Constraint": "Eliminate linear unconstrained assumptions. Consider conservation laws or state gates.",
-          "level3WorkedExample": "Consider an isomorphic case: when input X increases, mechanism M bounds output Y to invariant Z."
+          "level0Reflective": "What fundamental invariant governs Quantum Entanglement and Non-Locality?",
+          "level1Directional": "Examine how Quantum Entanglement and Non-Locality handles boundary conditions: The core invariant is that entanglement does not allow faste.",
+          "level2Constraint": "Eliminate unconstrained assumptions. Recall: \"Alice cannot transmit information faster than light because Bob's local margina.",
+          "level3WorkedExample": "Worked Example: Step 1 verifies invariant '\"Alice cannot transmit information faster than light because'. Step 2 applies boundary rule."
         },
         "microRemediations": {
-          "conceptGap": "Key Invariant: Quantum Entanglement and Non-Locality fundamentally ensures causal state continuity.",
-          "missingPrerequisite": "Review prerequisite concept: hgd://knowledgebase/quantum-computing/node-002",
-          "notationBreakdown": "Ensure accurate notation when describing system parameters.",
-          "methodChoice": "Select deductive causal tracing rather than empirical guessing.",
-          "reasoningBug": "Trace the boundary edge cases step-by-step."
+          "conceptGap": "Core Invariant: \"Alice cannot transmit information faster than light because Bob's local marginal probability remains exactly 50/50 until classical measurement correlations are communicated.\"",
+          "missingPrerequisite": "Review prerequisite: hgd://knowledgebase/quantum-computing/node-001",
+          "notationBreakdown": "Ensure accurate notation and units for Quantum Entanglement and Non-Locality.",
+          "methodChoice": "Apply deductive causal reasoning rather than guessing.",
+          "reasoningBug": "Trace boundary edge cases step-by-step."
         }
       },
       "sources": [
         {
           "sourceRef": "markdown-source",
           "locationTag": "Section: Quantum Entanglement and Non-Locality",
-          "verbatimQuote": "Entanglement occurs when a multi-qubit system cannot be factored into the tensor product of individual qubit states:\n$$|"
+          "verbatimQuote": "Entanglement occurs when a multi-qubit system cannot be factored into the tensor product of individu"
         }
       ]
     }
