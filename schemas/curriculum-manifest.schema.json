@@ -1,0 +1,121 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ihkaru.github.io/human-gradient-descent/schemas/curriculum-manifest.schema.json",
+  "title": "HGD Curriculum Manifest",
+  "description": "Root manifest schema for encyclopedic-scale curricula partitioned across distributed shards.",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "curriculumId",
+    "title",
+    "domain",
+    "version",
+    "scale",
+    "shards",
+    "dag"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "type": "string",
+      "enum": ["2026.1", "2026.2"]
+    },
+    "curriculumId": {
+      "type": "string",
+      "pattern": "^[a-z0-9-]+$"
+    },
+    "title": {
+      "type": "string",
+      "minLength": 3,
+      "maxLength": 200
+    },
+    "description": {
+      "type": "string",
+      "maxLength": 2000
+    },
+    "domain": {
+      "type": "string"
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$"
+    },
+    "license": {
+      "type": "string",
+      "default": "MIT"
+    },
+    "authors": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "scale": {
+      "type": "object",
+      "required": ["totalNodes", "totalShards"],
+      "properties": {
+        "totalNodes": { "type": "integer", "minimum": 1 },
+        "totalShards": { "type": "integer", "minimum": 1 },
+        "approxWordCount": { "type": "integer", "minimum": 0 },
+        "estimatedLearningHours": { "type": "number", "minimum": 0 }
+      }
+    },
+    "shards": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["shardId", "filePath", "nodeCount", "nodeIds"],
+        "properties": {
+          "shardId": { "type": "string" },
+          "filePath": { "type": "string" },
+          "nodeCount": { "type": "integer", "minimum": 1 },
+          "nodeIds": {
+            "type": "array",
+            "items": { "type": "string" }
+          }
+        }
+      }
+    },
+    "dag": {
+      "type": "object",
+      "required": ["nodes", "edges"],
+      "properties": {
+        "nodes": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["id", "shardId", "title", "cognitiveLevel"],
+            "properties": {
+              "id": { "type": "string" },
+              "shardId": { "type": "string" },
+              "title": { "type": "string" },
+              "cognitiveLevel": {
+                "type": "string",
+                "enum": [
+                  "remember",
+                  "understand",
+                  "apply",
+                  "analyze",
+                  "evaluate",
+                  "create"
+                ]
+              }
+            }
+          }
+        },
+        "edges": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["from", "to", "relationType"],
+            "properties": {
+              "from": { "type": "string" },
+              "to": { "type": "string" },
+              "relationType": {
+                "type": "string",
+                "enum": ["prerequisite", "corequisite", "analogy", "extension"]
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

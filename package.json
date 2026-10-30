@@ -1,0 +1,39 @@
+{
+  "name": "@ihkaru/human-gradient-descent",
+  "version": "1.0.0",
+  "description": "Human Gradient Descent: Adaptive Learning Agent Skill standard with Forward-Pass Prediction and Diagnostic Backward-Pass Optimization at Encyclopedic Scale",
+  "main": "src/index.ts",
+  "type": "module",
+  "bin": {
+    "hgd": "src/cli.ts"
+  },
+  "scripts": {
+    "cli": "bun run src/cli.ts",
+    "check:types": "./node_modules/.bin/tsc --noEmit",
+    "check:lines": "bun run scripts/check-line-limits.ts",
+    "test": "bun test",
+    "validate": "bun run src/cli.ts validate",
+    "compile": "bun run src/cli.ts compile"
+  },
+  "keywords": [
+    "agent-skill",
+    "cognitive-architecture",
+    "gradient-descent",
+    "pedagogy",
+    "active-recall",
+    "generation-effect",
+    "scaffolding",
+    "json-schema"
+  ],
+  "author": "ihkaru",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/bun": "latest",
+    "@types/node": "^22.7.5",
+    "typescript": "5.6.3"
+  },
+  "dependencies": {
+    "ajv": "8.17.1",
+    "ajv-formats": "^3.0.1"
+  }
+}

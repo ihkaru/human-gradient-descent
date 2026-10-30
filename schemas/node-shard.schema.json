@@ -1,0 +1,162 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ihkaru.github.io/human-gradient-descent/schemas/node-shard.schema.json",
+  "title": "HGD Node Shard",
+  "description": "Schema for an isolated shard file storing competency nodes, prediction probes, loss rubrics, and hint ladders.",
+  "type": "object",
+  "required": ["shardId", "curriculumId", "nodes"],
+  "properties": {
+    "shardId": { "type": "string" },
+    "curriculumId": { "type": "string" },
+    "nodes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "title",
+          "cognitiveLevel",
+          "prerequisites",
+          "conceptSummary",
+          "forwardPass",
+          "lossRubric",
+          "backwardPass"
+        ],
+        "properties": {
+          "id": { "type": "string" },
+          "title": { "type": "string" },
+          "cognitiveLevel": {
+            "type": "string",
+            "enum": [
+              "remember",
+              "understand",
+              "apply",
+              "analyze",
+              "evaluate",
+              "create"
+            ]
+          },
+          "prerequisites": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "conceptSummary": { "type": "string", "maxLength": 3000 },
+          "forwardPass": {
+            "type": "object",
+            "required": [
+              "probeType",
+              "prompt",
+              "expectedMentalModel",
+              "groundTruth"
+            ],
+            "properties": {
+              "probeType": {
+                "type": "string",
+                "enum": [
+                  "prediction_what_if",
+                  "pre_test",
+                  "counterfactual",
+                  "mechanism_guess",
+                  "code_output_prediction"
+                ]
+              },
+              "readingContext": { "type": "string" },
+              "prompt": { "type": "string" },
+              "expectedMentalModel": {
+                "type": "array",
+                "items": { "type": "string" }
+              },
+              "groundTruth": { "type": "string" }
+            }
+          },
+          "lossRubric": {
+            "type": "object",
+            "required": [
+              "conceptGapCriteria",
+              "notationCriteria",
+              "strategyCriteria",
+              "reasoningCriteria"
+            ],
+            "properties": {
+              "conceptGapCriteria": {
+                "type": "array",
+                "items": { "type": "string" }
+              },
+              "missingPrerequisiteMap": {
+                "type": "object",
+                "additionalProperties": { "type": "string" }
+              },
+              "notationCriteria": {
+                "type": "array",
+                "items": { "type": "string" }
+              },
+              "strategyCriteria": {
+                "type": "array",
+                "items": { "type": "string" }
+              },
+              "reasoningCriteria": {
+                "type": "array",
+                "items": { "type": "string" }
+              }
+            }
+          },
+          "backwardPass": {
+            "type": "object",
+            "required": ["hintLadder", "microRemediations"],
+            "properties": {
+              "learningRate": {
+                "type": "number",
+                "minimum": 0.01,
+                "maximum": 1.0,
+                "default": 0.25
+              },
+              "hintLadder": {
+                "type": "object",
+                "required": [
+                  "level0Reflective",
+                  "level1Directional",
+                  "level2Constraint",
+                  "level3WorkedExample"
+                ],
+                "properties": {
+                  "level0Reflective": { "type": "string" },
+                  "level1Directional": { "type": "string" },
+                  "level2Constraint": { "type": "string" },
+                  "level3WorkedExample": { "type": "string" }
+                }
+              },
+              "microRemediations": {
+                "type": "object",
+                "required": [
+                  "conceptGap",
+                  "notationBreakdown",
+                  "methodChoice",
+                  "reasoningBug"
+                ],
+                "properties": {
+                  "conceptGap": { "type": "string" },
+                  "missingPrerequisite": { "type": "string" },
+                  "notationBreakdown": { "type": "string" },
+                  "methodChoice": { "type": "string" },
+                  "reasoningBug": { "type": "string" }
+                }
+              }
+            }
+          },
+          "sources": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["sourceRef", "locationTag"],
+              "properties": {
+                "sourceRef": { "type": "string" },
+                "locationTag": { "type": "string" },
+                "verbatimQuote": { "type": "string" }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

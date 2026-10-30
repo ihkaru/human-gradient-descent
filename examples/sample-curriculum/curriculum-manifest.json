@@ -1,0 +1,106 @@
+{
+  "schemaVersion": "2026.1",
+  "curriculumId": "quantum-computing",
+  "title": "quantum_computing",
+  "domain": "KnowledgeBase",
+  "version": "1.0.0",
+  "license": "MIT",
+  "authors": [
+    "ihkaru"
+  ],
+  "scale": {
+    "totalNodes": 6,
+    "totalShards": 2,
+    "approxWordCount": 314,
+    "estimatedLearningHours": 2.1
+  },
+  "shards": [
+    {
+      "shardId": "shard_001",
+      "filePath": "shards/shard_001.json",
+      "nodeCount": 3,
+      "nodeIds": [
+        "hgd://knowledgebase/quantum-computing/node-001",
+        "hgd://knowledgebase/quantum-computing/node-002",
+        "hgd://knowledgebase/quantum-computing/node-003"
+      ]
+    },
+    {
+      "shardId": "shard_002",
+      "filePath": "shards/shard_002.json",
+      "nodeCount": 3,
+      "nodeIds": [
+        "hgd://knowledgebase/quantum-computing/node-004",
+        "hgd://knowledgebase/quantum-computing/node-005",
+        "hgd://knowledgebase/quantum-computing/node-006"
+      ]
+    }
+  ],
+  "dag": {
+    "nodes": [
+      {
+        "id": "hgd://knowledgebase/quantum-computing/node-001",
+        "shardId": "shard_001",
+        "title": "Quantum Computing Foundations",
+        "cognitiveLevel": "understand"
+      },
+      {
+        "id": "hgd://knowledgebase/quantum-computing/node-002",
+        "shardId": "shard_001",
+        "title": "Qubits and Superposition",
+        "cognitiveLevel": "apply"
+      },
+      {
+        "id": "hgd://knowledgebase/quantum-computing/node-003",
+        "shardId": "shard_001",
+        "title": "Quantum Entanglement and Non-Locality",
+        "cognitiveLevel": "analyze"
+      },
+      {
+        "id": "hgd://knowledgebase/quantum-computing/node-004",
+        "shardId": "shard_002",
+        "title": "Unitary Operations and Reversibility",
+        "cognitiveLevel": "evaluate"
+      },
+      {
+        "id": "hgd://knowledgebase/quantum-computing/node-005",
+        "shardId": "shard_002",
+        "title": "Quantum No-Cloning Theorem",
+        "cognitiveLevel": "understand"
+      },
+      {
+        "id": "hgd://knowledgebase/quantum-computing/node-006",
+        "shardId": "shard_002",
+        "title": "Grover's Search and Quadratic Speedup",
+        "cognitiveLevel": "apply"
+      }
+    ],
+    "edges": [
+      {
+        "from": "hgd://knowledgebase/quantum-computing/node-001",
+        "to": "hgd://knowledgebase/quantum-computing/node-002",
+        "relationType": "prerequisite"
+      },
+      {
+        "from": "hgd://knowledgebase/quantum-computing/node-002",
+        "to": "hgd://knowledgebase/quantum-computing/node-003",
+        "relationType": "prerequisite"
+      },
+      {
+        "from": "hgd://knowledgebase/quantum-computing/node-003",
+        "to": "hgd://knowledgebase/quantum-computing/node-004",
+        "relationType": "prerequisite"
+      },
+      {
+        "from": "hgd://knowledgebase/quantum-computing/node-004",
+        "to": "hgd://knowledgebase/quantum-computing/node-005",
+        "relationType": "prerequisite"
+      },
+      {
+        "from": "hgd://knowledgebase/quantum-computing/node-005",
+        "to": "hgd://knowledgebase/quantum-computing/node-006",
+        "relationType": "prerequisite"
+      }
+    ]
+  }
+}

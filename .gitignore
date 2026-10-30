@@ -1,0 +1,28 @@
+# Dependencies
+node_modules/
+bun.lock
+bun.lockb
+
+# Build output
+dist/
+build/
+.cache/
+
+# Test and coverage
+coverage/
+*.lcov
+
+# Environment and secrets
+.env
+.env.local
+*.local
+
+# System and editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.log
+
+# Shard run cache
+.session-cache/

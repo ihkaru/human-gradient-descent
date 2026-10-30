@@ -1,0 +1,192 @@
+{
+  "shardId": "shard_002",
+  "curriculumId": "quantum-computing",
+  "nodes": [
+    {
+      "id": "hgd://knowledgebase/quantum-computing/node-004",
+      "title": "Unitary Operations and Reversibility",
+      "cognitiveLevel": "evaluate",
+      "prerequisites": [
+        "hgd://knowledgebase/quantum-computing/node-003"
+      ],
+      "conceptSummary": "All quantum logic gates operating on closed systems must be represented by unitary operators $U^\\dagger U = I$.\nBecause unitary transformations preserve the inner product and norm of vectors, all quantum computation without measurement is strictly reversible. No quantum gate can perform irreversible erasure of quantum information without increasing thermodynamic entropy.",
+      "forwardPass": {
+        "probeType": "prediction_what_if",
+        "readingContext": "All quantum logic gates operating on closed systems must be represented by unitary operators $U^\\dagger U = I$.\nBecause unitary transformations preserve the inner product and norm of vectors, all quantum computation without measurement is strictly reversible. No quantum gate can perform irreversible",
+        "prompt": "Based on your understanding of Unitary Operations and Reversibility, predict: If the fundamental constraint or input parameters were inverted, how does the system behave, and why?",
+        "expectedMentalModel": [
+          "unitary operations and reversibility",
+          "invariant",
+          "mechanism"
+        ],
+        "groundTruth": "Unitary Operations and Reversibility operates via core invariants preserving stability and state."
+      },
+      "lossRubric": {
+        "conceptGapCriteria": [
+          "Fails to identify the core invariant mechanism",
+          "Confuses cause and effect in state transitions"
+        ],
+        "missingPrerequisiteMap": {
+          "hgd://knowledgebase/quantum-computing/node-003": "Parent foundational concept"
+        },
+        "notationCriteria": [
+          "Uses non-standard terminology",
+          "Confuses variables"
+        ],
+        "strategyCriteria": [
+          "Suggests an invalid or brute-force approach"
+        ],
+        "reasoningCriteria": [
+          "Off-by-one or boundary omission in prediction"
+        ]
+      },
+      "backwardPass": {
+        "learningRate": 0.25,
+        "hintLadder": {
+          "level0Reflective": "Re-examine your premise regarding Unitary Operations and Reversibility: what underlying invariant was assumed?",
+          "level1Directional": "Focus on how Unitary Operations and Reversibility handles boundary conditions and resource constraints.",
+          "level2Constraint": "Eliminate linear unconstrained assumptions. Consider conservation laws or state gates.",
+          "level3WorkedExample": "Consider an isomorphic case: when input X increases, mechanism M bounds output Y to invariant Z."
+        },
+        "microRemediations": {
+          "conceptGap": "Key Invariant: Unitary Operations and Reversibility fundamentally ensures causal state continuity.",
+          "missingPrerequisite": "Review prerequisite concept: hgd://knowledgebase/quantum-computing/node-003",
+          "notationBreakdown": "Ensure accurate notation when describing system parameters.",
+          "methodChoice": "Select deductive causal tracing rather than empirical guessing.",
+          "reasoningBug": "Trace the boundary edge cases step-by-step."
+        }
+      },
+      "sources": [
+        {
+          "sourceRef": "markdown-source",
+          "locationTag": "Section: Unitary Operations and Reversibility",
+          "verbatimQuote": "All quantum logic gates operating on closed systems must be represented by unitary operators $U^\\dagger U = I$.\nBecause "
+        }
+      ]
+    },
+    {
+      "id": "hgd://knowledgebase/quantum-computing/node-005",
+      "title": "Quantum No-Cloning Theorem",
+      "cognitiveLevel": "understand",
+      "prerequisites": [
+        "hgd://knowledgebase/quantum-computing/node-004"
+      ],
+      "conceptSummary": "The no-cloning theorem states that it is impossible to create an identical copy of an arbitrary unknown quantum state:\n$$U(|\\psi\\rangle |0\\rangle) \\neq |\\psi\\rangle |\\psi\\rangle$$\nThis follows directly from the linearity of quantum operators. Because cloning is prohibited, quantum error correction cannot simply duplicate qubits, but must instead distribute quantum information across entangled topological codes.",
+      "forwardPass": {
+        "probeType": "prediction_what_if",
+        "readingContext": "The no-cloning theorem states that it is impossible to create an identical copy of an arbitrary unknown quantum state:\n$$U(|\\psi\\rangle |0\\rangle) \\neq |\\psi\\rangle |\\psi\\rangle$$\nThis follows directly from the linearity of quantum operators. Because cloning is prohibited, quantum error correction c",
+        "prompt": "Based on your understanding of Quantum No-Cloning Theorem, predict: If the fundamental constraint or input parameters were inverted, how does the system behave, and why?",
+        "expectedMentalModel": [
+          "quantum no-cloning theorem",
+          "invariant",
+          "mechanism"
+        ],
+        "groundTruth": "Quantum No-Cloning Theorem operates via core invariants preserving stability and state."
+      },
+      "lossRubric": {
+        "conceptGapCriteria": [
+          "Fails to identify the core invariant mechanism",
+          "Confuses cause and effect in state transitions"
+        ],
+        "missingPrerequisiteMap": {
+          "hgd://knowledgebase/quantum-computing/node-004": "Parent foundational concept"
+        },
+        "notationCriteria": [
+          "Uses non-standard terminology",
+          "Confuses variables"
+        ],
+        "strategyCriteria": [
+          "Suggests an invalid or brute-force approach"
+        ],
+        "reasoningCriteria": [
+          "Off-by-one or boundary omission in prediction"
+        ]
+      },
+      "backwardPass": {
+        "learningRate": 0.25,
+        "hintLadder": {
+          "level0Reflective": "Re-examine your premise regarding Quantum No-Cloning Theorem: what underlying invariant was assumed?",
+          "level1Directional": "Focus on how Quantum No-Cloning Theorem handles boundary conditions and resource constraints.",
+          "level2Constraint": "Eliminate linear unconstrained assumptions. Consider conservation laws or state gates.",
+          "level3WorkedExample": "Consider an isomorphic case: when input X increases, mechanism M bounds output Y to invariant Z."
+        },
+        "microRemediations": {
+          "conceptGap": "Key Invariant: Quantum No-Cloning Theorem fundamentally ensures causal state continuity.",
+          "missingPrerequisite": "Review prerequisite concept: hgd://knowledgebase/quantum-computing/node-004",
+          "notationBreakdown": "Ensure accurate notation when describing system parameters.",
+          "methodChoice": "Select deductive causal tracing rather than empirical guessing.",
+          "reasoningBug": "Trace the boundary edge cases step-by-step."
+        }
+      },
+      "sources": [
+        {
+          "sourceRef": "markdown-source",
+          "locationTag": "Section: Quantum No-Cloning Theorem",
+          "verbatimQuote": "The no-cloning theorem states that it is impossible to create an identical copy of an arbitrary unknown quantum state:\n$"
+        }
+      ]
+    },
+    {
+      "id": "hgd://knowledgebase/quantum-computing/node-006",
+      "title": "Grover's Search and Quadratic Speedup",
+      "cognitiveLevel": "apply",
+      "prerequisites": [
+        "hgd://knowledgebase/quantum-computing/node-005"
+      ],
+      "conceptSummary": "Grover's algorithm searches an unstructured database of $N$ items in $O(\\sqrt{N})$ operations, compared to classical $O(N)$.\nIt achieves this by iteratively applying the Grover diffusion operator:\n$$G = (2|s\\rangle\\langle s| - I) O_\\omega$$\nThe mechanism works via amplitude amplification: the phase of the target state is inverted, and then all amplitudes are inverted about the mean, geometrically rotating the state vector toward the target.",
+      "forwardPass": {
+        "probeType": "prediction_what_if",
+        "readingContext": "Grover's algorithm searches an unstructured database of $N$ items in $O(\\sqrt{N})$ operations, compared to classical $O(N)$.\nIt achieves this by iteratively applying the Grover diffusion operator:\n$$G = (2|s\\rangle\\langle s| - I) O_\\omega$$\nThe mechanism works via amplitude amplification: the phase",
+        "prompt": "Based on your understanding of Grover's Search and Quadratic Speedup, predict: If the fundamental constraint or input parameters were inverted, how does the system behave, and why?",
+        "expectedMentalModel": [
+          "grover's search and quadratic speedup",
+          "invariant",
+          "mechanism"
+        ],
+        "groundTruth": "Grover's Search and Quadratic Speedup operates via core invariants preserving stability and state."
+      },
+      "lossRubric": {
+        "conceptGapCriteria": [
+          "Fails to identify the core invariant mechanism",
+          "Confuses cause and effect in state transitions"
+        ],
+        "missingPrerequisiteMap": {
+          "hgd://knowledgebase/quantum-computing/node-005": "Parent foundational concept"
+        },
+        "notationCriteria": [
+          "Uses non-standard terminology",
+          "Confuses variables"
+        ],
+        "strategyCriteria": [
+          "Suggests an invalid or brute-force approach"
+        ],
+        "reasoningCriteria": [
+          "Off-by-one or boundary omission in prediction"
+        ]
+      },
+      "backwardPass": {
+        "learningRate": 0.25,
+        "hintLadder": {
+          "level0Reflective": "Re-examine your premise regarding Grover's Search and Quadratic Speedup: what underlying invariant was assumed?",
+          "level1Directional": "Focus on how Grover's Search and Quadratic Speedup handles boundary conditions and resource constraints.",
+          "level2Constraint": "Eliminate linear unconstrained assumptions. Consider conservation laws or state gates.",
+          "level3WorkedExample": "Consider an isomorphic case: when input X increases, mechanism M bounds output Y to invariant Z."
+        },
+        "microRemediations": {
+          "conceptGap": "Key Invariant: Grover's Search and Quadratic Speedup fundamentally ensures causal state continuity.",
+          "missingPrerequisite": "Review prerequisite concept: hgd://knowledgebase/quantum-computing/node-005",
+          "notationBreakdown": "Ensure accurate notation when describing system parameters.",
+          "methodChoice": "Select deductive causal tracing rather than empirical guessing.",
+          "reasoningBug": "Trace the boundary edge cases step-by-step."
+        }
+      },
+      "sources": [
+        {
+          "sourceRef": "markdown-source",
+          "locationTag": "Section: Grover's Search and Quadratic Speedup",
+          "verbatimQuote": "Grover's algorithm searches an unstructured database of $N$ items in $O(\\sqrt{N})$ operations, compared to classical $O("
+        }
+      ]
+    }
+  ]
+}

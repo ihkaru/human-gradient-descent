@@ -1,0 +1,81 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ihkaru.github.io/human-gradient-descent/schemas/session-interaction.schema.json",
+  "title": "HGD Session Interaction",
+  "description": "Schema for live learning session passes, diagnostic loss calculation, and backward pass escalation.",
+  "type": "object",
+  "required": [
+    "sessionId",
+    "nodeId",
+    "iteration",
+    "step",
+    "forwardPassInput",
+    "lossAnalysis",
+    "backwardPassIntervention"
+  ],
+  "properties": {
+    "sessionId": { "type": "string" },
+    "nodeId": { "type": "string" },
+    "iteration": { "type": "integer", "minimum": 1 },
+    "step": {
+      "type": "string",
+      "enum": ["forward_pass", "backward_loss", "hint_escalation", "converged"]
+    },
+    "forwardPassInput": {
+      "type": "object",
+      "required": ["userPrediction", "timestamp"],
+      "properties": {
+        "userPrediction": { "type": "string" },
+        "timestamp": { "type": "string", "format": "date-time" },
+        "elapsedSeconds": { "type": "number" }
+      }
+    },
+    "lossAnalysis": {
+      "type": "object",
+      "required": ["totalLoss", "vector", "primaryClassification"],
+      "properties": {
+        "totalLoss": { "type": "number", "minimum": 0.0, "maximum": 1.0 },
+        "primaryClassification": {
+          "type": "string",
+          "enum": [
+            "zero_loss",
+            "concept_gap",
+            "missing_prerequisite",
+            "notation_breakdown",
+            "method_choice",
+            "reasoning_bug"
+          ]
+        },
+        "vector": {
+          "type": "object",
+          "required": [
+            "conceptGap",
+            "missingPrerequisite",
+            "notationBreakdown",
+            "methodChoice",
+            "reasoningBug"
+          ],
+          "properties": {
+            "conceptGap": { "type": "number", "minimum": 0.0, "maximum": 1.0 },
+            "missingPrerequisite": { "type": "number", "minimum": 0.0, "maximum": 1.0 },
+            "notationBreakdown": { "type": "number", "minimum": 0.0, "maximum": 1.0 },
+            "methodChoice": { "type": "number", "minimum": 0.0, "maximum": 1.0 },
+            "reasoningBug": { "type": "number", "minimum": 0.0, "maximum": 1.0 }
+          }
+        },
+        "justification": { "type": "string" }
+      }
+    },
+    "backwardPassIntervention": {
+      "type": "object",
+      "required": ["activeHintLevel", "deltaTheta", "feedbackMessage"],
+      "properties": {
+        "activeHintLevel": { "type": "integer", "minimum": 0, "maximum": 3 },
+        "appliedHint": { "type": "string" },
+        "microRemediationText": { "type": "string" },
+        "deltaTheta": { "type": "number" },
+        "feedbackMessage": { "type": "string" }
+      }
+    }
+  }
+}

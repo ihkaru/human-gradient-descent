@@ -1,0 +1,104 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ihkaru.github.io/human-gradient-descent/schemas/learner-state.schema.json",
+  "title": "HGD Learner State Vector",
+  "description": "Schema for persisting cognitive parameter weights theta, loss trajectory, and frontier nodes.",
+  "type": "object",
+  "required": [
+    "learnerId",
+    "curriculumId",
+    "lastUpdated",
+    "globalMastery",
+    "weights",
+    "activeFrontier",
+    "masteredNodes"
+  ],
+  "properties": {
+    "learnerId": { "type": "string" },
+    "curriculumId": { "type": "string" },
+    "lastUpdated": { "type": "string", "format": "date-time" },
+    "globalMastery": {
+      "type": "number",
+      "minimum": 0.0,
+      "maximum": 1.0
+    },
+    "learningRateAlpha": {
+      "type": "number",
+      "minimum": 0.01,
+      "maximum": 1.0,
+      "default": 0.3
+    },
+    "weights": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "required": ["theta", "confidence", "lastLoss", "attempts"],
+        "properties": {
+          "theta": {
+            "type": "number",
+            "minimum": 0.0,
+            "maximum": 1.0
+          },
+          "confidence": {
+            "type": "number",
+            "minimum": 0.0,
+            "maximum": 1.0
+          },
+          "lastLoss": {
+            "type": "number",
+            "minimum": 0.0,
+            "maximum": 1.0
+          },
+          "attempts": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "consecutiveCorrect": {
+            "type": "integer",
+            "minimum": 0,
+            "default": 0
+          },
+          "lastReviewTimestamp": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "halfLifeHours": {
+            "type": "number",
+            "minimum": 1.0,
+            "default": 72.0
+          }
+        }
+      }
+    },
+    "activeFrontier": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "masteredNodes": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "lossHistory": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["timestamp", "nodeId", "lossVector", "totalLoss"],
+        "properties": {
+          "timestamp": { "type": "string", "format": "date-time" },
+          "nodeId": { "type": "string" },
+          "totalLoss": { "type": "number" },
+          "lossVector": {
+            "type": "object",
+            "properties": {
+              "conceptGap": { "type": "number" },
+              "missingPrerequisite": { "type": "number" },
+              "notationBreakdown": { "type": "number" },
+              "methodChoice": { "type": "number" },
+              "reasoningBug": { "type": "number" }
+            }
+          }
+        }
+      }
+    }
+  }
+}
