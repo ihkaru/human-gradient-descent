@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://ihkaru.github.io/human-gradient-descent/schemas/learner-state.schema.json",
   "title": "HGD Learner State Vector",
-  "description": "Schema for persisting cognitive parameter weights theta, loss trajectory, checkpoints, and rollback traces.",
+  "description": "Schema for persisting cognitive parameter weights theta, loss trajectory, checkpoints, rollback traces, and fatigue safety telemetry.",
   "type": "object",
   "required": [
     "learnerId",
@@ -53,6 +53,17 @@
             }
           }
         }
+      }
+    },
+    "fatigueMetrics": {
+      "type": "object",
+      "properties": {
+        "averageLatencySeconds": { "type": "number", "minimum": 0 },
+        "consecutiveHurriedSlips": { "type": "integer", "minimum": 0, "default": 0 },
+        "fatigueScore": { "type": "number", "minimum": 0.0, "maximum": 1.0, "default": 0.0 },
+        "cooldownActive": { "type": "boolean", "default": false },
+        "cooldownUntil": { "type": "string", "format": "date-time" },
+        "recommendedMode": { "type": "string", "enum": ["time_bounded", "self_paced"] }
       }
     },
     "weights": {

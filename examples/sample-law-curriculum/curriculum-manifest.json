@@ -1,0 +1,125 @@
+{
+  "schemaVersion": "2026.1",
+  "curriculumId": "contract-law-basics",
+  "title": "contract_law_basics",
+  "domain": "KnowledgeBase",
+  "domainType": "general",
+  "compositionalPrimitives": [
+    "contract law foundations",
+    "offer and mutual assent",
+    "consideration and bargained-for exchange",
+    "material breach and constructive conditions",
+    "expectation damages and mitigation"
+  ],
+  "version": "1.0.0",
+  "license": "MIT",
+  "authors": [
+    "ihkaru"
+  ],
+  "scale": {
+    "totalNodes": 5,
+    "totalShards": 2,
+    "approxWordCount": 209,
+    "estimatedLearningHours": 1.8
+  },
+  "pacing": {
+    "defaultMode": "time_bounded",
+    "timeBoundedConfig": {
+      "defaultNodeTimeoutSeconds": 60,
+      "totalCurriculumBudgetMinutes": 15,
+      "autoEscalateHintOnTimeout": true,
+      "stagnationWarningSeconds": 25
+    },
+    "checkpoints": [
+      {
+        "checkpointId": "cp-01",
+        "title": "Milestone Checkpoint: Consideration and Bargained-for Exchange",
+        "milestoneNodeId": "hgd://knowledgebase/contract-law-basics/node-003",
+        "requiredMasteryTheta": 0.9
+      },
+      {
+        "checkpointId": "cp-02",
+        "title": "Milestone Checkpoint: Expectation Damages and Mitigation",
+        "milestoneNodeId": "hgd://knowledgebase/contract-law-basics/node-005",
+        "requiredMasteryTheta": 0.9
+      }
+    ]
+  },
+  "shards": [
+    {
+      "shardId": "shard_001",
+      "filePath": "shards/shard_001.json",
+      "nodeCount": 3,
+      "nodeIds": [
+        "hgd://knowledgebase/contract-law-basics/node-001",
+        "hgd://knowledgebase/contract-law-basics/node-002",
+        "hgd://knowledgebase/contract-law-basics/node-003"
+      ]
+    },
+    {
+      "shardId": "shard_002",
+      "filePath": "shards/shard_002.json",
+      "nodeCount": 2,
+      "nodeIds": [
+        "hgd://knowledgebase/contract-law-basics/node-004",
+        "hgd://knowledgebase/contract-law-basics/node-005"
+      ]
+    }
+  ],
+  "dag": {
+    "nodes": [
+      {
+        "id": "hgd://knowledgebase/contract-law-basics/node-001",
+        "shardId": "shard_001",
+        "title": "Contract Law Foundations",
+        "cognitiveLevel": "understand"
+      },
+      {
+        "id": "hgd://knowledgebase/contract-law-basics/node-002",
+        "shardId": "shard_001",
+        "title": "Offer and Mutual Assent",
+        "cognitiveLevel": "apply"
+      },
+      {
+        "id": "hgd://knowledgebase/contract-law-basics/node-003",
+        "shardId": "shard_001",
+        "title": "Consideration and Bargained-for Exchange",
+        "cognitiveLevel": "analyze"
+      },
+      {
+        "id": "hgd://knowledgebase/contract-law-basics/node-004",
+        "shardId": "shard_002",
+        "title": "Material Breach and Constructive Conditions",
+        "cognitiveLevel": "evaluate"
+      },
+      {
+        "id": "hgd://knowledgebase/contract-law-basics/node-005",
+        "shardId": "shard_002",
+        "title": "Expectation Damages and Mitigation",
+        "cognitiveLevel": "understand"
+      }
+    ],
+    "edges": [
+      {
+        "from": "hgd://knowledgebase/contract-law-basics/node-001",
+        "to": "hgd://knowledgebase/contract-law-basics/node-002",
+        "relationType": "prerequisite"
+      },
+      {
+        "from": "hgd://knowledgebase/contract-law-basics/node-002",
+        "to": "hgd://knowledgebase/contract-law-basics/node-003",
+        "relationType": "prerequisite"
+      },
+      {
+        "from": "hgd://knowledgebase/contract-law-basics/node-003",
+        "to": "hgd://knowledgebase/contract-law-basics/node-004",
+        "relationType": "prerequisite"
+      },
+      {
+        "from": "hgd://knowledgebase/contract-law-basics/node-004",
+        "to": "hgd://knowledgebase/contract-law-basics/node-005",
+        "relationType": "prerequisite"
+      }
+    ]
+  }
+}

@@ -1,0 +1,278 @@
+{
+  "shardId": "shard_001",
+  "curriculumId": "contract-law-basics",
+  "nodes": [
+    {
+      "id": "hgd://knowledgebase/contract-law-basics/node-001",
+      "title": "Contract Law Foundations",
+      "cognitiveLevel": "understand",
+      "difficultyTier": "1_foundational_fluency",
+      "workingMemoryBudget": {
+        "wordCount": 12,
+        "estimatedReadingSeconds": 3
+      },
+      "prerequisites": [],
+      "conceptSummary": "",
+      "pacing": {
+        "timeLimitSeconds": 60,
+        "recommendedEpochs": 3,
+        "isCheckpoint": false
+      },
+      "variationProbes": {
+        "conceptualVariants": [
+          {
+            "representationType": "verbal",
+            "content": "Contract Law Foundations invariant: "
+          },
+          {
+            "representationType": "symbolic",
+            "content": "Invariant_Contract_Law_Foundations : State -> State'"
+          }
+        ],
+        "proceduralPerturbations": [
+          {
+            "parameter": "input_boundary",
+            "perturbation": "extreme_edge_case",
+            "probe": "If boundary inputs collapse, does Contract Law Foundations preserve consistency?",
+            "expectedBoundaryBehavior": "Preserves state continuity without unhandled failure."
+          }
+        ]
+      },
+      "forwardPass": {
+        "probeType": "prediction_what_if",
+        "readingContext": "",
+        "prompt": "Predict: How does Contract Law Foundations behave when boundary constraints are inverted?",
+        "expectedMentalModel": [
+          "contract law foundations",
+          "invariant",
+          "mechanism"
+        ],
+        "groundTruth": "Contract Law Foundations operates via core invariants preserving stability and state."
+      },
+      "lossRubric": {
+        "conceptGapCriteria": [
+          "Fails to identify the core invariant mechanism",
+          "Confuses cause and effect in state transitions"
+        ],
+        "notationCriteria": [
+          "Uses non-standard terminology",
+          "Confuses variables"
+        ],
+        "strategyCriteria": [
+          "Suggests an invalid or brute-force approach"
+        ],
+        "reasoningCriteria": [
+          "Off-by-one or boundary omission in prediction"
+        ]
+      },
+      "backwardPass": {
+        "learningRate": 0.25,
+        "hintLadder": {
+          "level0Reflective": "Re-examine your premise regarding Contract Law Foundations: what underlying invariant was assumed?",
+          "level1Directional": "Focus on how Contract Law Foundations handles boundary conditions and resource constraints.",
+          "level2Constraint": "Eliminate linear unconstrained assumptions. Consider conservation laws or state gates.",
+          "level3WorkedExample": "Consider an isomorphic case: when input X increases, mechanism M bounds output Y to invariant Z."
+        },
+        "microRemediations": {
+          "conceptGap": "Key Invariant: Contract Law Foundations fundamentally ensures causal state continuity.",
+          "notationBreakdown": "Ensure accurate notation when describing system parameters.",
+          "methodChoice": "Select deductive causal tracing rather than empirical guessing.",
+          "reasoningBug": "Trace the boundary edge cases step-by-step."
+        }
+      },
+      "sources": [
+        {
+          "sourceRef": "markdown-source",
+          "locationTag": "Section: Contract Law Foundations",
+          "verbatimQuote": ""
+        }
+      ]
+    },
+    {
+      "id": "hgd://knowledgebase/contract-law-basics/node-002",
+      "title": "Offer and Mutual Assent",
+      "cognitiveLevel": "apply",
+      "difficultyTier": "2_boundary_perturbation",
+      "workingMemoryBudget": {
+        "wordCount": 13,
+        "estimatedReadingSeconds": 3
+      },
+      "prerequisites": [
+        "hgd://knowledgebase/contract-law-basics/node-001"
+      ],
+      "conceptSummary": "A valid contract requires mutual assent, manifested through an objective offer and an unequivocal acceptance.\nThe core invariant is the objective theory of contracts: assent is judged by a reasonable person's outward manifestation, not hidden subjective intent. A revocation is only effective when communicated to the offeree before acceptance.",
+      "pacing": {
+        "timeLimitSeconds": 60,
+        "recommendedEpochs": 3,
+        "isCheckpoint": false,
+        "rollbackNodeId": "hgd://knowledgebase/contract-law-basics/node-001"
+      },
+      "variationProbes": {
+        "conceptualVariants": [
+          {
+            "representationType": "verbal",
+            "content": "Offer and Mutual Assent invariant: A valid contract requires mutual assent, manifested through an objective offer and an unequivocal acceptance.\nThe core i"
+          },
+          {
+            "representationType": "symbolic",
+            "content": "Invariant_Offer_and_Mutual_Assent : State -> State'"
+          }
+        ],
+        "proceduralPerturbations": [
+          {
+            "parameter": "input_boundary",
+            "perturbation": "extreme_edge_case",
+            "probe": "If boundary inputs collapse, does Offer and Mutual Assent preserve consistency?",
+            "expectedBoundaryBehavior": "Preserves state continuity without unhandled failure."
+          }
+        ]
+      },
+      "forwardPass": {
+        "probeType": "prediction_what_if",
+        "readingContext": "A valid contract requires mutual assent, manifested through an objective offer and an unequivocal acceptance.\nThe core invariant is the objective theory of contracts: assent is judged by a reasonable person's outward manifestation, not hidden subject",
+        "prompt": "Predict: How does Offer and Mutual Assent behave when boundary constraints are inverted?",
+        "expectedMentalModel": [
+          "offer and mutual assent",
+          "invariant",
+          "mechanism"
+        ],
+        "groundTruth": "Offer and Mutual Assent operates via core invariants preserving stability and state."
+      },
+      "lossRubric": {
+        "conceptGapCriteria": [
+          "Fails to identify the core invariant mechanism",
+          "Confuses cause and effect in state transitions"
+        ],
+        "missingPrerequisiteMap": {
+          "hgd://knowledgebase/contract-law-basics/node-001": "Parent foundational concept"
+        },
+        "notationCriteria": [
+          "Uses non-standard terminology",
+          "Confuses variables"
+        ],
+        "strategyCriteria": [
+          "Suggests an invalid or brute-force approach"
+        ],
+        "reasoningCriteria": [
+          "Off-by-one or boundary omission in prediction"
+        ]
+      },
+      "backwardPass": {
+        "learningRate": 0.25,
+        "hintLadder": {
+          "level0Reflective": "Re-examine your premise regarding Offer and Mutual Assent: what underlying invariant was assumed?",
+          "level1Directional": "Focus on how Offer and Mutual Assent handles boundary conditions and resource constraints.",
+          "level2Constraint": "Eliminate linear unconstrained assumptions. Consider conservation laws or state gates.",
+          "level3WorkedExample": "Consider an isomorphic case: when input X increases, mechanism M bounds output Y to invariant Z."
+        },
+        "microRemediations": {
+          "conceptGap": "Key Invariant: Offer and Mutual Assent fundamentally ensures causal state continuity.",
+          "missingPrerequisite": "Review prerequisite concept: hgd://knowledgebase/contract-law-basics/node-001",
+          "notationBreakdown": "Ensure accurate notation when describing system parameters.",
+          "methodChoice": "Select deductive causal tracing rather than empirical guessing.",
+          "reasoningBug": "Trace the boundary edge cases step-by-step."
+        }
+      },
+      "sources": [
+        {
+          "sourceRef": "markdown-source",
+          "locationTag": "Section: Offer and Mutual Assent",
+          "verbatimQuote": "A valid contract requires mutual assent, manifested through an objective offer and an unequivocal acceptance.\nThe core i"
+        }
+      ]
+    },
+    {
+      "id": "hgd://knowledgebase/contract-law-basics/node-003",
+      "title": "Consideration and Bargained-for Exchange",
+      "cognitiveLevel": "analyze",
+      "difficultyTier": "3_isomorphic_transfer",
+      "workingMemoryBudget": {
+        "wordCount": 13,
+        "estimatedReadingSeconds": 3
+      },
+      "prerequisites": [
+        "hgd://knowledgebase/contract-law-basics/node-002"
+      ],
+      "conceptSummary": "Enforceable promises require consideration: a bargained-for exchange of legal value.\nThe fundamental invariant is mutuality of obligation. Past consideration or moral obligation does not constitute legal consideration unless promissory estoppel applies to prevent manifest injustice.",
+      "pacing": {
+        "timeLimitSeconds": 60,
+        "recommendedEpochs": 3,
+        "isCheckpoint": true,
+        "rollbackNodeId": "hgd://knowledgebase/contract-law-basics/node-002"
+      },
+      "variationProbes": {
+        "conceptualVariants": [
+          {
+            "representationType": "verbal",
+            "content": "Consideration and Bargained-for Exchange invariant: Enforceable promises require consideration: a bargained-for exchange of legal value.\nThe fundamental invariant is mutual"
+          },
+          {
+            "representationType": "symbolic",
+            "content": "Invariant_Consideration_and_Bargained-for_Exchange : State -> State'"
+          }
+        ],
+        "proceduralPerturbations": [
+          {
+            "parameter": "input_boundary",
+            "perturbation": "extreme_edge_case",
+            "probe": "If boundary inputs collapse, does Consideration and Bargained-for Exchange preserve consistency?",
+            "expectedBoundaryBehavior": "Preserves state continuity without unhandled failure."
+          }
+        ]
+      },
+      "forwardPass": {
+        "probeType": "prediction_what_if",
+        "readingContext": "Enforceable promises require consideration: a bargained-for exchange of legal value.\nThe fundamental invariant is mutuality of obligation. Past consideration or moral obligation does not constitute legal consideration unless promissory estoppel appli",
+        "prompt": "Predict: How does Consideration and Bargained-for Exchange behave when boundary constraints are inverted?",
+        "expectedMentalModel": [
+          "consideration and bargained-for exchange",
+          "invariant",
+          "mechanism"
+        ],
+        "groundTruth": "Consideration and Bargained-for Exchange operates via core invariants preserving stability and state."
+      },
+      "lossRubric": {
+        "conceptGapCriteria": [
+          "Fails to identify the core invariant mechanism",
+          "Confuses cause and effect in state transitions"
+        ],
+        "missingPrerequisiteMap": {
+          "hgd://knowledgebase/contract-law-basics/node-002": "Parent foundational concept"
+        },
+        "notationCriteria": [
+          "Uses non-standard terminology",
+          "Confuses variables"
+        ],
+        "strategyCriteria": [
+          "Suggests an invalid or brute-force approach"
+        ],
+        "reasoningCriteria": [
+          "Off-by-one or boundary omission in prediction"
+        ]
+      },
+      "backwardPass": {
+        "learningRate": 0.25,
+        "hintLadder": {
+          "level0Reflective": "Re-examine your premise regarding Consideration and Bargained-for Exchange: what underlying invariant was assumed?",
+          "level1Directional": "Focus on how Consideration and Bargained-for Exchange handles boundary conditions and resource constraints.",
+          "level2Constraint": "Eliminate linear unconstrained assumptions. Consider conservation laws or state gates.",
+          "level3WorkedExample": "Consider an isomorphic case: when input X increases, mechanism M bounds output Y to invariant Z."
+        },
+        "microRemediations": {
+          "conceptGap": "Key Invariant: Consideration and Bargained-for Exchange fundamentally ensures causal state continuity.",
+          "missingPrerequisite": "Review prerequisite concept: hgd://knowledgebase/contract-law-basics/node-002",
+          "notationBreakdown": "Ensure accurate notation when describing system parameters.",
+          "methodChoice": "Select deductive causal tracing rather than empirical guessing.",
+          "reasoningBug": "Trace the boundary edge cases step-by-step."
+        }
+      },
+      "sources": [
+        {
+          "sourceRef": "markdown-source",
+          "locationTag": "Section: Consideration and Bargained-for Exchange",
+          "verbatimQuote": "Enforceable promises require consideration: a bargained-for exchange of legal value.\nThe fundamental invariant is mutual"
+        }
+      ]
+    }
+  ]
+}

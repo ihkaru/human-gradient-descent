@@ -6,6 +6,11 @@
       "id": "hgd://knowledgebase/quantum-computing/node-001",
       "title": "Quantum Computing Foundations",
       "cognitiveLevel": "understand",
+      "difficultyTier": "1_foundational_fluency",
+      "workingMemoryBudget": {
+        "wordCount": 12,
+        "estimatedReadingSeconds": 3
+      },
       "prerequisites": [],
       "conceptSummary": "",
       "pacing": {
@@ -13,10 +18,30 @@
         "recommendedEpochs": 3,
         "isCheckpoint": false
       },
+      "variationProbes": {
+        "conceptualVariants": [
+          {
+            "representationType": "verbal",
+            "content": "Quantum Computing Foundations invariant: "
+          },
+          {
+            "representationType": "symbolic",
+            "content": "Invariant_Quantum_Computing_Foundations : State -> State'"
+          }
+        ],
+        "proceduralPerturbations": [
+          {
+            "parameter": "input_boundary",
+            "perturbation": "extreme_edge_case",
+            "probe": "If boundary inputs collapse, does Quantum Computing Foundations preserve consistency?",
+            "expectedBoundaryBehavior": "Preserves state continuity without unhandled failure."
+          }
+        ]
+      },
       "forwardPass": {
         "probeType": "prediction_what_if",
         "readingContext": "",
-        "prompt": "Based on your understanding of Quantum Computing Foundations, predict: If the fundamental constraint or input parameters were inverted, how does the system behave, and why?",
+        "prompt": "Predict: How does Quantum Computing Foundations behave when boundary constraints are inverted?",
         "expectedMentalModel": [
           "quantum computing foundations",
           "invariant",
@@ -67,6 +92,11 @@
       "id": "hgd://knowledgebase/quantum-computing/node-002",
       "title": "Qubits and Superposition",
       "cognitiveLevel": "apply",
+      "difficultyTier": "2_boundary_perturbation",
+      "workingMemoryBudget": {
+        "wordCount": 12,
+        "estimatedReadingSeconds": 3
+      },
       "prerequisites": [
         "hgd://knowledgebase/quantum-computing/node-001"
       ],
@@ -77,10 +107,30 @@
         "isCheckpoint": false,
         "rollbackNodeId": "hgd://knowledgebase/quantum-computing/node-001"
       },
+      "variationProbes": {
+        "conceptualVariants": [
+          {
+            "representationType": "verbal",
+            "content": "Qubits and Superposition invariant: In classical computing, a bit is strictly either 0 or 1. A quantum bit (qubit) is a two-state quantum-mechanical system "
+          },
+          {
+            "representationType": "symbolic",
+            "content": "Invariant_Qubits_and_Superposition : State -> State'"
+          }
+        ],
+        "proceduralPerturbations": [
+          {
+            "parameter": "input_boundary",
+            "perturbation": "extreme_edge_case",
+            "probe": "If boundary inputs collapse, does Qubits and Superposition preserve consistency?",
+            "expectedBoundaryBehavior": "Preserves state continuity without unhandled failure."
+          }
+        ]
+      },
       "forwardPass": {
         "probeType": "prediction_what_if",
-        "readingContext": "In classical computing, a bit is strictly either 0 or 1. A quantum bit (qubit) is a two-state quantum-mechanical system described as a linear superposition:\n$$|\\psi\\rangle = \\alpha |0\\rangle + \\beta |1\\rangle$$\nWhere $\\alpha, \\beta \\in \\mathbb{C}$ and $|\\alpha|^2 + |\\beta|^2 = 1$. The fundamental in",
-        "prompt": "Based on your understanding of Qubits and Superposition, predict: If the fundamental constraint or input parameters were inverted, how does the system behave, and why?",
+        "readingContext": "In classical computing, a bit is strictly either 0 or 1. A quantum bit (qubit) is a two-state quantum-mechanical system described as a linear superposition:\n$$|\\psi\\rangle = \\alpha |0\\rangle + \\beta |1\\rangle$$\nWhere $\\alpha, \\beta \\in \\mathbb{C}$ an",
+        "prompt": "Predict: How does Qubits and Superposition behave when boundary constraints are inverted?",
         "expectedMentalModel": [
           "qubits and superposition",
           "invariant",
@@ -135,6 +185,11 @@
       "id": "hgd://knowledgebase/quantum-computing/node-003",
       "title": "Quantum Entanglement and Non-Locality",
       "cognitiveLevel": "analyze",
+      "difficultyTier": "3_isomorphic_transfer",
+      "workingMemoryBudget": {
+        "wordCount": 13,
+        "estimatedReadingSeconds": 3
+      },
       "prerequisites": [
         "hgd://knowledgebase/quantum-computing/node-002"
       ],
@@ -145,10 +200,30 @@
         "isCheckpoint": true,
         "rollbackNodeId": "hgd://knowledgebase/quantum-computing/node-002"
       },
+      "variationProbes": {
+        "conceptualVariants": [
+          {
+            "representationType": "verbal",
+            "content": "Quantum Entanglement and Non-Locality invariant: Entanglement occurs when a multi-qubit system cannot be factored into the tensor product of individual qubit states:\n$$|"
+          },
+          {
+            "representationType": "symbolic",
+            "content": "Invariant_Quantum_Entanglement_and_Non-Locality : State -> State'"
+          }
+        ],
+        "proceduralPerturbations": [
+          {
+            "parameter": "input_boundary",
+            "perturbation": "extreme_edge_case",
+            "probe": "If boundary inputs collapse, does Quantum Entanglement and Non-Locality preserve consistency?",
+            "expectedBoundaryBehavior": "Preserves state continuity without unhandled failure."
+          }
+        ]
+      },
       "forwardPass": {
         "probeType": "prediction_what_if",
-        "readingContext": "Entanglement occurs when a multi-qubit system cannot be factored into the tensor product of individual qubit states:\n$$|\\Phi^+\\rangle = \\frac{1}{\\sqrt{2}}(|00\\rangle + |11\\rangle)$$\nMeasuring the first qubit immediately forces the state of the second qubit, regardless of spatial separation. The core",
-        "prompt": "Based on your understanding of Quantum Entanglement and Non-Locality, predict: If the fundamental constraint or input parameters were inverted, how does the system behave, and why?",
+        "readingContext": "Entanglement occurs when a multi-qubit system cannot be factored into the tensor product of individual qubit states:\n$$|\\Phi^+\\rangle = \\frac{1}{\\sqrt{2}}(|00\\rangle + |11\\rangle)$$\nMeasuring the first qubit immediately forces the state of the second",
+        "prompt": "Predict: How does Quantum Entanglement and Non-Locality behave when boundary constraints are inverted?",
         "expectedMentalModel": [
           "quantum entanglement and non-locality",
           "invariant",

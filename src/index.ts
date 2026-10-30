@@ -6,4 +6,6 @@ export * from "./engine/backward-pass.js";
 export * from "./engine/state-tracker.js";
 export * from "./engine/checkpoint-manager.js";
 export * from "./engine/pacing-controller.js";
+export * from "./engine/variation-engine.js";
+export * from "./engine/fatigue-governor.js";
 export * from "./compiler/markdown-compiler.js";

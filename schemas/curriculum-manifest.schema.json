@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://ihkaru.github.io/human-gradient-descent/schemas/curriculum-manifest.schema.json",
   "title": "HGD Curriculum Manifest",
-  "description": "Root manifest schema for encyclopedic-scale curricula partitioned across distributed shards.",
+  "description": "Root manifest schema for domain-agnostic, encyclopedic-scale curricula partitioned across distributed shards.",
   "type": "object",
   "required": [
     "schemaVersion",
@@ -35,6 +35,15 @@
     },
     "domain": {
       "type": "string"
+    },
+    "domainType": {
+      "type": "string",
+      "enum": ["stem", "humanities", "law", "medicine", "linguistics", "general"],
+      "default": "general"
+    },
+    "compositionalPrimitives": {
+      "type": "array",
+      "items": { "type": "string" }
     },
     "version": {
       "type": "string",

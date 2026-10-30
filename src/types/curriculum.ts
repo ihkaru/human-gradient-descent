@@ -6,6 +6,20 @@ export type CognitiveLevel =
   | "evaluate"
   | "create";
 
+export type DomainType =
+  | "stem"
+  | "humanities"
+  | "law"
+  | "medicine"
+  | "linguistics"
+  | "general";
+
+export type DifficultyTier =
+  | "1_foundational_fluency"
+  | "2_boundary_perturbation"
+  | "3_isomorphic_transfer"
+  | "4_adversarial_dilemma";
+
 export type ProbeType =
   | "prediction_what_if"
   | "pre_test"
@@ -39,6 +53,28 @@ export interface CurriculumPacing {
   defaultMode: PacingMode;
   timeBoundedConfig?: TimeBoundedConfig;
   checkpoints?: CurriculumCheckpoint[];
+}
+
+export interface WorkingMemoryBudget {
+  wordCount?: number;
+  estimatedReadingSeconds?: number;
+}
+
+export interface ConceptualVariant {
+  representationType: "code" | "symbolic" | "verbal" | "tabular" | "visual";
+  content: string;
+}
+
+export interface ProceduralPerturbation {
+  parameter: string;
+  perturbation: string;
+  probe: string;
+  expectedBoundaryBehavior: string;
+}
+
+export interface VariationProbes {
+  conceptualVariants?: ConceptualVariant[];
+  proceduralPerturbations?: ProceduralPerturbation[];
 }
 
 export interface NodePacing {
@@ -95,9 +131,12 @@ export interface CompetencyNode {
   id: string;
   title: string;
   cognitiveLevel: CognitiveLevel;
+  difficultyTier?: DifficultyTier;
+  workingMemoryBudget?: WorkingMemoryBudget;
   prerequisites: string[];
   conceptSummary: string;
   pacing?: NodePacing;
+  variationProbes?: VariationProbes;
   forwardPass: ForwardPassProbe;
   lossRubric: LossRubric;
   backwardPass: BackwardPassScaffold;
@@ -143,6 +182,8 @@ export interface CurriculumManifest {
   title: string;
   description?: string;
   domain: string;
+  domainType?: DomainType;
+  compositionalPrimitives?: string[];
   version: string;
   license?: string;
   authors?: string[];
@@ -197,6 +238,15 @@ export interface PacingState {
   rollbackHistory?: RollbackEntry[];
 }
 
+export interface FatigueMetrics {
+  averageLatencySeconds?: number;
+  consecutiveHurriedSlips?: number;
+  fatigueScore?: number;
+  cooldownActive?: boolean;
+  cooldownUntil?: string;
+  recommendedMode?: PacingMode;
+}
+
 export interface LearnerState {
   learnerId: string;
   curriculumId: string;
@@ -204,6 +254,7 @@ export interface LearnerState {
   globalMastery: number;
   learningRateAlpha?: number;
   pacingState?: PacingState;
+  fatigueMetrics?: FatigueMetrics;
   weights: Record<string, NodeWeight>;
   activeFrontier: string[];
   masteredNodes: string[];

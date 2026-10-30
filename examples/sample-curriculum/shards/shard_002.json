@@ -6,6 +6,11 @@
       "id": "hgd://knowledgebase/quantum-computing/node-004",
       "title": "Unitary Operations and Reversibility",
       "cognitiveLevel": "evaluate",
+      "difficultyTier": "4_adversarial_dilemma",
+      "workingMemoryBudget": {
+        "wordCount": 13,
+        "estimatedReadingSeconds": 3
+      },
       "prerequisites": [
         "hgd://knowledgebase/quantum-computing/node-003"
       ],
@@ -16,10 +21,30 @@
         "isCheckpoint": false,
         "rollbackNodeId": "hgd://knowledgebase/quantum-computing/node-003"
       },
+      "variationProbes": {
+        "conceptualVariants": [
+          {
+            "representationType": "verbal",
+            "content": "Unitary Operations and Reversibility invariant: All quantum logic gates operating on closed systems must be represented by unitary operators $U^\\dagger U = I$.\nBecause "
+          },
+          {
+            "representationType": "symbolic",
+            "content": "Invariant_Unitary_Operations_and_Reversibility : State -> State'"
+          }
+        ],
+        "proceduralPerturbations": [
+          {
+            "parameter": "input_boundary",
+            "perturbation": "extreme_edge_case",
+            "probe": "If boundary inputs collapse, does Unitary Operations and Reversibility preserve consistency?",
+            "expectedBoundaryBehavior": "Preserves state continuity without unhandled failure."
+          }
+        ]
+      },
       "forwardPass": {
         "probeType": "prediction_what_if",
-        "readingContext": "All quantum logic gates operating on closed systems must be represented by unitary operators $U^\\dagger U = I$.\nBecause unitary transformations preserve the inner product and norm of vectors, all quantum computation without measurement is strictly reversible. No quantum gate can perform irreversible",
-        "prompt": "Based on your understanding of Unitary Operations and Reversibility, predict: If the fundamental constraint or input parameters were inverted, how does the system behave, and why?",
+        "readingContext": "All quantum logic gates operating on closed systems must be represented by unitary operators $U^\\dagger U = I$.\nBecause unitary transformations preserve the inner product and norm of vectors, all quantum computation without measurement is strictly re",
+        "prompt": "Predict: How does Unitary Operations and Reversibility behave when boundary constraints are inverted?",
         "expectedMentalModel": [
           "unitary operations and reversibility",
           "invariant",
@@ -74,6 +99,11 @@
       "id": "hgd://knowledgebase/quantum-computing/node-005",
       "title": "Quantum No-Cloning Theorem",
       "cognitiveLevel": "understand",
+      "difficultyTier": "1_foundational_fluency",
+      "workingMemoryBudget": {
+        "wordCount": 12,
+        "estimatedReadingSeconds": 3
+      },
       "prerequisites": [
         "hgd://knowledgebase/quantum-computing/node-004"
       ],
@@ -84,10 +114,30 @@
         "isCheckpoint": false,
         "rollbackNodeId": "hgd://knowledgebase/quantum-computing/node-004"
       },
+      "variationProbes": {
+        "conceptualVariants": [
+          {
+            "representationType": "verbal",
+            "content": "Quantum No-Cloning Theorem invariant: The no-cloning theorem states that it is impossible to create an identical copy of an arbitrary unknown quantum state:\n$"
+          },
+          {
+            "representationType": "symbolic",
+            "content": "Invariant_Quantum_No-Cloning_Theorem : State -> State'"
+          }
+        ],
+        "proceduralPerturbations": [
+          {
+            "parameter": "input_boundary",
+            "perturbation": "extreme_edge_case",
+            "probe": "If boundary inputs collapse, does Quantum No-Cloning Theorem preserve consistency?",
+            "expectedBoundaryBehavior": "Preserves state continuity without unhandled failure."
+          }
+        ]
+      },
       "forwardPass": {
         "probeType": "prediction_what_if",
-        "readingContext": "The no-cloning theorem states that it is impossible to create an identical copy of an arbitrary unknown quantum state:\n$$U(|\\psi\\rangle |0\\rangle) \\neq |\\psi\\rangle |\\psi\\rangle$$\nThis follows directly from the linearity of quantum operators. Because cloning is prohibited, quantum error correction c",
-        "prompt": "Based on your understanding of Quantum No-Cloning Theorem, predict: If the fundamental constraint or input parameters were inverted, how does the system behave, and why?",
+        "readingContext": "The no-cloning theorem states that it is impossible to create an identical copy of an arbitrary unknown quantum state:\n$$U(|\\psi\\rangle |0\\rangle) \\neq |\\psi\\rangle |\\psi\\rangle$$\nThis follows directly from the linearity of quantum operators. Because",
+        "prompt": "Predict: How does Quantum No-Cloning Theorem behave when boundary constraints are inverted?",
         "expectedMentalModel": [
           "quantum no-cloning theorem",
           "invariant",
@@ -142,6 +192,11 @@
       "id": "hgd://knowledgebase/quantum-computing/node-006",
       "title": "Grover's Search and Quadratic Speedup",
       "cognitiveLevel": "apply",
+      "difficultyTier": "2_boundary_perturbation",
+      "workingMemoryBudget": {
+        "wordCount": 14,
+        "estimatedReadingSeconds": 3
+      },
       "prerequisites": [
         "hgd://knowledgebase/quantum-computing/node-005"
       ],
@@ -152,10 +207,30 @@
         "isCheckpoint": true,
         "rollbackNodeId": "hgd://knowledgebase/quantum-computing/node-005"
       },
+      "variationProbes": {
+        "conceptualVariants": [
+          {
+            "representationType": "verbal",
+            "content": "Grover's Search and Quadratic Speedup invariant: Grover's algorithm searches an unstructured database of $N$ items in $O(\\sqrt{N})$ operations, compared to classical $O("
+          },
+          {
+            "representationType": "symbolic",
+            "content": "Invariant_Grover's_Search_and_Quadratic_Speedup : State -> State'"
+          }
+        ],
+        "proceduralPerturbations": [
+          {
+            "parameter": "input_boundary",
+            "perturbation": "extreme_edge_case",
+            "probe": "If boundary inputs collapse, does Grover's Search and Quadratic Speedup preserve consistency?",
+            "expectedBoundaryBehavior": "Preserves state continuity without unhandled failure."
+          }
+        ]
+      },
       "forwardPass": {
         "probeType": "prediction_what_if",
-        "readingContext": "Grover's algorithm searches an unstructured database of $N$ items in $O(\\sqrt{N})$ operations, compared to classical $O(N)$.\nIt achieves this by iteratively applying the Grover diffusion operator:\n$$G = (2|s\\rangle\\langle s| - I) O_\\omega$$\nThe mechanism works via amplitude amplification: the phase",
-        "prompt": "Based on your understanding of Grover's Search and Quadratic Speedup, predict: If the fundamental constraint or input parameters were inverted, how does the system behave, and why?",
+        "readingContext": "Grover's algorithm searches an unstructured database of $N$ items in $O(\\sqrt{N})$ operations, compared to classical $O(N)$.\nIt achieves this by iteratively applying the Grover diffusion operator:\n$$G = (2|s\\rangle\\langle s| - I) O_\\omega$$\nThe mecha",
+        "prompt": "Predict: How does Grover's Search and Quadratic Speedup behave when boundary constraints are inverted?",
         "expectedMentalModel": [
           "grover's search and quadratic speedup",
           "invariant",

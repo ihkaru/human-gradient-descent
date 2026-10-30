@@ -1,8 +1,8 @@
 # 5. Building Block View
 
 > [!INFO] **Architecture Provenance & Freshness**
-> - **Verified Commit**: `d1fa162` (branch: `main`)
-> - **Verified Timestamp**: `2026-10-30T20:12:51+07:00`
+> - **Verified Commit**: `b5c62ed` (branch: `main`)
+> - **Verified Timestamp**: `2026-10-30T20:22:42+07:00`
 > - **Tracked Paths**: `src/`, `schemas/`, `phases/`
 > - **Drift Status**: `verified`
 
@@ -21,9 +21,11 @@ flowchart TD
 
     subgraph OptimizationSlice["Optimization Engine Slice"]
         FP["ForwardPassEngine\n(src/engine/forward-pass.ts)"]
+        VE["VariationEngine\n(src/engine/variation-engine.ts)"]
         LE["LossEngine\n(src/engine/loss-engine.ts)"]
         BP["BackwardPassEngine\n(src/engine/backward-pass.ts)"]
         PC["PacingController\n(src/engine/pacing-controller.ts)"]
+        FG["FatigueGovernor\n(src/engine/fatigue-governor.ts)"]
         CM["CheckpointManager\n(src/engine/checkpoint-manager.ts)"]
         ST["LearnerStateTracker\n(src/engine/state-tracker.ts)"]
     end
@@ -37,10 +39,12 @@ flowchart TD
     SV --> UIContract
     CLI --> MC
     CLI --> FP
-    FP --> LE
+    FP --> VE
+    VE --> LE
     LE --> BP
     BP --> PC
-    PC --> CM
+    PC --> FG
+    FG --> CM
     CM --> ST
     ST --> UIContract
 ```
@@ -50,22 +54,19 @@ flowchart TD
 ## 5.2 Building Block Specifications (Level 2)
 
 ### 1. `MarkdownCurriculumCompiler`
-* **Responsibility**: Ingests raw markdown, extracts headers, infers DAG edges, synthesizes forward probes, loss rubrics, hint ladders, and partitions nodes into shards.
+* **Responsibility**: Ingests raw markdown, extracts domain-agnostic invariants, assigns 4 difficulty tiers, synthesizes Bianshi variation probes, and partitions nodes into shards.
 
-### 2. `ForwardPassEngine`
-* **Responsibility**: Formulates pre-testing challenge prompts, strips solution leaks, and prepares the active probe for terminal or UI rendering.
+### 2. `ForwardPassEngine` & `VariationEngine`
+* **Responsibility**: Formulates pre-testing challenge prompts, surfaces alternative conceptual representations (code/symbolic/verbal), and injects procedural boundary perturbations.
 
 ### 3. `LossEngine`
 * **Responsibility**: Deconstructs user attempt $\hat{y}$ against ground truth $y$, calculating the 5-axis loss vector $\mathbf{l} = [l_{\text{concept}}, l_{\text{prereq}}, l_{\text{notation}}, l_{\text{strategy}}, l_{\text{reasoning}}]^T$ and scalar loss $\mathcal{L}$.
 
 ### 4. `BackwardPassEngine`
-* **Responsibility**: Manages the 4-tier Progressive Hint Ladder ($T_0 \to T_1 \to T_2 \to T_3$), applies hint credit penalties, selects targeted micro-remediations, and computes weight delta $\Delta \theta$.
+* **Responsibility**: Manages the 4-tier Progressive Hint Ladder ($T_0 \to T_1 \to T_2 \to T_3$), applies credit penalties, selects targeted micro-remediations, and computes weight delta $\Delta \theta$.
 
-### 5. `PacingController`
-* **Responsibility**: Enforces `time_bounded` countdowns vs `self_paced` timers, calculates stagnation penalties, and triggers automatic hint ladder escalation upon timeout.
+### 5. `PacingController` & `FatigueGovernor`
+* **Responsibility**: Enforces `time_bounded` countdowns vs `self_paced` timers, monitors user response latencies, detects hurried blind guessing and cognitive exhaustion, and triggers mandatory neural cooldowns.
 
-### 6. `CheckpointManager`
-* **Responsibility**: Tracks milestone checkpoints in the DAG. When severe loss spikes occur or prerequisite failure is identified, triggers state rollback to the last stable checkpoint.
-
-### 7. `LearnerStateTracker`
-* **Responsibility**: Maintains the sparse cognitive state vector $\Theta$, unlocks nodes in the active frontier, and simulates temporal Ebbinghaus forgetting decay.
+### 6. `CheckpointManager` & `LearnerStateTracker`
+* **Responsibility**: Tracks milestone checkpoints in the DAG, executes state rollbacks upon divergence, maintains sparse cognitive weights $\Theta$, and simulates Ebbinghaus forgetting decay.

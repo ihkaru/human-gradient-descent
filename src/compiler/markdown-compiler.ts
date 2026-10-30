@@ -4,12 +4,15 @@ import type {
   CompetencyNode,
   CognitiveLevel,
   PacingMode,
+  DomainType,
+  DifficultyTier,
 } from "../types/curriculum.js";
 
 export interface CompileOptions {
   curriculumId: string;
   title: string;
   domain: string;
+  domainType?: DomainType;
   version?: string;
   nodesPerShard?: number;
   defaultPacingMode?: PacingMode;
@@ -78,6 +81,8 @@ export class MarkdownCurriculumCompiler {
       curriculumId: options.curriculumId,
       title: options.title,
       domain: options.domain,
+      domainType: options.domainType || "general",
+      compositionalPrimitives: rawNodes.map((n) => n.title.toLowerCase()),
       version: options.version || "1.0.0",
       license: "MIT",
       authors: ["ihkaru"],
@@ -156,19 +161,27 @@ export class MarkdownCurriculumCompiler {
     prereqs: string[],
     index: number
   ): CompetencyNode {
-    const cognitiveLevels: CognitiveLevel[] = [
-      "understand",
-      "apply",
-      "analyze",
-      "evaluate",
-    ];
+    const cognitiveLevels: CognitiveLevel[] = ["understand", "apply", "analyze", "evaluate"];
     const cognitiveLevel = cognitiveLevels[(index - 1) % cognitiveLevels.length];
-    const excerpt = body.slice(0, 300).trim();
+    const tiers: DifficultyTier[] = [
+      "1_foundational_fluency",
+      "2_boundary_perturbation",
+      "3_isomorphic_transfer",
+      "4_adversarial_dilemma",
+    ];
+    const difficultyTier = tiers[(index - 1) % tiers.length];
+    const excerpt = body.slice(0, 250).trim();
+    const prompt = `Predict: How does ${title} behave when boundary constraints are inverted?`;
 
     return {
       id,
       title,
       cognitiveLevel,
+      difficultyTier,
+      workingMemoryBudget: {
+        wordCount: prompt.split(/\s+/).length,
+        estimatedReadingSeconds: 3,
+      },
       prerequisites: prereqs,
       conceptSummary: body.slice(0, 1000).trim(),
       pacing: {
@@ -177,15 +190,25 @@ export class MarkdownCurriculumCompiler {
         isCheckpoint: index % 3 === 0,
         rollbackNodeId: prereqs.length > 0 ? prereqs[0] : undefined,
       },
+      variationProbes: {
+        conceptualVariants: [
+          { representationType: "verbal", content: `${title} invariant: ${excerpt.slice(0, 120)}` },
+          { representationType: "symbolic", content: `Invariant_${title.replace(/\s+/g, "_")} : State -> State'` },
+        ],
+        proceduralPerturbations: [
+          {
+            parameter: "input_boundary",
+            perturbation: "extreme_edge_case",
+            probe: `If boundary inputs collapse, does ${title} preserve consistency?`,
+            expectedBoundaryBehavior: "Preserves state continuity without unhandled failure.",
+          },
+        ],
+      },
       forwardPass: {
         probeType: "prediction_what_if",
         readingContext: excerpt,
-        prompt: `Based on your understanding of ${title}, predict: If the fundamental constraint or input parameters were inverted, how does the system behave, and why?`,
-        expectedMentalModel: [
-          title.toLowerCase(),
-          "invariant",
-          "mechanism",
-        ],
+        prompt,
+        expectedMentalModel: [title.toLowerCase(), "invariant", "mechanism"],
         groundTruth: `${title} operates via core invariants preserving stability and state.`,
       },
       lossRubric: {

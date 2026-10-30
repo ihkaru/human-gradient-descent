@@ -1,7 +1,7 @@
 # 3. Context and Scope
 
 > [!INFO] **Architecture Provenance & Freshness**
-> - **Verified Commit**: `d1fa162` (branch: `main`)
+> - **Verified Commit**: `b5c62ed` (branch: `main`)
 > - **Verified Timestamp**: `2026-10-30T20:12:51+07:00`
 > - **Tracked Paths**: `src/`, `schemas/`, `phases/`
 > - **Drift Status**: `verified`

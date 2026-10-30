@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://ihkaru.github.io/human-gradient-descent/schemas/node-shard.schema.json",
   "title": "HGD Node Shard",
-  "description": "Schema for an isolated shard file storing competency nodes, prediction probes, loss rubrics, and hint ladders.",
+  "description": "Schema for an isolated shard file storing competency nodes, Bianshi variation probes, loss rubrics, and hint ladders.",
   "type": "object",
   "required": ["shardId", "curriculumId", "nodes"],
   "properties": {
@@ -36,6 +36,23 @@
               "create"
             ]
           },
+          "difficultyTier": {
+            "type": "string",
+            "enum": [
+              "1_foundational_fluency",
+              "2_boundary_perturbation",
+              "3_isomorphic_transfer",
+              "4_adversarial_dilemma"
+            ],
+            "default": "1_foundational_fluency"
+          },
+          "workingMemoryBudget": {
+            "type": "object",
+            "properties": {
+              "wordCount": { "type": "integer", "maximum": 120 },
+              "estimatedReadingSeconds": { "type": "integer", "maximum": 15 }
+            }
+          },
           "prerequisites": {
             "type": "array",
             "items": { "type": "string" }
@@ -48,6 +65,38 @@
               "recommendedEpochs": { "type": "integer", "minimum": 1, "default": 3 },
               "isCheckpoint": { "type": "boolean", "default": false },
               "rollbackNodeId": { "type": "string" }
+            }
+          },
+          "variationProbes": {
+            "type": "object",
+            "properties": {
+              "conceptualVariants": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "required": ["representationType", "content"],
+                  "properties": {
+                    "representationType": {
+                      "type": "string",
+                      "enum": ["code", "symbolic", "verbal", "tabular", "visual"]
+                    },
+                    "content": { "type": "string" }
+                  }
+                }
+              },
+              "proceduralPerturbations": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "required": ["parameter", "perturbation", "probe", "expectedBoundaryBehavior"],
+                  "properties": {
+                    "parameter": { "type": "string" },
+                    "perturbation": { "type": "string" },
+                    "probe": { "type": "string" },
+                    "expectedBoundaryBehavior": { "type": "string" }
+                  }
+                }
+              }
             }
           },
           "forwardPass": {

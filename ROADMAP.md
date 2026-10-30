@@ -48,10 +48,11 @@ flowchart LR
 |:---|:---|:---|:---|
 | **011** | [`phases/011_time_bounded_pacing_and_checkpoints.md`](./phases/011_time_bounded_pacing_and_checkpoints.md) | Time-Bounded Pacing, Epoch Acceleration & Checkpoints | ✅ Completed |
 | **012** | [`phases/012_ui_json_contract_and_event_stream.md`](./phases/012_ui_json_contract_and_event_stream.md) | Headless UI JSON Contract & Pacing Telemetry | ✅ Completed |
-| **013** | `phases/013_cross_reference_graph_extractor.md` | Cross-Reference Graph Extractor & Automated Dependency Inferrer | 📋 Planned |
-| **014** | `phases/014_shard_size_balancer_tarjan_scc.md` | Shard Size Balancer & Topological Tarjan SCC Cycle Resolver | 📋 Planned |
-| **015** | `phases/015_source_citation_hash_anchoring.md` | Source Citation Hash & Verbatim Location Tag Anchoring | 📋 Planned |
-| **016–020** | Reserved for domain-specific chunkers (Legal Code, Medical SOP, Large Codebases). | | 📋 Planned |
+| **013** | [`phases/013_domain_agnostic_compositional_invariants.md`](./phases/013_domain_agnostic_compositional_invariants.md) | Domain-Agnostic Compositional Invariants | ✅ Completed |
+| **014** | [`phases/014_bianshi_variation_and_adversarial_probes.md`](./phases/014_bianshi_variation_and_adversarial_probes.md) | Bianshi Variation Engine & Adversarial Probes | ✅ Completed |
+| **015** | [`phases/015_anti_fatigue_governor_and_gradient_analytics.md`](./phases/015_anti_fatigue_governor_and_gradient_analytics.md) | Anti-Fatigue Safety Governor & Gradient Analytics | ✅ Completed |
+| **016** | [`phases/016_agent_skill_packaging_and_ui_showcase.md`](./phases/016_agent_skill_packaging_and_ui_showcase.md) | Universal Agent Skill Packaging & Headless UI Showcase | ✅ Completed |
+| **017–020** | Reserved for advanced domain adapters (Law, Medicine, Codebases). | | 📋 Planned |
 
 ---
 

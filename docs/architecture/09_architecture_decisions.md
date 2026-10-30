@@ -1,8 +1,8 @@
 # 9. Architecture Decisions (ADRs)
 
 > [!INFO] **Architecture Provenance & Freshness**
-> - **Verified Commit**: `d1fa162` (branch: `main`)
-> - **Verified Timestamp**: `2026-10-30T20:12:51+07:00`
+> - **Verified Commit**: `b5c62ed` (branch: `main`)
+> - **Verified Timestamp**: `2026-10-30T20:22:42+07:00`
 > - **Tracked Paths**: `src/`, `schemas/`, `phases/`
 > - **Drift Status**: `verified`
 
@@ -37,3 +37,19 @@
 * **Context**: Multiple frontends (web, mobile, terminal) will deliver the learning experience without re-implementing pedagogical heuristics.
 * **Decision**: All probes, rubrics, timers, hint ladders, and checkpoint rules are serialized into standard JSON Schema Draft 2020-12 files.
 * **Consequences**: Frontend UIs act as pure renderers; zero backend computation required.
+
+---
+
+## ADR-005: Bianshi Variation Framework (*Bianshi Jiaoxue*)
+* **Status**: Accepted
+* **Context**: Rote quizzing leads to superficial pattern matching and representational overfitting.
+* **Decision**: Implement conceptual multi-representation and procedural boundary perturbation across a 4-tier difficulty ladder.
+* **Consequences**: Enforces deep causal comprehension of invariants across all variations.
+
+---
+
+## ADR-006: Anti-Fatigue & Anti-Involution (*Neijuan*) Governor
+* **Status**: Accepted
+* **Context**: High-velocity timed training can trigger cognitive thrashing, hurried guessing, and academic burnout.
+* **Decision**: Monitor latency anomalies and hurried slips in real-time, enforcing a 3-minute cooldown when `fatigueScore` $\ge 0.7$.
+* **Consequences**: Protects learner neuroplastic health and maintains sustainable training momentum.

@@ -3,6 +3,15 @@
   "curriculumId": "quantum-computing",
   "title": "quantum_computing",
   "domain": "KnowledgeBase",
+  "domainType": "general",
+  "compositionalPrimitives": [
+    "quantum computing foundations",
+    "qubits and superposition",
+    "quantum entanglement and non-locality",
+    "unitary operations and reversibility",
+    "quantum no-cloning theorem",
+    "grover's search and quadratic speedup"
+  ],
   "version": "1.0.0",
   "license": "MIT",
   "authors": [
