@@ -1,5 +1,6 @@
 export * from "./types/curriculum.js";
 export * from "./validator/schema-validator.js";
+export * from "./validator/dag-cycle-detector.js";
 export * from "./engine/forward-pass.js";
 export * from "./engine/loss-engine.js";
 export * from "./engine/backward-pass.js";

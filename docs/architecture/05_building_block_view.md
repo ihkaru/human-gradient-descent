@@ -16,6 +16,7 @@ The system is decomposed into decoupled modules following Vertical Slice Archite
 flowchart TD
     subgraph CompilerSlice["Compiler & Ingestion Slice"]
         MC["MarkdownCurriculumCompiler\n(src/compiler/markdown-compiler.ts)"]
+        DCD["DAGCycleDetector\n(src/validator/dag-cycle-detector.ts)"]
         SV["SchemaValidator\n(src/validator/schema-validator.ts)"]
     end
 
@@ -35,7 +36,8 @@ flowchart TD
         UIContract["Headless JSON Output Contract\n(schemas/*.schema.json)"]
     end
 
-    MC --> SV
+    MC --> DCD
+    DCD --> SV
     SV --> UIContract
     CLI --> MC
     CLI --> FP
@@ -70,3 +72,6 @@ flowchart TD
 
 ### 6. `CheckpointManager` & `LearnerStateTracker`
 * **Responsibility**: Tracks milestone checkpoints in the DAG, executes state rollbacks upon divergence, maintains sparse cognitive weights $\Theta$, and simulates Ebbinghaus forgetting decay.
+
+### 7. `DAGCycleDetector`
+* **Responsibility**: Guarantees acyclicity across encyclopedic-scale multi-parent curriculum DAGs via Tarjan's Strongly Connected Components algorithm ($O(V + E)$) and Kahn's topological sort, preventing deadlock in the learner frontier queue.

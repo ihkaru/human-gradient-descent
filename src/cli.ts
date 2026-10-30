@@ -2,6 +2,7 @@
 import { readFileSync, writeFileSync, mkdirSync, existsSync } from "node:fs";
 import { join, dirname, resolve } from "node:path";
 import { SchemaValidator } from "./validator/schema-validator.js";
+import { DAGCycleDetector } from "./validator/dag-cycle-detector.js";
 import { MarkdownCurriculumCompiler } from "./compiler/markdown-compiler.js";
 import { ForwardPassEngine } from "./engine/forward-pass.js";
 import { LossEngine } from "./engine/loss-engine.js";
@@ -19,6 +20,7 @@ function printHelp() {
 Usage:
   hgd compile <input.md> -o <output_dir>   Compile markdown into sharded curriculum
   hgd validate <curriculum_dir>            Validate curriculum and shards against schema
+  hgd check-dag <curriculum_dir>           Run Tarjan SCC acyclicity and DAG integrity check
   hgd learn <curriculum_dir> [--node <id>] Start interactive learning session
   hgd status <curriculum_dir>              Inspect learner weights and active frontier
 
@@ -104,6 +106,40 @@ function handleValidate() {
   }
 
   console.log(`✅ All ${totalValidShards} shards successfully validated against Draft 2020-12 schema.`);
+}
+
+function handleCheckDAG() {
+  const currDir = args[1] || ".";
+  const manifestPath = join(currDir, "curriculum-manifest.json");
+
+  if (!existsSync(manifestPath)) {
+    console.error(`❌ Missing curriculum-manifest.json in ${currDir}`);
+    process.exit(1);
+  }
+
+  const manifest: CurriculumManifest = JSON.parse(readFileSync(manifestPath, "utf-8"));
+  const detector = new DAGCycleDetector();
+  const res = detector.validateManifest(manifest);
+
+  if (args.includes("--json")) {
+    console.log(JSON.stringify(res, null, 2));
+    process.exit(res.isValid ? 0 : 1);
+  }
+
+  if (res.isValid) {
+    console.log(`✅ DAG Integrity Verified: ${manifest.dag.nodes.length} nodes, ${manifest.dag.edges.length} edges.`);
+    console.log(`   Acyclic: YES (0 cycles) | Strongly Connected Components: ${res.sccCount}`);
+    if (res.topologicalOrder && res.topologicalOrder.length > 0) {
+      console.log(`   Topological Root: ${res.topologicalOrder[0]}`);
+      console.log(`   Topological Leaf: ${res.topologicalOrder[res.topologicalOrder.length - 1]}`);
+    }
+  } else {
+    console.error(`❌ DAG Integrity Check Failed (${res.cycles.length} cycle(s)):`);
+    for (const diag of res.diagnostics) {
+      console.error(`   - ${diag}`);
+    }
+    process.exit(1);
+  }
 }
 
 function handleStatus() {
@@ -206,6 +242,9 @@ switch (command) {
     break;
   case "validate":
     handleValidate();
+    break;
+  case "check-dag":
+    handleCheckDAG();
     break;
   case "status":
     handleStatus();

@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Human Gradient Descent (HGD) - Reference UI</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <header>
+      <div class="brand">
+        <svg class="brand-icon" viewBox="0 0 24 24">
+          <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" fill="none"/>
+          <path d="M12 6v6l4 2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        <div>
+          <h1 class="brand-title">Human Gradient Descent</h1>
+          <p class="brand-subtitle">October 2026 Headless UI Reference & Training Loop</p>
+        </div>
+      </div>
+      <div class="header-controls">
+        <select id="select-curriculum" aria-label="Curriculum Domain">
+          <option value="quantum">Quantum Computing (STEM)</option>
+          <option value="law">Contract Law Basics (Humanities)</option>
+        </select>
+        <select id="select-pacing" aria-label="Pacing Mode">
+          <option value="time_bounded">Time-Bounded Sprint</option>
+          <option value="self_paced">Self-Paced Mastery</option>
+        </select>
+        <div class="badge emerald">
+          <span>Mastered:</span>
+          <strong id="stat-mastered">0 / 0</strong>
+        </div>
+        <div class="badge cyan">
+          <span>Progress:</span>
+          <strong id="stat-progress">0%</strong>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Grid -->
+    <main class="grid-main">
+      <!-- Left Column: Active Training Loop -->
+      <section class="card" aria-label="Active Training Node">
+        <!-- Pacing & Timer Banner -->
+        <div class="pacing-banner">
+          <div>
+            <span style="font-size: 0.75rem; text-transform: uppercase; color: var(--text-muted); font-weight: 600;">Active Epoch Pacing</span>
+            <div id="timer-display" class="timer-box">01:00</div>
+          </div>
+          <div style="display: flex; gap: 0.5rem; align-items: center;">
+            <span id="reading-latency" class="badge">3s read</span>
+            <span id="word-count" class="badge">12 words</span>
+          </div>
+        </div>
+
+        <!-- Node Meta -->
+        <div class="card-title">
+          <span id="node-title">Loading Competency Node...</span>
+          <div style="display: flex; gap: 0.4rem;">
+            <span id="node-level" class="badge cyan">understand</span>
+            <span id="node-tier" class="badge amber">foundational_fluency</span>
+          </div>
+        </div>
+
+        <!-- Forward Pass Challenge Box -->
+        <div>
+          <span style="font-size: 0.8rem; font-weight: 600; color: var(--accent-cyan); text-transform: uppercase;">
+            Forward Pass: Generation Effect (Predict Before Explanation)
+          </span>
+          <div class="prompt-box" id="prompt-text">
+            Generating challenge prompt...
+          </div>
+        </div>
+
+        <!-- Divergence / Feedback Alert -->
+        <div id="divergence-alert" class="alert" style="display: none;"></div>
+
+        <!-- Interactive Input -->
+        <div class="input-area">
+          <textarea id="user-prediction" placeholder="Type your prediction / causal explanation here..."></textarea>
+          <div class="action-row" style="margin-top: 0.5rem;">
+            <span style="font-size: 0.75rem; color: var(--text-muted);">Press Ctrl+Enter or Cmd+Enter to submit</span>
+            <button id="btn-submit" class="primary">Submit Prediction</button>
+          </div>
+        </div>
+
+        <!-- 5-Axis Diagnostic Loss -->
+        <div style="border-top: 1px solid var(--border-color); padding-top: 1rem;">
+          <div class="card-title" style="margin-bottom: 0.75rem;">
+            <span>5-Axis Diagnostic Error Vector</span>
+            <span class="badge rose">Total Loss: <strong id="loss-total">1.00</strong></span>
+          </div>
+          <div class="loss-bar-container">
+            <div class="loss-row">
+              <span class="loss-label">Concept Gap (l_concept)</span>
+              <div class="progress-track"><div id="bar-concept" class="progress-fill concept" style="width: 0%;"></div></div>
+              <span id="val-concept" style="font-family: var(--font-mono); text-align: right;">0.00</span>
+            </div>
+            <div class="loss-row">
+              <span class="loss-label">Missing Prereq (l_prereq)</span>
+              <div class="progress-track"><div id="bar-prereq" class="progress-fill prereq" style="width: 0%;"></div></div>
+              <span id="val-prereq" style="font-family: var(--font-mono); text-align: right;">0.00</span>
+            </div>
+            <div class="loss-row">
+              <span class="loss-label">Notation Breakdown</span>
+              <div class="progress-track"><div id="bar-notation" class="progress-fill notation" style="width: 0%;"></div></div>
+              <span id="val-notation" style="font-family: var(--font-mono); text-align: right;">0.00</span>
+            </div>
+            <div class="loss-row">
+              <span class="loss-label">Method Choice</span>
+              <div class="progress-track"><div id="bar-strategy" class="progress-fill strategy" style="width: 0%;"></div></div>
+              <span id="val-strategy" style="font-family: var(--font-mono); text-align: right;">0.00</span>
+            </div>
+            <div class="loss-row">
+              <span class="loss-label">Reasoning Bug</span>
+              <div class="progress-track"><div id="bar-reasoning" class="progress-fill reasoning" style="width: 0%;"></div></div>
+              <span id="val-reasoning" style="font-family: var(--font-mono); text-align: right;">0.00</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Backward Pass Hint Ladder -->
+        <div style="border-top: 1px solid var(--border-color); padding-top: 1rem;">
+          <span style="font-size: 0.8rem; font-weight: 600; color: var(--accent-amber); text-transform: uppercase; margin-bottom: 0.5rem; display: block;">
+            Backward Pass: Progressive Hint Ladder (Credit Penalized)
+          </span>
+          <div class="hint-accordion">
+            <div class="hint-item">
+              <div class="hint-header" id="hint-header-0">
+                <span>Tier 0: Metacognitive Reflector (0% Penalty)</span>
+                <span class="badge">Click to Toggle</span>
+              </div>
+              <div class="hint-body" id="hint-body-0" style="display: none;"></div>
+            </div>
+            <div class="hint-item">
+              <div class="hint-header" id="hint-header-1">
+                <span>Tier 1: Directional Clue (15% Penalty)</span>
+                <span class="badge">Click to Toggle</span>
+              </div>
+              <div class="hint-body" id="hint-body-1" style="display: none;"></div>
+            </div>
+            <div class="hint-item">
+              <div class="hint-header" id="hint-header-2">
+                <span>Tier 2: Constraint Narrowing (35% Penalty)</span>
+                <span class="badge">Click to Toggle</span>
+              </div>
+              <div class="hint-body" id="hint-body-2" style="display: none;"></div>
+            </div>
+            <div class="hint-item">
+              <div class="hint-header" id="hint-header-3">
+                <span>Tier 3: Worked Example (60% Penalty)</span>
+                <span class="badge">Click to Toggle</span>
+              </div>
+              <div class="hint-body" id="hint-body-3" style="display: none;"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Right Column: Frontier & Architecture Status -->
+      <aside class="card" aria-label="Frontier Queue and Architecture">
+        <div class="card-title">
+          <span>Active Frontier Queue</span>
+          <span class="badge cyan">DAG Status</span>
+        </div>
+        <p style="font-size: 0.8rem; color: var(--text-muted);">
+          Nodes are dynamically unlocked as all prerequisite dependencies converge below error threshold.
+        </p>
+        <div id="frontier-nodes" class="frontier-list"></div>
+
+        <div style="border-top: 1px solid var(--border-color); padding-top: 1rem;">
+          <span style="font-size: 0.8rem; font-weight: 600; color: var(--text-muted); text-transform: uppercase;">
+            Architectural Guarantees
+          </span>
+          <ul style="font-size: 0.8rem; color: var(--text-muted); margin-top: 0.5rem; padding-left: 1.2rem; display: flex; flex-direction: column; gap: 0.35rem;">
+            <li>Zero local backend required</li>
+            <li>Direct JSON schema consumer</li>
+            <li>Encyclopedic sharded DAG</li>
+            <li>Domain agnostic engine</li>
+          </ul>
+        </div>
+      </aside>
+    </main>
+  </div>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>

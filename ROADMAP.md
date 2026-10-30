@@ -55,7 +55,7 @@ flowchart LR
 | **017** | [`phases/017_deep_causal_synthesis_and_ast_chunker.md`](./phases/017_deep_causal_synthesis_and_ast_chunker.md) | Deep Causal Synthesis & AST Chunker | ✅ Completed |
 | **018** | [`phases/018_branching_dag_dependency_resolver.md`](./phases/018_branching_dag_dependency_resolver.md) | Branching DAG Dependency Resolver | ✅ Completed |
 | **019** | [`phases/019_agent_synthesis_prompt_protocol.md`](./phases/019_agent_synthesis_prompt_protocol.md) | Agent Synthesis Prompt Protocol | ✅ Completed |
-| **020** | Reserved for Automated Cross-Shard Tarjan Cycle Verification. | | 📋 Planned |
+| **020** | [`phases/020_automated_tarjan_scc_cycle_resolver.md`](./phases/020_automated_tarjan_scc_cycle_resolver.md) | Automated Tarjan SCC Cycle Resolver & DAG Integrity | ✅ Completed |
 
 ---
 

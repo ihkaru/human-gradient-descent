@@ -8,6 +8,7 @@ import type {
   DifficultyTier,
   ConceptualVariant,
 } from "../types/curriculum.js";
+import { DAGCycleDetector } from "../validator/dag-cycle-detector.js";
 
 export interface CompileOptions {
   curriculumId: string;
@@ -17,6 +18,7 @@ export interface CompileOptions {
   version?: string;
   nodesPerShard?: number;
   defaultPacingMode?: PacingMode;
+  validateDAG?: boolean;
 }
 
 interface RawSection {
@@ -114,6 +116,16 @@ export class MarkdownCurriculumCompiler {
       shards: shardCatalog,
       dag: { nodes: dagNodes, edges: dagEdges },
     };
+
+    if (options.validateDAG !== false) {
+      const cycleDetector = new DAGCycleDetector();
+      const dagResult = cycleDetector.validateManifest(manifest);
+      if (!dagResult.isValid) {
+        throw new Error(
+          `Curriculum DAG validation failed:\n${dagResult.diagnostics.join("\n")}`
+        );
+      }
+    }
 
     return { manifest, shards };
   }

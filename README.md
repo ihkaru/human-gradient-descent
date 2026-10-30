@@ -75,11 +75,23 @@ bun run cli compile examples/quantum_computing.md -o ./curricula/quantum
 # Validate curriculum shards against JSON schemas
 bun run cli validate ./curricula/quantum
 
+# Verify DAG acyclicity and integrity (Tarjan SCC algorithm O(V+E))
+bun run cli check-dag ./curricula/quantum
+
 # Launch an interactive learning session
 bun run cli learn ./curricula/quantum
 
 # Inspect learner mastery state and active frontier
 bun run cli status ./curricula/quantum
+```
+
+---
+
+## 🖥️ Headless UI Consumer
+The generated JSON schemas are decoupled from the agent engine. A reference, zero-backend frontend is included in [`examples/reference-ui/`](./examples/reference-ui/):
+```bash
+bunx serve examples
+# Open http://localhost:3000/reference-ui/
 ```
 
 ---

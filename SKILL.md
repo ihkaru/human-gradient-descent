@@ -90,10 +90,21 @@ When an AI Coding Agent is requested to create, expand, or tutor a curriculum:
   `bun run cli compile <input.md> -o <curriculum_dir>`
 * **Validate Curricula & Shards**:
   `bun run cli validate <curriculum_dir>`
+* **Verify DAG Acyclicity & Integrity (Tarjan SCC)**:
+  `bun run cli check-dag <curriculum_dir> [--json]`
 * **Interactive Learning Session**:
   `bun run cli learn <curriculum_dir>`
 * **Inspect Learner State & Frontier**:
   `bun run cli status <curriculum_dir>`
+
+---
+
+## 🖥️ Headless UI Consumer
+The generated JSON schemas are decoupled from any specific client. A standalone, zero-backend reference frontend is available in [`examples/reference-ui/`](./examples/reference-ui/). To run:
+```bash
+bunx serve examples
+# Open http://localhost:3000/reference-ui/
+```
 
 ---
 
