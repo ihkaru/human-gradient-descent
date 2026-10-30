@@ -13,7 +13,8 @@
     "check:lines": "bun run scripts/check-line-limits.ts",
     "test": "bun test",
     "validate": "bun run src/cli.ts validate",
-    "compile": "bun run src/cli.ts compile"
+    "compile": "bun run src/cli.ts compile",
+    "serve": "bun run scripts/serve-ui.ts"
   },
   "keywords": [
     "agent-skill",

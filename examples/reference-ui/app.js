@@ -163,7 +163,7 @@ function evaluatePrediction(userAnswer) {
     learnerState.divergenceCount = 0;
     clearInterval(timerInterval);
 
-    showSuccessMessage(`🎉 Node Mastered! θ = 0.95. Unlocking downstream competencies.`);
+    showSuccessMessage(`Node Mastered (Theta = 0.95). Unlocking downstream competencies.`);
     recomputeFrontier();
     updateFrontierView();
     updateStatsView();

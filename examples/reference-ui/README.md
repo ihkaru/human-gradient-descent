@@ -7,7 +7,7 @@ This directory provides a reference implementation showcasing how modern web, mo
 
 ---
 
-## 🎯 Architecture Contract
+## Architecture Contract
 
 ```mermaid
 flowchart TD
@@ -37,7 +37,7 @@ flowchart TD
 
 ---
 
-## 🚀 Running the Reference UI Locally
+## Running the Reference UI Locally
 
 Because modern browsers enforce CORS security policies for ES Modules loaded via `file://`, serve the `examples/` directory using any local static file server:
 
@@ -55,7 +55,7 @@ python3 -m http.server 8080 --directory examples
 
 ---
 
-## 🧩 Domain Agnostic Verification
+## Domain Agnostic Verification
 The reference UI includes a top-level dropdown allowing instant toggling between:
 - **Quantum Computing**: Demonstrating STEM equations, boundary perturbations, and quantum physics invariants.
 - **Contract Law Basics**: Demonstrating legal heuristics, consideration doctrine, and promissory estoppel boundary conditions.
