@@ -9,4 +9,5 @@ export * from "./engine/checkpoint-manager.js";
 export * from "./engine/pacing-controller.js";
 export * from "./engine/variation-engine.js";
 export * from "./engine/fatigue-governor.js";
+export * from "./engine/mental-trace-engine.js";
 export * from "./compiler/markdown-compiler.js";

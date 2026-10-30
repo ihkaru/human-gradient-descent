@@ -60,11 +60,13 @@ flowchart LR
 ---
 
 ### Cluster 3: Forward Pass Probe Generation & Prompt Engineering (021–030)
-* **Phase 021**: Codebase AST Execution Prediction Probes (Mental Tracing).
-* **Phase 022**: Multi-Choice Distractor Generator with Diagnostic Traps.
-* **Phase 023**: What-If Parameter Perturbation Engine.
-* **Phase 024**: Blind Analogy Pairing & Structural Isomorphism Challenges.
-* **Phases 025–030**: Advanced Prompt Templates & Token-Efficient Generators.
+| Phase ID | Specification File | Title & Core Focus | Status |
+|:---|:---|:---|:---|
+| **021** | [`phases/021_mental_tracing_execution_probes.md`](./phases/021_mental_tracing_execution_probes.md) | Codebase AST Execution Prediction Probes (Mental Tracing) | ✅ Completed |
+| **022** | Reserved for Diagnostic Trap Multi-Choice Distractor Generator. | Multi-Choice Distractor Generator with Diagnostic Traps | 📋 Planned |
+| **023** | Reserved for What-If Parameter Perturbation Engine. | What-If Parameter Perturbation Engine | 📋 Planned |
+| **024** | Reserved for Blind Analogy & Isomorphism Pairings. | Blind Analogy Pairing & Structural Isomorphism Challenges | 📋 Planned |
+| **025–030** | Reserved for Advanced Synthesis Prompts. | Advanced Prompt Templates & Token-Efficient Generators | 📋 Planned |
 
 ---
 
