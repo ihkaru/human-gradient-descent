@@ -43,13 +43,15 @@ flowchart LR
 
 ---
 
-### Cluster 2: Encyclopedic Ingestion & Deep AST Parsing (011–020)
-* **Phase 011**: Raw Oxford Dictionary & Encyclopedic Wikitext Tokenizer.
-* **Phase 012**: Multi-level Header Chunking & Semantic Boundary Detection.
-* **Phase 013**: Cross-Reference Graph Extractor & Automated Dependency Inferrer.
-* **Phase 014**: Shard Size Balancer & Topological Tarjan SCC Cycle Resolver.
-* **Phase 015**: Source Citation Hash & Verbatim Location Tag Anchoring.
-* **Phases 016–020**: Reserved for domain-specific chunkers (Legal Code, Medical SOP, Codebases).
+### Cluster 2: Encyclopedic Ingestion, Pacing & UI Contracts (011–020)
+| Phase ID | Specification File | Title & Core Focus | Status |
+|:---|:---|:---|:---|
+| **011** | [`phases/011_time_bounded_pacing_and_checkpoints.md`](./phases/011_time_bounded_pacing_and_checkpoints.md) | Time-Bounded Pacing, Epoch Acceleration & Checkpoints | ✅ Completed |
+| **012** | [`phases/012_ui_json_contract_and_event_stream.md`](./phases/012_ui_json_contract_and_event_stream.md) | Headless UI JSON Contract & Pacing Telemetry | ✅ Completed |
+| **013** | `phases/013_cross_reference_graph_extractor.md` | Cross-Reference Graph Extractor & Automated Dependency Inferrer | 📋 Planned |
+| **014** | `phases/014_shard_size_balancer_tarjan_scc.md` | Shard Size Balancer & Topological Tarjan SCC Cycle Resolver | 📋 Planned |
+| **015** | `phases/015_source_citation_hash_anchoring.md` | Source Citation Hash & Verbatim Location Tag Anchoring | 📋 Planned |
+| **016–020** | Reserved for domain-specific chunkers (Legal Code, Medical SOP, Large Codebases). | | 📋 Planned |
 
 ---
 

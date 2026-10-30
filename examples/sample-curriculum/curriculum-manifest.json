@@ -14,6 +14,29 @@
     "approxWordCount": 314,
     "estimatedLearningHours": 2.1
   },
+  "pacing": {
+    "defaultMode": "time_bounded",
+    "timeBoundedConfig": {
+      "defaultNodeTimeoutSeconds": 60,
+      "totalCurriculumBudgetMinutes": 15,
+      "autoEscalateHintOnTimeout": true,
+      "stagnationWarningSeconds": 25
+    },
+    "checkpoints": [
+      {
+        "checkpointId": "cp-01",
+        "title": "Milestone Checkpoint: Quantum Entanglement and Non-Locality",
+        "milestoneNodeId": "hgd://knowledgebase/quantum-computing/node-003",
+        "requiredMasteryTheta": 0.9
+      },
+      {
+        "checkpointId": "cp-02",
+        "title": "Milestone Checkpoint: Grover's Search and Quadratic Speedup",
+        "milestoneNodeId": "hgd://knowledgebase/quantum-computing/node-006",
+        "requiredMasteryTheta": 0.9
+      }
+    ]
+  },
   "shards": [
     {
       "shardId": "shard_001",

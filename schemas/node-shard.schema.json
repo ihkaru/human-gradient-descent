@@ -41,6 +41,15 @@
             "items": { "type": "string" }
           },
           "conceptSummary": { "type": "string", "maxLength": 3000 },
+          "pacing": {
+            "type": "object",
+            "properties": {
+              "timeLimitSeconds": { "type": "integer", "minimum": 10, "default": 60 },
+              "recommendedEpochs": { "type": "integer", "minimum": 1, "default": 3 },
+              "isCheckpoint": { "type": "boolean", "default": false },
+              "rollbackNodeId": { "type": "string" }
+            }
+          },
           "forwardPass": {
             "type": "object",
             "required": [

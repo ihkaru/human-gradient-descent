@@ -3,6 +3,7 @@ import type {
   NodeShard,
   CompetencyNode,
   CognitiveLevel,
+  PacingMode,
 } from "../types/curriculum.js";
 
 export interface CompileOptions {
@@ -11,24 +12,21 @@ export interface CompileOptions {
   domain: string;
   version?: string;
   nodesPerShard?: number;
+  defaultPacingMode?: PacingMode;
 }
 
 export class MarkdownCurriculumCompiler {
-  /**
-   * Compiles raw markdown text into a sharded HGD curriculum.
-   */
   public compile(
     markdownContent: string,
     options: CompileOptions
   ): { manifest: CurriculumManifest; shards: NodeShard[] } {
     const rawNodes = this.extractNodesFromMarkdown(markdownContent, options);
-    const nodesPerShard = options.nodesPerShard || 25;
+    const nodesPerShard = options.nodesPerShard || 3;
     const shards: NodeShard[] = [];
     const shardCatalog: CurriculumManifest["shards"] = [];
     const dagNodes: CurriculumManifest["dag"]["nodes"] = [];
     const dagEdges: CurriculumManifest["dag"]["edges"] = [];
 
-    // Chunk nodes into shards
     for (let i = 0; i < rawNodes.length; i += nodesPerShard) {
       const shardIndex = Math.floor(i / nodesPerShard) + 1;
       const shardId = `shard_${String(shardIndex).padStart(3, "0")}`;
@@ -66,6 +64,15 @@ export class MarkdownCurriculumCompiler {
       }
     }
 
+    const checkpoints = rawNodes
+      .filter((_, idx) => (idx + 1) % 3 === 0 || idx === rawNodes.length - 1)
+      .map((n, idx) => ({
+        checkpointId: `cp-${String(idx + 1).padStart(2, "0")}`,
+        title: `Milestone Checkpoint: ${n.title}`,
+        milestoneNodeId: n.id,
+        requiredMasteryTheta: 0.9,
+      }));
+
     const manifest: CurriculumManifest = {
       schemaVersion: "2026.1",
       curriculumId: options.curriculumId,
@@ -79,6 +86,16 @@ export class MarkdownCurriculumCompiler {
         totalShards: shards.length,
         approxWordCount: markdownContent.split(/\s+/).length,
         estimatedLearningHours: Number((rawNodes.length * 0.35).toFixed(1)),
+      },
+      pacing: {
+        defaultMode: options.defaultPacingMode || "time_bounded",
+        timeBoundedConfig: {
+          defaultNodeTimeoutSeconds: 60,
+          totalCurriculumBudgetMinutes: Math.max(15, Math.ceil(rawNodes.length * 2.5)),
+          autoEscalateHintOnTimeout: true,
+          stagnationWarningSeconds: 25,
+        },
+        checkpoints,
       },
       shards: shardCatalog,
       dag: {
@@ -124,7 +141,6 @@ export class MarkdownCurriculumCompiler {
     }
     flushNode();
 
-    // Fallback if no markdown headers were detected
     if (nodes.length === 0 && content.trim().length > 0) {
       const id = `hgd://${options.domain.toLowerCase()}/${options.curriculumId}/node-001`;
       nodes.push(this.synthesizeNode(id, options.title, content.trim(), [], 1));
@@ -155,6 +171,12 @@ export class MarkdownCurriculumCompiler {
       cognitiveLevel,
       prerequisites: prereqs,
       conceptSummary: body.slice(0, 1000).trim(),
+      pacing: {
+        timeLimitSeconds: 60,
+        recommendedEpochs: 3,
+        isCheckpoint: index % 3 === 0,
+        rollbackNodeId: prereqs.length > 0 ? prereqs[0] : undefined,
+      },
       forwardPass: {
         probeType: "prediction_what_if",
         readingContext: excerpt,

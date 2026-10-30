@@ -19,6 +19,35 @@ export type RelationType =
   | "analogy"
   | "extension";
 
+export type PacingMode = "time_bounded" | "self_paced";
+
+export interface TimeBoundedConfig {
+  defaultNodeTimeoutSeconds?: number;
+  totalCurriculumBudgetMinutes?: number;
+  autoEscalateHintOnTimeout?: boolean;
+  stagnationWarningSeconds?: number;
+}
+
+export interface CurriculumCheckpoint {
+  checkpointId: string;
+  title: string;
+  milestoneNodeId: string;
+  requiredMasteryTheta: number;
+}
+
+export interface CurriculumPacing {
+  defaultMode: PacingMode;
+  timeBoundedConfig?: TimeBoundedConfig;
+  checkpoints?: CurriculumCheckpoint[];
+}
+
+export interface NodePacing {
+  timeLimitSeconds?: number;
+  recommendedEpochs?: number;
+  isCheckpoint?: boolean;
+  rollbackNodeId?: string;
+}
+
 export interface ForwardPassProbe {
   probeType: ProbeType;
   readingContext?: string;
@@ -68,6 +97,7 @@ export interface CompetencyNode {
   cognitiveLevel: CognitiveLevel;
   prerequisites: string[];
   conceptSummary: string;
+  pacing?: NodePacing;
   forwardPass: ForwardPassProbe;
   lossRubric: LossRubric;
   backwardPass: BackwardPassScaffold;
@@ -117,6 +147,7 @@ export interface CurriculumManifest {
   license?: string;
   authors?: string[];
   scale: CurriculumScale;
+  pacing: CurriculumPacing;
   shards: ShardCatalogEntry[];
   dag: {
     nodes: DagNodeSummary[];
@@ -149,12 +180,30 @@ export interface HistoricalLossEntry {
   lossVector: LossVector;
 }
 
+export interface RollbackEntry {
+  timestamp: string;
+  fromNodeId: string;
+  toCheckpointId: string;
+  reason: string;
+}
+
+export interface PacingState {
+  activeMode: PacingMode;
+  totalElapsedSeconds?: number;
+  activeNodeElapsedSeconds?: number;
+  lastCheckpointId?: string;
+  checkpointsReached?: string[];
+  rollbackCount?: number;
+  rollbackHistory?: RollbackEntry[];
+}
+
 export interface LearnerState {
   learnerId: string;
   curriculumId: string;
   lastUpdated: string;
   globalMastery: number;
   learningRateAlpha?: number;
+  pacingState?: PacingState;
   weights: Record<string, NodeWeight>;
   activeFrontier: string[];
   masteredNodes: string[];

@@ -11,6 +11,7 @@
     "domain",
     "version",
     "scale",
+    "pacing",
     "shards",
     "dag"
   ],
@@ -55,6 +56,38 @@
         "totalShards": { "type": "integer", "minimum": 1 },
         "approxWordCount": { "type": "integer", "minimum": 0 },
         "estimatedLearningHours": { "type": "number", "minimum": 0 }
+      }
+    },
+    "pacing": {
+      "type": "object",
+      "required": ["defaultMode"],
+      "properties": {
+        "defaultMode": {
+          "type": "string",
+          "enum": ["time_bounded", "self_paced"]
+        },
+        "timeBoundedConfig": {
+          "type": "object",
+          "properties": {
+            "defaultNodeTimeoutSeconds": { "type": "integer", "minimum": 15, "default": 60 },
+            "totalCurriculumBudgetMinutes": { "type": "integer", "minimum": 1 },
+            "autoEscalateHintOnTimeout": { "type": "boolean", "default": true },
+            "stagnationWarningSeconds": { "type": "integer", "minimum": 5, "default": 30 }
+          }
+        },
+        "checkpoints": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["checkpointId", "title", "milestoneNodeId", "requiredMasteryTheta"],
+            "properties": {
+              "checkpointId": { "type": "string" },
+              "title": { "type": "string" },
+              "milestoneNodeId": { "type": "string" },
+              "requiredMasteryTheta": { "type": "number", "minimum": 0.5, "maximum": 1.0 }
+            }
+          }
+        }
       }
     },
     "shards": {

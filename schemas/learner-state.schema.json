@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://ihkaru.github.io/human-gradient-descent/schemas/learner-state.schema.json",
   "title": "HGD Learner State Vector",
-  "description": "Schema for persisting cognitive parameter weights theta, loss trajectory, and frontier nodes.",
+  "description": "Schema for persisting cognitive parameter weights theta, loss trajectory, checkpoints, and rollback traces.",
   "type": "object",
   "required": [
     "learnerId",
@@ -27,6 +27,33 @@
       "minimum": 0.01,
       "maximum": 1.0,
       "default": 0.3
+    },
+    "pacingState": {
+      "type": "object",
+      "properties": {
+        "activeMode": { "type": "string", "enum": ["time_bounded", "self_paced"] },
+        "totalElapsedSeconds": { "type": "number", "minimum": 0 },
+        "activeNodeElapsedSeconds": { "type": "number", "minimum": 0 },
+        "lastCheckpointId": { "type": "string" },
+        "checkpointsReached": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "rollbackCount": { "type": "integer", "minimum": 0, "default": 0 },
+        "rollbackHistory": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["timestamp", "fromNodeId", "toCheckpointId", "reason"],
+            "properties": {
+              "timestamp": { "type": "string", "format": "date-time" },
+              "fromNodeId": { "type": "string" },
+              "toCheckpointId": { "type": "string" },
+              "reason": { "type": "string" }
+            }
+          }
+        }
+      }
     },
     "weights": {
       "type": "object",

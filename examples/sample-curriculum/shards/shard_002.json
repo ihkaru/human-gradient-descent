@@ -10,6 +10,12 @@
         "hgd://knowledgebase/quantum-computing/node-003"
       ],
       "conceptSummary": "All quantum logic gates operating on closed systems must be represented by unitary operators $U^\\dagger U = I$.\nBecause unitary transformations preserve the inner product and norm of vectors, all quantum computation without measurement is strictly reversible. No quantum gate can perform irreversible erasure of quantum information without increasing thermodynamic entropy.",
+      "pacing": {
+        "timeLimitSeconds": 60,
+        "recommendedEpochs": 3,
+        "isCheckpoint": false,
+        "rollbackNodeId": "hgd://knowledgebase/quantum-computing/node-003"
+      },
       "forwardPass": {
         "probeType": "prediction_what_if",
         "readingContext": "All quantum logic gates operating on closed systems must be represented by unitary operators $U^\\dagger U = I$.\nBecause unitary transformations preserve the inner product and norm of vectors, all quantum computation without measurement is strictly reversible. No quantum gate can perform irreversible",
@@ -72,6 +78,12 @@
         "hgd://knowledgebase/quantum-computing/node-004"
       ],
       "conceptSummary": "The no-cloning theorem states that it is impossible to create an identical copy of an arbitrary unknown quantum state:\n$$U(|\\psi\\rangle |0\\rangle) \\neq |\\psi\\rangle |\\psi\\rangle$$\nThis follows directly from the linearity of quantum operators. Because cloning is prohibited, quantum error correction cannot simply duplicate qubits, but must instead distribute quantum information across entangled topological codes.",
+      "pacing": {
+        "timeLimitSeconds": 60,
+        "recommendedEpochs": 3,
+        "isCheckpoint": false,
+        "rollbackNodeId": "hgd://knowledgebase/quantum-computing/node-004"
+      },
       "forwardPass": {
         "probeType": "prediction_what_if",
         "readingContext": "The no-cloning theorem states that it is impossible to create an identical copy of an arbitrary unknown quantum state:\n$$U(|\\psi\\rangle |0\\rangle) \\neq |\\psi\\rangle |\\psi\\rangle$$\nThis follows directly from the linearity of quantum operators. Because cloning is prohibited, quantum error correction c",
@@ -134,6 +146,12 @@
         "hgd://knowledgebase/quantum-computing/node-005"
       ],
       "conceptSummary": "Grover's algorithm searches an unstructured database of $N$ items in $O(\\sqrt{N})$ operations, compared to classical $O(N)$.\nIt achieves this by iteratively applying the Grover diffusion operator:\n$$G = (2|s\\rangle\\langle s| - I) O_\\omega$$\nThe mechanism works via amplitude amplification: the phase of the target state is inverted, and then all amplitudes are inverted about the mean, geometrically rotating the state vector toward the target.",
+      "pacing": {
+        "timeLimitSeconds": 60,
+        "recommendedEpochs": 3,
+        "isCheckpoint": true,
+        "rollbackNodeId": "hgd://knowledgebase/quantum-computing/node-005"
+      },
       "forwardPass": {
         "probeType": "prediction_what_if",
         "readingContext": "Grover's algorithm searches an unstructured database of $N$ items in $O(\\sqrt{N})$ operations, compared to classical $O(N)$.\nIt achieves this by iteratively applying the Grover diffusion operator:\n$$G = (2|s\\rangle\\langle s| - I) O_\\omega$$\nThe mechanism works via amplitude amplification: the phase",

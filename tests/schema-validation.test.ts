@@ -17,6 +17,9 @@ describe("SchemaValidator Suite", () => {
         totalNodes: 2,
         totalShards: 1,
       },
+      pacing: {
+        defaultMode: "time_bounded",
+      },
       shards: [
         {
           shardId: "shard_001",

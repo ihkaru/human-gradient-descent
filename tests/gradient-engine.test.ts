@@ -49,6 +49,7 @@ describe("Gradient Engine Loop Suite", () => {
     domain: "CS",
     version: "1.0.0",
     scale: { totalNodes: 2, totalShards: 1 },
+    pacing: { defaultMode: "self_paced" },
     shards: [{ shardId: "shard_001", filePath: "shards/shard_001.json", nodeCount: 2, nodeIds: ["hgd://cs/ds/array", "hgd://cs/ds/hash-table"] }],
     dag: {
       nodes: [
