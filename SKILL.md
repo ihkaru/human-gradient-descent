@@ -1,109 +1,140 @@
 ---
 name: human-gradient-descent
-description: Adaptive learning engine and curriculum compiler using the Human Gradient Descent paradigm. Deconstructs massive encyclopedic content (Oxford Dictionary scale) into Acyclic Competency DAGs across any domain (STEM, Law, Medicine, Humanities), executing iterative Forward-Pass prediction probes, Bianshi variation challenges, 5-axis Loss Function diagnostic error classification, and Progressive Hint Ladder parameter updates with anti-fatigue safeguards. Use when a user wants to deeply learn, retain, or be quizzed on complex technical, scientific, or massive markdown corpuses without passive reading.
+description: Adaptive learning engine and curriculum compiler using the Human Gradient Descent paradigm and the Universal Invariant Learning Architecture (UILA). Deconstructs encyclopedic content (Oxford Dictionary scale) into Acyclic Competency DAGs across any domain (STEM, Law, Medicine, Humanities), initializing mental models through a 5-block sequence (Anomaly, Prototype, Invariant, Contract, Boundary Stress-Test), executing deterministic Diagnostic MCQ evaluation, Bianshi variation challenges, 5-axis Loss Function error classification, and progressive scaffolding with GitHub-style effort heatmap tracking. Use when a user wants to deeply learn, retain, or be quizzed on complex technical, scientific, or massive markdown corpuses without demoralizing blind guessing.
 license: MIT
 compatibility: Linux, macOS, Windows; Bun >= 1.2.0 or Node >= 22.0.0
 metadata:
   author: ihkaru
-  version: "1.1.0"
+  version: "1.2.0"
   standard: "agentskills-2026.1"
 ---
 
-# 🧠 Human Gradient Descent (`human-gradient-descent`)
+# Human Gradient Descent (`human-gradient-descent`)
 
 This skill transforms passive reading into an active mathematical optimization process for human learners across **any knowledge domain** (STEM, Law, Medicine, Languages, Philosophy).
 
-Instead of lecturing, the agent models human understanding as a parameter weight vector $\Theta \in [0.0, 1.0]^D$ across an Acyclic Competency Graph (DAG). The agent executes an iterative optimization loop:
+Instead of lecturing or blind ungrounded guessing, the agent models human understanding as a parameter weight vector $\Theta \in [0.0, 1.0]^D$ across an Acyclic Competency Graph (DAG). The agent executes an iterative optimization loop:
 $$\Theta_{t+1} = \Theta_t - \alpha \nabla_\Theta \mathcal{L}$$
 
 ---
 
-## ⚡ The 5-Step Optimization & Pacing Loop
+## The 5-Step Optimization & Grounding Loop
 
 ```mermaid
 flowchart TD
-    Start["Ingest Sharded Corpus / Target Node"] --> FP["1. Forward Pass (Prediction Probe)\nUser generates hypothesis BEFORE explanation\n(Working memory budget <= 50 words)"]
-    FP --> BV["2. Bianshi Variation Probes\nTest conceptual variants & boundary perturbations"]
-    BV --> Eval["3. Loss Evaluation (5-Axis Diagnosis)\nDecompose error into Concept, Prereq, Notation, Strategy, Reasoning"]
+    Start["Ingest Sharded Corpus / Target Node"] --> UILA["UILA Mental Initialization (Blocks 1-4)\n1. Pangkal Anomali (Failure of old way)\n2. Prototipe Intuitif (Physical sandbox)\n3. Invarian Inti (Contrasting cases)\n4. Notasi Sebagai Kontrak (Symbol chips)"]
+    UILA --> FP["5. Forward Pass: Boundary Stress-Test\nProbe edge conditions (0, infinity, collapse)\nwith Diagnostic Causal Hypotheses"]
+    FP --> Eval["Deterministic Loss Evaluation (< 1ms)\n5-Axis Diagnostic Vector\n(Concept, Prereq, Notation, Strategy, Reasoning)"]
     Eval --> Check{"Loss <= 0.05 ?"}
-    Check -- Yes --> Update["Update State Vector (+alpha)\nUnlock next frontier node in DAG"]
+    Check -- Yes --> Update["Update State Theta (+alpha)\nLog Activity to Daily Heatmap\nUnlock Next Frontier Node"]
     Check -- No --> Safety{"Fatigue Score >= 0.7 ?"}
-    Safety -- Yes --> Cooldown["Anti-Fatigue Circuit Breaker\nMandatory 3-min cooldown & switch to self_paced"]
-    Safety -- No --> BP["4. Backward Pass (Scaffolding)\nProgressive Hint Ladder (T0 -> T1 -> T2 -> T3)"]
-    BP --> Retry["User Submits Revised Prediction"]
+    Safety -- Yes --> Cooldown["Anti-Fatigue Circuit Breaker\nMandatory cooldown pause"]
+    Safety -- No --> BP["Backward Pass Scaffolding\nProgressive Hint Ladder (T0 -> T3)"]
+    BP --> Retry["Learner Retries Boundary Probe"]
     Retry --> Eval
 ```
 
 ---
 
-## 🎯 Hard Invariants for Coding Agents
+## Hard Invariants for Coding Agents
 
-1. **Strict Pre-Testing Policy (Zero Premature Explanation)**:
-   * **NEVER** explain a concept, summarize theory, or provide solutions prior to prompting the user for an active forward-pass prediction ($\hat{y}$).
-   * Grounded in the *Generation Effect* and *Pre-testing Effect* (*Slamecka & Graf, 1978; Kornell et al., 2009*).
+1. **UILA Grounding Doctrine (Zero Demoralizing Blind Prediction)**:
+   * **STRICTLY PROHIBITED**: Never force a learner to make an ungrounded zero-shot prediction from a conceptual vacuum. This causes cognitive paralysis.
+   * **MANDATORY**: Every competency node must initialize the mental model through Blocks 1 to 4 before executing the Forward Pass.
+   * The Forward Pass is strictly executed at **Block 5: Uji Tegangan Batas (Boundary Stress-Test)**, evaluating causal limits ($0, \infty$, inverted conditions).
 
-2. **Domain-Agnostic Invariant Extraction**:
-   * Deconstruct any subject into: (1) Core Invariant, (2) Boundary Conditions, and (3) Observable States.
+2. **The 5-Block UILA Sequential Structure**:
+   * **Block 1: Pangkal Anomali (The Ground State & Inadequacy)**: Exposes where conventional/legacy approaches fail or complexity explodes without introducing early technical jargon.
+   * **Block 2: Prototipe Intuitif (Isomorphic Sandbox)**: Grounds a real-world physical analog preserving identical proportional relationships to resolve the anomaly.
+   * **Block 3: Invarian & Operasi Inti (Core Mechanics)**: Isolates conserved properties and features a Side-by-Side Contrasting Cases Table (*Pemula Salah* vs *Model Mental Nyata*).
+   * **Block 4: Notasi Sebagai Kontrak (Minimal Formalization)**: Symbolism and formulas introduced as practical shorthand contracts, deconstructing every term into its physical meaning.
+   * **Block 5: Uji Tegangan Batas (Boundary Stress-Test)**: Active Forward Pass challenge with Diagnostic Multiple-Choice Hypotheses and explicit causal rationales.
 
-3. **Bianshi Variation Probes (*Bianshi Jiaoxue*)**:
-   * Test concepts across alternative representations (code, math formulas, visual diagrams, verbal rules).
-   * Probe boundary conditions with single-parameter perturbations ($N=0$, inverted conditions).
+3. **Cognitive-Load Guardrails**:
+   * **Monocentric Sub-Units**: Each sub-unit introduces exactly one mechanistic invariant. Dual mechanisms must be split into separate nodes.
+   * **Zero Blind Jargon**: Every technical term must have its function experienced in Block 1 or 2 before its formal name is introduced.
+   * **2-Second Working Memory Budget**: Challenge prompts must be bounded to $\le 50$ words to prevent phonological loop overload.
 
-4. **Anti-Fatigue & Ethical Pacing Governance**:
-   * Detect hurried blind guessing ($< 3\text{s}$) and cognitive exhaustion.
-   * Enforce neural consolidation cooldowns to prevent burnout and toxic involution (*neijuan*).
+4. **Deterministic Diagnostic MCQ Evaluation**:
+   * Client-side evaluation must execute in $O(1)$ time ($< 1\text{ms}$) without expensive backend round-trips.
+   * Distractors represent specific misconceptions mapped to the 5-axis loss vector ($l_{\text{concept}}, l_{\text{prereq}}, l_{\text{notation}}, l_{\text{strategy}}, l_{\text{reasoning}}$).
 
-5. **Encyclopedic Scale Isolation ($O(1)$ Token Context Budget)**:
-   * Curricula of Oxford Dictionary scale are partitioned into independent shards (`shards/shard_XXX.json`).
-   * The agent and UI load **only the active shard** into working context.
+5. **Effort Attribution & Heatmap Logging**:
+   * Every completed epoch and mastered invariant must be logged to `dailyActivityLog` in `learner-state.json` to feed the GitHub-style 4-tier emerald contribution calendar.
+
+6. **Encyclopedic Sharding ($O(1)$ Token Context Budget)**:
+   * Curricula are partitioned into single-node shards (`nodesPerShard: 1`). The agent and UI load **only the active shard** into working context.
 
 ---
 
-## 🤖 Agent Curriculum Authoring & Synthesis Protocol
+## Author's Diagnostic Checklist (Matriks Uji Mandiri Penulis)
+
+Before releasing or synthesizing any curriculum, the agent must self-audit against this checklist:
+
+| Pertanyaan Uji | Jika Jawabannya "Tidak" | Tindakan Koreksi Wajib |
+|:---|:---|:---|
+| Apakah masalah di Blok 1 terasa nyata tanpa pembaca perlu tahu teorinya terlebih dahulu? | Pembaca akan membaca teks sebagai hafalan akademis, bukan solusi fungsional. | Tulis ulang Blok 1 menggunakan skenario operasional/kegagalan fisik sederhana. |
+| Bisakah pembaca memprediksi arah perubahan (naik/turun) tanpa melihat rumus di Blok 4? | Penjelasan mekanik di Blok 2 & 3 gagal total membangun intuisi. | Ganti analogi di Blok 2 dengan model spasial/aliran yang lebih ketat secara relasi (isomorphic). |
+| Apakah ada simbol/istilah asing yang muncul tiba-tiba tanpa didekonstruksi? | Terjadi *split-attention effect* dan kepanikan kognitif. | Sisipkan jembatan penalaran atau hilangkan jargon yang tidak esensial. |
+| Apakah pembaca bisa menjawab pertanyaan di Blok 5 hanya dengan mengingat kata-kata di teks? | Pertanyaan evaluasi terlalu dangkal (hanya menguji memori, bukan model mental). | Ubah soal uji batas ke situasi baru (*transfer test*) yang belum pernah dicontohkan di teks. |
+
+---
+
+## Agent Curriculum Authoring & Synthesis Protocol
 
 When an AI Coding Agent is requested to create, expand, or tutor a curriculum:
-1. **Author Markdown with Causal Annotations**:
-   Write structured markdown using clean H2 sections and HTML annotations:
-   ```markdown
-   # Curriculum Title
-   Overview text...
 
-   ## Section Title (UILA 5-Block Standard)
-   <!-- hgd:tier: 1_foundational_fluency -->
-   <!-- hgd:prereqs: [] -->
+```markdown
+# Curriculum Title
+Overview text...
 
-   ### 1. Pangkal Anomali
-   Skenario di mana pemahaman/alat lama runtuh atau meledak biayanya.
+## Section Title (UILA 5-Block Standard)
+<!-- hgd:tier: 1_foundational_fluency -->
+<!-- hgd:prereqs: [] -->
 
-   ### 2. Prototipe Intuitif
-   Objek fisik atau sandbox isomorfis di dunia nyata.
+### 1. Pangkal Anomali
+Selama ini kita menyelesaikan [Kondisi X] dengan [Cara Lama Y]. Ini bekerja dengan baik, sampai kita menghadapi [Situasi Z] di mana [Cara Lama Y] tiba-tiba menghasilkan [Kegagalan/Ledakan Kompleksitas].
 
-   ### 3. Invarian & Operasi Inti
-   Hukum kekekalan dan tabel komparasi pemula vs kenyataan:
-   | Apa yang Dipikirkan Pemula (Salah) | Apa yang Sebenarnya Terjadi |
-   | Assumes static unconstrained value | Governed by conservation law |
+### 2. Prototipe Intuitif
+Bayangkan alih-alih [Sistem Asli], kita punya [Objek Fisik Sederhana]. Jika Anda mengubah tuas A, cairan di wadah B otomatis naik...
 
-   ### 4. Notasi Sebagai Kontrak
-   Minimal formalization dan dekonstruksi simbol:
-   * `Symbol`: Arti fisik dalam model mental.
+### 3. Invarian & Operasi Inti
+Hukum kekekalan: [Invarian Sistem].
+| Apa yang Dipikirkan Pemula (Salah) | Apa yang Sebenarnya Terjadi dalam Model Mental |
+|---|---|
+| Mengasumsikan nilai statis bebas | Diatur oleh hukum kekekalan dan interaksi aktif |
 
-   ### 5. Uji Tegangan Batas
-   <!-- hgd:probe: "Uji inferensi batas saat parameter dibuat ekstrem (0, infinity, collapse)" -->
-   <!-- hgd:options: [{"optionId":"opt_a","text":"Hypothesis text","isCorrect":true,"causalRationale":"Detailed rationale..."}] -->
-   ```
-2. **Compile to Sharded DAG**:
-   `bun run cli compile <input.md> -o <output_dir>`
-3. **Verify Compliance**:
-   `bun run cli validate <output_dir>`
-   The resulting JSON shards are immediately ready for consumption by any headless UI or interactive agent session.
+### 4. Notasi Sebagai Kontrak
+Formula: `X = Y / Z`
+* `X`: Ukuran besaran dalam model fisik
+* `Y`: Komponen input
+* `Z`: Skala normalisasi
+
+### 5. Uji Tegangan Batas
+<!-- hgd:probe: "Jika variabel [A] dibuat mendekati nol, bagian mana dari sistem yang akan runtuh duluan? Mengapa?" -->
+<!-- hgd:truth: "Sistem runtuh karena invariant B dilanggar." -->
+<!-- hgd:options: [
+  {"optionId": "opt_a", "text": "Hypothesis A text...", "isCorrect": true, "causalRationale": "Adheres to invariant..."},
+  {"optionId": "opt_b", "text": "Hypothesis B text...", "isCorrect": false, "diagnosticAxis": "conceptGap", "causalRationale": "Violates..."}
+] -->
+```
 
 ---
 
-## 🛠️ CLI & Automated Tooling
+## Multi-Dimensional Curriculum Expansion
+
+When a learner masters a node ($\mathcal{L} \le 0.05$), the agent surfaces 3 expansion pathways:
+1. **Vertical Depth Spiral**: Re-visiting the concept with higher mathematical/production rigor (`deeperSpiralNodeId`).
+2. **Horizontal Branching Tracks**: Elective specializations (`branches: [{ trackName, targetNodeId }]`).
+3. **Lateral Isomorphic Bridges**: Connecting the mastered invariant across different disciplines (`isomorphicBridges: [{ domain, targetNodeId, sharedInvariant }]`).
+
+---
+
+## CLI & Automated Tooling
 
 * **Synthesize Curriculum from Scratch (Anti-Owl Grounding)**:
   `bun run cli generate "<topic>" -o <curriculum_dir>`
-* **Compile Markdown Corpus (Domain-Agnostic)**:
+* **Compile Markdown Corpus (UILA-Native)**:
   `bun run cli compile <input.md> -o <curriculum_dir>`
 * **Validate Curricula & Shards**:
   `bun run cli validate <curriculum_dir>`
@@ -116,7 +147,7 @@ When an AI Coding Agent is requested to create, expand, or tutor a curriculum:
 
 ---
 
-## 🖥️ Headless UI Consumer
+## Headless UI Consumer
 The generated JSON schemas are decoupled from any specific client. A standalone, zero-backend reference frontend is available in [`examples/reference-ui/`](./examples/reference-ui/). To run:
 ```bash
 bunx serve examples
@@ -125,7 +156,7 @@ bunx serve examples
 
 ---
 
-## 📚 Progressive References
+## Progressive References
 * **Master Roadmap & Phases**: [`ROADMAP.md`](./ROADMAP.md)
 * **Architecture Standard arc42**: [`docs/architecture/`](./docs/architecture/)
 * **Pedagogical Foundations**: [`references/pedagogical-research.md`](./references/pedagogical-research.md)
