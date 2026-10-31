@@ -14,7 +14,7 @@
       "prerequisites": [
         "hgd://knowledgebase/contract-law-basics/node-003"
       ],
-      "conceptSummary": "Remedies for breach aim to place the aggrieved party in the position they would have occupied had the contract been fully performed.\nThe fundamental invariant is the duty to mitigate: an injured party cannot recover damages for losses that could reasonably have been avoided without undue risk, burden, or humiliation.",
+      "conceptSummary": "### 1. Pangkal Anomali\nKaryawan yang dipecat secara sewenang-wenang sering kali sengaja berdiam diri di rumah dan menolak tawaran pekerjaan pengganti yang identik di kota yang sama dengan asumsi pengadilan akan memberinya gaji penuh tanpa potongan.\n\n### 2. Prototipe Intuitif\nBayangkan sebuah perahu bocor akibat kelalaian perahu lain. Pemilik perahu berhak menuntut ongkos tambal perahu, tetapi ia tidak boleh sengaja duduk diam menonton perahu tenggelam ke dasar danau tanpa menimba air (mitigasi) lalu menuntut ganti rugi kapal selam baru.\n\n### 3. Invarian & Operasi Inti\nInvarian mutlak sistem adalah **Kewajiban Mitigasi Kerugian (Doctrine of Avoidable Consequences)**: pemulihan ganti rugi bertujuan mengembalikan posisi harapan (expectation interest), namun kerugian yang sebenarnya dapat dicegah dengan usaha wajar tidak boleh dibebankan kepada pelaku wanprestasi.\n\n| Apa yang Dipikirkan Pemula (Salah) | Apa yang Sebenarnya Terjadi dalam Model Mental |\n|---|---|\n| Ganti rugi kontrak bertuju",
       "pacing": {
         "timeLimitSeconds": 60,
         "recommendedEpochs": 3,
@@ -23,39 +23,47 @@
       },
       "uila": {
         "block1_anomaly": {
-          "groundState": "Standard baseline state before encountering Expectation Damages and Mitigation.",
-          "oldWay": "Legacy or naive mental model.",
-          "breakdownPoint": "Complexity explodes or edge conditions collapse when applying legacy methods to Expectation Damages and Mitigation."
+          "groundState": "Initial state prior to Expectation Damages and Mitigation.",
+          "oldWay": "Conventional assumption or baseline approach.",
+          "breakdownPoint": "Karyawan yang dipecat secara sewenang-wenang sering kali sengaja berdiam diri di rumah dan menolak tawaran pekerjaan pengganti yang identik di kota yang sama dengan asumsi pengadilan akan memberinya gaji penuh tanpa potongan."
         },
         "block2_intuitivePrototype": {
-          "physicalObject": "Physical dynamic balance analog for Expectation Damages and Mitigation.",
-          "isomorphicMapping": "Interactions in this physical model preserve the exact proportional relationships of Expectation Damages and Mitigation.",
-          "deadlockResolution": "Bypasses the breakdown point by operating simultaneously across state transitions."
+          "physicalObject": "Physical sandbox model",
+          "isomorphicMapping": "Bayangkan sebuah perahu bocor akibat kelalaian perahu lain. Pemilik perahu berhak menuntut ongkos tambal perahu, tetapi ia tidak boleh sengaja duduk diam menonton perahu tenggelam ke dasar danau tanpa menimba air (mitigasi) lalu menuntut ganti rugi kapal selam baru.",
+          "deadlockResolution": "Resolves the deadlock identified in Block 1 through isomorphic interaction."
         },
         "block3_coreMechanics": {
-          "invariantProperty": "Conservation of system balance in Expectation Damages and Mitigation.",
+          "invariantProperty": "Invarian mutlak sistem adalah **Kewajiban Mitigasi Kerugian (Doctrine of Avoidable Consequences)**: pemulihan ganti rugi bertujuan mengembalikan posisi harapan (expectation interest), namun kerugian yang sebenarnya dapat dicegah dengan usaha wajar tidak boleh dibebankan kepada pelaku wanprestasi.",
           "variableComponents": [
             "System inputs",
             "Observable state amplitudes"
           ],
           "contrastingCases": [
             {
-              "beginnerMisconception": "Assumes Expectation Damages and Mitigation behaves like an unconstrained static value.",
-              "physicalReality": "In reality, Expectation Damages and Mitigation is governed by conservation laws and boundary collapse."
+              "beginnerMisconception": "Ganti rugi kontrak bertujuan menghukum pihak yang melanggar janji.",
+              "physicalReality": "Ganti rugi kontrak bersifat kompensatoris untuk menutup kerugian riil, bukan denda hukuman."
+            },
+            {
+              "beginnerMisconception": "Korban wanprestasi boleh membiarkan kerugian membesar tanpa batas.",
+              "physicalReality": "Korban memiliki kewajiban afirmatif untuk memitigasi kerugian yang dapat dihindari."
             }
           ]
         },
         "block4_notationContract": {
-          "formulaOrCode": "f(Expectation Damages and Mitigation) -> Invariant",
-          "minimalFormalization": "Minimal mathematical contract encoding the physical dynamics of Expectation Damages and Mitigation.",
+          "formulaOrCode": "Damages = Loss(Expectation) - Avoidable(Mitigation)",
+          "minimalFormalization": "Rumus pemulihan expectation damages dikontrakkan sebagai:",
           "termsDeconstruction": [
             {
-              "symbol": "Theta",
-              "physicalMeaning": "Internal state representation of Expectation Damages and Mitigation"
+              "symbol": "Loss(Expectation)",
+              "physicalMeaning": "Posisi yang semestinya dinikmati korban jika kontrak terlaksana penuh."
             },
             {
-              "symbol": "Invariant",
-              "physicalMeaning": "Conservation boundary that must hold true"
+              "symbol": "Avoidable(Mitigation)",
+              "physicalMeaning": "Kerugian yang dapat dihindari dengan upaya wajar yang wajib dipotong."
+            },
+            {
+              "symbol": "DutyToMitigate",
+              "physicalMeaning": "Kontrak pencegahan pemborosan ekonomi (avoidable consequences)."
             }
           ]
         }
@@ -87,7 +95,11 @@
         "conceptualVariants": [
           {
             "representationType": "verbal",
-            "content": "The fundamental invariant is the duty to mitigate: an injured party cannot recover damages for losses that could reasonably have been avoided without undue risk, burden, or humiliation."
+            "content": "### 1."
+          },
+          {
+            "representationType": "symbolic",
+            "content": "Damages = Loss(Expectation) - Avoidable(Mitigation)"
           }
         ],
         "proceduralPerturbations": [
@@ -101,31 +113,29 @@
       },
       "forwardPass": {
         "probeType": "prediction_what_if",
-        "microPrimer": "Remedies for breach aim to place the aggrieved party in the position they would have occupied had the contract been fully performed.",
-        "readingContext": "Remedies for breach aim to place the aggrieved party in the position they would have occupied had the contract been fully performed.\nThe fundamental invariant is the duty to mitigate: an injured party cannot recover damages for losses that could reasonably have been avoided without undue risk, burden, or humiliation.",
+        "microPrimer": "\"Contract remedies place the injured party in the position they would have occupied had the contract been performed. Under the duty to mitigate, avoidable damages cannot be recovered.\"",
+        "readingContext": "### 1. Pangkal Anomali\nKaryawan yang dipecat secara sewenang-wenang sering kali sengaja berdiam diri di rumah dan menolak tawaran pekerjaan pengganti yang identik di kota yang sama dengan asumsi pengadilan akan memberinya gaji penuh tanpa potongan.\n\n### 2. Prototipe Intuitif\nBayangkan sebuah perahu bocor akibat kelalaian perahu lain. Pemilik perahu berhak menuntut ongkos tambal perahu, tetapi ia tidak boleh sengaja duduk diam menonton perahu tenggelam ke dasar danau tanpa menimba air (mitigasi)",
         "prompt": "\"Predict whether an wrongfully terminated employee who rejects an identical job in the same city can recover their full unpaid contract salary.\"",
         "options": [
           {
             "optionId": "opt_a",
-            "text": "\"Recovery is reduced by the avoidable salary under the doctrine of avoidable consequences: an aggrieved party has an affirmative duty to mitigate damages with reasonable effort.\"",
+            "text": "Recovery is reduced by the avoidable salary under the doctrine of avoidable consequences: an aggrieved party has an affirmative duty to mitigate damages with reasonable effort.",
             "isCorrect": true,
-            "causalRationale": "Correct: \"Recovery is reduced by the avoidable salary under the doctrine of avoidable consequences: an aggrieved party has an affirmative duty to mitigate damages with reasonable effort.\". This adheres strictly to the governing invariant of Expectation Damages and Mitigation."
+            "causalRationale": "Correct: The duty to mitigate deducts losses that could have been avoided with reasonable effort."
           },
           {
             "optionId": "opt_b",
-            "text": "The system remains completely unchanged because Expectation Damages and Mitigation acts as an invariant identity operator without state transitions.",
+            "text": "The employee recovers 100% full salary because breach damages are designed to punish wrongful termination.",
             "isCorrect": false,
             "diagnosticAxis": "conceptGap",
-            "causalRationale": "Misconception: Assumes operations produce zero observable effect, ignoring active transformation.",
-            "specificRemediation": "Review core mechanism: The fundamental invariant is the duty to mitigate: an injured party cannot recover damages for losses that could reasonably have been avoided without undue risk, burden, or humiliation."
+            "causalRationale": "Punitive Fallacy: Contract damages are compensatory, never punitive."
           },
           {
             "optionId": "opt_c",
-            "text": "The state diverges uncontrollably because boundary conditions are violated immediately.",
+            "text": "The employee forfeits all remedies because rejecting an alternative job constitutes a waiver of breach claims.",
             "isCorrect": false,
             "diagnosticAxis": "reasoningBug",
-            "causalRationale": "Reasoning Slip: Assumes instability without verifying whether mathematical bounds are preserved.",
-            "specificRemediation": "Trace boundary constraints step-by-step."
+            "causalRationale": "Waiver Confusion: Failure to mitigate only reduces damages; it does not extinguish the breach claim itself."
           }
         ],
         "expectedMentalModel": [
@@ -138,7 +148,7 @@
       },
       "lossRubric": {
         "conceptGapCriteria": [
-          "Fails to identify core mechanism: The fundamental invariant is the duty to mitigate: an injured party cannot recover damages for losses that could reasonably have been avoided without undue risk, burden, or humiliation.",
+          "Fails to identify core mechanism: ### 1.",
           "Confuses cause and effect in state transitions"
         ],
         "missingPrerequisiteMap": {
@@ -159,9 +169,9 @@
         "learningRate": 0.25,
         "hintLadder": {
           "level0Reflective": "Reflective: What fundamental invariant governs Expectation Damages and Mitigation?",
-          "level1Directional": "Directional Clue: Examine how Expectation Damages and Mitigation handles boundary conditions: The fundamental invariant is the duty to mitigate: an injured party cannot recover damages for losses that could reasonably have been avoided without undue risk, burden, or humiliation.",
+          "level1Directional": "Directional Clue: Examine how Expectation Damages and Mitigation handles boundary conditions: ### 1.",
           "level2Constraint": "Constraint: Eliminate unconstrained assumptions. Ground truth: \"Recovery is reduced by the avoidable salary under the doctrine of avoidable consequences: an aggrieved party has an affirmative duty to mitigate damages with reasonable effort.\"",
-          "level3WorkedExample": "Worked Solution: \"Recovery is reduced by the avoidable salary under the doctrine of avoidable consequences: an aggrieved party has an affirmative duty to mitigate damages with reasonable effort.\". Applying this rule resolves the challenge step-by-step."
+          "level3WorkedExample": "\"Worked Solution: The injured party has a duty to mitigate damages by accepting substantially similar employment. Rejecting an identical replacement job means the resulting wage loss was avoidable and cannot be recovered from the breaching employer.\""
         },
         "microRemediations": {
           "conceptGap": "Core Invariant: \"Recovery is reduced by the avoidable salary under the doctrine of avoidable consequences: an aggrieved party has an affirmative duty to mitigate damages with reasonable effort.\"",
@@ -175,7 +185,7 @@
         {
           "sourceRef": "markdown-source",
           "locationTag": "Section: Expectation Damages and Mitigation",
-          "verbatimQuote": "Remedies for breach aim to place the aggrieved party in the position they would have occupied had th"
+          "verbatimQuote": "### 1. Pangkal Anomali\nKaryawan yang dipecat secara sewenang-wenang sering kali sengaja berdiam diri"
         }
       ]
     }

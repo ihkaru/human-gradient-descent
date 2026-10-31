@@ -15,7 +15,7 @@
         "hgd://knowledgebase/quantum-computing/node-002",
         "hgd://knowledgebase/quantum-computing/node-003"
       ],
-      "conceptSummary": "Grover's algorithm searches an unstructured database of $N$ items in $O(\\sqrt{N})$ operations by repeatedly applying the Grover diffusion operator. Inverting target phase followed by reflection about the mean geometrically amplifies the target state amplitude.",
+      "conceptSummary": "### 1. Pangkal Anomali\nMencari satu kunci di antara N gembok acak secara klasik membutuhkan rata-rata N/2 percobaan. Untuk ruang pencarian skala besar, pencarian sekuensial membutuhkan jutaan tahun komputasi.\n\n### 2. Prototipe Intuitif\nBayangkan kolam air tenang dengan gelombang seragam. Kita menyentak gelombang target ke bawah menjadi palung negatif. Kemudian dinding pemantul rata-rata membalik seluruh gelombang: palung negatif melonjak tinggi ke atas permukaan air sementara gelombang lain meredup.\n\n### 3. Invarian & Operasi Inti\nInvarian mutlak sistem adalah **Rotasi Amplitudo Geometris Menuju Target**. Setiap putaran difusi memutar vektor keadaan mendekati keadaan solusi sebesar sudut tetap dalam $O(\\sqrt{N})$ langkah.\n\n| Apa yang Dipikirkan Pemula (Salah) | Apa yang Sebenarnya Terjadi dalam Model Mental |\n|---|---|\n| Grover memeriksa seluruh item basis secara instan dalam 1 langkah. | Grover memanipulasi interferensi konstruktif amplitudo secara bertahap dalam O(sqrt(N)) iterasi. |",
       "pacing": {
         "timeLimitSeconds": 60,
         "recommendedEpochs": 3,
@@ -24,39 +24,51 @@
       },
       "uila": {
         "block1_anomaly": {
-          "groundState": "Standard baseline state before encountering Grover's Search and Quadratic Speedup.",
-          "oldWay": "Legacy or naive mental model.",
-          "breakdownPoint": "Complexity explodes or edge conditions collapse when applying legacy methods to Grover's Search and Quadratic Speedup."
+          "groundState": "Initial state prior to Grover's Search and Quadratic Speedup.",
+          "oldWay": "Conventional assumption or baseline approach.",
+          "breakdownPoint": "Mencari satu kunci di antara N gembok acak secara klasik membutuhkan rata-rata N/2 percobaan. Untuk ruang pencarian skala besar, pencarian sekuensial membutuhkan jutaan tahun komputasi."
         },
         "block2_intuitivePrototype": {
-          "physicalObject": "Physical dynamic balance analog for Grover's Search and Quadratic Speedup.",
-          "isomorphicMapping": "Interactions in this physical model preserve the exact proportional relationships of Grover's Search and Quadratic Speedup.",
-          "deadlockResolution": "Bypasses the breakdown point by operating simultaneously across state transitions."
+          "physicalObject": "Physical sandbox model",
+          "isomorphicMapping": "Bayangkan kolam air tenang dengan gelombang seragam. Kita menyentak gelombang target ke bawah menjadi palung negatif. Kemudian dinding pemantul rata-rata membalik seluruh gelombang: palung negatif melonjak tinggi ke atas permukaan air sementara gelombang lain meredup.",
+          "deadlockResolution": "Resolves the deadlock identified in Block 1 through isomorphic interaction."
         },
         "block3_coreMechanics": {
-          "invariantProperty": "Conservation of system balance in Grover's Search and Quadratic Speedup.",
+          "invariantProperty": "Invarian mutlak sistem adalah **Rotasi Amplitudo Geometris Menuju Target**. Setiap putaran difusi memutar vektor keadaan mendekati keadaan solusi sebesar sudut tetap dalam $O(\\sqrt{N})$ langkah.",
           "variableComponents": [
             "System inputs",
             "Observable state amplitudes"
           ],
           "contrastingCases": [
             {
-              "beginnerMisconception": "Assumes Grover's Search and Quadratic Speedup behaves like an unconstrained static value.",
-              "physicalReality": "In reality, Grover's Search and Quadratic Speedup is governed by conservation laws and boundary collapse."
+              "beginnerMisconception": "Grover memeriksa seluruh item basis secara instan dalam 1 langkah.",
+              "physicalReality": "Grover memanipulasi interferensi konstruktif amplitudo secara bertahap dalam O(sqrt(N)) iterasi."
+            },
+            {
+              "beginnerMisconception": "Inversion about the mean membatalkan pembalikan fase target.",
+              "physicalReality": "Pembalikan terhadap rata-rata justru melipatgandakan deviasi negatif menjadi amplitudo positif tertinggi."
             }
           ]
         },
         "block4_notationContract": {
-          "formulaOrCode": "f(Grover's Search and Quadratic Speedup) -> Invariant",
-          "minimalFormalization": "Minimal mathematical contract encoding the physical dynamics of Grover's Search and Quadratic Speedup.",
+          "formulaOrCode": "D = 2|s\\rangle\\langle s| - I",
+          "minimalFormalization": "Operator difusi Grover dikontrakkan sebagai refleksi uniter terhadap keadaan rata-rata:",
           "termsDeconstruction": [
             {
-              "symbol": "Theta",
-              "physicalMeaning": "Internal state representation of Grover's Search and Quadratic Speedup"
+              "symbol": "D",
+              "physicalMeaning": "Operator difusi Grover (pembalik terhadap rata-rata)."
             },
             {
-              "symbol": "Invariant",
-              "physicalMeaning": "Conservation boundary that must hold true"
+              "symbol": "|s>",
+              "physicalMeaning": "Keadaan superposisi seimbang seluruh item."
+            },
+            {
+              "symbol": "I",
+              "physicalMeaning": "Matriks identitas inversi."
+            },
+            {
+              "symbol": "O(sqrt(N))",
+              "physicalMeaning": "Kontrak percepatan kuadratik atas kompleksitas klasik O(N)."
             }
           ]
         }
@@ -88,7 +100,11 @@
         "conceptualVariants": [
           {
             "representationType": "verbal",
-            "content": "Grover's algorithm searches an unstructured database of $N$ items in $O(\\sqrt{N})$ operations by repeatedly applying the Grover diffusion operator."
+            "content": "### 1."
+          },
+          {
+            "representationType": "symbolic",
+            "content": "D = 2|s\\rangle\\langle s| - I"
           }
         ],
         "proceduralPerturbations": [
@@ -103,7 +119,7 @@
       "forwardPass": {
         "probeType": "prediction_what_if",
         "microPrimer": "\"Searching an unsorted list of N items classically requires N checks on average. Grover's algorithm uses quantum wave interference to amplify target probability amplitude while canceling incorrect candidates.\"",
-        "readingContext": "Grover's algorithm searches an unstructured database of $N$ items in $O(\\sqrt{N})$ operations by repeatedly applying the Grover diffusion operator. Inverting target phase followed by reflection about the mean geometrically amplifies the target state amplitude.",
+        "readingContext": "### 1. Pangkal Anomali\nMencari satu kunci di antara N gembok acak secara klasik membutuhkan rata-rata N/2 percobaan. Untuk ruang pencarian skala besar, pencarian sekuensial membutuhkan jutaan tahun komputasi.\n\n### 2. Prototipe Intuitif\nBayangkan kolam air tenang dengan gelombang seragam. Kita menyentak gelombang target ke bawah menjadi palung negatif. Kemudian dinding pemantul rata-rata membalik seluruh gelombang: palung negatif melonjak tinggi ke atas permukaan air sementara gelombang lain mere",
         "prompt": "\"Predict how Grover's diffusion operator amplifies the probability amplitude of the target state while suppressing non-target states.\"",
         "options": [
           {
@@ -118,7 +134,7 @@
             "isCorrect": false,
             "diagnosticAxis": "conceptGap",
             "causalRationale": "Misconception: Assumes operations produce zero observable effect, ignoring active transformation.",
-            "specificRemediation": "Review core mechanism: Grover's algorithm searches an unstructured database of $N$ items in $O(\\sqrt{N})$ operations by repeatedly applying the Grover diffusion operator."
+            "specificRemediation": "Review core mechanism: ### 1."
           },
           {
             "optionId": "opt_c",
@@ -140,7 +156,7 @@
       },
       "lossRubric": {
         "conceptGapCriteria": [
-          "Fails to identify core mechanism: Grover's algorithm searches an unstructured database of $N$ items in $O(\\sqrt{N})$ operations by repeatedly applying the Grover diffusion operator.",
+          "Fails to identify core mechanism: ### 1.",
           "Confuses cause and effect in state transitions"
         ],
         "missingPrerequisiteMap": {
@@ -161,7 +177,7 @@
         "learningRate": 0.25,
         "hintLadder": {
           "level0Reflective": "Reflective: What fundamental invariant governs Grover's Search and Quadratic Speedup?",
-          "level1Directional": "Directional Clue: Examine how Grover's Search and Quadratic Speedup handles boundary conditions: Grover's algorithm searches an unstructured database of $N$ items in $O(\\sqrt{N})$ operations by repeatedly applying the Grover diffusion operator.",
+          "level1Directional": "Directional Clue: Examine how Grover's Search and Quadratic Speedup handles boundary conditions: ### 1.",
           "level2Constraint": "Constraint: Eliminate unconstrained assumptions. Ground truth: \"Inverting the phase of the target state followed by inversion about the mean geometrically rotates the state vector toward the target basis in O(sqrt(N)) steps.\"",
           "level3WorkedExample": "\"Worked Solution: Step 1: The oracle flips the sign of the target state amplitude (phase inversion). Step 2: The diffusion operator reflects all amplitudes across their average mean. Because the target was negative, this reflection shoots its amplitude far above the mean, achieving quadratic speedup O(sqrt(N)).\""
         },
@@ -177,7 +193,7 @@
         {
           "sourceRef": "markdown-source",
           "locationTag": "Section: Grover's Search and Quadratic Speedup",
-          "verbatimQuote": "Grover's algorithm searches an unstructured database of $N$ items in $O(\\sqrt{N})$ operations by rep"
+          "verbatimQuote": "### 1. Pangkal Anomali\nMencari satu kunci di antara N gembok acak secara klasik membutuhkan rata-rat"
         }
       ]
     }

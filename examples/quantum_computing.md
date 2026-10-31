@@ -45,8 +45,30 @@ Jika sebuah qubit diinisialisasi pada |0> lalu disentak oleh gerbang Hadamard me
 <!-- hgd:truth: "Quantum operations must be unitary (U dagger U = I), which strictly preserves inner products and vector norms, guaranteeing 100% reversibility without entropy dissipation." -->
 <!-- hgd:worked: "Worked Solution: Unitary operators U satisfy U dagger U = I, preserving the inner product <psi|phi> between all states. If two distinct states both collapsed to |0>, their distinctness would be destroyed, violating inner product conservation and unitarity." -->
 <!-- hgd:models: ["unitary", "reversibility", "norm preservation", "inner product", "entropy"] -->
-All quantum logic gates operating on closed systems must be represented by unitary operators $U^\dagger U = I$.
-Because unitary transformations preserve the inner product and norm of vectors, all quantum computation without measurement is strictly reversible. No quantum gate can perform irreversible erasure of quantum information without increasing thermodynamic entropy.
+
+### 1. Pangkal Anomali
+Di komputasi klasik kita terbiasa menghapus data dengan reset bit ke 0. Pendekatan ini runtuh di dunia kuantum karena penghapusan informasi menghasilkan disipasi panas termodinamika dan merusak ortogonalitas vektor keadaan.
+
+### 2. Prototipe Intuitif
+Bayangkan alih-alih perajang kertas yang menghancurkan lembaran dokumen, sistem kita adalah prisma cermin putar tanpa gesekan. Setiap berkas cahaya yang masuk dapat dikembalikan persis ke arah semula hanya dengan membalik arah putaran cermin.
+
+### 3. Invarian & Operasi Inti
+Invarian mutlak sistem adalah **Reversibilitas dan Preservasi Norma Vektor**. Tidak ada probabilitas yang boleh hilang atau bocor keluar dari sistem tertutup.
+
+| Apa yang Dipikirkan Pemula (Salah) | Apa yang Sebenarnya Terjadi dalam Model Mental |
+|---|---|
+| Gerbang kuantum bebas menghapus status qubit menjadi nol. | Gerbang kuantum tertutup wajib uniter dan sepenuhnya reversibel tanpa disipasi entropi. |
+| Pengurangan sudut vektor tidak mengubah panjang keadaan. | Operator uniter menjaga sudut dalam dan panjang norma vektor tetap 1.0. |
+
+### 4. Notasi Sebagai Kontrak
+Transformasi kuantum diatur oleh kontrak operator uniter steno:
+$$U^\dagger U = I$$
+* `U`: Operator transformasi gerbang kuantum.
+* `U^\dagger`: Hermisian konjugat (pembalik rotasi cermin).
+* `I`: Matriks identitas (keadaan kembali utuh tanpa kehilangan informasi).
+
+### 5. Uji Tegangan Batas
+Prediksikan mengapa operasi penghapusan bit klasik tidak dapat direpresentasikan sebagai gerbang logika kuantum terisolasi!
 
 ## Quantum Entanglement and Non-Locality
 <!-- hgd:prereqs: ["Qubits and Superposition"] -->
@@ -56,9 +78,30 @@ Because unitary transformations preserve the inner product and norm of vectors, 
 <!-- hgd:truth: "Alice cannot transmit information faster than light because Bob's local marginal probability remains exactly 50/50 until classical measurement correlations are communicated." -->
 <!-- hgd:worked: "Worked Solution: While Alice's measurement instantly fixes Bob's outcome, Alice cannot choose whether she measures 0 or 1. From Bob's perspective, his density matrix remains a random 50/50 mixture. Therefore, no information is transmitted until classical signals arrive (No-Signaling Theorem)." -->
 <!-- hgd:models: ["no-signaling", "marginal probability", "bell state", "faster than light", "correlation"] -->
-Entanglement occurs when two spatial observers (traditionally Alice and Bob) share an entangled Bell state:
+
+### 1. Pangkal Anomali
+Kita terbiasa menganalisis dua objek terpisah secara independen. Cara ini runtuh total saat dua partikel terjerat: status lokal salah satu pihak tidak dapat didefinisikan tanpa menyertakan pasangannya, memicu paradoks Einstein-Podolsky-Rosen.
+
+### 2. Prototipe Intuitif
+Bayangkan sepasang koin berputar di meja Alice dan Bob yang porosnya dihubungkan kawat torsi tak kasat mata. Begitu koin Alice jatuh pada sisi angka, koin Bob seketika ikut jatuh pada sisi angka, namun tak seorang pun dapat memilih sisi mana yang jatuh lebih dulu.
+
+### 3. Invarian & Operasi Inti
+Invarian mutlak sistem adalah **No-Signaling Theorem**: korelasi kuantum tidak dapat dimanfaatkan untuk komunikasi superluminal karena probabilitas lokal Bob selalu tepat 50/50 acak murni.
+
+| Apa yang Dipikirkan Pemula (Salah) | Apa yang Sebenarnya Terjadi dalam Model Mental |
+|---|---|
+| Alice bisa mengirim pesan morse instan dengan mengukur qubitnya. | Alice tidak bisa mengontrol hasil pengukurannya sendiri, sehingga Bob hanya melihat derau 50/50 acak. |
+| Keterikatan berarti ada kabel sinyal fisik yang melintasi ruang. | Keterikatan adalah korelasi non-lokal intrinsik dalam ruang Hilbert gabungan. |
+
+### 4. Notasi Sebagai Kontrak
+Keadaan terikat direkam dalam kontrak status Bell:
 $$|\Phi^+\rangle = \frac{1}{\sqrt{2}}(|00\rangle + |11\rangle)$$
-Measuring Alice's qubit immediately forces the correlated state of Bob's qubit. The core invariant is that entanglement cannot communicate information faster than light because Bob's local marginal probability remains an invariant 50/50 mixture.
+* `|\Phi^+>`: Keadaan Bell terikat antara Alice dan Bob.
+* `|00>, |11>`: Korelasi hasil pengukuran bersama.
+* `1/sqrt(2)`: Faktor normalisasi probabilitas marginal 50/50.
+
+### 5. Uji Tegangan Batas
+Jika Alice dan Bob berbagi keadaan Bell terjerat (|00> + |11>)/sqrt(2), prediksikan apakah Alice dapat mengirim sinyal biner seketika ke Bob!
 
 ## Quantum No-Cloning Theorem
 <!-- hgd:prereqs: ["Qubits and Superposition", "Unitary Operations and Reversibility"] -->
@@ -68,9 +111,32 @@ Measuring Alice's qubit immediately forces the correlated state of Bob's qubit. 
 <!-- hgd:truth: "Linearity requires U(|psi>|0>) = alpha|00> + beta|11>, whereas a true copy requires (alpha|0> + beta|1>)(alpha|0> + beta|1>) containing cross-terms 2 alpha beta |01>, violating unitarity." -->
 <!-- hgd:worked: "Worked Solution: By linearity, U(alpha|0> + beta|1>)|0> = alpha|00> + beta|11>. But a cloned state requires |psi>|psi> = alpha^2|00> + alpha beta|01> + alpha beta|10> + beta^2|11>. Equating the two yields cross-terms 2 alpha beta = 0, which fails for arbitrary superpositions." -->
 <!-- hgd:models: ["linearity", "cross terms", "arbitrary state", "contradiction", "unitary"] -->
-The no-cloning theorem proves it is impossible to create an identical copy of an arbitrary quantum state $|\psi\rangle = \alpha|0\rangle + \beta|1\rangle$:
-$$U(|\psi\rangle |0\rangle) \neq |\psi\rangle |\psi\rangle$$
-Linearity demands $U(|\psi\rangle|0\rangle) = \alpha|00\rangle + \beta|11\rangle$, whereas a true dual product $|\psi\rangle|\psi\rangle$ generates unwanted cross-terms like $|01\rangle$ and $|10\rangle$. Because cloning is impossible, quantum states cannot be duplicated without violating unitarity.
+
+### 1. Pangkal Anomali
+Di komputasi klasik kita dapat menduplikasi data semudah menyalin file. Tetapi di dunia kuantum, upaya membuat salinan identik dari status superposisi yang tidak diketahui selalu berujung pada kehancuran status asli.
+
+### 2. Prototipe Intuitif
+Bayangkan gelembung sabun rapuh yang bergetar lembut di udara. Untuk menduplikasi bentuk getaran tersebut ke gelembung lain, mesin cetak fisik harus menyentuh permukaannya, namun sentuhan mekanik tersebut seketika meletuskan gelembung aslinya.
+
+### 3. Invarian & Operasi Inti
+Invarian mutlak sistem adalah **Linearitas (Linearity) Operator Transformasi Kuantum**. Operator uniter harus memperlakukan basis secara linear $U(|0\rangle|0\rangle) = |00\rangle$ dan $U(|1\rangle|0\rangle) = |11\rangle$. Namun upaya menduplikasi kombinasi superposisi memunculkan suku silang cross-terms yang melanggar uniteritas.
+
+| Apa yang Dipikirkan Pemula (Salah) | Apa yang Sebenarnya Terjadi dalam Model Mental |
+|---|---|
+| Kita bisa mengukur qubit diam-diam lalu membuat tiruannya. | Setiap pengukuran meruntuhkan superposisi menjadi nilai biner tunggal, menghancurkan informasi amplitudo fase. |
+| Operator uniter sanggup menggandakan sembarang vektor. | Uniteritas hanya mengizinkan penyalinan basis ortogonal yang sudah diketahui, bukan kombinasi superposisi sembarang. |
+
+### 4. Notasi Sebagai Kontrak
+Larangan kloning kuantum dirumuskan dalam kontrak pertidaksamaan linearitas:
+$$U(|\psi\rangle |0\rangle) = \alpha|00\rangle + \beta|11\rangle \neq |\psi\rangle |\psi\rangle$$
+* `Linearity`: Tuntutan linearitas operator kuantum $U(\alpha|0\rangle + \beta|1\rangle)|0\rangle = \alpha|00\rangle + \beta|11\rangle$.
+* `|00>, |11>`: Basis keadaan hasil operasi linear.
+* `|\psi>`: Keadaan kuantum sembarang alpha|0> + beta|1>.
+* `|0>`: Qubit target kosong yang hendak dituliskan salinan.
+* `\neq`: Kontradiksi suku silang cross-terms 2 alpha beta |01> yang melanggar uniteritas.
+
+### 5. Uji Tegangan Batas
+Prediksikan kontradiksi matematis apa yang muncul jika operator uniter U mencoba menyalin superposisi sembarang!
 
 ## Grover's Search and Quadratic Speedup
 <!-- hgd:prereqs: ["Unitary Operations and Reversibility", "Quantum Entanglement and Non-Locality"] -->
@@ -80,4 +146,28 @@ Linearity demands $U(|\psi\rangle|0\rangle) = \alpha|00\rangle + \beta|11\rangle
 <!-- hgd:truth: "Inverting the phase of the target state followed by inversion about the mean geometrically rotates the state vector toward the target basis in O(sqrt(N)) steps." -->
 <!-- hgd:worked: "Worked Solution: Step 1: The oracle flips the sign of the target state amplitude (phase inversion). Step 2: The diffusion operator reflects all amplitudes across their average mean. Because the target was negative, this reflection shoots its amplitude far above the mean, achieving quadratic speedup O(sqrt(N))." -->
 <!-- hgd:models: ["amplitude amplification", "inversion about mean", "geometric rotation", "quadratic speedup", "oracle"] -->
-Grover's algorithm searches an unstructured database of $N$ items in $O(\sqrt{N})$ operations by repeatedly applying the Grover diffusion operator. Inverting target phase followed by reflection about the mean geometrically amplifies the target state amplitude.
+
+### 1. Pangkal Anomali
+Mencari satu kunci di antara N gembok acak secara klasik membutuhkan rata-rata N/2 percobaan. Untuk ruang pencarian skala besar, pencarian sekuensial membutuhkan jutaan tahun komputasi.
+
+### 2. Prototipe Intuitif
+Bayangkan kolam air tenang dengan gelombang seragam. Kita menyentak gelombang target ke bawah menjadi palung negatif. Kemudian dinding pemantul rata-rata membalik seluruh gelombang: palung negatif melonjak tinggi ke atas permukaan air sementara gelombang lain meredup.
+
+### 3. Invarian & Operasi Inti
+Invarian mutlak sistem adalah **Rotasi Amplitudo Geometris Menuju Target**. Setiap putaran difusi memutar vektor keadaan mendekati keadaan solusi sebesar sudut tetap dalam $O(\sqrt{N})$ langkah.
+
+| Apa yang Dipikirkan Pemula (Salah) | Apa yang Sebenarnya Terjadi dalam Model Mental |
+|---|---|
+| Grover memeriksa seluruh item basis secara instan dalam 1 langkah. | Grover memanipulasi interferensi konstruktif amplitudo secara bertahap dalam O(sqrt(N)) iterasi. |
+| Inversion about the mean membatalkan pembalikan fase target. | Pembalikan terhadap rata-rata justru melipatgandakan deviasi negatif menjadi amplitudo positif tertinggi. |
+
+### 4. Notasi Sebagai Kontrak
+Operator difusi Grover dikontrakkan sebagai refleksi uniter terhadap keadaan rata-rata:
+$$D = 2|s\rangle\langle s| - I$$
+* `D`: Operator difusi Grover (pembalik terhadap rata-rata).
+* `|s>`: Keadaan superposisi seimbang seluruh item.
+* `I`: Matriks identitas inversi.
+* `O(sqrt(N))`: Kontrak percepatan kuadratik atas kompleksitas klasik O(N).
+
+### 5. Uji Tegangan Batas
+Prediksikan bagaimana operator difusi Grover memperkuat amplitudo probabilitas target sambil meredam kandidat non-target!
