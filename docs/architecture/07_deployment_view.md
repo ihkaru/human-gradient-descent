@@ -1,8 +1,8 @@
 # 7. Deployment View
 
 > [!INFO] **Architecture Provenance & Freshness**
-> - **Verified Commit**: `c5a1aa4`
-> - **Verified Timestamp**: `2026-10-31T19:45:00+07:00`
+> - **Verified Commit**: `85dd89b`
+> - **Verified Timestamp**: `2026-10-31T20:21:00+07:00`
 > - **Tracked Paths**: `src/`, `schemas/`, `phases/`
 > - **Drift Status**: `verified`
 
