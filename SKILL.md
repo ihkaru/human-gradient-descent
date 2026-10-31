@@ -86,6 +86,8 @@ When an AI Coding Agent is requested to create, expand, or tutor a curriculum:
 
 ## 🛠️ CLI & Automated Tooling
 
+* **Synthesize Curriculum from Scratch (Anti-Owl Grounding)**:
+  `bun run cli generate "<topic>" -o <curriculum_dir>`
 * **Compile Markdown Corpus (Domain-Agnostic)**:
   `bun run cli compile <input.md> -o <curriculum_dir>`
 * **Validate Curricula & Shards**:

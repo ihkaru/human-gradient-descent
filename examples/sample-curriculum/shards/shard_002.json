@@ -44,19 +44,21 @@
       },
       "forwardPass": {
         "probeType": "prediction_what_if",
-        "readingContext": "The no-cloning theorem states that it is impossible to create an identical copy of an arbitrary unknown quantum state:\n$$U(|\\psi\\rangle |0\\rangle) \\neq |\\psi\\rangle |\\psi\\rangle$$\nThis follows directly from the linearity of quantum operators. Because",
+        "microPrimer": "\"Classical data can be cloned endlessly (Ctrl+C, Ctrl+V). However, quantum mechanics requires all operations to be linear. If a cloning machine existed, it would have to clone both basis states and their linear combinations.\"",
+        "readingContext": "The no-cloning theorem states that it is impossible to create an identical copy of an arbitrary unknown quantum state:\n$$U(|\\psi\\rangle |0\\rangle) \\neq |\\psi\\rangle |\\psi\\rangle$$\nThis follows directly from the linearity of quantum operators. Because cloning is prohibited, quantum error correction cannot simply duplicate qubits, but must instead distribute quantum information across entangled topological codes.",
         "prompt": "\"Predict what mathematical contradiction occurs if a unitary operator U clones an arbitrary unknown superposition state alpha|0> + beta|1>.\"",
         "expectedMentalModel": [
           "linearity",
           "cross terms",
           "arbitrary state",
-          "contradiction"
+          "contradiction",
+          "unitary"
         ],
         "groundTruth": "\"Linearity requires U(|psi>|0>) = alpha|00> + beta|11>, whereas a true copy requires (alpha|0> + beta|1>)(alpha|0> + beta|1>) containing cross-terms 2 alpha beta |01>, violating unitarity.\""
       },
       "lossRubric": {
         "conceptGapCriteria": [
-          "Fails to identify core mechanism: The no-cloning theorem states that it is impossible to create an identical copy ",
+          "Fails to identify core mechanism: The no-cloning theorem states that it is impossible to create an identical copy of an arbitrary unknown quantum state:\n$$U(|\\psi\\rangle |0\\rangle) \\neq |\\psi\\rangle |\\psi\\rangle$$\nThis follows directly from the linearity of quantum operators.",
           "Confuses cause and effect in state transitions"
         ],
         "missingPrerequisiteMap": {
@@ -76,10 +78,10 @@
       "backwardPass": {
         "learningRate": 0.25,
         "hintLadder": {
-          "level0Reflective": "What fundamental invariant governs Quantum No-Cloning Theorem?",
-          "level1Directional": "Examine how Quantum No-Cloning Theorem handles boundary conditions: The no-cloning theorem states that it is impossible to creat.",
-          "level2Constraint": "Eliminate unconstrained assumptions. Recall: \"Linearity requires U(|psi>|0>) = alpha|00> + beta|11>, whereas a true copy requ.",
-          "level3WorkedExample": "Worked Example: Step 1 verifies invariant '\"Linearity requires U(|psi>|0>) = alpha|00> + beta|11>, wher'. Step 2 applies boundary rule."
+          "level0Reflective": "Reflective: What fundamental invariant governs Quantum No-Cloning Theorem?",
+          "level1Directional": "Directional Clue: Examine how Quantum No-Cloning Theorem handles boundary conditions: The no-cloning theorem states that it is impossible to create an identical copy of an arbitrary unknown quantum state:\n$$U(|\\psi\\rangle |0\\rangle) \\neq |\\psi\\rangle |\\psi\\rangle$$\nThis follows directly from the linearity of quantum operators.",
+          "level2Constraint": "Constraint: Eliminate unconstrained assumptions. Ground truth: \"Linearity requires U(|psi>|0>) = alpha|00> + beta|11>, whereas a true copy requires (alpha|0> + beta|1>)(alpha|0> + beta|1>) containing cross-terms 2 alpha beta |01>, violating unitarity.\"",
+          "level3WorkedExample": "\"Worked Solution: By linearity, U(alpha|0> + beta|1>)|0> = alpha|00> + beta|11>. But a cloned state requires |psi>|psi> = alpha^2|00> + alpha beta|01> + alpha beta|10> + beta^2|11>. Equating the two yields cross-terms 2 alpha beta = 0, which fails for arbitrary superpositions.\""
         },
         "microRemediations": {
           "conceptGap": "Core Invariant: \"Linearity requires U(|psi>|0>) = alpha|00> + beta|11>, whereas a true copy requires (alpha|0> + beta|1>)(alpha|0> + beta|1>) containing cross-terms 2 alpha beta |01>, violating unitarity.\"",
@@ -139,19 +141,21 @@
       },
       "forwardPass": {
         "probeType": "prediction_what_if",
-        "readingContext": "Grover's algorithm searches an unstructured database of $N$ items in $O(\\sqrt{N})$ operations, compared to classical $O(N)$.\nIt achieves this by iteratively applying the Grover diffusion operator:\n$$G = (2|s\\rangle\\langle s| - I) O_\\omega$$\nThe mecha",
+        "microPrimer": "\"Searching an unsorted list of N items classically requires N checks on average. Grover's algorithm uses quantum wave interference to amplify the probability amplitude of the correct item while destructively canceling incorrect items.\"",
+        "readingContext": "Grover's algorithm searches an unstructured database of $N$ items in $O(\\sqrt{N})$ operations, compared to classical $O(N)$.\nIt achieves this by iteratively applying the Grover diffusion operator:\n$$G = (2|s\\rangle\\langle s| - I) O_\\omega$$\nThe mechanism works via amplitude amplification: the phase of the target state is inverted, and then all amplitudes are inverted about the mean, geometrically rotating the state vector toward the target.",
         "prompt": "\"Predict how Grover's diffusion operator amplifies the probability amplitude of the target state while suppressing non-target states.\"",
         "expectedMentalModel": [
           "amplitude amplification",
           "inversion about mean",
           "geometric rotation",
-          "quadratic speedup"
+          "quadratic speedup",
+          "oracle"
         ],
         "groundTruth": "\"Inverting the phase of the target state followed by inversion about the mean geometrically rotates the state vector toward the target basis in O(sqrt(N)) steps.\""
       },
       "lossRubric": {
         "conceptGapCriteria": [
-          "Fails to identify core mechanism: Grover's algorithm searches an unstructured database of $N$ items in $O(\\sqrt{N}",
+          "Fails to identify core mechanism: Grover's algorithm searches an unstructured database of $N$ items in $O(\\sqrt{N})$ operations, compared to classical $O(N)$.",
           "Confuses cause and effect in state transitions"
         ],
         "missingPrerequisiteMap": {
@@ -171,10 +175,10 @@
       "backwardPass": {
         "learningRate": 0.25,
         "hintLadder": {
-          "level0Reflective": "What fundamental invariant governs Grover's Search and Quadratic Speedup?",
-          "level1Directional": "Examine how Grover's Search and Quadratic Speedup handles boundary conditions: Grover's algorithm searches an unstructured database of $N$ .",
-          "level2Constraint": "Eliminate unconstrained assumptions. Recall: \"Inverting the phase of the target state followed by inversion about the mean ge.",
-          "level3WorkedExample": "Worked Example: Step 1 verifies invariant '\"Inverting the phase of the target state followed by inversi'. Step 2 applies boundary rule."
+          "level0Reflective": "Reflective: What fundamental invariant governs Grover's Search and Quadratic Speedup?",
+          "level1Directional": "Directional Clue: Examine how Grover's Search and Quadratic Speedup handles boundary conditions: Grover's algorithm searches an unstructured database of $N$ items in $O(\\sqrt{N})$ operations, compared to classical $O(N)$.",
+          "level2Constraint": "Constraint: Eliminate unconstrained assumptions. Ground truth: \"Inverting the phase of the target state followed by inversion about the mean geometrically rotates the state vector toward the target basis in O(sqrt(N)) steps.\"",
+          "level3WorkedExample": "\"Worked Solution: Step 1: The oracle flips the sign of the target state amplitude (phase inversion). Step 2: The diffusion operator reflects all amplitudes across their average mean. Because the target was negative, this reflection shoots its amplitude far above the mean, achieving quadratic speedup O(sqrt(N)).\""
         },
         "microRemediations": {
           "conceptGap": "Core Invariant: \"Inverting the phase of the target state followed by inversion about the mean geometrically rotates the state vector toward the target basis in O(sqrt(N)) steps.\"",

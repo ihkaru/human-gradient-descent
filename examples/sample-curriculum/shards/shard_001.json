@@ -8,7 +8,7 @@
       "cognitiveLevel": "understand",
       "difficultyTier": "1_foundational_fluency",
       "workingMemoryBudget": {
-        "wordCount": 22,
+        "wordCount": 26,
         "estimatedReadingSeconds": 3
       },
       "prerequisites": [],
@@ -40,19 +40,21 @@
       },
       "forwardPass": {
         "probeType": "prediction_what_if",
-        "readingContext": "In classical computing, a bit is strictly either 0 or 1. A quantum bit (qubit) is a two-state quantum-mechanical system described as a linear superposition:\n$$|\\psi\\rangle = \\alpha |0\\rangle + \\beta |1\\rangle$$\nWhere $\\alpha, \\beta \\in \\mathbb{C}$ an",
-        "prompt": "\"If a qubit initialized in state |0> is transformed by a Hadamard gate, predict the probability distribution of measuring |0> versus |1>.\"",
+        "microPrimer": "\"A classical bit is strictly either 0 or 1. A qubit is a quantum system that can exist in a simultaneous linear superposition of |0> and |1>. A Hadamard gate is a foundational quantum operation that transforms a definite state |0> into an equal superposition where both outcomes become equally likely upon measurement.\"",
+        "readingContext": "In classical computing, a bit is strictly either 0 or 1. A quantum bit (qubit) is a two-state quantum-mechanical system described as a linear superposition:\n$$|\\psi\\rangle = \\alpha |0\\rangle + \\beta |1\\rangle$$\nWhere $\\alpha, \\beta \\in \\mathbb{C}$ and $|\\alpha|^2 + |\\beta|^2 = 1$. The fundamental invariant is that measurement collapses the superposition into a definite state with probability $|\\alpha|^2$ or $|\\beta|^2$.",
+        "prompt": "\"If a qubit initialized in state |0> is transformed by a Hadamard gate into an equal superposition, predict the probability distribution of measuring |0> versus |1>.\"",
         "expectedMentalModel": [
           "hadamard",
           "superposition",
           "equal probability",
+          "50%",
           "collapse"
         ],
         "groundTruth": "\"Measurement collapses the equal superposition (1/sqrt(2)|0> + 1/sqrt(2)|1>) into |0> with 50% probability and |1> with 50% probability.\""
       },
       "lossRubric": {
         "conceptGapCriteria": [
-          "Fails to identify core mechanism: The fundamental invariant is that measurement collapses the superposition into a",
+          "Fails to identify core mechanism: The fundamental invariant is that measurement collapses the superposition into a definite state with probability $|\\alpha|^2$ or $|\\beta|^2$.",
           "Confuses cause and effect in state transitions"
         ],
         "notationCriteria": [
@@ -69,10 +71,10 @@
       "backwardPass": {
         "learningRate": 0.25,
         "hintLadder": {
-          "level0Reflective": "What fundamental invariant governs Qubits and Superposition?",
-          "level1Directional": "Examine how Qubits and Superposition handles boundary conditions: The fundamental invariant is that measurement collapses the .",
-          "level2Constraint": "Eliminate unconstrained assumptions. Recall: \"Measurement collapses the equal superposition (1/sqrt(2)|0> + 1/sqrt(2)|1>) int.",
-          "level3WorkedExample": "Worked Example: Step 1 verifies invariant '\"Measurement collapses the equal superposition (1/sqrt(2)|0>'. Step 2 applies boundary rule."
+          "level0Reflective": "Reflective: What fundamental invariant governs Qubits and Superposition?",
+          "level1Directional": "Directional Clue: Examine how Qubits and Superposition handles boundary conditions: The fundamental invariant is that measurement collapses the superposition into a definite state with probability $|\\alpha|^2$ or $|\\beta|^2$.",
+          "level2Constraint": "Constraint: Eliminate unconstrained assumptions. Ground truth: \"Measurement collapses the equal superposition (1/sqrt(2)|0> + 1/sqrt(2)|1>) into |0> with 50% probability and |1> with 50% probability.\"",
+          "level3WorkedExample": "\"Worked Solution: The Hadamard gate maps |0> to (|0> + |1>)/sqrt(2). The probability of measuring state |k> equals the squared amplitude |1/sqrt(2)|^2 = 1/2 = 50%. Thus, measuring yields 50% probability for |0> and 50% probability for |1>.\""
         },
         "microRemediations": {
           "conceptGap": "Core Invariant: \"Measurement collapses the equal superposition (1/sqrt(2)|0> + 1/sqrt(2)|1>) into |0> with 50% probability and |1> with 50% probability.\"",
@@ -126,19 +128,21 @@
       },
       "forwardPass": {
         "probeType": "prediction_what_if",
-        "readingContext": "All quantum logic gates operating on closed systems must be represented by unitary operators $U^\\dagger U = I$.\nBecause unitary transformations preserve the inner product and norm of vectors, all quantum computation without measurement is strictly re",
+        "microPrimer": "\"Classical computing permits irreversible operations, such as resetting a bit to 0, which destroys previous state information and dissipates heat. In quantum computing, all closed-system transformations are governed by unitary operators, which strictly preserve quantum state lengths and angles.\"",
+        "readingContext": "All quantum logic gates operating on closed systems must be represented by unitary operators $U^\\dagger U = I$.\nBecause unitary transformations preserve the inner product and norm of vectors, all quantum computation without measurement is strictly reversible. No quantum gate can perform irreversible erasure of quantum information without increasing thermodynamic entropy.",
         "prompt": "\"Predict why an irreversible classical operation like bit-erasure (reset to 0) cannot be represented as an isolated quantum logic gate.\"",
         "expectedMentalModel": [
           "unitary",
           "reversibility",
           "norm preservation",
+          "inner product",
           "entropy"
         ],
         "groundTruth": "\"Quantum operations must be unitary (U dagger U = I), which strictly preserves inner products and vector norms, guaranteeing 100% reversibility without entropy dissipation.\""
       },
       "lossRubric": {
         "conceptGapCriteria": [
-          "Fails to identify core mechanism: All quantum logic gates operating on closed systems must be represented by unita",
+          "Fails to identify core mechanism: All quantum logic gates operating on closed systems must be represented by unitary operators $U^\\dagger U = I$.",
           "Confuses cause and effect in state transitions"
         ],
         "missingPrerequisiteMap": {
@@ -158,10 +162,10 @@
       "backwardPass": {
         "learningRate": 0.25,
         "hintLadder": {
-          "level0Reflective": "What fundamental invariant governs Unitary Operations and Reversibility?",
-          "level1Directional": "Examine how Unitary Operations and Reversibility handles boundary conditions: All quantum logic gates operating on closed systems must be .",
-          "level2Constraint": "Eliminate unconstrained assumptions. Recall: \"Quantum operations must be unitary (U dagger U = I), which strictly preserves i.",
-          "level3WorkedExample": "Worked Example: Step 1 verifies invariant '\"Quantum operations must be unitary (U dagger U = I), which '. Step 2 applies boundary rule."
+          "level0Reflective": "Reflective: What fundamental invariant governs Unitary Operations and Reversibility?",
+          "level1Directional": "Directional Clue: Examine how Unitary Operations and Reversibility handles boundary conditions: All quantum logic gates operating on closed systems must be represented by unitary operators $U^\\dagger U = I$.",
+          "level2Constraint": "Constraint: Eliminate unconstrained assumptions. Ground truth: \"Quantum operations must be unitary (U dagger U = I), which strictly preserves inner products and vector norms, guaranteeing 100% reversibility without entropy dissipation.\"",
+          "level3WorkedExample": "\"Worked Solution: Unitary operators U satisfy U dagger U = I, preserving the inner product <psi|phi> between all states. If two distinct states both collapsed to |0>, their distinctness would be destroyed, violating inner product conservation and unitarity.\""
         },
         "microRemediations": {
           "conceptGap": "Core Invariant: \"Quantum operations must be unitary (U dagger U = I), which strictly preserves inner products and vector norms, guaranteeing 100% reversibility without entropy dissipation.\"",
@@ -185,7 +189,7 @@
       "cognitiveLevel": "analyze",
       "difficultyTier": "3_isomorphic_transfer",
       "workingMemoryBudget": {
-        "wordCount": 26,
+        "wordCount": 27,
         "estimatedReadingSeconds": 3
       },
       "prerequisites": [
@@ -220,19 +224,21 @@
       },
       "forwardPass": {
         "probeType": "prediction_what_if",
-        "readingContext": "Entanglement occurs when a multi-qubit system cannot be factored into the tensor product of individual qubit states:\n$$|\\Phi^+\\rangle = \\frac{1}{\\sqrt{2}}(|00\\rangle + |11\\rangle)$$\nMeasuring the first qubit immediately forces the state of the second",
-        "prompt": "\"If Alice and Bob share a Bell state (|00> + |11>)/sqrt(2), predict whether Alice can transmit an instantaneous binary message to Bob by measuring her qubit.\"",
+        "microPrimer": "\"When two qubits are entangled, their joint state cannot be described as two independent qubits. Measuring one qubit instantaneously determines the state of the other, even if separated across galaxies, yet this correlation cannot be controlled by either party to send chosen signals.\"",
+        "readingContext": "Entanglement occurs when a multi-qubit system cannot be factored into the tensor product of individual qubit states:\n$$|\\Phi^+\\rangle = \\frac{1}{\\sqrt{2}}(|00\\rangle + |11\\rangle)$$\nMeasuring the first qubit immediately forces the state of the second qubit, regardless of spatial separation. The core invariant is that entanglement does not allow faster-than-light communication because local marginal probabilities remain invariant.",
+        "prompt": "\"If Alice and Bob share an entangled Bell state (|00> + |11>)/sqrt(2), predict whether Alice can transmit an instantaneous binary message to Bob by measuring her qubit.\"",
         "expectedMentalModel": [
           "no-signaling",
           "marginal probability",
           "bell state",
-          "faster than light"
+          "faster than light",
+          "correlation"
         ],
         "groundTruth": "\"Alice cannot transmit information faster than light because Bob's local marginal probability remains exactly 50/50 until classical measurement correlations are communicated.\""
       },
       "lossRubric": {
         "conceptGapCriteria": [
-          "Fails to identify core mechanism: The core invariant is that entanglement does not allow faster-than-light communi",
+          "Fails to identify core mechanism: The core invariant is that entanglement does not allow faster-than-light communication because local marginal probabilities remain invariant.",
           "Confuses cause and effect in state transitions"
         ],
         "missingPrerequisiteMap": {
@@ -252,10 +258,10 @@
       "backwardPass": {
         "learningRate": 0.25,
         "hintLadder": {
-          "level0Reflective": "What fundamental invariant governs Quantum Entanglement and Non-Locality?",
-          "level1Directional": "Examine how Quantum Entanglement and Non-Locality handles boundary conditions: The core invariant is that entanglement does not allow faste.",
-          "level2Constraint": "Eliminate unconstrained assumptions. Recall: \"Alice cannot transmit information faster than light because Bob's local margina.",
-          "level3WorkedExample": "Worked Example: Step 1 verifies invariant '\"Alice cannot transmit information faster than light because'. Step 2 applies boundary rule."
+          "level0Reflective": "Reflective: What fundamental invariant governs Quantum Entanglement and Non-Locality?",
+          "level1Directional": "Directional Clue: Examine how Quantum Entanglement and Non-Locality handles boundary conditions: The core invariant is that entanglement does not allow faster-than-light communication because local marginal probabilities remain invariant.",
+          "level2Constraint": "Constraint: Eliminate unconstrained assumptions. Ground truth: \"Alice cannot transmit information faster than light because Bob's local marginal probability remains exactly 50/50 until classical measurement correlations are communicated.\"",
+          "level3WorkedExample": "\"Worked Solution: While Alice's measurement instantly fixes Bob's outcome, Alice cannot choose whether she measures 0 or 1. From Bob's perspective, his density matrix remains a random 50/50 mixture. Therefore, no information is transmitted until classical signals arrive (No-Signaling Theorem).\""
         },
         "microRemediations": {
           "conceptGap": "Core Invariant: \"Alice cannot transmit information faster than light because Bob's local marginal probability remains exactly 50/50 until classical measurement correlations are communicated.\"",

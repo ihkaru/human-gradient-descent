@@ -69,6 +69,9 @@ bun install
 
 ### CLI Commands
 ```bash
+# Synthesize complete curriculum from scratch (Anti-Owl Grounded)
+bun run cli generate "Quantum Computing" -o ./curricula/quantum
+
 # Compile a markdown document into a sharded curriculum
 bun run cli compile examples/quantum_computing.md -o ./curricula/quantum
 

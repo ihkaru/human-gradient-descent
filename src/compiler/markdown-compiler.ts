@@ -222,6 +222,7 @@ export class MarkdownCurriculumCompiler {
     const invariantSentence = this.extractInvariantSentence(s.body) || `${s.title} defines the fundamental system invariant.`;
     const prompt = ann.probe || `Predict: Under what conditions does the core invariant of ${s.title} collapse?`;
     const groundTruth = ann.truth || invariantSentence;
+    const microPrimer = ann.primer || this.extractMicroPrimer(s.body) || `${s.title} introduces the fundamental grounding concepts and primitive definitions.`;
 
     let mentalModels = [s.title.toLowerCase(), "invariant", "boundary"];
     if (ann.models) {
@@ -266,14 +267,15 @@ export class MarkdownCurriculumCompiler {
       },
       forwardPass: {
         probeType: "prediction_what_if",
-        readingContext: s.body.slice(0, 250).trim(),
+        microPrimer,
+        readingContext: s.body.slice(0, 500).trim(),
         prompt,
         expectedMentalModel: mentalModels,
         groundTruth,
       },
       lossRubric: {
         conceptGapCriteria: [
-          `Fails to identify core mechanism: ${invariantSentence.slice(0, 80)}`,
+          `Fails to identify core mechanism: ${invariantSentence}`,
           "Confuses cause and effect in state transitions",
         ],
         missingPrerequisiteMap: prereqs.length > 0 ? { [prereqs[0]]: "Foundational upstream concept" } : undefined,
@@ -284,10 +286,10 @@ export class MarkdownCurriculumCompiler {
       backwardPass: {
         learningRate: 0.25,
         hintLadder: {
-          level0Reflective: `What fundamental invariant governs ${s.title}?`,
-          level1Directional: `Examine how ${s.title} handles boundary conditions: ${invariantSentence.slice(0, 60)}.`,
-          level2Constraint: `Eliminate unconstrained assumptions. Recall: ${groundTruth.slice(0, 80)}.`,
-          level3WorkedExample: `Worked Example: Step 1 verifies invariant '${groundTruth.slice(0, 60)}'. Step 2 applies boundary rule.`,
+          level0Reflective: ann.hint0 || `Reflective: What fundamental invariant governs ${s.title}?`,
+          level1Directional: ann.hint1 || `Directional Clue: Examine how ${s.title} handles boundary conditions: ${invariantSentence}`,
+          level2Constraint: ann.hint2 || `Constraint: Eliminate unconstrained assumptions. Ground truth: ${groundTruth}`,
+          level3WorkedExample: ann.worked || `Worked Solution: ${groundTruth}. Applying this rule resolves the challenge step-by-step.`,
         },
         microRemediations: {
           conceptGap: `Core Invariant: ${groundTruth}`,
@@ -299,6 +301,16 @@ export class MarkdownCurriculumCompiler {
       },
       sources: [{ sourceRef: "markdown-source", locationTag: `Section: ${s.title}`, verbatimQuote: s.body.slice(0, 100) }],
     };
+  }
+
+  private extractMicroPrimer(text: string): string {
+    const sentences = text.split(/(?<=[.!?])\s+/);
+    if (!sentences[0]) return "";
+    let primer = sentences[0].trim();
+    if (sentences.length > 1 && primer.length < 80) {
+      primer += " " + sentences[1].trim();
+    }
+    return primer.slice(0, 280);
   }
 
   private extractInvariantSentence(text: string): string | undefined {

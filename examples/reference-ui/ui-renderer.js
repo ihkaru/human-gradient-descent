@@ -28,6 +28,11 @@ export function renderActiveNode(activeNode) {
   document.getElementById("node-title").textContent = activeNode.title;
   document.getElementById("node-level").textContent = activeNode.cognitiveLevel;
   document.getElementById("node-tier").textContent = activeNode.difficultyTier.replace(/^\d+_/, "");
+
+  const primer = activeNode.forwardPass.microPrimer || activeNode.forwardPass.readingContext || activeNode.conceptSummary;
+  const primerElem = document.getElementById("primer-text");
+  if (primerElem) primerElem.textContent = primer;
+
   document.getElementById("prompt-text").textContent = activeNode.forwardPass.prompt;
   document.getElementById("reading-latency").textContent = `${activeNode.workingMemoryBudget.estimatedReadingSeconds}s read`;
   document.getElementById("word-count").textContent = `${activeNode.workingMemoryBudget.wordCount} words`;
@@ -88,6 +93,15 @@ export function showSuccessMessage(msg) {
   if (alertElem) {
     alertElem.innerHTML = `<div style="display:flex;align-items:center;gap:0.5rem;">${SVG_CHECK}<span>${msg}</span></div>`;
     alertElem.className = "alert success";
+    alertElem.style.display = "flex";
+  }
+}
+
+export function showWarningMessage(msg) {
+  const alertElem = document.getElementById("divergence-alert");
+  if (alertElem) {
+    alertElem.innerHTML = `<div style="display:flex;align-items:center;gap:0.5rem;">${SVG_ALERT}<span>${msg}</span></div>`;
+    alertElem.className = "alert warning";
     alertElem.style.display = "flex";
   }
 }

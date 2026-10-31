@@ -119,6 +119,7 @@
                 ]
               },
               "readingContext": { "type": "string" },
+              "microPrimer": { "type": "string" },
               "prompt": { "type": "string" },
               "expectedMentalModel": {
                 "type": "array",

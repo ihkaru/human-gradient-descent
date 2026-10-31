@@ -68,6 +68,19 @@
           </div>
         </div>
 
+        <!-- Micro-Primer: Scaffolded Grounding Anchor -->
+        <div class="primer-box" id="primer-box">
+          <div class="primer-header">
+            <svg class="primer-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <circle cx="12" cy="12" r="10"/>
+              <line x1="12" y1="16" x2="12" y2="12"/>
+              <line x1="12" y1="8" x2="12.01" y2="8"/>
+            </svg>
+            <span>Intuitive Concept Primer (Grounding Anchor)</span>
+          </div>
+          <div class="primer-content" id="primer-text">Loading concept primer...</div>
+        </div>
+
         <!-- Forward Pass Challenge Box -->
         <div>
           <span style="font-size: 0.8rem; font-weight: 600; color: var(--accent-cyan); text-transform: uppercase;">
@@ -83,10 +96,15 @@
 
         <!-- Interactive Input -->
         <div class="input-area">
-          <textarea id="user-prediction" placeholder="Type your prediction / causal explanation here..."></textarea>
+          <textarea id="user-prediction" placeholder="Type your prediction / causal explanation here... (or click 'I am New' if encountering for the first time)"></textarea>
           <div class="action-row" style="margin-top: 0.5rem;">
-            <span style="font-size: 0.75rem; color: var(--text-muted);">Press Ctrl+Enter or Cmd+Enter to submit</span>
-            <button id="btn-submit" class="primary">Submit Prediction</button>
+            <span style="font-size: 0.75rem; color: var(--text-muted);">Press Ctrl+Enter to submit</span>
+            <div style="display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap;">
+              <button id="btn-coldstart" class="badge amber" style="cursor: pointer; min-height: 44px; padding: 0.5rem 0.85rem;" type="button">
+                I am New / Need Worked Primer
+              </button>
+              <button id="btn-submit" class="primary" type="button">Submit Prediction</button>
+            </div>
           </div>
         </div>
 

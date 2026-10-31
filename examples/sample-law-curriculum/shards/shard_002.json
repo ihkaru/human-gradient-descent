@@ -39,7 +39,8 @@
       },
       "forwardPass": {
         "probeType": "prediction_what_if",
-        "readingContext": "Remedies for breach aim to place the aggrieved party in the position they would have occupied had the contract been fully performed.\nThe fundamental invariant is the duty to mitigate: an injured party cannot recover damages for losses that could reas",
+        "microPrimer": "Remedies for breach aim to place the aggrieved party in the position they would have occupied had the contract been fully performed.",
+        "readingContext": "Remedies for breach aim to place the aggrieved party in the position they would have occupied had the contract been fully performed.\nThe fundamental invariant is the duty to mitigate: an injured party cannot recover damages for losses that could reasonably have been avoided without undue risk, burden, or humiliation.",
         "prompt": "\"Predict whether an wrongfully terminated employee who rejects an identical job in the same city can recover their full unpaid contract salary.\"",
         "expectedMentalModel": [
           "mitigation",
@@ -51,7 +52,7 @@
       },
       "lossRubric": {
         "conceptGapCriteria": [
-          "Fails to identify core mechanism: The fundamental invariant is the duty to mitigate: an injured party cannot recov",
+          "Fails to identify core mechanism: The fundamental invariant is the duty to mitigate: an injured party cannot recover damages for losses that could reasonably have been avoided without undue risk, burden, or humiliation.",
           "Confuses cause and effect in state transitions"
         ],
         "missingPrerequisiteMap": {
@@ -71,10 +72,10 @@
       "backwardPass": {
         "learningRate": 0.25,
         "hintLadder": {
-          "level0Reflective": "What fundamental invariant governs Expectation Damages and Mitigation?",
-          "level1Directional": "Examine how Expectation Damages and Mitigation handles boundary conditions: The fundamental invariant is the duty to mitigate: an injure.",
-          "level2Constraint": "Eliminate unconstrained assumptions. Recall: \"Recovery is reduced by the avoidable salary under the doctrine of avoidable con.",
-          "level3WorkedExample": "Worked Example: Step 1 verifies invariant '\"Recovery is reduced by the avoidable salary under the doctr'. Step 2 applies boundary rule."
+          "level0Reflective": "Reflective: What fundamental invariant governs Expectation Damages and Mitigation?",
+          "level1Directional": "Directional Clue: Examine how Expectation Damages and Mitigation handles boundary conditions: The fundamental invariant is the duty to mitigate: an injured party cannot recover damages for losses that could reasonably have been avoided without undue risk, burden, or humiliation.",
+          "level2Constraint": "Constraint: Eliminate unconstrained assumptions. Ground truth: \"Recovery is reduced by the avoidable salary under the doctrine of avoidable consequences: an aggrieved party has an affirmative duty to mitigate damages with reasonable effort.\"",
+          "level3WorkedExample": "Worked Solution: \"Recovery is reduced by the avoidable salary under the doctrine of avoidable consequences: an aggrieved party has an affirmative duty to mitigate damages with reasonable effort.\". Applying this rule resolves the challenge step-by-step."
         },
         "microRemediations": {
           "conceptGap": "Core Invariant: \"Recovery is reduced by the avoidable salary under the doctrine of avoidable consequences: an aggrieved party has an affirmative duty to mitigate damages with reasonable effort.\"",

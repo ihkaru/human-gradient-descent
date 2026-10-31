@@ -87,6 +87,7 @@ export interface NodePacing {
 export interface ForwardPassProbe {
   probeType: ProbeType;
   readingContext?: string;
+  microPrimer?: string;
   prompt: string;
   expectedMentalModel: string[];
   groundTruth: string;

@@ -6,6 +6,7 @@ import {
   revealHint,
   resetLossDisplay,
   showSuccessMessage,
+  showWarningMessage,
   showRollbackAlert,
   renderFrontierList,
   renderStats,
@@ -134,6 +135,29 @@ function startTimer(seconds) {
 function evaluatePrediction(userAnswer) {
   if (!activeNode) return;
   const lowerAns = userAnswer.toLowerCase();
+
+  const isColdStart =
+    lowerAns.includes("don't know") ||
+    lowerAns.includes("dont know") ||
+    lowerAns.includes("idk") ||
+    lowerAns.includes("tidak tahu") ||
+    lowerAns.includes("belum tahu") ||
+    lowerAns === "blank" ||
+    lowerAns === "";
+
+  if (isColdStart) {
+    const lConcept = 1.0;
+    const lPrereq = 1.0;
+    const lNotation = 0.4;
+    const lStrategy = 0.4;
+    const lReasoning = 0.4;
+    const totalLoss = 0.72;
+    renderLoss(totalLoss, { lConcept, lPrereq, lNotation, lStrategy, lReasoning });
+    revealHint(3, activeNode.backwardPass.hintLadder);
+    showWarningMessage("Cold-Start Activated: Foundation primer triggered. Study the worked solution below, then test your understanding on the probe.");
+    return;
+  }
+
   const models = activeNode.forwardPass.expectedMentalModel || [];
 
   let matched = 0;
@@ -209,6 +233,10 @@ function setupEventListeners() {
   document.getElementById("btn-submit")?.addEventListener("click", () => {
     const ans = document.getElementById("user-prediction")?.value.trim();
     if (ans) evaluatePrediction(ans);
+  });
+
+  document.getElementById("btn-coldstart")?.addEventListener("click", () => {
+    evaluatePrediction("don't know");
   });
 
   document.getElementById("user-prediction")?.addEventListener("keydown", (e) => {

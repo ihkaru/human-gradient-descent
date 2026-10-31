@@ -36,7 +36,8 @@
       },
       "forwardPass": {
         "probeType": "prediction_what_if",
-        "readingContext": "A valid contract requires mutual assent, manifested through an objective offer and an unequivocal acceptance.\nThe core invariant is the objective theory of contracts: assent is judged by a reasonable person's outward manifestation, not hidden subject",
+        "microPrimer": "A valid contract requires mutual assent, manifested through an objective offer and an unequivocal acceptance.",
+        "readingContext": "A valid contract requires mutual assent, manifested through an objective offer and an unequivocal acceptance.\nThe core invariant is the objective theory of contracts: assent is judged by a reasonable person's outward manifestation, not hidden subjective intent. A revocation is only effective when communicated to the offeree before acceptance.",
         "prompt": "\"Predict contract enforceability if Party A writes and signs a formal land sale contract but secretly considers it an elaborate practical joke.\"",
         "expectedMentalModel": [
           "objective theory",
@@ -48,7 +49,7 @@
       },
       "lossRubric": {
         "conceptGapCriteria": [
-          "Fails to identify core mechanism: A valid contract requires mutual assent, manifested through an objective offer a",
+          "Fails to identify core mechanism: A valid contract requires mutual assent, manifested through an objective offer and an unequivocal acceptance.",
           "Confuses cause and effect in state transitions"
         ],
         "notationCriteria": [
@@ -65,10 +66,10 @@
       "backwardPass": {
         "learningRate": 0.25,
         "hintLadder": {
-          "level0Reflective": "What fundamental invariant governs Objective Mutual Assent?",
-          "level1Directional": "Examine how Objective Mutual Assent handles boundary conditions: A valid contract requires mutual assent, manifested through .",
-          "level2Constraint": "Eliminate unconstrained assumptions. Recall: \"The contract is binding under the objective theory of contracts: assent is judg.",
-          "level3WorkedExample": "Worked Example: Step 1 verifies invariant '\"The contract is binding under the objective theory of contr'. Step 2 applies boundary rule."
+          "level0Reflective": "Reflective: What fundamental invariant governs Objective Mutual Assent?",
+          "level1Directional": "Directional Clue: Examine how Objective Mutual Assent handles boundary conditions: A valid contract requires mutual assent, manifested through an objective offer and an unequivocal acceptance.",
+          "level2Constraint": "Constraint: Eliminate unconstrained assumptions. Ground truth: \"The contract is binding under the objective theory of contracts: assent is judged by a reasonable person's outward manifestation, not hidden subjective intent (Lucy v. Zehmer).\"",
+          "level3WorkedExample": "Worked Solution: \"The contract is binding under the objective theory of contracts: assent is judged by a reasonable person's outward manifestation, not hidden subjective intent (Lucy v. Zehmer).\". Applying this rule resolves the challenge step-by-step."
         },
         "microRemediations": {
           "conceptGap": "Core Invariant: \"The contract is binding under the objective theory of contracts: assent is judged by a reasonable person's outward manifestation, not hidden subjective intent (Lucy v. Zehmer).\"",
@@ -122,7 +123,8 @@
       },
       "forwardPass": {
         "probeType": "prediction_what_if",
-        "readingContext": "Enforceable promises require consideration: a bargained-for exchange of legal value.\nThe fundamental invariant is mutuality of obligation. Past consideration or moral obligation does not constitute legal consideration unless promissory estoppel appli",
+        "microPrimer": "Enforceable promises require consideration: a bargained-for exchange of legal value.",
+        "readingContext": "Enforceable promises require consideration: a bargained-for exchange of legal value.\nThe fundamental invariant is mutuality of obligation. Past consideration or moral obligation does not constitute legal consideration unless promissory estoppel applies to prevent manifest injustice.",
         "prompt": "\"Predict whether an employer's promise to pay a retiring employee an extra bonus 'in gratitude for 30 years of past loyal service' forms an enforceable contract.\"",
         "expectedMentalModel": [
           "past consideration",
@@ -154,10 +156,10 @@
       "backwardPass": {
         "learningRate": 0.25,
         "hintLadder": {
-          "level0Reflective": "What fundamental invariant governs Consideration and Bargained-for Exchange?",
-          "level1Directional": "Examine how Consideration and Bargained-for Exchange handles boundary conditions: The fundamental invariant is mutuality of obligation..",
-          "level2Constraint": "Eliminate unconstrained assumptions. Recall: \"Unenforceable for lack of consideration: past consideration was not bargained-f.",
-          "level3WorkedExample": "Worked Example: Step 1 verifies invariant '\"Unenforceable for lack of consideration: past consideration'. Step 2 applies boundary rule."
+          "level0Reflective": "Reflective: What fundamental invariant governs Consideration and Bargained-for Exchange?",
+          "level1Directional": "Directional Clue: Examine how Consideration and Bargained-for Exchange handles boundary conditions: The fundamental invariant is mutuality of obligation.",
+          "level2Constraint": "Constraint: Eliminate unconstrained assumptions. Ground truth: \"Unenforceable for lack of consideration: past consideration was not bargained-for in exchange for the new promise, unless promissory estoppel or written statutory reliance applies.\"",
+          "level3WorkedExample": "Worked Solution: \"Unenforceable for lack of consideration: past consideration was not bargained-for in exchange for the new promise, unless promissory estoppel or written statutory reliance applies.\". Applying this rule resolves the challenge step-by-step."
         },
         "microRemediations": {
           "conceptGap": "Core Invariant: \"Unenforceable for lack of consideration: past consideration was not bargained-for in exchange for the new promise, unless promissory estoppel or written statutory reliance applies.\"",
@@ -212,7 +214,8 @@
       },
       "forwardPass": {
         "probeType": "prediction_what_if",
-        "readingContext": "When one party commits a material breach, the non-breaching party's constructive duties under the contract are suspended.\nThe core invariant is substantial performance: if a breach is minor and immaterial, the non-breaching party must still perform t",
+        "microPrimer": "When one party commits a material breach, the non-breaching party's constructive duties under the contract are suspended.",
+        "readingContext": "When one party commits a material breach, the non-breaching party's constructive duties under the contract are suspended.\nThe core invariant is substantial performance: if a breach is minor and immaterial, the non-breaching party must still perform their obligations and may only sue for damages, rather than terminating the contract.",
         "prompt": "\"Predict whether a homeowner can lawfully terminate a building contract and refuse payment if the builder used identical pipe of Brand B instead of Brand A.\"",
         "expectedMentalModel": [
           "substantial performance",
@@ -224,7 +227,7 @@
       },
       "lossRubric": {
         "conceptGapCriteria": [
-          "Fails to identify core mechanism: The core invariant is substantial performance: if a breach is minor and immateri",
+          "Fails to identify core mechanism: The core invariant is substantial performance: if a breach is minor and immaterial, the non-breaching party must still perform their obligations and may only sue for damages, rather than terminating the contract.",
           "Confuses cause and effect in state transitions"
         ],
         "missingPrerequisiteMap": {
@@ -244,10 +247,10 @@
       "backwardPass": {
         "learningRate": 0.25,
         "hintLadder": {
-          "level0Reflective": "What fundamental invariant governs Material Breach and Constructive Conditions?",
-          "level1Directional": "Examine how Material Breach and Constructive Conditions handles boundary conditions: The core invariant is substantial performance: if a breach i.",
-          "level2Constraint": "Eliminate unconstrained assumptions. Recall: \"Cannot terminate: under the doctrine of substantial performance (Jacob & Youngs.",
-          "level3WorkedExample": "Worked Example: Step 1 verifies invariant '\"Cannot terminate: under the doctrine of substantial perform'. Step 2 applies boundary rule."
+          "level0Reflective": "Reflective: What fundamental invariant governs Material Breach and Constructive Conditions?",
+          "level1Directional": "Directional Clue: Examine how Material Breach and Constructive Conditions handles boundary conditions: The core invariant is substantial performance: if a breach is minor and immaterial, the non-breaching party must still perform their obligations and may only sue for damages, rather than terminating the contract.",
+          "level2Constraint": "Constraint: Eliminate unconstrained assumptions. Ground truth: \"Cannot terminate: under the doctrine of substantial performance (Jacob & Youngs v. Kent), an immaterial breach only entitles the owner to difference-in-value damages, not contract forfeiture.\"",
+          "level3WorkedExample": "Worked Solution: \"Cannot terminate: under the doctrine of substantial performance (Jacob & Youngs v. Kent), an immaterial breach only entitles the owner to difference-in-value damages, not contract forfeiture.\". Applying this rule resolves the challenge step-by-step."
         },
         "microRemediations": {
           "conceptGap": "Core Invariant: \"Cannot terminate: under the doctrine of substantial performance (Jacob & Youngs v. Kent), an immaterial breach only entitles the owner to difference-in-value damages, not contract forfeiture.\"",

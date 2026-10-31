@@ -63,7 +63,7 @@ flowchart LR
 | Phase ID | Specification File | Title & Core Focus | Status |
 |:---|:---|:---|:---|
 | **021** | [`phases/021_mental_tracing_execution_probes.md`](./phases/021_mental_tracing_execution_probes.md) | Codebase AST Execution Prediction Probes (Mental Tracing) | ✅ Completed |
-| **022** | Reserved for Diagnostic Trap Multi-Choice Distractor Generator. | Multi-Choice Distractor Generator with Diagnostic Traps | 📋 Planned |
+| **022** | [`phases/022_anti_owl_grounding_and_scratch_synthesizer.md`](./phases/022_anti_owl_grounding_and_scratch_synthesizer.md) | Cold-Start Anti-Owl Grounding & Scratch Topic Synthesizer | ✅ Completed |
 | **023** | Reserved for What-If Parameter Perturbation Engine. | What-If Parameter Perturbation Engine | 📋 Planned |
 | **024** | Reserved for Blind Analogy & Isomorphism Pairings. | Blind Analogy Pairing & Structural Isomorphism Challenges | 📋 Planned |
 | **025–030** | Reserved for Advanced Synthesis Prompts. | Advanced Prompt Templates & Token-Efficient Generators | 📋 Planned |
