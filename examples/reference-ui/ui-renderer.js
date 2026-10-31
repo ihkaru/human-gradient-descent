@@ -1,4 +1,5 @@
 // Reference UI Renderer & DOM View Manager
+import { formatMarkdown, typesetMathInElement } from "./rich-formatter.js";
 
 export function updateTimerUI(isTimeBounded, timeLeftSeconds) {
   const timerElem = document.getElementById("timer-display");
@@ -31,9 +32,17 @@ export function renderActiveNode(activeNode, onSelectOption) {
 
   const primer = activeNode.forwardPass.microPrimer || activeNode.forwardPass.readingContext || activeNode.conceptSummary;
   const primerElem = document.getElementById("primer-text");
-  if (primerElem) primerElem.textContent = primer;
+  if (primerElem) {
+    primerElem.innerHTML = formatMarkdown(primer);
+    typesetMathInElement(primerElem);
+  }
 
-  document.getElementById("prompt-text").textContent = activeNode.forwardPass.prompt;
+  const promptElem = document.getElementById("prompt-text");
+  if (promptElem) {
+    promptElem.innerHTML = formatMarkdown(activeNode.forwardPass.prompt);
+    typesetMathInElement(promptElem);
+  }
+
   document.getElementById("reading-latency").textContent = `${activeNode.workingMemoryBudget.estimatedReadingSeconds}s read`;
   document.getElementById("word-count").textContent = `${activeNode.workingMemoryBudget.wordCount} words`;
 
@@ -58,7 +67,7 @@ export function renderOptions(options, onSelectOption) {
     card.setAttribute("tabindex", "0");
     card.innerHTML = `
       <span class="option-chip">${letters[idx] || String(idx + 1)}</span>
-      <span style="overflow-wrap:anywhere;word-break:break-word;">${opt.text}</span>
+      <span style="overflow-wrap:anywhere;word-break:break-word;">${formatMarkdown(opt.text)}</span>
     `;
 
     card.addEventListener("click", () => {
@@ -67,6 +76,8 @@ export function renderOptions(options, onSelectOption) {
 
     container.appendChild(card);
   });
+
+  typesetMathInElement(container);
 }
 
 export function renderLoss(totalLoss, vector) {

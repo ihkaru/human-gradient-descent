@@ -264,3 +264,47 @@
   color: var(--accent-rose);
   border: 1px solid rgba(244, 63, 94, 0.3);
 }
+
+/* Formula & Diagram Display Enhancements */
+.formula-display-box {
+  margin: 0.5rem 0;
+  padding: 0.75rem 1rem;
+  background: rgba(15, 23, 42, 0.7);
+  border: 1px solid rgba(56, 189, 248, 0.25);
+  border-radius: var(--radius-md);
+  overflow-x: auto;
+  text-align: center;
+  color: var(--text-main);
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.formula-display-box .katex {
+  font-size: 1.15rem;
+}
+.mermaid-diagram-box {
+  margin: 0.5rem 0;
+  padding: 0.75rem;
+  background: rgba(15, 23, 42, 0.7);
+  border: 1px solid rgba(0, 220, 130, 0.25);
+  border-radius: var(--radius-md);
+  overflow-x: auto;
+  text-align: center;
+}
+.mermaid-diagram-box svg {
+  max-width: 100%;
+  height: auto;
+}
+.fallback-formula {
+  font-family: var(--font-mono);
+  color: var(--accent-amber);
+  font-size: 0.95rem;
+}
+.inline-code {
+  font-family: var(--font-mono);
+  background: rgba(255, 255, 255, 0.08);
+  padding: 0.1rem 0.35rem;
+  border-radius: 4px;
+  color: var(--accent-cyan);
+}

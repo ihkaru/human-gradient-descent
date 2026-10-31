@@ -1,4 +1,5 @@
 // Human Gradient Descent (HGD) - Reference Headless UI Controller
+import { initFormatters } from "./rich-formatter.js";
 import {
   updateTimerUI,
   renderActiveNode,
@@ -47,6 +48,7 @@ const CURRICULA = {
 let activeCurriculumKey = "quantum";
 
 export async function initApp() {
+  initFormatters();
   setupEventListeners();
   await loadCurriculum(activeCurriculumKey);
 }
