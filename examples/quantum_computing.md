@@ -15,26 +15,28 @@ A comprehensive curriculum on quantum information theory, superposition, entangl
 Selama ini kita memproses informasi dengan saklar biner yang bernilai mutlak 0 atau 1. Cara ini bekerja sangat baik sampai kita menghadapi persoalan pencarian ruang kombinasi besar di mana cara sekuensial membutuhkan waktu lebih lama dari usia alam semesta. Saklar klasik tidak mampu merepresentasikan ruang kemungkinan paralel tanpa menduplikasi sirkuit fisik secara masif.
 
 ### 2. Prototipe Intuitif
-Bayangkan alih-alih saklar lampu on/off, kita memiliki koin logam yang sedang berputar kencang di atas meja. Selama koin berputar, statusnya bukan angka dan bukan gambar, melainkan kombinasi dinamis keduanya. Memiringkan meja akan mengubah kecenderungan jatuhnya koin tanpa harus menghentikan putarannya terlebih dahulu.
+Bayangkan alih-alih saklar lampu on/off yang kaku, kita memiliki koin logam di atas meja. Ketika koin diam terlentang di sisi '0', ia adalah bit klasik. Namun, sistem kita memiliki **Tuas Penyeimbang (dikenal sebagai Gerbang Hadamard)**. Ketika tuas Hadamard ini disentak, koin diputar kencang di atas meja. Selama koin berputar seimbang, statusnya bukan angka mutlak dan bukan gambar mutlak, melainkan kombinasi dinamis di mana kedua sisi memiliki potensi muncul yang setara saat dihentikan.
 
 ### 3. Invarian & Operasi Inti
-Hukum kekekalan fundamental sistem ini adalah Konservasi Probabilitas: jumlah peluang seluruh hasil akhir pengukuran wajib selalu bernilai tepat 100% (1.0).
+Invarian fundamental sistem ini adalah **Konservasi Probabilitas Mutlak**: seberapa pun koin diputar atau dimanipulasi oleh gerbang Hadamard, total probabilitas seluruh kemungkinan hasil pengukuran wajib selalu bernilai tepat 100% (1.0). Operasi Hadamard membagi amplitudo keadaan secara simetris seimbang.
 
 | Apa yang Dipikirkan Pemula (Salah) | Apa yang Sebenarnya Terjadi dalam Model Mental |
 |---|---|
 | Qubit menyimpan nilai 0 dan 1 sekaligus saat dibaca di layar. | Qubit hanya berada dalam superposisi saat terisolasi. Pengukuran memaksanya runtuh menjadi salah satu nilai pasti. |
 | Pengukuran bersifat pasif dan tidak mengubah sistem. | Pengukuran adalah operasi fisik aktif yang menghancurkan superposisi. |
+| Gerbang Hadamard mengubah koin menjadi bit acak rusak. | Hadamard adalah operasi rotasi deterministik yang presisi menciptakan superposisi seimbang. |
 
 ### 4. Notasi Sebagai Kontrak
-Untuk menghindari narasi panjang, komunitas merekam koin berputar tersebut dengan notasi:
-$$|\psi\rangle = \alpha |0\rangle + \beta |1\rangle$$
-* `|psi>`: Status koin yang sedang berputar (gelombang kuantum).
-* `alpha, beta`: Amplitudo probabilitas kemiringan status.
-* `|0>, |1>`: Dua sisi koin saat jatuh di atas meja (keadaan terukur).
-* `|alpha|^2 + |beta|^2 = 1`: Kontrak hukum kekekalan total probabilitas.
+Untuk menghindari narasi panjang, komunitas sains merekam mekanisme sentakan tuas penyeimbang Hadamard di atas dengan kontrak steno:
+$$H|0\rangle = \frac{1}{\sqrt{2}}|0\rangle + \frac{1}{\sqrt{2}}|1\rangle$$
+* `H`: Gerbang Hadamard (tuas penyentak yang memutar koin diam menjadi superposisi seimbang).
+* `|0>`: Keadaan awal koin diam terlentang pada sisi 0.
+* `1/sqrt(2)`: Amplitudo probabilitas masing-masing sisi (faktor penyeimbang simetris).
+* `|0>, |1>`: Dua hasil keadaan terukur saat koin mendarat di atas meja.
+* `|1/sqrt(2)|^2 + |1/sqrt(2)|^2 = 0.5 + 0.5 = 1.0`: Kontrak hukum kekekalan total probabilitas 100%.
 
 ### 5. Uji Tegangan Batas
-Jika sebuah qubit diinisialisasi pada |0> lalu diputar oleh gerbang Hadamard menjadi superposisi seimbang, prediksikan distribusi probabilitas pengukurannya!
+Jika sebuah qubit diinisialisasi pada |0> lalu disentak oleh gerbang Hadamard menjadi superposisi seimbang, prediksikan distribusi probabilitas pengukurannya!
 
 ## Unitary Operations and Reversibility
 <!-- hgd:tier: 2_boundary_perturbation -->

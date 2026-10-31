@@ -71,7 +71,7 @@ flowchart LR
 | **027** | [`phases/027_progressive_uila_stepper_and_focus_mode.md`](./phases/027_progressive_uila_stepper_and_focus_mode.md) | Progressive UILA Stepper & Mobile Viewport Focus Mode | ✅ Completed |
 | **028** | [`phases/028_dual_phase_cognitive_pacing.md`](./phases/028_dual_phase_cognitive_pacing.md) | Dual-Phase Cognitive Pacing (Untimed Grounding vs Timed Testing) | ✅ Completed |
 | **029** | [`phases/029_interactive_subway_map_navigation.md`](./phases/029_interactive_subway_map_navigation.md) | Interactive Knowledge Subway Map & Cross-Domain Modals | ✅ Completed |
-| **030** | Reserved for Advanced Synthesis Prompts. | Advanced Prompt Templates & Token-Efficient Generators | 📋 Planned |
+| **030** | [`phases/030_causal_closure_and_zero_orphan_probes.md`](./phases/030_causal_closure_and_zero_orphan_probes.md) | Causal Closure & Zero Orphan Entities in Probes | ✅ Completed |
 
 ---
 

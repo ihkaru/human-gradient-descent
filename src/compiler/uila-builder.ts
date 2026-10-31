@@ -70,12 +70,17 @@ function extractBlock2(content: string, title: string): Block2IntuitivePrototype
 }
 
 function extractBlock3(content: string, title: string): Block3CoreMechanics {
-  const match = content.match(/###\s*(?:3[.)]?\s*)?(?:Invarian|Core Mechanics|Invarian & Operasi Inti)([\s\S]*?)(?=###|$)/i);
+  const match = content.match(/###\s*(?:3[.)]?\s*)?(?:Invarian & Operasi Inti|Core Mechanics|Invarian)([\s\S]*?)(?=###|$)/i);
   const rawText = match ? match[1].trim() : "";
   const contrastingCases = extractContrastingCases(rawText, title);
 
+  const linesBeforeTable = rawText.split("\n").filter((l) => !l.includes("|") && l.trim().length > 0);
+  const invariantProperty = linesBeforeTable.length > 0
+    ? linesBeforeTable.join(" ").trim()
+    : `Conservation of system balance in ${title}.`;
+
   return {
-    invariantProperty: `Conservation of system balance in ${title}.`,
+    invariantProperty,
     variableComponents: ["System inputs", "Observable state amplitudes"],
     contrastingCases,
   };
@@ -125,9 +130,17 @@ function extractBlock4(content: string, title: string): Block4NotationContract {
     terms.push({ symbol: "Invariant", physicalMeaning: "Conservation boundary that must hold true" });
   }
 
+  const formulaMatch = rawText.match(/\$\$([\s\S]*?)\$\$/) || rawText.match(/`([^`]+)`/);
+  const formulaOrCode = formulaMatch ? formulaMatch[1].trim() : `f(${title}) -> Invariant`;
+
+  const narrativeLines = rawText.split("\n").filter((l) => !l.trim().startsWith("*") && !l.trim().startsWith("-") && !l.includes("$$") && l.trim().length > 0);
+  const minimalFormalization = narrativeLines.length > 0
+    ? narrativeLines[0].trim()
+    : `Minimal mathematical contract encoding the physical dynamics of ${title}.`;
+
   return {
-    formulaOrCode: `f(${title}) -> Invariant`,
-    minimalFormalization: `Minimal mathematical contract encoding the physical dynamics of ${title}.`,
+    formulaOrCode,
+    minimalFormalization,
     termsDeconstruction: terms,
   };
 }

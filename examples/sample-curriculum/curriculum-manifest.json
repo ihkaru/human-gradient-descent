@@ -20,7 +20,7 @@
   "scale": {
     "totalNodes": 5,
     "totalShards": 5,
-    "approxWordCount": 1504,
+    "approxWordCount": 1597,
     "estimatedLearningHours": 1.8
   },
   "pacing": {
