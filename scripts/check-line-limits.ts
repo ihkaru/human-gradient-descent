@@ -9,7 +9,8 @@ const IGNORE_DIRS = new Set([
   "dist",
   "build",
   ".cache",
-  ".session-cache"
+  ".session-cache",
+  "vendor"
 ]);
 const IGNORE_EXTENSIONS = new Set([
   ".png",
@@ -19,7 +20,11 @@ const IGNORE_EXTENSIONS = new Set([
   ".ico",
   ".webp",
   ".lock",
-  ".lockb"
+  ".lockb",
+  ".woff",
+  ".woff2",
+  ".ttf",
+  ".eot"
 ]);
 
 let violations = 0;

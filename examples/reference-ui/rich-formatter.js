@@ -25,6 +25,15 @@ export function initFormatters() {
   }
 }
 
+export function stripQuotes(str) {
+  if (!str || typeof str !== "string") return "";
+  let clean = str.trim();
+  if ((clean.startsWith('"') && clean.endsWith('"')) || (clean.startsWith("'") && clean.endsWith("'"))) {
+    clean = clean.slice(1, -1).trim();
+  }
+  return clean;
+}
+
 export function escapeHtml(str) {
   if (!str) return "";
   return String(str)
@@ -35,23 +44,56 @@ export function escapeHtml(str) {
     .replace(/'/g, "&#039;");
 }
 
-export function formatMarkdown(text) {
+function preprocessMathTokens(text) {
   if (!text) return "";
-  let out = escapeHtml(text);
+  let s = text;
 
-  // Restore LaTeX math delimiters that were escaped
-  out = out.replace(/&lt;/g, "<").replace(/&gt;/g, ">");
+  // Transform raw ket notations outside of existing $...$
+  s = s.replace(/\|([0-9a-zA-Z\s+\-]+)>/g, "$\\lvert $1 \\rangle$");
 
+  // Transform common amplitude fractions and square formulas
+  s = s.replace(/1\/sqrt\(2\)/g, "$\\frac{1}{\\sqrt{2}}$");
+  s = s.replace(/\|1\/sqrt\(2\)\|\^2/g, "$\\lvert\\frac{1}{\\sqrt{2}}\\rvert^2$");
+  s = s.replace(/\|alpha\|\^2/g, "$\\lvert\\alpha\\rvert^2$");
+  s = s.replace(/\|beta\|\^2/g, "$\\lvert\\beta\\rvert^2$");
+  s = s.replace(/\balpha\|0\>/g, "$\\alpha\\lvert 0 \\rangle$");
+  s = s.replace(/\bbeta\|1\>/g, "$\\beta\\lvert 1 \\rangle$");
+
+  return s;
+}
+
+export function formatRichText(rawText) {
+  if (!rawText) return "";
+  let text = stripQuotes(rawText);
+
+  // 1. Extract and preserve fenced Mermaid code blocks
+  const mermaidBlocks = [];
+  text = text.replace(/```mermaid\s*([\s\S]*?)```/g, (_, code) => {
+    const idx = mermaidBlocks.length;
+    mermaidBlocks.push(code.trim());
+    return `<!--MERMAID_BLOCK_${idx}-->`;
+  });
+
+  // 2. Preprocess quantum and mathematical tokens
+  text = preprocessMathTokens(text);
+
+  // 3. Markdown Formatting
   // Bold **text**
-  out = out.replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>");
+  text = text.replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>");
 
   // Italic *text*
-  out = out.replace(/\*([^*]+)\*/g, "<em>$1</em>");
+  text = text.replace(/(^|[^\*])\*([^*]+)\*([^\*]|$)/g, "$1<em>$2</em>$3");
 
   // Inline code `code`
-  out = out.replace(/`([^`]+)`/g, "<code class=\"inline-code\">$1</code>");
+  text = text.replace(/`([^`]+)`/g, "<code class=\"inline-code\">$1</code>");
 
-  return out;
+  // 4. Restore Mermaid blocks as renderable containers
+  text = text.replace(/<!--MERMAID_BLOCK_(\d+)-->/g, (_, idx) => {
+    const code = mermaidBlocks[parseInt(idx, 10)] || "";
+    return `<div class="mermaid-diagram-box" data-mermaid="${encodeURIComponent(code)}"></div>`;
+  });
+
+  return text;
 }
 
 export function isMermaidCode(content) {
@@ -60,30 +102,26 @@ export function isMermaidCode(content) {
   return /^(graph\s+(TD|TB|BT|RL|LR)|flowchart\s+(TD|TB|BT|RL|LR)|sequenceDiagram|stateDiagram|erDiagram|classDiagram|gantt)/m.test(trimmed);
 }
 
-export async function renderFormulaOrDiagram(content, containerEl) {
-  if (!containerEl || !content) return;
-  const trimmed = content.trim();
+export async function renderDisplayFormula(rawFormula, containerEl) {
+  if (!containerEl || !rawFormula) return;
+  let formula = stripQuotes(rawFormula).trim();
+
+  // Strip wrapping $$ if present
+  if (formula.startsWith("$$") && formula.endsWith("$$")) {
+    formula = formula.slice(2, -2).trim();
+  }
 
   // 1. Mermaid diagram branch
-  if (isMermaidCode(trimmed) && window.mermaid) {
-    containerEl.className = "mermaid-diagram-box";
-    const uniqueId = `mermaid-${Math.random().toString(36).slice(2, 9)}`;
-    try {
-      const { svg } = await window.mermaid.render(uniqueId, trimmed);
-      containerEl.innerHTML = svg;
-      return;
-    } catch (err) {
-      console.warn("Mermaid render error:", err);
-      containerEl.innerHTML = `<pre class="fallback-code">${escapeHtml(trimmed)}</pre>`;
-      return;
-    }
+  if (isMermaidCode(formula)) {
+    await renderMermaidElement(formula, containerEl);
+    return;
   }
 
   // 2. KaTeX Mathematical Formula branch
   containerEl.className = "formula-display-box";
   if (window.katex) {
     try {
-      window.katex.render(trimmed, containerEl, {
+      window.katex.render(formula, containerEl, {
         displayMode: true,
         throwOnError: false,
         strict: false
@@ -94,12 +132,44 @@ export async function renderFormulaOrDiagram(content, containerEl) {
     }
   }
 
-  // 3. Fallback code styling
-  containerEl.innerHTML = `<code class="fallback-formula">${escapeHtml(trimmed)}</code>`;
+  // Fallback
+  containerEl.innerHTML = `<code class="fallback-formula">${escapeHtml(formula)}</code>`;
 }
 
-export function typesetMathInElement(rootEl) {
+export async function renderMermaidElement(code, containerEl) {
+  if (!containerEl || !code) return;
+  containerEl.className = "mermaid-diagram-box";
+
+  if (window.mermaid) {
+    const uniqueId = `mermaid-${Math.random().toString(36).slice(2, 9)}`;
+    try {
+      const { svg } = await window.mermaid.render(uniqueId, code);
+      containerEl.innerHTML = svg;
+      return;
+    } catch (err) {
+      console.warn("Mermaid render error:", err);
+      containerEl.innerHTML = `<pre class="fallback-code">${escapeHtml(code)}</pre>`;
+      return;
+    }
+  }
+
+  containerEl.innerHTML = `<pre class="fallback-code">${escapeHtml(code)}</pre>`;
+}
+
+export async function renderAllRichElements(rootEl) {
   if (!rootEl) return;
+
+  // 1. Render all embedded Mermaid diagrams
+  const mermaidNodes = rootEl.querySelectorAll(".mermaid-diagram-box[data-mermaid]");
+  for (const node of mermaidNodes) {
+    const rawCode = decodeURIComponent(node.getAttribute("data-mermaid") || "");
+    if (rawCode) {
+      await renderMermaidElement(rawCode, node);
+      node.removeAttribute("data-mermaid");
+    }
+  }
+
+  // 2. Typeset all LaTeX formulas via KaTeX auto-render
   if (window.renderMathInElement) {
     try {
       window.renderMathInElement(rootEl, {

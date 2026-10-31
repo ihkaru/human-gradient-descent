@@ -14,7 +14,7 @@
       "prerequisites": [
         "hgd://knowledgebase/contract-law-basics/node-001"
       ],
-      "conceptSummary": "### 1. Pangkal Anomali\nDi pergaulan sosial kita biasa menjanjikan hadiah atas dasar rasa terima kasih. Namun ketika seorang majikan berjanji memberikan bonus pensiun atas 30 tahun jasa masa lalu lalu mengingkarinya, hukum menolak menegakkan janji tersebut sebagai kontrak yang sah.\n\n### 2. Prototipe Intuitif\nBayangkan timbangan jungkat-jungkit dua arah. Sebuah kontrak hanya bisa bergerak seimbang jika beban ditaruh serentak di kedua sisi: Anda memberikan nilai X karena pihak lain menyerahkan nilai Y sebagai imbalan tawar-menawar langsung (bargained-for exchange).\n\n### 3. Invarian & Operasi Inti\nInvarian mutlak sistem adalah **Mutualitas Kewajiban (Consideration)**: prestasi yang telah selesai di masa lalu (past consideration) tidak memiliki nilai timbal balik untuk mengikat janji baru.\n\n| Apa yang Dipikirkan Pemula (Salah) | Apa yang Sebenarnya Terjadi dalam Model Mental |\n|---|---|\n| Janji tertulis apa pun otomatis mengikat secara hukum. | Janji wajib didukung oleh pertukaran nilai tim",
+      "conceptSummary": "### 1. Pangkal Anomali\nDi pergaulan sosial kita biasa menjanjikan hadiah atas dasar rasa terima kasih. Namun ketika seorang majikan berjanji memberikan bonus pensiun atas 30 tahun jasa masa lalu lalu mengingkarinya, hukum menolak menegakkan janji tersebut sebagai kontrak yang sah.\n\n### 2. Prototipe Intuitif\nBayangkan timbangan jungkat-jungkit dua arah. Sebuah kontrak hanya bisa bergerak seimbang jika beban ditaruh serentak di kedua sisi: Anda memberikan nilai X karena pihak lain menyerahkan nilai Y sebagai imbalan tawar-menawar langsung (bargained-for exchange).\n\n```mermaid\nflowchart LR\n    PartyA[\"Pihak A (Pengorbanan Hukum)\"] <-->|Bargained-For Exchange| PartyB[\"Pihak B (Manfaat Hukum)\"]\n```\n\n### 3. Invarian & Operasi Inti\nInvarian mutlak sistem adalah **Mutualitas Kewajiban (Consideration)**: prestasi yang telah selesai di masa lalu (past consideration) tidak memiliki nilai timbal balik untuk mengikat janji baru.\n\n| Apa yang Dipikirkan Pemula (Salah) | Apa yang Sebenarnya Terjadi da",
       "pacing": {
         "timeLimitSeconds": 60,
         "recommendedEpochs": 3,
@@ -29,7 +29,7 @@
         },
         "block2_intuitivePrototype": {
           "physicalObject": "Physical sandbox model",
-          "isomorphicMapping": "Bayangkan timbangan jungkat-jungkit dua arah. Sebuah kontrak hanya bisa bergerak seimbang jika beban ditaruh serentak di kedua sisi: Anda memberikan nilai X karena pihak lain menyerahkan nilai Y sebagai imbalan tawar-menawar langsung (bargained-for exchange).",
+          "isomorphicMapping": "Bayangkan timbangan jungkat-jungkit dua arah. Sebuah kontrak hanya bisa bergerak seimbang jika beban ditaruh serentak di kedua sisi: Anda memberikan nilai X karena pihak lain menyerahkan nilai Y sebagai imbalan tawar-menawar langsung (bargained-for exchange).\n\n```mermaid\nflowchart LR\n    PartyA[\"Pihak A (Pengorbanan Hukum)\"] <-->|Bargained-For Exchange| PartyB[\"Pihak B (Manfaat Hukum)\"]\n```",
           "deadlockResolution": "Resolves the deadlock identified in Block 1 through isomorphic interaction."
         },
         "block3_coreMechanics": {

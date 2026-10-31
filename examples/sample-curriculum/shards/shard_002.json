@@ -14,7 +14,7 @@
       "prerequisites": [
         "hgd://knowledgebase/quantum-computing/node-001"
       ],
-      "conceptSummary": "### 1. Pangkal Anomali\nDi komputasi klasik kita terbiasa menghapus data dengan reset bit ke 0. Pendekatan ini runtuh di dunia kuantum karena penghapusan informasi menghasilkan disipasi panas termodinamika dan merusak ortogonalitas vektor keadaan.\n\n### 2. Prototipe Intuitif\nBayangkan alih-alih perajang kertas yang menghancurkan lembaran dokumen, sistem kita adalah prisma cermin putar tanpa gesekan. Setiap berkas cahaya yang masuk dapat dikembalikan persis ke arah semula hanya dengan membalik arah putaran cermin.\n\n### 3. Invarian & Operasi Inti\nInvarian mutlak sistem adalah **Reversibilitas dan Preservasi Norma Vektor**. Tidak ada probabilitas yang boleh hilang atau bocor keluar dari sistem tertutup.\n\n| Apa yang Dipikirkan Pemula (Salah) | Apa yang Sebenarnya Terjadi dalam Model Mental |\n|---|---|\n| Gerbang kuantum bebas menghapus status qubit menjadi nol. | Gerbang kuantum tertutup wajib uniter dan sepenuhnya reversibel tanpa disipasi entropi. |\n| Pengurangan sudut vektor tidak mengubah",
+      "conceptSummary": "### 1. Pangkal Anomali\nDi komputasi klasik kita terbiasa menghapus data dengan reset bit ke 0. Pendekatan ini runtuh di dunia kuantum karena penghapusan informasi menghasilkan disipasi panas termodinamika dan merusak ortogonalitas vektor keadaan.\n\n### 2. Prototipe Intuitif\nBayangkan alih-alih perajang kertas yang menghancurkan lembaran dokumen, sistem kita adalah prisma cermin putar tanpa gesekan. Setiap berkas cahaya yang masuk dapat dikembalikan persis ke arah semula hanya dengan membalik arah putaran cermin.\n\n```mermaid\nflowchart LR\n    StateIn[\"Keadaan Masuk |psi>\"] -->|Gerbang Uniter U| Trans[\"Ruang Terputar\"]\n    Trans -->|Pembalik Hermisian U^\\dagger| StateIn\n```\n\n### 3. Invarian & Operasi Inti\nInvarian mutlak sistem adalah **Reversibilitas dan Preservasi Norma Vektor**. Tidak ada probabilitas yang boleh hilang atau bocor keluar dari sistem tertutup.\n\n| Apa yang Dipikirkan Pemula (Salah) | Apa yang Sebenarnya Terjadi dalam Model Mental |\n|---|---|\n| Gerbang kuantum bebas menghap",
       "pacing": {
         "timeLimitSeconds": 60,
         "recommendedEpochs": 3,
@@ -29,7 +29,7 @@
         },
         "block2_intuitivePrototype": {
           "physicalObject": "Physical sandbox model",
-          "isomorphicMapping": "Bayangkan alih-alih perajang kertas yang menghancurkan lembaran dokumen, sistem kita adalah prisma cermin putar tanpa gesekan. Setiap berkas cahaya yang masuk dapat dikembalikan persis ke arah semula hanya dengan membalik arah putaran cermin.",
+          "isomorphicMapping": "Bayangkan alih-alih perajang kertas yang menghancurkan lembaran dokumen, sistem kita adalah prisma cermin putar tanpa gesekan. Setiap berkas cahaya yang masuk dapat dikembalikan persis ke arah semula hanya dengan membalik arah putaran cermin.\n\n```mermaid\nflowchart LR\n    StateIn[\"Keadaan Masuk |psi>\"] -->|Gerbang Uniter U| Trans[\"Ruang Terputar\"]\n    Trans -->|Pembalik Hermisian U^\\dagger| StateIn\n```",
           "deadlockResolution": "Resolves the deadlock identified in Block 1 through isomorphic interaction."
         },
         "block3_coreMechanics": {

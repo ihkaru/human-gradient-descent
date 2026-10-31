@@ -14,7 +14,7 @@
       "prerequisites": [
         "hgd://knowledgebase/quantum-computing/node-001"
       ],
-      "conceptSummary": "### 1. Pangkal Anomali\nKita terbiasa menganalisis dua objek terpisah secara independen. Cara ini runtuh total saat dua partikel terjerat: status lokal salah satu pihak tidak dapat didefinisikan tanpa menyertakan pasangannya, memicu paradoks Einstein-Podolsky-Rosen.\n\n### 2. Prototipe Intuitif\nBayangkan sepasang koin berputar di meja Alice dan Bob yang porosnya dihubungkan kawat torsi tak kasat mata. Begitu koin Alice jatuh pada sisi angka, koin Bob seketika ikut jatuh pada sisi angka, namun tak seorang pun dapat memilih sisi mana yang jatuh lebih dulu.\n\n### 3. Invarian & Operasi Inti\nInvarian mutlak sistem adalah **No-Signaling Theorem**: korelasi kuantum tidak dapat dimanfaatkan untuk komunikasi superluminal karena probabilitas lokal Bob selalu tepat 50/50 acak murni.\n\n| Apa yang Dipikirkan Pemula (Salah) | Apa yang Sebenarnya Terjadi dalam Model Mental |\n|---|---|\n| Alice bisa mengirim pesan morse instan dengan mengukur qubitnya. | Alice tidak bisa mengontrol hasil pengukurannya sendi",
+      "conceptSummary": "### 1. Pangkal Anomali\nKita terbiasa menganalisis dua objek terpisah secara independen. Cara ini runtuh total saat dua partikel terjerat: status lokal salah satu pihak tidak dapat didefinisikan tanpa menyertakan pasangannya, memicu paradoks Einstein-Podolsky-Rosen.\n\n### 2. Prototipe Intuitif\nBayangkan sepasang koin berputar di meja Alice dan Bob yang porosnya dihubungkan kawat torsi tak kasat mata. Begitu koin Alice jatuh pada sisi angka, koin Bob seketika ikut jatuh pada sisi angka, namun tak seorang pun dapat memilih sisi mana yang jatuh lebih dulu.\n\n```mermaid\nflowchart LR\n    EntangledPair[\"Sumber Bell (|00>+|11>)/sqrt(2)\"] --> Alice[\"Alice (Ukur Koin)\"]\n    EntangledPair --> Bob[\"Bob (Korelasi Spontan)\"]\n    Alice -.->|No-Signaling Invariant| Bob\n```\n\n### 3. Invarian & Operasi Inti\nInvarian mutlak sistem adalah **No-Signaling Theorem**: korelasi kuantum tidak dapat dimanfaatkan untuk komunikasi superluminal karena probabilitas lokal Bob selalu tepat 50/50 acak murni.\n\n| Apa yang D",
       "pacing": {
         "timeLimitSeconds": 60,
         "recommendedEpochs": 3,
@@ -29,7 +29,7 @@
         },
         "block2_intuitivePrototype": {
           "physicalObject": "Physical sandbox model",
-          "isomorphicMapping": "Bayangkan sepasang koin berputar di meja Alice dan Bob yang porosnya dihubungkan kawat torsi tak kasat mata. Begitu koin Alice jatuh pada sisi angka, koin Bob seketika ikut jatuh pada sisi angka, namun tak seorang pun dapat memilih sisi mana yang jatuh lebih dulu.",
+          "isomorphicMapping": "Bayangkan sepasang koin berputar di meja Alice dan Bob yang porosnya dihubungkan kawat torsi tak kasat mata. Begitu koin Alice jatuh pada sisi angka, koin Bob seketika ikut jatuh pada sisi angka, namun tak seorang pun dapat memilih sisi mana yang jatuh lebih dulu.\n\n```mermaid\nflowchart LR\n    EntangledPair[\"Sumber Bell (|00>+|11>)/sqrt(2)\"] --> Alice[\"Alice (Ukur Koin)\"]\n    EntangledPair --> Bob[\"Bob (Korelasi Spontan)\"]\n    Alice -.->|No-Signaling Invariant| Bob\n```",
           "deadlockResolution": "Resolves the deadlock identified in Block 1 through isomorphic interaction."
         },
         "block3_coreMechanics": {
@@ -95,7 +95,7 @@
         "conceptualVariants": [
           {
             "representationType": "verbal",
-            "content": "### 1."
+            "content": "```mermaid\nflowchart LR\n    EntangledPair[\"Sumber Bell (|00>+|11>)/sqrt(2)\"] --> Alice[\"Alice (Ukur Koin)\"]\n    EntangledPair --> Bob[\"Bob (Korelasi Spontan)\"]\n    Alice -.->|No-Signaling Invariant| Bob\n```\n\n### 3."
           },
           {
             "representationType": "symbolic",
@@ -129,7 +129,7 @@
             "isCorrect": false,
             "diagnosticAxis": "conceptGap",
             "causalRationale": "Misconception: Assumes operations produce zero observable effect, ignoring active transformation.",
-            "specificRemediation": "Review core mechanism: ### 1."
+            "specificRemediation": "Review core mechanism: ```mermaid\nflowchart LR\n    EntangledPair[\"Sumber Bell (|00>+|11>)/sqrt(2)\"] --> Alice[\"Alice (Ukur Koin)\"]\n    EntangledPair --> Bob[\"Bob (Korelasi Spontan)\"]\n    Alice -.->|No-Signaling Invariant| Bob\n```\n\n### 3."
           },
           {
             "optionId": "opt_c",
@@ -151,7 +151,7 @@
       },
       "lossRubric": {
         "conceptGapCriteria": [
-          "Fails to identify core mechanism: ### 1.",
+          "Fails to identify core mechanism: ```mermaid\nflowchart LR\n    EntangledPair[\"Sumber Bell (|00>+|11>)/sqrt(2)\"] --> Alice[\"Alice (Ukur Koin)\"]\n    EntangledPair --> Bob[\"Bob (Korelasi Spontan)\"]\n    Alice -.->|No-Signaling Invariant| Bob\n```\n\n### 3.",
           "Confuses cause and effect in state transitions"
         ],
         "missingPrerequisiteMap": {
@@ -172,7 +172,7 @@
         "learningRate": 0.25,
         "hintLadder": {
           "level0Reflective": "Reflective: What fundamental invariant governs Quantum Entanglement and Non-Locality?",
-          "level1Directional": "Directional Clue: Examine how Quantum Entanglement and Non-Locality handles boundary conditions: ### 1.",
+          "level1Directional": "Directional Clue: Examine how Quantum Entanglement and Non-Locality handles boundary conditions: ```mermaid\nflowchart LR\n    EntangledPair[\"Sumber Bell (|00>+|11>)/sqrt(2)\"] --> Alice[\"Alice (Ukur Koin)\"]\n    EntangledPair --> Bob[\"Bob (Korelasi Spontan)\"]\n    Alice -.->|No-Signaling Invariant| Bob\n```\n\n### 3.",
           "level2Constraint": "Constraint: Eliminate unconstrained assumptions. Ground truth: \"Alice cannot transmit information faster than light because Bob's local marginal probability remains exactly 50/50 until classical measurement correlations are communicated.\"",
           "level3WorkedExample": "\"Worked Solution: While Alice's measurement instantly fixes Bob's outcome, Alice cannot choose whether she measures 0 or 1. From Bob's perspective, his density matrix remains a random 50/50 mixture. Therefore, no information is transmitted until classical signals arrive (No-Signaling Theorem).\""
         },

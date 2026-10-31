@@ -17,6 +17,13 @@ Selama ini kita memproses informasi dengan saklar biner yang bernilai mutlak 0 a
 ### 2. Prototipe Intuitif
 Bayangkan alih-alih saklar lampu on/off yang kaku, kita memiliki koin logam di atas meja. Ketika koin diam terlentang di sisi '0', ia adalah bit klasik. Namun, sistem kita memiliki **Tuas Penyeimbang (dikenal sebagai Gerbang Hadamard)**. Ketika tuas Hadamard ini disentak, koin diputar kencang di atas meja. Selama koin berputar seimbang, statusnya bukan angka mutlak dan bukan gambar mutlak, melainkan kombinasi dinamis di mana kedua sisi memiliki potensi muncul yang setara saat dihentikan.
 
+```mermaid
+flowchart LR
+    Bit0["Klasik: Bit Diam |0>"] -->|Sentakan Tuas Hadamard| Sup["Kuantum: Koin Berputar (|0>+|1>)/sqrt(2)"]
+    Sup -->|Pengukuran Aktif| Out0["Hasil Pasti 0 (50%)"]
+    Sup -->|Pengukuran Aktif| Out1["Hasil Pasti 1 (50%)"]
+```
+
 ### 3. Invarian & Operasi Inti
 Invarian fundamental sistem ini adalah **Konservasi Probabilitas Mutlak**: seberapa pun koin diputar atau dimanipulasi oleh gerbang Hadamard, total probabilitas seluruh kemungkinan hasil pengukuran wajib selalu bernilai tepat 100% (1.0). Operasi Hadamard membagi amplitudo keadaan secara simetris seimbang.
 
@@ -52,6 +59,12 @@ Di komputasi klasik kita terbiasa menghapus data dengan reset bit ke 0. Pendekat
 ### 2. Prototipe Intuitif
 Bayangkan alih-alih perajang kertas yang menghancurkan lembaran dokumen, sistem kita adalah prisma cermin putar tanpa gesekan. Setiap berkas cahaya yang masuk dapat dikembalikan persis ke arah semula hanya dengan membalik arah putaran cermin.
 
+```mermaid
+flowchart LR
+    StateIn["Keadaan Masuk |psi>"] -->|Gerbang Uniter U| Trans["Ruang Terputar"]
+    Trans -->|Pembalik Hermisian U^\dagger| StateIn
+```
+
 ### 3. Invarian & Operasi Inti
 Invarian mutlak sistem adalah **Reversibilitas dan Preservasi Norma Vektor**. Tidak ada probabilitas yang boleh hilang atau bocor keluar dari sistem tertutup.
 
@@ -84,6 +97,13 @@ Kita terbiasa menganalisis dua objek terpisah secara independen. Cara ini runtuh
 
 ### 2. Prototipe Intuitif
 Bayangkan sepasang koin berputar di meja Alice dan Bob yang porosnya dihubungkan kawat torsi tak kasat mata. Begitu koin Alice jatuh pada sisi angka, koin Bob seketika ikut jatuh pada sisi angka, namun tak seorang pun dapat memilih sisi mana yang jatuh lebih dulu.
+
+```mermaid
+flowchart LR
+    EntangledPair["Sumber Bell (|00>+|11>)/sqrt(2)"] --> Alice["Alice (Ukur Koin)"]
+    EntangledPair --> Bob["Bob (Korelasi Spontan)"]
+    Alice -.->|No-Signaling Invariant| Bob
+```
 
 ### 3. Invarian & Operasi Inti
 Invarian mutlak sistem adalah **No-Signaling Theorem**: korelasi kuantum tidak dapat dimanfaatkan untuk komunikasi superluminal karena probabilitas lokal Bob selalu tepat 50/50 acak murni.

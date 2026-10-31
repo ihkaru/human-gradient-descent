@@ -52,6 +52,11 @@ Di pergaulan sosial kita biasa menjanjikan hadiah atas dasar rasa terima kasih. 
 ### 2. Prototipe Intuitif
 Bayangkan timbangan jungkat-jungkit dua arah. Sebuah kontrak hanya bisa bergerak seimbang jika beban ditaruh serentak di kedua sisi: Anda memberikan nilai X karena pihak lain menyerahkan nilai Y sebagai imbalan tawar-menawar langsung (bargained-for exchange).
 
+```mermaid
+flowchart LR
+    PartyA["Pihak A (Pengorbanan Hukum)"] <-->|Bargained-For Exchange| PartyB["Pihak B (Manfaat Hukum)"]
+```
+
 ### 3. Invarian & Operasi Inti
 Invarian mutlak sistem adalah **Mutualitas Kewajiban (Consideration)**: prestasi yang telah selesai di masa lalu (past consideration) tidak memiliki nilai timbal balik untuk mengikat janji baru.
 

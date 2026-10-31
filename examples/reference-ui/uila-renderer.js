@@ -1,5 +1,5 @@
 // UILA, Heatmap & Subway Map Renderer Module
-import { formatMarkdown, renderFormulaOrDiagram, typesetMathInElement } from "./rich-formatter.js";
+import { formatRichText, renderDisplayFormula, renderAllRichElements, stripQuotes } from "./rich-formatter.js";
 
 let activeStep = 0; // 0 = show all, 1 = b1, 2 = b2, 3 = b3, 4 = b4
 let isReadingCollapsed = false;
@@ -58,7 +58,7 @@ export function renderUILABlocks(node, containerId, onFocusTest) {
       <div class="uila-block b3" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem;">
         <div>
           <span style="font-size: 0.75rem; text-transform: uppercase; font-weight: 700; color: var(--accent-emerald);">Invariant Grounded</span>
-          <div style="font-size: 0.85rem; font-weight: 600;">${b3?.invariantProperty || "System Invariant Active"}</div>
+          <div style="font-size: 0.85rem; font-weight: 600;">${formatRichText(b3?.invariantProperty || "System Invariant Active")}</div>
         </div>
         <button id="btn-toggle-reading" class="btn-focus-mode" type="button">Expand Full Reading</button>
       </div>
@@ -75,8 +75,8 @@ export function renderUILABlocks(node, containerId, onFocusTest) {
     for (const c of b3.contrastingCases) {
       contrastingRows += `
         <tr>
-          <td class="td-wrong">${formatMarkdown(c.beginnerMisconception)}</td>
-          <td class="td-right">${formatMarkdown(c.physicalReality)}</td>
+          <td class="td-wrong">${formatRichText(c.beginnerMisconception)}</td>
+          <td class="td-right">${formatRichText(c.physicalReality)}</td>
         </tr>
       `;
     }
@@ -87,7 +87,7 @@ export function renderUILABlocks(node, containerId, onFocusTest) {
     for (const t of b4.termsDeconstruction) {
       notationChips += `
         <div class="notation-chip">
-          <strong>${formatMarkdown(t.symbol)}:</strong> ${formatMarkdown(t.physicalMeaning)}
+          <strong>${formatRichText(t.symbol)}:</strong> ${formatRichText(t.physicalMeaning)}
         </div>
       `;
     }
@@ -113,7 +113,7 @@ export function renderUILABlocks(node, containerId, onFocusTest) {
     ${showB1 ? `
       <div class="uila-block b1">
         <div class="uila-block-title">Blok 1: Pangkal Anomali (The Ground State & Inadequacy)</div>
-        <div class="uila-body">${formatMarkdown(b1?.breakdownPoint || "Skenario kegagalan pemahaman lama.")}</div>
+        <div class="uila-body">${formatRichText(b1?.breakdownPoint || "Skenario kegagalan pemahaman lama.")}</div>
       </div>
     ` : ""}
 
@@ -121,8 +121,8 @@ export function renderUILABlocks(node, containerId, onFocusTest) {
       <div class="uila-block b2">
         <div class="uila-block-title">Blok 2: Prototipe Intuitif (Isomorphic Sandbox)</div>
         <div class="uila-body">
-          <strong>${b2?.physicalObject || "Model Fisik"}:</strong>
-          ${formatMarkdown(b2?.isomorphicMapping || "Analogi relasional yang memecahkan anomali.")}
+          <strong>${stripQuotes(b2?.physicalObject || "Model Fisik")}:</strong>
+          ${formatRichText(b2?.isomorphicMapping || "Analogi relasional yang memecahkan anomali.")}
         </div>
       </div>
     ` : ""}
@@ -131,7 +131,7 @@ export function renderUILABlocks(node, containerId, onFocusTest) {
       <div class="uila-block b3">
         <div class="uila-block-title">Blok 3: Invarian & Operasi Inti (Core Mechanics)</div>
         <div class="uila-body">
-          <div>Hukum Kekekalan: <strong>${formatMarkdown(b3?.invariantProperty || "Invarian Sistem")}</strong></div>
+          <div>Hukum Kekekalan: <strong>${formatRichText(b3?.invariantProperty || "Invarian Sistem")}</strong></div>
           ${contrastingRows ? `
             <table class="contrasting-table">
               <thead>
@@ -152,7 +152,7 @@ export function renderUILABlocks(node, containerId, onFocusTest) {
         <div class="uila-block-title">Blok 4: Notasi Sebagai Kontrak (Minimal Formalization)</div>
         <div class="uila-body">
           <div id="uila-formula-container" class="formula-display-box"></div>
-          <p style="margin: 0.35rem 0 0 0; font-size: 0.8rem; color: var(--text-muted);">${formatMarkdown(b4?.minimalFormalization || "")}</p>
+          <p style="margin: 0.35rem 0 0 0; font-size: 0.8rem; color: var(--text-muted);">${formatRichText(b4?.minimalFormalization || "")}</p>
           ${notationChips ? `<div class="notation-chips">${notationChips}</div>` : ""}
         </div>
       </div>
@@ -162,11 +162,11 @@ export function renderUILABlocks(node, containerId, onFocusTest) {
   if (showB4) {
     const formulaBox = container.querySelector("#uila-formula-container");
     if (formulaBox && b4?.formulaOrCode) {
-      renderFormulaOrDiagram(b4.formulaOrCode, formulaBox);
+      renderDisplayFormula(b4.formulaOrCode, formulaBox);
     }
   }
 
-  typesetMathInElement(container);
+  renderAllRichElements(container);
 
   container.querySelectorAll(".stepper-pill").forEach((pill) => {
     pill.addEventListener("click", (e) => {
@@ -209,6 +209,7 @@ export function showSubwayModal(title, subtitle, bodyHtml) {
   document.getElementById("modal-close-btn")?.addEventListener("click", close);
   document.getElementById("modal-ack-btn")?.addEventListener("click", close);
   modal.onclick = (e) => { if (e.target === modal) close(); };
+  renderAllRichElements(modal);
 }
 
 export function renderSubwayMap(node, containerId) {
