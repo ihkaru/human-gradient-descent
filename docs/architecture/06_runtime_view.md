@@ -1,7 +1,7 @@
 # 6. Runtime View
 
 > [!INFO] **Architecture Provenance & Freshness**
-> - **Verified Commit**: `a4b86ba`
+> - **Verified Commit**: `5bc420f`
 > - **Verified Timestamp**: `2026-10-31T20:31:00+07:00`
 > - **Tracked Paths**: `src/`, `schemas/`, `phases/`
 > - **Drift Status**: `verified`
