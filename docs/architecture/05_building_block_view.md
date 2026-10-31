@@ -1,8 +1,8 @@
 # 5. Building Block View
 
 > [!INFO] **Architecture Provenance & Freshness**
-> - **Verified Commit**: `65a1ac8`
-> - **Verified Timestamp**: `2026-10-31T09:00:00+07:00`
+> - **Verified Commit**: `c5a1aa4`
+> - **Verified Timestamp**: `2026-10-31T19:45:00+07:00`
 > - **Tracked Paths**: `src/`, `schemas/`, `phases/`
 > - **Drift Status**: `verified`
 
