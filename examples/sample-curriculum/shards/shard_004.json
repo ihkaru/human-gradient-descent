@@ -15,7 +15,7 @@
         "hgd://knowledgebase/quantum-computing/node-001",
         "hgd://knowledgebase/quantum-computing/node-002"
       ],
-      "conceptSummary": "The no-cloning theorem states that it is impossible to create an identical copy of an arbitrary unknown quantum state:\n$$U(|\\psi\\rangle |0\\rangle) \\neq |\\psi\\rangle |\\psi\\rangle$$\nThis follows directly from the linearity of quantum operators. Because cloning is prohibited, quantum error correction cannot simply duplicate qubits, but must instead distribute quantum information across entangled topological codes.",
+      "conceptSummary": "The no-cloning theorem proves it is impossible to create an identical copy of an arbitrary quantum state $|\\psi\\rangle = \\alpha|0\\rangle + \\beta|1\\rangle$:\n$$U(|\\psi\\rangle |0\\rangle) \\neq |\\psi\\rangle |\\psi\\rangle$$\nLinearity demands $U(|\\psi\\rangle|0\\rangle) = \\alpha|00\\rangle + \\beta|11\\rangle$, whereas a true dual product $|\\psi\\rangle|\\psi\\rangle$ generates unwanted cross-terms like $|01\\rangle$ and $|10\\rangle$. Because cloning is impossible, quantum states cannot be duplicated without violating unitarity.",
       "pacing": {
         "timeLimitSeconds": 60,
         "recommendedEpochs": 3,
@@ -88,7 +88,7 @@
         "conceptualVariants": [
           {
             "representationType": "verbal",
-            "content": "The no-cloning theorem states that it is impossible to create an identical copy of an arbitrary unknown quantum state:\n$$U(|\\psi\\rangle |0\\rangle) \\neq |\\psi\\rangle |\\psi\\rangle$$\nThis follows directly from the linearity of quantum operators."
+            "content": "The no-cloning theorem proves it is impossible to create an identical copy of an arbitrary quantum state $|\\psi\\rangle = \\alpha|0\\rangle + \\beta|1\\rangle$:\n$$U(|\\psi\\rangle |0\\rangle) \\neq |\\psi\\rangle |\\psi\\rangle$$\nLinearity demands $U(|\\psi\\rangle|0\\rangle) = \\alpha|00\\rangle + \\beta|11\\rangle$, whereas a true dual product $|\\psi\\rangle|\\psi\\rangle$ generates unwanted cross-terms like $|01\\rangle$ and $|10\\rangle$."
           },
           {
             "representationType": "symbolic",
@@ -106,8 +106,8 @@
       },
       "forwardPass": {
         "probeType": "prediction_what_if",
-        "microPrimer": "\"Classical data can be cloned endlessly (Ctrl+C, Ctrl+V). However, quantum mechanics requires all operations to be linear. If a cloning machine existed, it would have to clone both basis states and their linear combinations.\"",
-        "readingContext": "The no-cloning theorem states that it is impossible to create an identical copy of an arbitrary unknown quantum state:\n$$U(|\\psi\\rangle |0\\rangle) \\neq |\\psi\\rangle |\\psi\\rangle$$\nThis follows directly from the linearity of quantum operators. Because cloning is prohibited, quantum error correction cannot simply duplicate qubits, but must instead distribute quantum information across entangled topological codes.",
+        "microPrimer": "\"Classical data can be cloned endlessly. Quantum mechanics requires all operations to be linear. If a cloning machine existed, it would have to clone both basis states and arbitrary linear combinations.\"",
+        "readingContext": "The no-cloning theorem proves it is impossible to create an identical copy of an arbitrary quantum state $|\\psi\\rangle = \\alpha|0\\rangle + \\beta|1\\rangle$:\n$$U(|\\psi\\rangle |0\\rangle) \\neq |\\psi\\rangle |\\psi\\rangle$$\nLinearity demands $U(|\\psi\\rangle|0\\rangle) = \\alpha|00\\rangle + \\beta|11\\rangle$, whereas a true dual product $|\\psi\\rangle|\\psi\\rangle$ generates unwanted cross-terms like $|01\\rangle$ and $|10\\rangle$. Because cloning is impossible, quantum states cannot be duplicated without vio",
         "prompt": "\"Predict what mathematical contradiction occurs if a unitary operator U clones an arbitrary unknown superposition state alpha|0> + beta|1>.\"",
         "options": [
           {
@@ -122,7 +122,7 @@
             "isCorrect": false,
             "diagnosticAxis": "conceptGap",
             "causalRationale": "Misconception: Assumes operations produce zero observable effect, ignoring active transformation.",
-            "specificRemediation": "Review core mechanism: The no-cloning theorem states that it is impossible to create an identical copy of an arbitrary unknown quantum state:\n$$U(|\\psi\\rangle |0\\rangle) \\neq |\\psi\\rangle |\\psi\\rangle$$\nThis follows directly from the linearity of quantum operators."
+            "specificRemediation": "Review core mechanism: The no-cloning theorem proves it is impossible to create an identical copy of an arbitrary quantum state $|\\psi\\rangle = \\alpha|0\\rangle + \\beta|1\\rangle$:\n$$U(|\\psi\\rangle |0\\rangle) \\neq |\\psi\\rangle |\\psi\\rangle$$\nLinearity demands $U(|\\psi\\rangle|0\\rangle) = \\alpha|00\\rangle + \\beta|11\\rangle$, whereas a true dual product $|\\psi\\rangle|\\psi\\rangle$ generates unwanted cross-terms like $|01\\rangle$ and $|10\\rangle$."
           },
           {
             "optionId": "opt_c",
@@ -144,7 +144,7 @@
       },
       "lossRubric": {
         "conceptGapCriteria": [
-          "Fails to identify core mechanism: The no-cloning theorem states that it is impossible to create an identical copy of an arbitrary unknown quantum state:\n$$U(|\\psi\\rangle |0\\rangle) \\neq |\\psi\\rangle |\\psi\\rangle$$\nThis follows directly from the linearity of quantum operators.",
+          "Fails to identify core mechanism: The no-cloning theorem proves it is impossible to create an identical copy of an arbitrary quantum state $|\\psi\\rangle = \\alpha|0\\rangle + \\beta|1\\rangle$:\n$$U(|\\psi\\rangle |0\\rangle) \\neq |\\psi\\rangle |\\psi\\rangle$$\nLinearity demands $U(|\\psi\\rangle|0\\rangle) = \\alpha|00\\rangle + \\beta|11\\rangle$, whereas a true dual product $|\\psi\\rangle|\\psi\\rangle$ generates unwanted cross-terms like $|01\\rangle$ and $|10\\rangle$.",
           "Confuses cause and effect in state transitions"
         ],
         "missingPrerequisiteMap": {
@@ -165,7 +165,7 @@
         "learningRate": 0.25,
         "hintLadder": {
           "level0Reflective": "Reflective: What fundamental invariant governs Quantum No-Cloning Theorem?",
-          "level1Directional": "Directional Clue: Examine how Quantum No-Cloning Theorem handles boundary conditions: The no-cloning theorem states that it is impossible to create an identical copy of an arbitrary unknown quantum state:\n$$U(|\\psi\\rangle |0\\rangle) \\neq |\\psi\\rangle |\\psi\\rangle$$\nThis follows directly from the linearity of quantum operators.",
+          "level1Directional": "Directional Clue: Examine how Quantum No-Cloning Theorem handles boundary conditions: The no-cloning theorem proves it is impossible to create an identical copy of an arbitrary quantum state $|\\psi\\rangle = \\alpha|0\\rangle + \\beta|1\\rangle$:\n$$U(|\\psi\\rangle |0\\rangle) \\neq |\\psi\\rangle |\\psi\\rangle$$\nLinearity demands $U(|\\psi\\rangle|0\\rangle) = \\alpha|00\\rangle + \\beta|11\\rangle$, whereas a true dual product $|\\psi\\rangle|\\psi\\rangle$ generates unwanted cross-terms like $|01\\rangle$ and $|10\\rangle$.",
           "level2Constraint": "Constraint: Eliminate unconstrained assumptions. Ground truth: \"Linearity requires U(|psi>|0>) = alpha|00> + beta|11>, whereas a true copy requires (alpha|0> + beta|1>)(alpha|0> + beta|1>) containing cross-terms 2 alpha beta |01>, violating unitarity.\"",
           "level3WorkedExample": "\"Worked Solution: By linearity, U(alpha|0> + beta|1>)|0> = alpha|00> + beta|11>. But a cloned state requires |psi>|psi> = alpha^2|00> + alpha beta|01> + alpha beta|10> + beta^2|11>. Equating the two yields cross-terms 2 alpha beta = 0, which fails for arbitrary superpositions.\""
         },
@@ -181,7 +181,7 @@
         {
           "sourceRef": "markdown-source",
           "locationTag": "Section: Quantum No-Cloning Theorem",
-          "verbatimQuote": "The no-cloning theorem states that it is impossible to create an identical copy of an arbitrary unkn"
+          "verbatimQuote": "The no-cloning theorem proves it is impossible to create an identical copy of an arbitrary quantum s"
         }
       ]
     }

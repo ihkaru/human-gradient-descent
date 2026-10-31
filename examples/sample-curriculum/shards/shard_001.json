@@ -122,7 +122,7 @@
       },
       "forwardPass": {
         "probeType": "prediction_what_if",
-        "microPrimer": "\"A classical bit is strictly either 0 or 1. A qubit is a quantum system that can exist in a simultaneous linear superposition of |0> and |1>. A Hadamard gate is a foundational quantum operation that transforms a definite state |0> into an equal superposition where both outcomes become equally likely upon measurement.\"",
+        "microPrimer": "\"A classical bit is strictly 0 or 1. A qubit exists in a simultaneous linear superposition of |0> and |1>. A Hadamard gate is a foundational operation that transforms definite state |0> into an equal superposition where both outcomes become equally likely upon measurement.\"",
         "readingContext": "### 1. Pangkal Anomali\nSelama ini kita memproses informasi dengan saklar biner yang bernilai mutlak 0 atau 1. Cara ini bekerja sangat baik sampai kita menghadapi persoalan pencarian ruang kombinasi besar di mana cara sekuensial membutuhkan waktu lebih lama dari usia alam semesta. Saklar klasik tidak mampu merepresentasikan ruang kemungkinan paralel tanpa menduplikasi sirkuit fisik secara masif.\n\n### 2. Prototipe Intuitif\nBayangkan alih-alih saklar lampu on/off yang kaku, kita memiliki koin logam",
         "prompt": "\"If a qubit initialized in state |0> is transformed by a Hadamard gate into an equal superposition, predict the probability distribution of measuring |0> versus |1>.\"",
         "options": [

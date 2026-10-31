@@ -75,12 +75,14 @@ flowchart LR
 
 ---
 
-### Cluster 4: 5-Axis Diagnostic Loss Calibration & ML Classifiers (031–040)
-* **Phase 031**: Semantic Embedding Loss Distance with Vector Similarity.
-* **Phase 032**: Misconception Pattern Library for Computer Science & Mathematics.
-* **Phase 033**: Automated Prerequisite Backtracking on $l_{\text{prereq}}$ Detection.
-* **Phase 034**: Syntax Slip vs Conceptual Bug Disambiguation Classifier.
-* **Phases 035–040**: Few-Shot Diagnostic Rubric Tuners & Multi-Modal Loss.
+### Cluster 4: Multi-Tier Curriculum Evaluation & Autonomous Auditing (031–040)
+| Phase ID | Specification File | Title & Core Focus | Status |
+|:---|:---|:---|:---|
+| **031** | [`phases/031_deterministic_ast_curriculum_linter.md`](./phases/031_deterministic_ast_curriculum_linter.md) | Tier 1 Deterministic AST, Causal Closure & Orphan Entity Linter | Completed |
+| **032** | [`phases/032_semantic_causal_oracle_evaluator.md`](./phases/032_semantic_causal_oracle_evaluator.md) | Tier 2 Semantic Causal Oracle & Misconception Authenticity | Completed |
+| **033** | [`phases/033_adversarial_virtual_novice_simulator.md`](./phases/033_adversarial_virtual_novice_simulator.md) | Tier 3 Adversarial Virtual Novice Simulation & Skill Packaging | Completed |
+| **034** | [`phases/034_automated_prerequisite_backtracking.md`](./phases/034_automated_prerequisite_backtracking.md) | Automated Prerequisite Backtracking on l_prereq Detection | Backlog |
+| **035–040** | Planned Phases | Few-Shot Diagnostic Rubric Tuners & Multi-Modal Evaluation | Backlog |
 
 ---
 

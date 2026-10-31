@@ -14,7 +14,7 @@
       "prerequisites": [
         "hgd://knowledgebase/contract-law-basics/node-002"
       ],
-      "conceptSummary": "When one party commits a material breach, the non-breaching party's constructive duties under the contract are suspended.\nThe core invariant is substantial performance: if a breach is minor and immaterial, the non-breaching party must still perform their obligations and may only sue for damages, rather than terminating the contract.",
+      "conceptSummary": "When one party commits a material breach, the non-breaching party's constructive duties under the contract are suspended.\nThe core invariant is substantial performance (exemplified by Jacob & Youngs v. Kent): if a breach is minor and immaterial, the non-breaching party must still perform their obligations and may only sue for damages, rather than terminating the contract.",
       "pacing": {
         "timeLimitSeconds": 60,
         "recommendedEpochs": 3,
@@ -87,7 +87,7 @@
         "conceptualVariants": [
           {
             "representationType": "verbal",
-            "content": "The core invariant is substantial performance: if a breach is minor and immaterial, the non-breaching party must still perform their obligations and may only sue for damages, rather than terminating the contract."
+            "content": "The core invariant is substantial performance (exemplified by Jacob & Youngs v."
           }
         ],
         "proceduralPerturbations": [
@@ -102,7 +102,7 @@
       "forwardPass": {
         "probeType": "prediction_what_if",
         "microPrimer": "When one party commits a material breach, the non-breaching party's constructive duties under the contract are suspended.",
-        "readingContext": "When one party commits a material breach, the non-breaching party's constructive duties under the contract are suspended.\nThe core invariant is substantial performance: if a breach is minor and immaterial, the non-breaching party must still perform their obligations and may only sue for damages, rather than terminating the contract.",
+        "readingContext": "When one party commits a material breach, the non-breaching party's constructive duties under the contract are suspended.\nThe core invariant is substantial performance (exemplified by Jacob & Youngs v. Kent): if a breach is minor and immaterial, the non-breaching party must still perform their obligations and may only sue for damages, rather than terminating the contract.",
         "prompt": "\"Predict whether a homeowner can lawfully terminate a building contract and refuse payment if the builder used identical pipe of Brand B instead of Brand A.\"",
         "options": [
           {
@@ -117,7 +117,7 @@
             "isCorrect": false,
             "diagnosticAxis": "conceptGap",
             "causalRationale": "Misconception: Assumes operations produce zero observable effect, ignoring active transformation.",
-            "specificRemediation": "Review core mechanism: The core invariant is substantial performance: if a breach is minor and immaterial, the non-breaching party must still perform their obligations and may only sue for damages, rather than terminating the contract."
+            "specificRemediation": "Review core mechanism: The core invariant is substantial performance (exemplified by Jacob & Youngs v."
           },
           {
             "optionId": "opt_c",
@@ -138,7 +138,7 @@
       },
       "lossRubric": {
         "conceptGapCriteria": [
-          "Fails to identify core mechanism: The core invariant is substantial performance: if a breach is minor and immaterial, the non-breaching party must still perform their obligations and may only sue for damages, rather than terminating the contract.",
+          "Fails to identify core mechanism: The core invariant is substantial performance (exemplified by Jacob & Youngs v.",
           "Confuses cause and effect in state transitions"
         ],
         "missingPrerequisiteMap": {
@@ -159,7 +159,7 @@
         "learningRate": 0.25,
         "hintLadder": {
           "level0Reflective": "Reflective: What fundamental invariant governs Material Breach and Constructive Conditions?",
-          "level1Directional": "Directional Clue: Examine how Material Breach and Constructive Conditions handles boundary conditions: The core invariant is substantial performance: if a breach is minor and immaterial, the non-breaching party must still perform their obligations and may only sue for damages, rather than terminating the contract.",
+          "level1Directional": "Directional Clue: Examine how Material Breach and Constructive Conditions handles boundary conditions: The core invariant is substantial performance (exemplified by Jacob & Youngs v.",
           "level2Constraint": "Constraint: Eliminate unconstrained assumptions. Ground truth: \"Cannot terminate: under the doctrine of substantial performance (Jacob & Youngs v. Kent), an immaterial breach only entitles the owner to difference-in-value damages, not contract forfeiture.\"",
           "level3WorkedExample": "Worked Solution: \"Cannot terminate: under the doctrine of substantial performance (Jacob & Youngs v. Kent), an immaterial breach only entitles the owner to difference-in-value damages, not contract forfeiture.\". Applying this rule resolves the challenge step-by-step."
         },

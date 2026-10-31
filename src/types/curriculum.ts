@@ -280,3 +280,30 @@ export interface LearnerState {
   dailyActivityLog?: DailyActivityLog;
   lossHistory?: HistoricalLossEntry[];
 }
+
+export type AuditSeverity = "ERROR" | "WARNING" | "INFO";
+
+export interface AuditViolation {
+  nodeId: string;
+  ruleId: string;
+  severity: AuditSeverity;
+  tier: 1 | 2 | 3;
+  message: string;
+  remediation: string;
+}
+
+export interface CurriculumAuditReport {
+  valid: boolean;
+  strictValid: boolean;
+  score: number;
+  totalNodes: number;
+  passedRules: string[];
+  violations: AuditViolation[];
+  summary: {
+    errors: number;
+    warnings: number;
+    tier1Pass: boolean;
+    tier2Pass: boolean;
+    tier3Pass: boolean;
+  };
+}

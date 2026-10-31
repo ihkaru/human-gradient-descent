@@ -14,7 +14,7 @@
       "prerequisites": [
         "hgd://knowledgebase/quantum-computing/node-001"
       ],
-      "conceptSummary": "Entanglement occurs when a multi-qubit system cannot be factored into the tensor product of individual qubit states:\n$$|\\Phi^+\\rangle = \\frac{1}{\\sqrt{2}}(|00\\rangle + |11\\rangle)$$\nMeasuring the first qubit immediately forces the state of the second qubit, regardless of spatial separation. The core invariant is that entanglement does not allow faster-than-light communication because local marginal probabilities remain invariant.",
+      "conceptSummary": "Entanglement occurs when two spatial observers (traditionally Alice and Bob) share an entangled Bell state:\n$$|\\Phi^+\\rangle = \\frac{1}{\\sqrt{2}}(|00\\rangle + |11\\rangle)$$\nMeasuring Alice's qubit immediately forces the correlated state of Bob's qubit. The core invariant is that entanglement cannot communicate information faster than light because Bob's local marginal probability remains an invariant 50/50 mixture.",
       "pacing": {
         "timeLimitSeconds": 60,
         "recommendedEpochs": 3,
@@ -87,7 +87,7 @@
         "conceptualVariants": [
           {
             "representationType": "verbal",
-            "content": "The core invariant is that entanglement does not allow faster-than-light communication because local marginal probabilities remain invariant."
+            "content": "The core invariant is that entanglement cannot communicate information faster than light because Bob's local marginal probability remains an invariant 50/50 mixture."
           },
           {
             "representationType": "symbolic",
@@ -105,8 +105,8 @@
       },
       "forwardPass": {
         "probeType": "prediction_what_if",
-        "microPrimer": "\"When two qubits are entangled, their joint state cannot be described as two independent qubits. Measuring one qubit instantaneously determines the state of the other, even if separated across galaxies, yet this correlation cannot be controlled by either party to send chosen signals.\"",
-        "readingContext": "Entanglement occurs when a multi-qubit system cannot be factored into the tensor product of individual qubit states:\n$$|\\Phi^+\\rangle = \\frac{1}{\\sqrt{2}}(|00\\rangle + |11\\rangle)$$\nMeasuring the first qubit immediately forces the state of the second qubit, regardless of spatial separation. The core invariant is that entanglement does not allow faster-than-light communication because local marginal probabilities remain invariant.",
+        "microPrimer": "\"When two qubits are entangled, their joint state cannot be described independently. Measuring one instantaneously determines the other across arbitrary distances, yet this correlation cannot send faster-than-light signals.\"",
+        "readingContext": "Entanglement occurs when two spatial observers (traditionally Alice and Bob) share an entangled Bell state:\n$$|\\Phi^+\\rangle = \\frac{1}{\\sqrt{2}}(|00\\rangle + |11\\rangle)$$\nMeasuring Alice's qubit immediately forces the correlated state of Bob's qubit. The core invariant is that entanglement cannot communicate information faster than light because Bob's local marginal probability remains an invariant 50/50 mixture.",
         "prompt": "\"If Alice and Bob share an entangled Bell state (|00> + |11>)/sqrt(2), predict whether Alice can transmit an instantaneous binary message to Bob by measuring her qubit.\"",
         "options": [
           {
@@ -121,7 +121,7 @@
             "isCorrect": false,
             "diagnosticAxis": "conceptGap",
             "causalRationale": "Misconception: Assumes operations produce zero observable effect, ignoring active transformation.",
-            "specificRemediation": "Review core mechanism: The core invariant is that entanglement does not allow faster-than-light communication because local marginal probabilities remain invariant."
+            "specificRemediation": "Review core mechanism: The core invariant is that entanglement cannot communicate information faster than light because Bob's local marginal probability remains an invariant 50/50 mixture."
           },
           {
             "optionId": "opt_c",
@@ -143,7 +143,7 @@
       },
       "lossRubric": {
         "conceptGapCriteria": [
-          "Fails to identify core mechanism: The core invariant is that entanglement does not allow faster-than-light communication because local marginal probabilities remain invariant.",
+          "Fails to identify core mechanism: The core invariant is that entanglement cannot communicate information faster than light because Bob's local marginal probability remains an invariant 50/50 mixture.",
           "Confuses cause and effect in state transitions"
         ],
         "missingPrerequisiteMap": {
@@ -164,7 +164,7 @@
         "learningRate": 0.25,
         "hintLadder": {
           "level0Reflective": "Reflective: What fundamental invariant governs Quantum Entanglement and Non-Locality?",
-          "level1Directional": "Directional Clue: Examine how Quantum Entanglement and Non-Locality handles boundary conditions: The core invariant is that entanglement does not allow faster-than-light communication because local marginal probabilities remain invariant.",
+          "level1Directional": "Directional Clue: Examine how Quantum Entanglement and Non-Locality handles boundary conditions: The core invariant is that entanglement cannot communicate information faster than light because Bob's local marginal probability remains an invariant 50/50 mixture.",
           "level2Constraint": "Constraint: Eliminate unconstrained assumptions. Ground truth: \"Alice cannot transmit information faster than light because Bob's local marginal probability remains exactly 50/50 until classical measurement correlations are communicated.\"",
           "level3WorkedExample": "\"Worked Solution: While Alice's measurement instantly fixes Bob's outcome, Alice cannot choose whether she measures 0 or 1. From Bob's perspective, his density matrix remains a random 50/50 mixture. Therefore, no information is transmitted until classical signals arrive (No-Signaling Theorem).\""
         },
@@ -180,7 +180,7 @@
         {
           "sourceRef": "markdown-source",
           "locationTag": "Section: Quantum Entanglement and Non-Locality",
-          "verbatimQuote": "Entanglement occurs when a multi-qubit system cannot be factored into the tensor product of individu"
+          "verbatimQuote": "Entanglement occurs when two spatial observers (traditionally Alice and Bob) share an entangled Bell"
         }
       ]
     }

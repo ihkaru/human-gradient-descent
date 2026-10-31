@@ -12,7 +12,7 @@
         "estimatedReadingSeconds": 3
       },
       "prerequisites": [],
-      "conceptSummary": "A valid contract requires mutual assent, manifested through an objective offer and an unequivocal acceptance.\nThe core invariant is the objective theory of contracts: assent is judged by a reasonable person's outward manifestation, not hidden subjective intent. A revocation is only effective when communicated to the offeree before acceptance.",
+      "conceptSummary": "A valid contract requires mutual assent, manifested through an objective offer and an unequivocal acceptance.\nThe core invariant is the objective theory of contracts: as established in landmark cases like Lucy v. Zehmer, assent is judged by a reasonable person's outward manifestation, not hidden subjective intent. A revocation is only effective when communicated to the offeree before acceptance.",
       "pacing": {
         "timeLimitSeconds": 60,
         "recommendedEpochs": 3,
@@ -99,7 +99,7 @@
       "forwardPass": {
         "probeType": "prediction_what_if",
         "microPrimer": "A valid contract requires mutual assent, manifested through an objective offer and an unequivocal acceptance.",
-        "readingContext": "A valid contract requires mutual assent, manifested through an objective offer and an unequivocal acceptance.\nThe core invariant is the objective theory of contracts: assent is judged by a reasonable person's outward manifestation, not hidden subjective intent. A revocation is only effective when communicated to the offeree before acceptance.",
+        "readingContext": "A valid contract requires mutual assent, manifested through an objective offer and an unequivocal acceptance.\nThe core invariant is the objective theory of contracts: as established in landmark cases like Lucy v. Zehmer, assent is judged by a reasonable person's outward manifestation, not hidden subjective intent. A revocation is only effective when communicated to the offeree before acceptance.",
         "prompt": "\"Predict contract enforceability if Party A writes and signs a formal land sale contract but secretly considers it an elaborate practical joke.\"",
         "options": [
           {

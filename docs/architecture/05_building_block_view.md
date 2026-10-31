@@ -18,6 +18,7 @@ flowchart TD
         MC["MarkdownCurriculumCompiler\n(src/compiler/markdown-compiler.ts)"]
         DCD["DAGCycleDetector\n(src/validator/dag-cycle-detector.ts)"]
         SV["SchemaValidator\n(src/validator/schema-validator.ts)"]
+        CA["CurriculumAuditor\n(src/validator/curriculum-auditor.ts)"]
     end
 
     subgraph OptimizationSlice["Optimization Engine Slice"]
@@ -81,3 +82,6 @@ flowchart TD
 
 ### 9. `Headless UI & Heatmap Renderer`
 * **Responsibility**: Zero-backend reference web client providing high-contrast diagnostic hypothesis selection, side-by-side contrasting case tables, and a GitHub-style activity contribution calendar for visual mastery tracking.
+
+### 10. `CurriculumAuditor`
+* **Responsibility**: Autonomous 3-tier evaluation engine executing sub-20ms deterministic AST static linting (schema validation, Tarjan SCC acyclicity, phonological working memory budgets <= 50 words, Causal Closure / zero orphan entities, 5-axis diagnostic MCQs, and contrasting cases), semantic causal oracle checks (isomorphic physical models, authentic cognitive traps vs strawmen, state prediction transfer tests), and adversarial virtual novice simulation protocols.

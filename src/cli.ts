@@ -3,6 +3,7 @@ import { readFileSync, writeFileSync, mkdirSync, existsSync } from "node:fs";
 import { join, dirname, resolve } from "node:path";
 import { SchemaValidator } from "./validator/schema-validator.js";
 import { DAGCycleDetector } from "./validator/dag-cycle-detector.js";
+import { CurriculumAuditor } from "./validator/curriculum-auditor.js";
 import { MarkdownCurriculumCompiler } from "./compiler/markdown-compiler.js";
 import { TopicCurriculumSynthesizer } from "./compiler/topic-synthesizer.js";
 import { ForwardPassEngine } from "./engine/forward-pass.js";
@@ -22,6 +23,7 @@ Usage:
   hgd generate "<topic>" -o <output_dir>  Synthesize complete grounded curriculum from scratch
   hgd compile <input.md> -o <output_dir>   Compile markdown into sharded curriculum
   hgd validate <curriculum_dir>            Validate curriculum and shards against schema
+  hgd audit <curriculum_dir> [--strict]    Run 3-tier curriculum evaluation & causal closure audit
   hgd check-dag <curriculum_dir>           Run Tarjan SCC acyclicity and DAG integrity check
   hgd learn <curriculum_dir> [--node <id>] Start interactive learning session
   hgd status <curriculum_dir>              Inspect learner weights and active frontier
@@ -265,6 +267,31 @@ async function handleLearn() {
   }
 }
 
+function handleAudit() {
+  const dir = args[1] || "./curriculum-output";
+  const isStrict = args.includes("--strict");
+  const isJson = args.includes("--json");
+  const auditor = new CurriculumAuditor();
+  const report = auditor.audit(dir, { strict: isStrict });
+
+  if (isJson) {
+    console.log(JSON.stringify(report, null, 2));
+    process.exit(report.valid ? 0 : 1);
+  }
+
+  console.log(`\n=== HGD Curriculum Audit: ${dir} ===`);
+  console.log(`Overall Score: ${report.score}/100 | Status: ${report.valid ? "PASSED" : "FAILED"}`);
+  console.log(`Summary: ${report.summary.errors} errors, ${report.summary.warnings} warnings across ${report.totalNodes} nodes.`);
+  if (report.violations.length > 0) {
+    console.log(`\nViolations:`);
+    for (const v of report.violations) {
+      console.log(`  [Tier ${v.tier}] [${v.severity}] [${v.nodeId}] ${v.ruleId}: ${v.message}`);
+      console.log(`    Remediation: ${v.remediation}`);
+    }
+  }
+  process.exit(isStrict ? (report.strictValid ? 0 : 1) : (report.valid ? 0 : 1));
+}
+
 switch (command) {
   case "generate":
     handleGenerate();
@@ -274,6 +301,9 @@ switch (command) {
     break;
   case "validate":
     handleValidate();
+    break;
+  case "audit":
+    handleAudit();
     break;
   case "check-dag":
     handleCheckDAG();

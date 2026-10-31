@@ -15,7 +15,7 @@
         "hgd://knowledgebase/quantum-computing/node-002",
         "hgd://knowledgebase/quantum-computing/node-003"
       ],
-      "conceptSummary": "Grover's algorithm searches an unstructured database of $N$ items in $O(\\sqrt{N})$ operations, compared to classical $O(N)$.\nIt achieves this by iteratively applying the Grover diffusion operator:",
+      "conceptSummary": "Grover's algorithm searches an unstructured database of $N$ items in $O(\\sqrt{N})$ operations by repeatedly applying the Grover diffusion operator. Inverting target phase followed by reflection about the mean geometrically amplifies the target state amplitude.",
       "pacing": {
         "timeLimitSeconds": 60,
         "recommendedEpochs": 3,
@@ -88,7 +88,7 @@
         "conceptualVariants": [
           {
             "representationType": "verbal",
-            "content": "Grover's algorithm searches an unstructured database of $N$ items in $O(\\sqrt{N})$ operations, compared to classical $O(N)$."
+            "content": "Grover's algorithm searches an unstructured database of $N$ items in $O(\\sqrt{N})$ operations by repeatedly applying the Grover diffusion operator."
           }
         ],
         "proceduralPerturbations": [
@@ -102,8 +102,8 @@
       },
       "forwardPass": {
         "probeType": "prediction_what_if",
-        "microPrimer": "\"Searching an unsorted list of N items classically requires N checks on average. Grover's algorithm uses quantum wave interference to amplify the probability amplitude of the correct item while destructively canceling incorrect items.\"",
-        "readingContext": "Grover's algorithm searches an unstructured database of $N$ items in $O(\\sqrt{N})$ operations, compared to classical $O(N)$.\nIt achieves this by iteratively applying the Grover diffusion operator:",
+        "microPrimer": "\"Searching an unsorted list of N items classically requires N checks on average. Grover's algorithm uses quantum wave interference to amplify target probability amplitude while canceling incorrect candidates.\"",
+        "readingContext": "Grover's algorithm searches an unstructured database of $N$ items in $O(\\sqrt{N})$ operations by repeatedly applying the Grover diffusion operator. Inverting target phase followed by reflection about the mean geometrically amplifies the target state amplitude.",
         "prompt": "\"Predict how Grover's diffusion operator amplifies the probability amplitude of the target state while suppressing non-target states.\"",
         "options": [
           {
@@ -118,7 +118,7 @@
             "isCorrect": false,
             "diagnosticAxis": "conceptGap",
             "causalRationale": "Misconception: Assumes operations produce zero observable effect, ignoring active transformation.",
-            "specificRemediation": "Review core mechanism: Grover's algorithm searches an unstructured database of $N$ items in $O(\\sqrt{N})$ operations, compared to classical $O(N)$."
+            "specificRemediation": "Review core mechanism: Grover's algorithm searches an unstructured database of $N$ items in $O(\\sqrt{N})$ operations by repeatedly applying the Grover diffusion operator."
           },
           {
             "optionId": "opt_c",
@@ -140,7 +140,7 @@
       },
       "lossRubric": {
         "conceptGapCriteria": [
-          "Fails to identify core mechanism: Grover's algorithm searches an unstructured database of $N$ items in $O(\\sqrt{N})$ operations, compared to classical $O(N)$.",
+          "Fails to identify core mechanism: Grover's algorithm searches an unstructured database of $N$ items in $O(\\sqrt{N})$ operations by repeatedly applying the Grover diffusion operator.",
           "Confuses cause and effect in state transitions"
         ],
         "missingPrerequisiteMap": {
@@ -161,7 +161,7 @@
         "learningRate": 0.25,
         "hintLadder": {
           "level0Reflective": "Reflective: What fundamental invariant governs Grover's Search and Quadratic Speedup?",
-          "level1Directional": "Directional Clue: Examine how Grover's Search and Quadratic Speedup handles boundary conditions: Grover's algorithm searches an unstructured database of $N$ items in $O(\\sqrt{N})$ operations, compared to classical $O(N)$.",
+          "level1Directional": "Directional Clue: Examine how Grover's Search and Quadratic Speedup handles boundary conditions: Grover's algorithm searches an unstructured database of $N$ items in $O(\\sqrt{N})$ operations by repeatedly applying the Grover diffusion operator.",
           "level2Constraint": "Constraint: Eliminate unconstrained assumptions. Ground truth: \"Inverting the phase of the target state followed by inversion about the mean geometrically rotates the state vector toward the target basis in O(sqrt(N)) steps.\"",
           "level3WorkedExample": "\"Worked Solution: Step 1: The oracle flips the sign of the target state amplitude (phase inversion). Step 2: The diffusion operator reflects all amplitudes across their average mean. Because the target was negative, this reflection shoots its amplitude far above the mean, achieving quadratic speedup O(sqrt(N)).\""
         },
@@ -177,7 +177,7 @@
         {
           "sourceRef": "markdown-source",
           "locationTag": "Section: Grover's Search and Quadratic Speedup",
-          "verbatimQuote": "Grover's algorithm searches an unstructured database of $N$ items in $O(\\sqrt{N})$ operations, compa"
+          "verbatimQuote": "Grover's algorithm searches an unstructured database of $N$ items in $O(\\sqrt{N})$ operations by rep"
         }
       ]
     }

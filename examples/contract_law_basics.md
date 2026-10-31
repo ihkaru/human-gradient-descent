@@ -8,7 +8,7 @@ A comprehensive curriculum on mutual assent, consideration doctrine, material br
 <!-- hgd:truth: "The contract is binding under the objective theory of contracts: assent is judged by a reasonable person's outward manifestation, not hidden subjective intent (Lucy v. Zehmer)." -->
 <!-- hgd:models: ["objective theory", "reasonable person", "outward manifestation", "binding"] -->
 A valid contract requires mutual assent, manifested through an objective offer and an unequivocal acceptance.
-The core invariant is the objective theory of contracts: assent is judged by a reasonable person's outward manifestation, not hidden subjective intent. A revocation is only effective when communicated to the offeree before acceptance.
+The core invariant is the objective theory of contracts: as established in landmark cases like Lucy v. Zehmer, assent is judged by a reasonable person's outward manifestation, not hidden subjective intent. A revocation is only effective when communicated to the offeree before acceptance.
 
 ## Consideration and Bargained-for Exchange
 <!-- hgd:prereqs: ["Objective Mutual Assent"] -->
@@ -26,7 +26,7 @@ The fundamental invariant is mutuality of obligation. Past consideration or mora
 <!-- hgd:truth: "Cannot terminate: under the doctrine of substantial performance (Jacob & Youngs v. Kent), an immaterial breach only entitles the owner to difference-in-value damages, not contract forfeiture." -->
 <!-- hgd:models: ["substantial performance", "immaterial breach", "constructive condition", "damages only"] -->
 When one party commits a material breach, the non-breaching party's constructive duties under the contract are suspended.
-The core invariant is substantial performance: if a breach is minor and immaterial, the non-breaching party must still perform their obligations and may only sue for damages, rather than terminating the contract.
+The core invariant is substantial performance (exemplified by Jacob & Youngs v. Kent): if a breach is minor and immaterial, the non-breaching party must still perform their obligations and may only sue for damages, rather than terminating the contract.
 
 ## Expectation Damages and Mitigation
 <!-- hgd:prereqs: ["Material Breach and Constructive Conditions"] -->

@@ -12,3 +12,4 @@ export * from "./engine/fatigue-governor.js";
 export * from "./engine/mental-trace-engine.js";
 export * from "./compiler/markdown-compiler.js";
 export * from "./compiler/topic-synthesizer.js";
+export * from "./validator/curriculum-auditor.js";
