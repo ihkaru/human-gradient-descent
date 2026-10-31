@@ -121,6 +121,24 @@
               "readingContext": { "type": "string" },
               "microPrimer": { "type": "string" },
               "prompt": { "type": "string" },
+              "options": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "required": ["optionId", "text", "isCorrect", "causalRationale"],
+                  "properties": {
+                    "optionId": { "type": "string" },
+                    "text": { "type": "string" },
+                    "isCorrect": { "type": "boolean" },
+                    "causalRationale": { "type": "string" },
+                    "diagnosticAxis": {
+                      "type": "string",
+                      "enum": ["conceptGap", "missingPrerequisite", "notationBreakdown", "methodChoice", "reasoningBug"]
+                    },
+                    "specificRemediation": { "type": "string" }
+                  }
+                }
+              },
               "expectedMentalModel": {
                 "type": "array",
                 "items": { "type": "string" }

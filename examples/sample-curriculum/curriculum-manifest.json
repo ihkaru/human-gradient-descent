@@ -19,8 +19,8 @@
   ],
   "scale": {
     "totalNodes": 5,
-    "totalShards": 2,
-    "approxWordCount": 1115,
+    "totalShards": 3,
+    "approxWordCount": 1325,
     "estimatedLearningHours": 1.8
   },
   "pacing": {
@@ -56,11 +56,10 @@
     {
       "shardId": "shard_001",
       "filePath": "shards/shard_001.json",
-      "nodeCount": 3,
+      "nodeCount": 2,
       "nodeIds": [
         "hgd://knowledgebase/quantum-computing/node-001",
-        "hgd://knowledgebase/quantum-computing/node-002",
-        "hgd://knowledgebase/quantum-computing/node-003"
+        "hgd://knowledgebase/quantum-computing/node-002"
       ]
     },
     {
@@ -68,7 +67,15 @@
       "filePath": "shards/shard_002.json",
       "nodeCount": 2,
       "nodeIds": [
-        "hgd://knowledgebase/quantum-computing/node-004",
+        "hgd://knowledgebase/quantum-computing/node-003",
+        "hgd://knowledgebase/quantum-computing/node-004"
+      ]
+    },
+    {
+      "shardId": "shard_003",
+      "filePath": "shards/shard_003.json",
+      "nodeCount": 1,
+      "nodeIds": [
         "hgd://knowledgebase/quantum-computing/node-005"
       ]
     }
@@ -89,7 +96,7 @@
       },
       {
         "id": "hgd://knowledgebase/quantum-computing/node-003",
-        "shardId": "shard_001",
+        "shardId": "shard_002",
         "title": "Quantum Entanglement and Non-Locality",
         "cognitiveLevel": "analyze"
       },
@@ -101,7 +108,7 @@
       },
       {
         "id": "hgd://knowledgebase/quantum-computing/node-005",
-        "shardId": "shard_002",
+        "shardId": "shard_003",
         "title": "Grover's Search and Quadratic Speedup",
         "cognitiveLevel": "understand"
       }

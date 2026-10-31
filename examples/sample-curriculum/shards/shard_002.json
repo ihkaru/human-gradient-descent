@@ -3,6 +3,126 @@
   "curriculumId": "quantum-computing",
   "nodes": [
     {
+      "id": "hgd://knowledgebase/quantum-computing/node-003",
+      "title": "Quantum Entanglement and Non-Locality",
+      "cognitiveLevel": "analyze",
+      "difficultyTier": "3_isomorphic_transfer",
+      "workingMemoryBudget": {
+        "wordCount": 27,
+        "estimatedReadingSeconds": 3
+      },
+      "prerequisites": [
+        "hgd://knowledgebase/quantum-computing/node-001"
+      ],
+      "conceptSummary": "Entanglement occurs when a multi-qubit system cannot be factored into the tensor product of individual qubit states:\n$$|\\Phi^+\\rangle = \\frac{1}{\\sqrt{2}}(|00\\rangle + |11\\rangle)$$\nMeasuring the first qubit immediately forces the state of the second qubit, regardless of spatial separation. The core invariant is that entanglement does not allow faster-than-light communication because local marginal probabilities remain invariant.",
+      "pacing": {
+        "timeLimitSeconds": 60,
+        "recommendedEpochs": 3,
+        "isCheckpoint": false,
+        "rollbackNodeId": "hgd://knowledgebase/quantum-computing/node-001"
+      },
+      "variationProbes": {
+        "conceptualVariants": [
+          {
+            "representationType": "verbal",
+            "content": "The core invariant is that entanglement does not allow faster-than-light communication because local marginal probabilities remain invariant."
+          },
+          {
+            "representationType": "symbolic",
+            "content": "|\\Phi^+\\rangle = \\frac{1}{\\sqrt{2}}(|00\\rangle + |11\\rangle)"
+          }
+        ],
+        "proceduralPerturbations": [
+          {
+            "parameter": "boundary_condition",
+            "perturbation": "inverse_constraint",
+            "probe": "If boundary inputs invert, how does Quantum Entanglement and Non-Locality preserve state?",
+            "expectedBoundaryBehavior": "\"Alice cannot transmit information faster than light because Bob's local marginal probability remains exactly 50/50 until classical measurement correlations are communicated.\""
+          }
+        ]
+      },
+      "forwardPass": {
+        "probeType": "prediction_what_if",
+        "microPrimer": "\"When two qubits are entangled, their joint state cannot be described as two independent qubits. Measuring one qubit instantaneously determines the state of the other, even if separated across galaxies, yet this correlation cannot be controlled by either party to send chosen signals.\"",
+        "readingContext": "Entanglement occurs when a multi-qubit system cannot be factored into the tensor product of individual qubit states:\n$$|\\Phi^+\\rangle = \\frac{1}{\\sqrt{2}}(|00\\rangle + |11\\rangle)$$\nMeasuring the first qubit immediately forces the state of the second qubit, regardless of spatial separation. The core invariant is that entanglement does not allow faster-than-light communication because local marginal probabilities remain invariant.",
+        "prompt": "\"If Alice and Bob share an entangled Bell state (|00> + |11>)/sqrt(2), predict whether Alice can transmit an instantaneous binary message to Bob by measuring her qubit.\"",
+        "options": [
+          {
+            "optionId": "opt_a",
+            "text": "\"Alice cannot transmit information faster than light because Bob's local marginal probability remains exactly 50/50 until classical measurement correlations are communicated.\"",
+            "isCorrect": true,
+            "causalRationale": "Correct: \"Alice cannot transmit information faster than light because Bob's local marginal probability remains exactly 50/50 until classical measurement correlations are communicated.\". This adheres strictly to the governing invariant of Quantum Entanglement and Non-Locality."
+          },
+          {
+            "optionId": "opt_b",
+            "text": "The system remains completely unchanged because Quantum Entanglement and Non-Locality acts as an invariant identity operator without state transitions.",
+            "isCorrect": false,
+            "diagnosticAxis": "conceptGap",
+            "causalRationale": "Misconception: Assumes operations produce zero observable effect, ignoring active transformation.",
+            "specificRemediation": "Review core mechanism: The core invariant is that entanglement does not allow faster-than-light communication because local marginal probabilities remain invariant."
+          },
+          {
+            "optionId": "opt_c",
+            "text": "The state diverges uncontrollably because boundary conditions are violated immediately.",
+            "isCorrect": false,
+            "diagnosticAxis": "reasoningBug",
+            "causalRationale": "Reasoning Slip: Assumes instability without verifying whether mathematical bounds are preserved.",
+            "specificRemediation": "Trace boundary constraints step-by-step."
+          }
+        ],
+        "expectedMentalModel": [
+          "no-signaling",
+          "marginal probability",
+          "bell state",
+          "faster than light",
+          "correlation"
+        ],
+        "groundTruth": "\"Alice cannot transmit information faster than light because Bob's local marginal probability remains exactly 50/50 until classical measurement correlations are communicated.\""
+      },
+      "lossRubric": {
+        "conceptGapCriteria": [
+          "Fails to identify core mechanism: The core invariant is that entanglement does not allow faster-than-light communication because local marginal probabilities remain invariant.",
+          "Confuses cause and effect in state transitions"
+        ],
+        "missingPrerequisiteMap": {
+          "hgd://knowledgebase/quantum-computing/node-001": "Foundational upstream concept"
+        },
+        "notationCriteria": [
+          "Uses ambiguous notation",
+          "Confuses variables"
+        ],
+        "strategyCriteria": [
+          "Applies inapplicable heuristics"
+        ],
+        "reasoningCriteria": [
+          "Off-by-one or boundary condition omission"
+        ]
+      },
+      "backwardPass": {
+        "learningRate": 0.25,
+        "hintLadder": {
+          "level0Reflective": "Reflective: What fundamental invariant governs Quantum Entanglement and Non-Locality?",
+          "level1Directional": "Directional Clue: Examine how Quantum Entanglement and Non-Locality handles boundary conditions: The core invariant is that entanglement does not allow faster-than-light communication because local marginal probabilities remain invariant.",
+          "level2Constraint": "Constraint: Eliminate unconstrained assumptions. Ground truth: \"Alice cannot transmit information faster than light because Bob's local marginal probability remains exactly 50/50 until classical measurement correlations are communicated.\"",
+          "level3WorkedExample": "\"Worked Solution: While Alice's measurement instantly fixes Bob's outcome, Alice cannot choose whether she measures 0 or 1. From Bob's perspective, his density matrix remains a random 50/50 mixture. Therefore, no information is transmitted until classical signals arrive (No-Signaling Theorem).\""
+        },
+        "microRemediations": {
+          "conceptGap": "Core Invariant: \"Alice cannot transmit information faster than light because Bob's local marginal probability remains exactly 50/50 until classical measurement correlations are communicated.\"",
+          "missingPrerequisite": "Review prerequisite: hgd://knowledgebase/quantum-computing/node-001",
+          "notationBreakdown": "Ensure accurate notation and units for Quantum Entanglement and Non-Locality.",
+          "methodChoice": "Apply deductive causal reasoning rather than guessing.",
+          "reasoningBug": "Trace boundary edge cases step-by-step."
+        }
+      },
+      "sources": [
+        {
+          "sourceRef": "markdown-source",
+          "locationTag": "Section: Quantum Entanglement and Non-Locality",
+          "verbatimQuote": "Entanglement occurs when a multi-qubit system cannot be factored into the tensor product of individu"
+        }
+      ]
+    },
+    {
       "id": "hgd://knowledgebase/quantum-computing/node-004",
       "title": "Quantum No-Cloning Theorem",
       "cognitiveLevel": "evaluate",
@@ -47,6 +167,30 @@
         "microPrimer": "\"Classical data can be cloned endlessly (Ctrl+C, Ctrl+V). However, quantum mechanics requires all operations to be linear. If a cloning machine existed, it would have to clone both basis states and their linear combinations.\"",
         "readingContext": "The no-cloning theorem states that it is impossible to create an identical copy of an arbitrary unknown quantum state:\n$$U(|\\psi\\rangle |0\\rangle) \\neq |\\psi\\rangle |\\psi\\rangle$$\nThis follows directly from the linearity of quantum operators. Because cloning is prohibited, quantum error correction cannot simply duplicate qubits, but must instead distribute quantum information across entangled topological codes.",
         "prompt": "\"Predict what mathematical contradiction occurs if a unitary operator U clones an arbitrary unknown superposition state alpha|0> + beta|1>.\"",
+        "options": [
+          {
+            "optionId": "opt_a",
+            "text": "\"Linearity requires U(|psi>|0>) = alpha|00> + beta|11>, whereas a true copy requires (alpha|0> + beta|1>)(alpha|0> + beta|1>) containing cross-terms 2 alpha beta |01>, violating unitarity.\"",
+            "isCorrect": true,
+            "causalRationale": "Correct: \"Linearity requires U(|psi>|0>) = alpha|00> + beta|11>, whereas a true copy requires (alpha|0> + beta|1>)(alpha|0> + beta|1>) containing cross-terms 2 alpha beta |01>, violating unitarity.\". This adheres strictly to the governing invariant of Quantum No-Cloning Theorem."
+          },
+          {
+            "optionId": "opt_b",
+            "text": "The system remains completely unchanged because Quantum No-Cloning Theorem acts as an invariant identity operator without state transitions.",
+            "isCorrect": false,
+            "diagnosticAxis": "conceptGap",
+            "causalRationale": "Misconception: Assumes operations produce zero observable effect, ignoring active transformation.",
+            "specificRemediation": "Review core mechanism: The no-cloning theorem states that it is impossible to create an identical copy of an arbitrary unknown quantum state:\n$$U(|\\psi\\rangle |0\\rangle) \\neq |\\psi\\rangle |\\psi\\rangle$$\nThis follows directly from the linearity of quantum operators."
+          },
+          {
+            "optionId": "opt_c",
+            "text": "The state diverges uncontrollably because boundary conditions are violated immediately.",
+            "isCorrect": false,
+            "diagnosticAxis": "reasoningBug",
+            "causalRationale": "Reasoning Slip: Assumes instability without verifying whether mathematical bounds are preserved.",
+            "specificRemediation": "Trace boundary constraints step-by-step."
+          }
+        ],
         "expectedMentalModel": [
           "linearity",
           "cross terms",
@@ -96,103 +240,6 @@
           "sourceRef": "markdown-source",
           "locationTag": "Section: Quantum No-Cloning Theorem",
           "verbatimQuote": "The no-cloning theorem states that it is impossible to create an identical copy of an arbitrary unkn"
-        }
-      ]
-    },
-    {
-      "id": "hgd://knowledgebase/quantum-computing/node-005",
-      "title": "Grover's Search and Quadratic Speedup",
-      "cognitiveLevel": "understand",
-      "difficultyTier": "3_isomorphic_transfer",
-      "workingMemoryBudget": {
-        "wordCount": 17,
-        "estimatedReadingSeconds": 3
-      },
-      "prerequisites": [
-        "hgd://knowledgebase/quantum-computing/node-002",
-        "hgd://knowledgebase/quantum-computing/node-003"
-      ],
-      "conceptSummary": "Grover's algorithm searches an unstructured database of $N$ items in $O(\\sqrt{N})$ operations, compared to classical $O(N)$.\nIt achieves this by iteratively applying the Grover diffusion operator:\n$$G = (2|s\\rangle\\langle s| - I) O_\\omega$$\nThe mechanism works via amplitude amplification: the phase of the target state is inverted, and then all amplitudes are inverted about the mean, geometrically rotating the state vector toward the target.",
-      "pacing": {
-        "timeLimitSeconds": 60,
-        "recommendedEpochs": 3,
-        "isCheckpoint": false,
-        "rollbackNodeId": "hgd://knowledgebase/quantum-computing/node-002"
-      },
-      "variationProbes": {
-        "conceptualVariants": [
-          {
-            "representationType": "verbal",
-            "content": "Grover's algorithm searches an unstructured database of $N$ items in $O(\\sqrt{N})$ operations, compared to classical $O(N)$."
-          },
-          {
-            "representationType": "symbolic",
-            "content": "G = (2|s\\rangle\\langle s| - I) O_\\omega"
-          }
-        ],
-        "proceduralPerturbations": [
-          {
-            "parameter": "boundary_condition",
-            "perturbation": "inverse_constraint",
-            "probe": "If boundary inputs invert, how does Grover's Search and Quadratic Speedup preserve state?",
-            "expectedBoundaryBehavior": "\"Inverting the phase of the target state followed by inversion about the mean geometrically rotates the state vector toward the target basis in O(sqrt(N)) steps.\""
-          }
-        ]
-      },
-      "forwardPass": {
-        "probeType": "prediction_what_if",
-        "microPrimer": "\"Searching an unsorted list of N items classically requires N checks on average. Grover's algorithm uses quantum wave interference to amplify the probability amplitude of the correct item while destructively canceling incorrect items.\"",
-        "readingContext": "Grover's algorithm searches an unstructured database of $N$ items in $O(\\sqrt{N})$ operations, compared to classical $O(N)$.\nIt achieves this by iteratively applying the Grover diffusion operator:\n$$G = (2|s\\rangle\\langle s| - I) O_\\omega$$\nThe mechanism works via amplitude amplification: the phase of the target state is inverted, and then all amplitudes are inverted about the mean, geometrically rotating the state vector toward the target.",
-        "prompt": "\"Predict how Grover's diffusion operator amplifies the probability amplitude of the target state while suppressing non-target states.\"",
-        "expectedMentalModel": [
-          "amplitude amplification",
-          "inversion about mean",
-          "geometric rotation",
-          "quadratic speedup",
-          "oracle"
-        ],
-        "groundTruth": "\"Inverting the phase of the target state followed by inversion about the mean geometrically rotates the state vector toward the target basis in O(sqrt(N)) steps.\""
-      },
-      "lossRubric": {
-        "conceptGapCriteria": [
-          "Fails to identify core mechanism: Grover's algorithm searches an unstructured database of $N$ items in $O(\\sqrt{N})$ operations, compared to classical $O(N)$.",
-          "Confuses cause and effect in state transitions"
-        ],
-        "missingPrerequisiteMap": {
-          "hgd://knowledgebase/quantum-computing/node-002": "Foundational upstream concept"
-        },
-        "notationCriteria": [
-          "Uses ambiguous notation",
-          "Confuses variables"
-        ],
-        "strategyCriteria": [
-          "Applies inapplicable heuristics"
-        ],
-        "reasoningCriteria": [
-          "Off-by-one or boundary condition omission"
-        ]
-      },
-      "backwardPass": {
-        "learningRate": 0.25,
-        "hintLadder": {
-          "level0Reflective": "Reflective: What fundamental invariant governs Grover's Search and Quadratic Speedup?",
-          "level1Directional": "Directional Clue: Examine how Grover's Search and Quadratic Speedup handles boundary conditions: Grover's algorithm searches an unstructured database of $N$ items in $O(\\sqrt{N})$ operations, compared to classical $O(N)$.",
-          "level2Constraint": "Constraint: Eliminate unconstrained assumptions. Ground truth: \"Inverting the phase of the target state followed by inversion about the mean geometrically rotates the state vector toward the target basis in O(sqrt(N)) steps.\"",
-          "level3WorkedExample": "\"Worked Solution: Step 1: The oracle flips the sign of the target state amplitude (phase inversion). Step 2: The diffusion operator reflects all amplitudes across their average mean. Because the target was negative, this reflection shoots its amplitude far above the mean, achieving quadratic speedup O(sqrt(N)).\""
-        },
-        "microRemediations": {
-          "conceptGap": "Core Invariant: \"Inverting the phase of the target state followed by inversion about the mean geometrically rotates the state vector toward the target basis in O(sqrt(N)) steps.\"",
-          "missingPrerequisite": "Review prerequisite: hgd://knowledgebase/quantum-computing/node-002",
-          "notationBreakdown": "Ensure accurate notation and units for Grover's Search and Quadratic Speedup.",
-          "methodChoice": "Apply deductive causal reasoning rather than guessing.",
-          "reasoningBug": "Trace boundary edge cases step-by-step."
-        }
-      },
-      "sources": [
-        {
-          "sourceRef": "markdown-source",
-          "locationTag": "Section: Grover's Search and Quadratic Speedup",
-          "verbatimQuote": "Grover's algorithm searches an unstructured database of $N$ items in $O(\\sqrt{N})$ operations, compa"
         }
       ]
     }

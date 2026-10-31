@@ -108,10 +108,67 @@ async function selectNode(nodeId) {
   activeNode = await getNodeById(nodeId);
   if (!activeNode) return;
 
-  renderActiveNode(activeNode);
+  renderActiveNode(activeNode, (opt, card) => handleOptionSelected(opt, card));
   resetLossDisplay();
   startTimer(activeNode.pacing.timeLimitSeconds || 60);
   updateFrontierView();
+}
+
+function handleOptionSelected(opt, card) {
+  if (!activeNode) return;
+
+  document.querySelectorAll(".option-card").forEach((c) => {
+    c.classList.remove("selected-correct", "selected-incorrect");
+  });
+
+  const currentAttempts = (learnerState.attempts[activeNode.id] || 0) + 1;
+  learnerState.attempts[activeNode.id] = currentAttempts;
+
+  if (opt.isCorrect) {
+    card.classList.add("selected-correct");
+    const zeroVector = { lConcept: 0.0, lPrereq: 0.0, lNotation: 0.0, lStrategy: 0.0, lReasoning: 0.0 };
+    renderLoss(0.0, zeroVector);
+
+    learnerState.mastered.add(activeNode.id);
+    learnerState.theta[activeNode.id] = 0.95;
+    learnerState.divergenceCount = 0;
+    clearInterval(timerInterval);
+
+    showSuccessMessage(opt.causalRationale);
+    recomputeFrontier();
+    updateFrontierView();
+    updateStatsView();
+
+    setTimeout(() => {
+      if (learnerState.activeFrontier.length > 0) {
+        selectNode(learnerState.activeFrontier[0]);
+      }
+    }, 1200);
+  } else {
+    card.classList.add("selected-incorrect");
+    const axis = opt.diagnosticAxis || "conceptGap";
+    const vector = {
+      lConcept: axis === "conceptGap" ? 1.0 : 0.2,
+      lPrereq: axis === "missingPrerequisite" ? 1.0 : 0.1,
+      lNotation: axis === "notationBreakdown" ? 1.0 : 0.1,
+      lStrategy: axis === "methodChoice" ? 1.0 : 0.2,
+      lReasoning: axis === "reasoningBug" ? 1.0 : 0.2,
+    };
+    const totalLoss = Number(
+      (0.35 * vector.lConcept + 0.2 * vector.lPrereq + 0.15 * vector.lNotation + 0.15 * vector.lStrategy + 0.15 * vector.lReasoning).toFixed(2)
+    );
+
+    renderLoss(totalLoss, vector);
+    revealHint(Math.min(currentAttempts, 3), activeNode.backwardPass.hintLadder);
+
+    const rem = opt.specificRemediation ? ` ${opt.specificRemediation}` : "";
+    showWarningMessage(`${opt.causalRationale}${rem}`);
+
+    if (currentAttempts >= 3) {
+      learnerState.divergenceCount++;
+      showRollbackAlert(activeNode, (rollbackId) => selectNode(rollbackId));
+    }
+  }
 }
 
 function startTimer(seconds) {

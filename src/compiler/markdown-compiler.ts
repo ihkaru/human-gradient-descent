@@ -9,6 +9,7 @@ import type {
   ConceptualVariant,
 } from "../types/curriculum.js";
 import { DAGCycleDetector } from "../validator/dag-cycle-detector.js";
+import { buildDiagnosticOptions } from "./options-builder.js";
 
 export interface CompileOptions {
   curriculumId: string;
@@ -44,7 +45,7 @@ export class MarkdownCurriculumCompiler {
       this.synthesizeNode(s, idx, options, titleToIdMap)
     );
 
-    const nodesPerShard = options.nodesPerShard || 3;
+    const nodesPerShard = options.nodesPerShard || 2;
     const shards: NodeShard[] = [];
     const shardCatalog: CurriculumManifest["shards"] = [];
     const dagNodes: CurriculumManifest["dag"]["nodes"] = [];
@@ -270,6 +271,7 @@ export class MarkdownCurriculumCompiler {
         microPrimer,
         readingContext: s.body.slice(0, 500).trim(),
         prompt,
+        options: buildDiagnosticOptions(ann, s.title, groundTruth, invariantSentence),
         expectedMentalModel: mentalModels,
         groundTruth,
       },

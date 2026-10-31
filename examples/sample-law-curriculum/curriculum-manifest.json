@@ -49,18 +49,18 @@
     {
       "shardId": "shard_001",
       "filePath": "shards/shard_001.json",
-      "nodeCount": 3,
+      "nodeCount": 2,
       "nodeIds": [
         "hgd://knowledgebase/contract-law-basics/node-001",
-        "hgd://knowledgebase/contract-law-basics/node-002",
-        "hgd://knowledgebase/contract-law-basics/node-003"
+        "hgd://knowledgebase/contract-law-basics/node-002"
       ]
     },
     {
       "shardId": "shard_002",
       "filePath": "shards/shard_002.json",
-      "nodeCount": 1,
+      "nodeCount": 2,
       "nodeIds": [
+        "hgd://knowledgebase/contract-law-basics/node-003",
         "hgd://knowledgebase/contract-law-basics/node-004"
       ]
     }
@@ -81,7 +81,7 @@
       },
       {
         "id": "hgd://knowledgebase/contract-law-basics/node-003",
-        "shardId": "shard_001",
+        "shardId": "shard_002",
         "title": "Material Breach and Constructive Conditions",
         "cognitiveLevel": "analyze"
       },

@@ -77,7 +77,7 @@ function handleCompile() {
     curriculumId: title.toLowerCase().replace(/[^a-z0-9]/g, "-"),
     title,
     domain: "KnowledgeBase",
-    nodesPerShard: 3,
+    nodesPerShard: 2,
   });
 
   const shardsDir = join(outDir, "shards");

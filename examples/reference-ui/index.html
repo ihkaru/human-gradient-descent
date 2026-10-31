@@ -94,18 +94,30 @@
         <!-- Divergence / Feedback Alert -->
         <div id="divergence-alert" class="alert" style="display: none;"></div>
 
-        <!-- Interactive Input -->
-        <div class="input-area">
-          <textarea id="user-prediction" placeholder="Type your prediction / causal explanation here... (or click 'I am New' if encountering for the first time)"></textarea>
-          <div class="action-row" style="margin-top: 0.5rem;">
-            <span style="font-size: 0.75rem; color: var(--text-muted);">Press Ctrl+Enter to submit</span>
-            <div style="display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap;">
-              <button id="btn-coldstart" class="badge amber" style="cursor: pointer; min-height: 44px; padding: 0.5rem 0.85rem;" type="button">
-                I am New / Need Worked Primer
-              </button>
-              <button id="btn-submit" class="primary" type="button">Submit Prediction</button>
+        <!-- Diagnostic Hypotheses (Multiple Choice with Causal Rationales) -->
+        <div id="options-container" style="display: flex; flex-direction: column; gap: 0.65rem;">
+          <span style="font-size: 0.8rem; font-weight: 600; color: var(--accent-amber); text-transform: uppercase;">
+            Select Predicted Causal Hypothesis:
+          </span>
+          <div id="options-list" class="options-list"></div>
+        </div>
+
+        <!-- Optional Free-Form Input Toggle -->
+        <details style="font-size: 0.8rem; color: var(--text-muted); margin-top: 0.25rem;">
+          <summary style="cursor: pointer; padding: 0.35rem 0;">Or type custom explanation (Advanced mode)</summary>
+          <div class="input-area" style="margin-top: 0.5rem;">
+            <textarea id="user-prediction" placeholder="Type your alternative causal explanation here..."></textarea>
+            <div class="action-row" style="margin-top: 0.5rem;">
+              <button id="btn-submit" class="primary" type="button">Submit Custom Prediction</button>
             </div>
           </div>
+        </details>
+
+        <!-- Cold-Start Fast-Track Button -->
+        <div class="action-row" style="margin-top: 0.25rem;">
+          <button id="btn-coldstart" class="badge amber" style="cursor: pointer; min-height: 44px; padding: 0.5rem 0.85rem;" type="button">
+            I am New / Need Worked Primer
+          </button>
         </div>
 
         <!-- 5-Axis Diagnostic Loss -->

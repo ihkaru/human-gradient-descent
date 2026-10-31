@@ -84,11 +84,21 @@ export interface NodePacing {
   rollbackNodeId?: string;
 }
 
+export interface DiagnosticOption {
+  optionId: string;
+  text: string;
+  isCorrect: boolean;
+  causalRationale: string;
+  diagnosticAxis?: keyof LossVector;
+  specificRemediation?: string;
+}
+
 export interface ForwardPassProbe {
   probeType: ProbeType;
   readingContext?: string;
   microPrimer?: string;
   prompt: string;
+  options?: DiagnosticOption[];
   expectedMentalModel: string[];
   groundTruth: string;
 }

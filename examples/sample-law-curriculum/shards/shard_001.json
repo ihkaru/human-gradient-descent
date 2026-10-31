@@ -39,6 +39,30 @@
         "microPrimer": "A valid contract requires mutual assent, manifested through an objective offer and an unequivocal acceptance.",
         "readingContext": "A valid contract requires mutual assent, manifested through an objective offer and an unequivocal acceptance.\nThe core invariant is the objective theory of contracts: assent is judged by a reasonable person's outward manifestation, not hidden subjective intent. A revocation is only effective when communicated to the offeree before acceptance.",
         "prompt": "\"Predict contract enforceability if Party A writes and signs a formal land sale contract but secretly considers it an elaborate practical joke.\"",
+        "options": [
+          {
+            "optionId": "opt_a",
+            "text": "\"The contract is binding under the objective theory of contracts: assent is judged by a reasonable person's outward manifestation, not hidden subjective intent (Lucy v. Zehmer).\"",
+            "isCorrect": true,
+            "causalRationale": "Correct: \"The contract is binding under the objective theory of contracts: assent is judged by a reasonable person's outward manifestation, not hidden subjective intent (Lucy v. Zehmer).\". This adheres strictly to the governing invariant of Objective Mutual Assent."
+          },
+          {
+            "optionId": "opt_b",
+            "text": "The system remains completely unchanged because Objective Mutual Assent acts as an invariant identity operator without state transitions.",
+            "isCorrect": false,
+            "diagnosticAxis": "conceptGap",
+            "causalRationale": "Misconception: Assumes operations produce zero observable effect, ignoring active transformation.",
+            "specificRemediation": "Review core mechanism: A valid contract requires mutual assent, manifested through an objective offer and an unequivocal acceptance."
+          },
+          {
+            "optionId": "opt_c",
+            "text": "The state diverges uncontrollably because boundary conditions are violated immediately.",
+            "isCorrect": false,
+            "diagnosticAxis": "reasoningBug",
+            "causalRationale": "Reasoning Slip: Assumes instability without verifying whether mathematical bounds are preserved.",
+            "specificRemediation": "Trace boundary constraints step-by-step."
+          }
+        ],
         "expectedMentalModel": [
           "objective theory",
           "reasonable person",
@@ -126,6 +150,30 @@
         "microPrimer": "Enforceable promises require consideration: a bargained-for exchange of legal value.",
         "readingContext": "Enforceable promises require consideration: a bargained-for exchange of legal value.\nThe fundamental invariant is mutuality of obligation. Past consideration or moral obligation does not constitute legal consideration unless promissory estoppel applies to prevent manifest injustice.",
         "prompt": "\"Predict whether an employer's promise to pay a retiring employee an extra bonus 'in gratitude for 30 years of past loyal service' forms an enforceable contract.\"",
+        "options": [
+          {
+            "optionId": "opt_a",
+            "text": "\"Unenforceable for lack of consideration: past consideration was not bargained-for in exchange for the new promise, unless promissory estoppel or written statutory reliance applies.\"",
+            "isCorrect": true,
+            "causalRationale": "Correct: \"Unenforceable for lack of consideration: past consideration was not bargained-for in exchange for the new promise, unless promissory estoppel or written statutory reliance applies.\". This adheres strictly to the governing invariant of Consideration and Bargained-for Exchange."
+          },
+          {
+            "optionId": "opt_b",
+            "text": "The system remains completely unchanged because Consideration and Bargained-for Exchange acts as an invariant identity operator without state transitions.",
+            "isCorrect": false,
+            "diagnosticAxis": "conceptGap",
+            "causalRationale": "Misconception: Assumes operations produce zero observable effect, ignoring active transformation.",
+            "specificRemediation": "Review core mechanism: The fundamental invariant is mutuality of obligation."
+          },
+          {
+            "optionId": "opt_c",
+            "text": "The state diverges uncontrollably because boundary conditions are violated immediately.",
+            "isCorrect": false,
+            "diagnosticAxis": "reasoningBug",
+            "causalRationale": "Reasoning Slip: Assumes instability without verifying whether mathematical bounds are preserved.",
+            "specificRemediation": "Trace boundary constraints step-by-step."
+          }
+        ],
         "expectedMentalModel": [
           "past consideration",
           "bargained-for exchange",
@@ -174,97 +222,6 @@
           "sourceRef": "markdown-source",
           "locationTag": "Section: Consideration and Bargained-for Exchange",
           "verbatimQuote": "Enforceable promises require consideration: a bargained-for exchange of legal value.\nThe fundamental"
-        }
-      ]
-    },
-    {
-      "id": "hgd://knowledgebase/contract-law-basics/node-003",
-      "title": "Material Breach and Constructive Conditions",
-      "cognitiveLevel": "analyze",
-      "difficultyTier": "3_isomorphic_transfer",
-      "workingMemoryBudget": {
-        "wordCount": 26,
-        "estimatedReadingSeconds": 3
-      },
-      "prerequisites": [
-        "hgd://knowledgebase/contract-law-basics/node-002"
-      ],
-      "conceptSummary": "When one party commits a material breach, the non-breaching party's constructive duties under the contract are suspended.\nThe core invariant is substantial performance: if a breach is minor and immaterial, the non-breaching party must still perform their obligations and may only sue for damages, rather than terminating the contract.",
-      "pacing": {
-        "timeLimitSeconds": 60,
-        "recommendedEpochs": 3,
-        "isCheckpoint": false,
-        "rollbackNodeId": "hgd://knowledgebase/contract-law-basics/node-002"
-      },
-      "variationProbes": {
-        "conceptualVariants": [
-          {
-            "representationType": "verbal",
-            "content": "The core invariant is substantial performance: if a breach is minor and immaterial, the non-breaching party must still perform their obligations and may only sue for damages, rather than terminating the contract."
-          }
-        ],
-        "proceduralPerturbations": [
-          {
-            "parameter": "boundary_condition",
-            "perturbation": "inverse_constraint",
-            "probe": "If boundary inputs invert, how does Material Breach and Constructive Conditions preserve state?",
-            "expectedBoundaryBehavior": "\"Cannot terminate: under the doctrine of substantial performance (Jacob & Youngs v. Kent), an immaterial breach only entitles the owner to difference-in-value damages, not contract forfeiture.\""
-          }
-        ]
-      },
-      "forwardPass": {
-        "probeType": "prediction_what_if",
-        "microPrimer": "When one party commits a material breach, the non-breaching party's constructive duties under the contract are suspended.",
-        "readingContext": "When one party commits a material breach, the non-breaching party's constructive duties under the contract are suspended.\nThe core invariant is substantial performance: if a breach is minor and immaterial, the non-breaching party must still perform their obligations and may only sue for damages, rather than terminating the contract.",
-        "prompt": "\"Predict whether a homeowner can lawfully terminate a building contract and refuse payment if the builder used identical pipe of Brand B instead of Brand A.\"",
-        "expectedMentalModel": [
-          "substantial performance",
-          "immaterial breach",
-          "constructive condition",
-          "damages only"
-        ],
-        "groundTruth": "\"Cannot terminate: under the doctrine of substantial performance (Jacob & Youngs v. Kent), an immaterial breach only entitles the owner to difference-in-value damages, not contract forfeiture.\""
-      },
-      "lossRubric": {
-        "conceptGapCriteria": [
-          "Fails to identify core mechanism: The core invariant is substantial performance: if a breach is minor and immaterial, the non-breaching party must still perform their obligations and may only sue for damages, rather than terminating the contract.",
-          "Confuses cause and effect in state transitions"
-        ],
-        "missingPrerequisiteMap": {
-          "hgd://knowledgebase/contract-law-basics/node-002": "Foundational upstream concept"
-        },
-        "notationCriteria": [
-          "Uses ambiguous notation",
-          "Confuses variables"
-        ],
-        "strategyCriteria": [
-          "Applies inapplicable heuristics"
-        ],
-        "reasoningCriteria": [
-          "Off-by-one or boundary condition omission"
-        ]
-      },
-      "backwardPass": {
-        "learningRate": 0.25,
-        "hintLadder": {
-          "level0Reflective": "Reflective: What fundamental invariant governs Material Breach and Constructive Conditions?",
-          "level1Directional": "Directional Clue: Examine how Material Breach and Constructive Conditions handles boundary conditions: The core invariant is substantial performance: if a breach is minor and immaterial, the non-breaching party must still perform their obligations and may only sue for damages, rather than terminating the contract.",
-          "level2Constraint": "Constraint: Eliminate unconstrained assumptions. Ground truth: \"Cannot terminate: under the doctrine of substantial performance (Jacob & Youngs v. Kent), an immaterial breach only entitles the owner to difference-in-value damages, not contract forfeiture.\"",
-          "level3WorkedExample": "Worked Solution: \"Cannot terminate: under the doctrine of substantial performance (Jacob & Youngs v. Kent), an immaterial breach only entitles the owner to difference-in-value damages, not contract forfeiture.\". Applying this rule resolves the challenge step-by-step."
-        },
-        "microRemediations": {
-          "conceptGap": "Core Invariant: \"Cannot terminate: under the doctrine of substantial performance (Jacob & Youngs v. Kent), an immaterial breach only entitles the owner to difference-in-value damages, not contract forfeiture.\"",
-          "missingPrerequisite": "Review prerequisite: hgd://knowledgebase/contract-law-basics/node-002",
-          "notationBreakdown": "Ensure accurate notation and units for Material Breach and Constructive Conditions.",
-          "methodChoice": "Apply deductive causal reasoning rather than guessing.",
-          "reasoningBug": "Trace boundary edge cases step-by-step."
-        }
-      },
-      "sources": [
-        {
-          "sourceRef": "markdown-source",
-          "locationTag": "Section: Material Breach and Constructive Conditions",
-          "verbatimQuote": "When one party commits a material breach, the non-breaching party's constructive duties under the co"
         }
       ]
     }

@@ -23,7 +23,7 @@ export function updateTimerUI(isTimeBounded, timeLeftSeconds) {
   }
 }
 
-export function renderActiveNode(activeNode) {
+export function renderActiveNode(activeNode, onSelectOption) {
   if (!activeNode) return;
   document.getElementById("node-title").textContent = activeNode.title;
   document.getElementById("node-level").textContent = activeNode.cognitiveLevel;
@@ -36,6 +36,37 @@ export function renderActiveNode(activeNode) {
   document.getElementById("prompt-text").textContent = activeNode.forwardPass.prompt;
   document.getElementById("reading-latency").textContent = `${activeNode.workingMemoryBudget.estimatedReadingSeconds}s read`;
   document.getElementById("word-count").textContent = `${activeNode.workingMemoryBudget.wordCount} words`;
+
+  renderOptions(activeNode.forwardPass.options, onSelectOption);
+}
+
+export function renderOptions(options, onSelectOption) {
+  const container = document.getElementById("options-list");
+  if (!container) return;
+  container.innerHTML = "";
+
+  if (!options || options.length === 0) {
+    container.innerHTML = "<p style='font-size:0.8rem;color:var(--text-muted);'>No diagnostic hypotheses specified.</p>";
+    return;
+  }
+
+  const letters = ["A", "B", "C", "D", "E"];
+  options.forEach((opt, idx) => {
+    const card = document.createElement("div");
+    card.className = "option-card";
+    card.setAttribute("role", "button");
+    card.setAttribute("tabindex", "0");
+    card.innerHTML = `
+      <span class="option-chip">${letters[idx] || String(idx + 1)}</span>
+      <span style="overflow-wrap:anywhere;word-break:break-word;">${opt.text}</span>
+    `;
+
+    card.addEventListener("click", () => {
+      onSelectOption(opt, card);
+    });
+
+    container.appendChild(card);
+  });
 }
 
 export function renderLoss(totalLoss, vector) {

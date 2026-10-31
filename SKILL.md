@@ -74,6 +74,7 @@ When an AI Coding Agent is requested to create, expand, or tutor a curriculum:
    <!-- hgd:probe: "Predict: What happens when parameter X approaches zero?" -->
    <!-- hgd:truth: "State Y collapses because invariant Z is violated." -->
    <!-- hgd:models: ["parameter x", "state y", "invariant z"] -->
+   <!-- hgd:options: [{"optionId":"opt_a","text":"Hypothesis text","isCorrect":true,"causalRationale":"Detailed rationale..."}] -->
    Section content explaining the concept...
    ```
 2. **Compile to Sharded DAG**:
