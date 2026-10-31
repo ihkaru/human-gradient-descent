@@ -153,3 +153,114 @@
 .subway-bullet.spiral { background: #818cf8; }
 .subway-bullet.branch { background: var(--accent-amber); }
 .subway-bullet.bridge { background: var(--accent-emerald); }
+
+/* Stepper Controls & Focus Toggle */
+.uila-header-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+.uila-stepper {
+  display: flex;
+  gap: 0.35rem;
+  flex-wrap: wrap;
+}
+.stepper-pill {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  padding: 0.25rem 0.5rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  cursor: pointer;
+  color: var(--text-muted);
+  transition: all 0.15s ease;
+}
+.stepper-pill:hover, .stepper-pill.active {
+  background: rgba(56, 189, 248, 0.15);
+  border-color: var(--accent-cyan);
+  color: var(--accent-cyan);
+}
+.btn-focus-mode {
+  background: rgba(16, 185, 129, 0.12);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  color: var(--accent-emerald);
+  border-radius: var(--radius-sm);
+  padding: 0.25rem 0.55rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+.btn-focus-mode:hover {
+  background: rgba(16, 185, 129, 0.25);
+}
+
+/* Interactive Subway Track */
+.subway-track.interactive {
+  cursor: pointer;
+  transition: transform 0.1s ease, border-color 0.15s ease;
+}
+.subway-track.interactive:hover {
+  transform: translateX(4px);
+  border-color: var(--accent-cyan);
+}
+
+/* Modal Dialog Overlay */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(4px);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+.modal-card {
+  background: #18181b;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  max-width: 520px;
+  width: 100%;
+  padding: 1.25rem;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
+}
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.75rem;
+}
+.modal-close {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  font-size: 1.25rem;
+  cursor: pointer;
+  padding: 0.25rem;
+}
+
+/* Dual-Phase Pacing Badge */
+.phase-badge {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 0.2rem 0.5rem;
+  border-radius: var(--radius-sm);
+  display: inline-block;
+}
+.phase-badge.phase-a {
+  background: rgba(56, 189, 248, 0.15);
+  color: var(--accent-cyan);
+  border: 1px solid rgba(56, 189, 248, 0.3);
+}
+.phase-badge.phase-b {
+  background: rgba(244, 63, 94, 0.15);
+  color: var(--accent-rose);
+  border: 1px solid rgba(244, 63, 94, 0.3);
+}

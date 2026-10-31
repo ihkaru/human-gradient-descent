@@ -31,6 +31,7 @@ let learnerState = {
 let timerInterval = null;
 let timeLeftSeconds = 60;
 let isTimeBounded = true;
+let currentPhase = "phase_a";
 
 const CURRICULA = {
   quantum: {
@@ -115,16 +116,34 @@ async function selectNode(nodeId) {
   if (!activeNode) return;
 
   renderActiveNode(activeNode, (opt, card) => handleOptionSelected(opt, card));
-  renderUILABlocks(activeNode, "uila-container");
+  renderUILABlocks(activeNode, "uila-container", () => setPhase("phase_b"));
   renderSubwayMap(activeNode, "subway-map-container");
   renderHeatmap(learnerState, "heatmap-card");
   resetLossDisplay();
-  startTimer(activeNode.pacing.timeLimitSeconds || 60);
+  setPhase("phase_a");
   updateFrontierView();
+}
+
+function setPhase(phase) {
+  currentPhase = phase;
+  const badge = document.getElementById("phase-indicator");
+  const timerElem = document.getElementById("timer-display");
+  if (!badge) return;
+  if (phase === "phase_a") {
+    badge.className = "phase-badge phase-a";
+    badge.textContent = "Phase 1: Untimed Primer";
+    clearInterval(timerInterval);
+    if (timerElem) timerElem.textContent = "UNTIMED";
+  } else {
+    badge.className = "phase-badge phase-b";
+    badge.textContent = "Phase 2: Timed Sprint";
+    startTimer(activeNode?.pacing?.timeLimitSeconds || 60);
+  }
 }
 
 function handleOptionSelected(opt, card) {
   if (!activeNode) return;
+  if (currentPhase !== "phase_b") setPhase("phase_b");
 
   document.querySelectorAll(".option-card").forEach((c) => {
     c.classList.remove("selected-correct", "selected-incorrect");
@@ -201,25 +220,12 @@ function startTimer(seconds) {
 
 function evaluatePrediction(userAnswer) {
   if (!activeNode) return;
+  if (currentPhase !== "phase_b") setPhase("phase_b");
   const lowerAns = userAnswer.toLowerCase();
 
-  const isColdStart =
-    lowerAns.includes("don't know") ||
-    lowerAns.includes("dont know") ||
-    lowerAns.includes("idk") ||
-    lowerAns.includes("tidak tahu") ||
-    lowerAns.includes("belum tahu") ||
-    lowerAns === "blank" ||
-    lowerAns === "";
-
+  const isColdStart = ["don't know", "dont know", "idk", "tidak tahu", "belum tahu", "blank", ""].some((s) => lowerAns.includes(s));
   if (isColdStart) {
-    const lConcept = 1.0;
-    const lPrereq = 1.0;
-    const lNotation = 0.4;
-    const lStrategy = 0.4;
-    const lReasoning = 0.4;
-    const totalLoss = 0.72;
-    renderLoss(totalLoss, { lConcept, lPrereq, lNotation, lStrategy, lReasoning });
+    renderLoss(0.72, { lConcept: 1.0, lPrereq: 1.0, lNotation: 0.4, lStrategy: 0.4, lReasoning: 0.4 });
     revealHint(3, activeNode.backwardPass.hintLadder);
     showWarningMessage("Cold-Start Activated: Foundation primer triggered. Study the worked solution below, then test your understanding on the probe.");
     return;
@@ -296,6 +302,10 @@ function setupEventListeners() {
   document.getElementById("select-pacing")?.addEventListener("change", (e) => {
     isTimeBounded = e.target.value === "time_bounded";
     startTimer(activeNode?.pacing?.timeLimitSeconds || 60);
+  });
+
+  document.getElementById("user-prediction")?.addEventListener("focus", () => {
+    if (currentPhase !== "phase_b") setPhase("phase_b");
   });
 
   document.getElementById("btn-submit")?.addEventListener("click", () => {

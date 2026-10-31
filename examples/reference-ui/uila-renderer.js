@@ -1,4 +1,7 @@
-// UILA & Heatmap Renderer Module
+// UILA, Heatmap & Subway Map Renderer Module
+
+let activeStep = 0; // 0 = show all, 1 = b1, 2 = b2, 3 = b3, 4 = b4
+let isReadingCollapsed = false;
 
 export function renderHeatmap(state, containerId) {
   const container = document.getElementById(containerId);
@@ -9,7 +12,6 @@ export function renderHeatmap(state, containerId) {
   const masteredCount = state?.masteredNodes?.length || 0;
   const streakDays = Math.min(7, Math.max(1, masteredCount + 1));
 
-  // Generate 35 cells (5 rows x 7 cols)
   let cellsHtml = "";
   for (let i = 0; i < 35; i++) {
     let lvl = 0;
@@ -35,7 +37,7 @@ export function renderHeatmap(state, containerId) {
   `;
 }
 
-export function renderUILABlocks(node, containerId) {
+export function renderUILABlocks(node, containerId, onFocusTest) {
   const container = document.getElementById(containerId);
   if (!container) return;
 
@@ -49,6 +51,23 @@ export function renderUILABlocks(node, containerId) {
   const b2 = uila.block2_intuitivePrototype;
   const b3 = uila.block3_coreMechanics;
   const b4 = uila.block4_notationContract;
+
+  if (isReadingCollapsed) {
+    container.innerHTML = `
+      <div class="uila-block b3" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem;">
+        <div>
+          <span style="font-size: 0.75rem; text-transform: uppercase; font-weight: 700; color: var(--accent-emerald);">Invariant Grounded</span>
+          <div style="font-size: 0.85rem; font-weight: 600;">${b3?.invariantProperty || "System Invariant Active"}</div>
+        </div>
+        <button id="btn-toggle-reading" class="btn-focus-mode" type="button">Expand Full Reading</button>
+      </div>
+    `;
+    document.getElementById("btn-toggle-reading")?.addEventListener("click", () => {
+      isReadingCollapsed = false;
+      renderUILABlocks(node, containerId, onFocusTest);
+    });
+    return;
+  }
 
   let contrastingRows = "";
   if (b3?.contrastingCases) {
@@ -73,47 +92,113 @@ export function renderUILABlocks(node, containerId) {
     }
   }
 
+  const showB1 = activeStep === 0 || activeStep === 1;
+  const showB2 = activeStep === 0 || activeStep === 2;
+  const showB3 = activeStep === 0 || activeStep === 3;
+  const showB4 = activeStep === 0 || activeStep === 4;
+
   container.innerHTML = `
-    <div class="uila-block b1">
-      <div class="uila-block-title">Blok 1: Pangkal Anomali (The Ground State & Inadequacy)</div>
-      <div class="uila-body">${b1?.breakdownPoint || "Skenario kegagalan pemahaman lama."}</div>
-    </div>
-
-    <div class="uila-block b2">
-      <div class="uila-block-title">Blok 2: Prototipe Intuitif (Isomorphic Sandbox)</div>
-      <div class="uila-body">
-        <strong>${b2?.physicalObject || "Model Fisik"}:</strong>
-        ${b2?.isomorphicMapping || "Analogi relasional yang memecahkan anomali."}
+    <div class="uila-header-controls">
+      <div class="uila-stepper">
+        <button class="stepper-pill ${activeStep === 0 ? "active" : ""}" data-step="0">All</button>
+        <button class="stepper-pill ${activeStep === 1 ? "active" : ""}" data-step="1">1. Anomali</button>
+        <button class="stepper-pill ${activeStep === 2 ? "active" : ""}" data-step="2">2. Prototipe</button>
+        <button class="stepper-pill ${activeStep === 3 ? "active" : ""}" data-step="3">3. Invarian</button>
+        <button class="stepper-pill ${activeStep === 4 ? "active" : ""}" data-step="4">4. Notasi</button>
       </div>
+      <button id="btn-toggle-reading" class="btn-focus-mode" type="button">Focus on Test Mode</button>
     </div>
 
-    <div class="uila-block b3">
-      <div class="uila-block-title">Blok 3: Invarian & Operasi Inti (Core Mechanics)</div>
-      <div class="uila-body">
-        <div>Hukum Kekekalan: <strong>${b3?.invariantProperty || "Invarian Sistem"}</strong></div>
-        ${contrastingRows ? `
-          <table class="contrasting-table">
-            <thead>
-              <tr>
-                <th class="th-wrong">Apa yang Dipikirkan Pemula (Salah)</th>
-                <th class="th-right">Apa yang Sebenarnya Terjadi</th>
-              </tr>
-            </thead>
-            <tbody>${contrastingRows}</tbody>
-          </table>
-        ` : ""}
+    ${showB1 ? `
+      <div class="uila-block b1">
+        <div class="uila-block-title">Blok 1: Pangkal Anomali (The Ground State & Inadequacy)</div>
+        <div class="uila-body">${b1?.breakdownPoint || "Skenario kegagalan pemahaman lama."}</div>
       </div>
-    </div>
+    ` : ""}
 
-    <div class="uila-block b4">
-      <div class="uila-block-title">Blok 4: Notasi Sebagai Kontrak (Minimal Formalization)</div>
-      <div class="uila-body">
-        <code style="font-family: var(--font-mono); color: var(--accent-amber);">${b4?.formulaOrCode || ""}</code>
-        <p style="margin: 0.35rem 0 0 0; font-size: 0.8rem; color: var(--text-muted);">${b4?.minimalFormalization || ""}</p>
-        ${notationChips ? `<div class="notation-chips">${notationChips}</div>` : ""}
+    ${showB2 ? `
+      <div class="uila-block b2">
+        <div class="uila-block-title">Blok 2: Prototipe Intuitif (Isomorphic Sandbox)</div>
+        <div class="uila-body">
+          <strong>${b2?.physicalObject || "Model Fisik"}:</strong>
+          ${b2?.isomorphicMapping || "Analogi relasional yang memecahkan anomali."}
+        </div>
+      </div>
+    ` : ""}
+
+    ${showB3 ? `
+      <div class="uila-block b3">
+        <div class="uila-block-title">Blok 3: Invarian & Operasi Inti (Core Mechanics)</div>
+        <div class="uila-body">
+          <div>Hukum Kekekalan: <strong>${b3?.invariantProperty || "Invarian Sistem"}</strong></div>
+          ${contrastingRows ? `
+            <table class="contrasting-table">
+              <thead>
+                <tr>
+                  <th class="th-wrong">Apa yang Dipikirkan Pemula (Salah)</th>
+                  <th class="th-right">Apa yang Sebenarnya Terjadi</th>
+                </tr>
+              </thead>
+              <tbody>${contrastingRows}</tbody>
+            </table>
+          ` : ""}
+        </div>
+      </div>
+    ` : ""}
+
+    ${showB4 ? `
+      <div class="uila-block b4">
+        <div class="uila-block-title">Blok 4: Notasi Sebagai Kontrak (Minimal Formalization)</div>
+        <div class="uila-body">
+          <code style="font-family: var(--font-mono); color: var(--accent-amber);">${b4?.formulaOrCode || ""}</code>
+          <p style="margin: 0.35rem 0 0 0; font-size: 0.8rem; color: var(--text-muted);">${b4?.minimalFormalization || ""}</p>
+          ${notationChips ? `<div class="notation-chips">${notationChips}</div>` : ""}
+        </div>
+      </div>
+    ` : ""}
+  `;
+
+  container.querySelectorAll(".stepper-pill").forEach((pill) => {
+    pill.addEventListener("click", (e) => {
+      activeStep = parseInt(e.target.getAttribute("data-step") || "0", 10);
+      renderUILABlocks(node, containerId, onFocusTest);
+    });
+  });
+
+  document.getElementById("btn-toggle-reading")?.addEventListener("click", () => {
+    isReadingCollapsed = true;
+    renderUILABlocks(node, containerId, onFocusTest);
+    if (onFocusTest) onFocusTest();
+  });
+}
+
+export function showSubwayModal(title, subtitle, bodyHtml) {
+  const modal = document.getElementById("subway-modal");
+  if (!modal) return;
+
+  modal.innerHTML = `
+    <div class="modal-card">
+      <div class="modal-header">
+        <div>
+          <div style="font-weight: 700; font-size: 1rem; color: var(--text-color);">${title}</div>
+          <div style="font-size: 0.8rem; color: var(--text-muted);">${subtitle}</div>
+        </div>
+        <button id="modal-close-btn" class="modal-close" type="button" aria-label="Close">&times;</button>
+      </div>
+      <div style="font-size: 0.85rem; line-height: 1.5; color: var(--text-color); margin-top: 0.5rem;">
+        ${bodyHtml}
+      </div>
+      <div style="margin-top: 1rem; display: flex; justify-content: flex-end;">
+        <button id="modal-ack-btn" class="badge cyan" style="cursor: pointer; padding: 0.4rem 0.8rem;">Close Inspector</button>
       </div>
     </div>
   `;
+
+  modal.style.display = "flex";
+  const close = () => { modal.style.display = "none"; };
+  document.getElementById("modal-close-btn")?.addEventListener("click", close);
+  document.getElementById("modal-ack-btn")?.addEventListener("click", close);
+  modal.onclick = (e) => { if (e.target === modal) close(); };
 }
 
 export function renderSubwayMap(node, containerId) {
@@ -123,13 +208,14 @@ export function renderSubwayMap(node, containerId) {
   const pathways = node?.expansionPathways;
   let branchHtml = "";
   if (pathways?.branches) {
-    for (const b of pathways.branches) {
+    for (let i = 0; i < pathways.branches.length; i++) {
+      const b = pathways.branches[i];
       branchHtml += `
-        <div class="subway-track">
+        <div class="subway-track interactive" id="branch-item-${i}">
           <div class="subway-bullet branch"></div>
           <div>
             <div style="font-weight: 600; color: var(--accent-amber);">${b.trackName}</div>
-            <div style="font-size: 0.75rem; color: var(--text-muted);">${b.description || ""}</div>
+            <div style="font-size: 0.75rem; color: var(--text-muted);">${b.description || "Click to inspect branch"}</div>
           </div>
         </div>
       `;
@@ -138,9 +224,10 @@ export function renderSubwayMap(node, containerId) {
 
   let bridgeHtml = "";
   if (pathways?.isomorphicBridges) {
-    for (const br of pathways.isomorphicBridges) {
+    for (let i = 0; i < pathways.isomorphicBridges.length; i++) {
+      const br = pathways.isomorphicBridges[i];
       bridgeHtml += `
-        <div class="subway-track">
+        <div class="subway-track interactive" id="bridge-item-${i}">
           <div class="subway-bullet bridge"></div>
           <div>
             <div style="font-weight: 600; color: var(--accent-emerald);">Bridge: ${br.domain}</div>
@@ -153,17 +240,17 @@ export function renderSubwayMap(node, containerId) {
 
   container.innerHTML = `
     <div style="font-size: 0.75rem; font-weight: 700; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.4rem;">
-      Curriculum Subway Map & Pathways
+      Curriculum Subway Map & Pathways (Click to Inspect)
     </div>
     <div class="subway-map">
-      <div class="subway-track">
+      <div class="subway-track interactive" id="subway-core">
         <div class="subway-bullet core"></div>
         <div>
           <div style="font-weight: 600; color: var(--accent-cyan);">Core Track: ${node?.title || "Active"}</div>
           <div style="font-size: 0.75rem; color: var(--text-muted);">Level 1 Foundational Fluency</div>
         </div>
       </div>
-      <div class="subway-track">
+      <div class="subway-track interactive" id="subway-spiral">
         <div class="subway-bullet spiral"></div>
         <div>
           <div style="font-weight: 600; color: #818cf8;">Depth Spiral Track</div>
@@ -174,4 +261,28 @@ export function renderSubwayMap(node, containerId) {
       ${bridgeHtml}
     </div>
   `;
+
+  document.getElementById("subway-core")?.addEventListener("click", () => {
+    showSubwayModal("Core Foundation Track", node?.title, "This is the active foundational slice. Master this invariant to unblock dependent child competencies.");
+  });
+
+  document.getElementById("subway-spiral")?.addEventListener("click", () => {
+    showSubwayModal("Depth Spiral Exploration", `${node?.title} (Level 2 Rigor)`, "This pathway re-visits the invariant with formal Hilbert space proofs, matrix decompositions, and noisy physical hardware considerations.");
+  });
+
+  if (pathways?.branches) {
+    pathways.branches.forEach((b, i) => {
+      document.getElementById(`branch-item-${i}`)?.addEventListener("click", () => {
+        showSubwayModal("Branch Track", b.trackName, b.description || "Specialization pathway unblocked after core fluency.");
+      });
+    });
+  }
+
+  if (pathways?.isomorphicBridges) {
+    pathways.isomorphicBridges.forEach((br, i) => {
+      document.getElementById(`bridge-item-${i}`)?.addEventListener("click", () => {
+        showSubwayModal("Isomorphic Cross-Domain Bridge", br.domain, `This bridge demonstrates how the mathematical invariant <strong>${br.sharedInvariant}</strong> maps directly to another scientific field.`);
+      });
+    });
+  }
 }

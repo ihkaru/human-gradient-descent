@@ -68,7 +68,10 @@ flowchart LR
 | **024** | [`phases/024_uila_5_block_learning_architecture.md`](./phases/024_uila_5_block_learning_architecture.md) | Universal Invariant Learning Architecture (UILA 5-Block Framework) | ✅ Completed |
 | **025** | [`phases/025_github_style_mastery_heatmap.md`](./phases/025_github_style_mastery_heatmap.md) | Learner Effort & Cognitive Convergence Heatmap (GitHub-Style Grid) | ✅ Completed |
 | **026** | [`phases/026_curriculum_expansion_subway_and_spiral.md`](./phases/026_curriculum_expansion_subway_and_spiral.md) | Multi-Dimensional Curriculum Expansion (Depth Spiral & Subway Map) | ✅ Completed |
-| **027–030** | Reserved for Advanced Synthesis Prompts. | Advanced Prompt Templates & Token-Efficient Generators | 📋 Planned |
+| **027** | [`phases/027_progressive_uila_stepper_and_focus_mode.md`](./phases/027_progressive_uila_stepper_and_focus_mode.md) | Progressive UILA Stepper & Mobile Viewport Focus Mode | ✅ Completed |
+| **028** | [`phases/028_dual_phase_cognitive_pacing.md`](./phases/028_dual_phase_cognitive_pacing.md) | Dual-Phase Cognitive Pacing (Untimed Grounding vs Timed Testing) | ✅ Completed |
+| **029** | [`phases/029_interactive_subway_map_navigation.md`](./phases/029_interactive_subway_map_navigation.md) | Interactive Knowledge Subway Map & Cross-Domain Modals | ✅ Completed |
+| **030** | Reserved for Advanced Synthesis Prompts. | Advanced Prompt Templates & Token-Efficient Generators | 📋 Planned |
 
 ---
 
