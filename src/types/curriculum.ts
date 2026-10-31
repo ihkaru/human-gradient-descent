@@ -1,3 +1,9 @@
+import type {
+  UILABlocks,
+  ExpansionPathways,
+  DailyActivityLog,
+} from "./uila.js";
+
 export type CognitiveLevel =
   | "remember"
   | "understand"
@@ -148,6 +154,8 @@ export interface CompetencyNode {
   conceptSummary: string;
   pacing?: NodePacing;
   variationProbes?: VariationProbes;
+  uila?: UILABlocks;
+  expansionPathways?: ExpansionPathways;
   forwardPass: ForwardPassProbe;
   lossRubric: LossRubric;
   backwardPass: BackwardPassScaffold;
@@ -269,5 +277,6 @@ export interface LearnerState {
   weights: Record<string, NodeWeight>;
   activeFrontier: string[];
   masteredNodes: string[];
+  dailyActivityLog?: DailyActivityLog;
   lossHistory?: HistoricalLossEntry[];
 }

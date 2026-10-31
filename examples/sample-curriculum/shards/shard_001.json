@@ -12,17 +12,91 @@
         "estimatedReadingSeconds": 3
       },
       "prerequisites": [],
-      "conceptSummary": "In classical computing, a bit is strictly either 0 or 1. A quantum bit (qubit) is a two-state quantum-mechanical system described as a linear superposition:\n$$|\\psi\\rangle = \\alpha |0\\rangle + \\beta |1\\rangle$$\nWhere $\\alpha, \\beta \\in \\mathbb{C}$ and $|\\alpha|^2 + |\\beta|^2 = 1$. The fundamental invariant is that measurement collapses the superposition into a definite state with probability $|\\alpha|^2$ or $|\\beta|^2$.",
+      "conceptSummary": "### 1. Pangkal Anomali\nSelama ini kita memproses informasi dengan saklar biner yang bernilai mutlak 0 atau 1. Cara ini bekerja sangat baik sampai kita menghadapi persoalan pencarian ruang kombinasi besar di mana cara sekuensial membutuhkan waktu lebih lama dari usia alam semesta. Saklar klasik tidak mampu merepresentasikan ruang kemungkinan paralel tanpa menduplikasi sirkuit fisik secara masif.\n\n### 2. Prototipe Intuitif\nBayangkan alih-alih saklar lampu on/off, kita memiliki koin logam yang sedang berputar kencang di atas meja. Selama koin berputar, statusnya bukan angka dan bukan gambar, melainkan kombinasi dinamis keduanya. Memiringkan meja akan mengubah kecenderungan jatuhnya koin tanpa harus menghentikan putarannya terlebih dahulu.\n\n### 3. Invarian & Operasi Inti\nHukum kekekalan fundamental sistem ini adalah Konservasi Probabilitas: jumlah peluang seluruh hasil akhir pengukuran wajib selalu bernilai tepat 100% (1.0).\n\n| Apa yang Dipikirkan Pemula (Salah) | Apa yang Sebenarnya Terja",
       "pacing": {
         "timeLimitSeconds": 60,
         "recommendedEpochs": 3,
         "isCheckpoint": false
       },
+      "uila": {
+        "block1_anomaly": {
+          "groundState": "Initial state prior to Qubits and Superposition.",
+          "oldWay": "Conventional assumption or baseline approach.",
+          "breakdownPoint": "Selama ini kita memproses informasi dengan saklar biner yang bernilai mutlak 0 atau 1. Cara ini bekerja sangat baik sampai kita menghadapi persoalan pencarian ruang kombinasi besar di mana cara sekuensial membutuhkan waktu lebih lama dari usia alam semesta. Saklar klasik tidak mampu merepresentasikan ruang kemungkinan paralel tanpa menduplikasi sirkuit fisik secara masif."
+        },
+        "block2_intuitivePrototype": {
+          "physicalObject": "Physical sandbox model",
+          "isomorphicMapping": "Bayangkan alih-alih saklar lampu on/off, kita memiliki koin logam yang sedang berputar kencang di atas meja. Selama koin berputar, statusnya bukan angka dan bukan gambar, melainkan kombinasi dinamis keduanya. Memiringkan meja akan mengubah kecenderungan jatuhnya koin tanpa harus menghentikan putarannya terlebih dahulu.",
+          "deadlockResolution": "Resolves the deadlock identified in Block 1 through isomorphic interaction."
+        },
+        "block3_coreMechanics": {
+          "invariantProperty": "Conservation of system balance in Qubits and Superposition.",
+          "variableComponents": [
+            "System inputs",
+            "Observable state amplitudes"
+          ],
+          "contrastingCases": [
+            {
+              "beginnerMisconception": "Qubit menyimpan nilai 0 dan 1 sekaligus saat dibaca di layar.",
+              "physicalReality": "Qubit hanya berada dalam superposisi saat terisolasi. Pengukuran memaksanya runtuh menjadi salah satu nilai pasti."
+            },
+            {
+              "beginnerMisconception": "Pengukuran bersifat pasif dan tidak mengubah sistem.",
+              "physicalReality": "Pengukuran adalah operasi fisik aktif yang menghancurkan superposisi."
+            }
+          ]
+        },
+        "block4_notationContract": {
+          "formulaOrCode": "f(Qubits and Superposition) -> Invariant",
+          "minimalFormalization": "Minimal mathematical contract encoding the physical dynamics of Qubits and Superposition.",
+          "termsDeconstruction": [
+            {
+              "symbol": "|psi>",
+              "physicalMeaning": "Status koin yang sedang berputar (gelombang kuantum)."
+            },
+            {
+              "symbol": "alpha, beta",
+              "physicalMeaning": "Amplitudo probabilitas kemiringan status."
+            },
+            {
+              "symbol": "|0>, |1>",
+              "physicalMeaning": "Dua sisi koin saat jatuh di atas meja (keadaan terukur)."
+            },
+            {
+              "symbol": "|alpha|^2 + |beta|^2 = 1",
+              "physicalMeaning": "Kontrak hukum kekekalan total probabilitas."
+            }
+          ]
+        }
+      },
+      "expansionPathways": {
+        "depthLevel": 1,
+        "deeperSpiralNodeId": "hgd://knowledgebase/quantum-computing/node-001-deep-spiral",
+        "branches": [
+          {
+            "trackName": "Qubits and Superposition Rigorous Implementation",
+            "targetNodeId": "hgd://knowledgebase/quantum-computing/node-001-rigor",
+            "description": "Deep dive into proofs, memory models, and edge performance for Qubits and Superposition."
+          },
+          {
+            "trackName": "Qubits and Superposition Production Engineering",
+            "targetNodeId": "hgd://knowledgebase/quantum-computing/node-001-prod",
+            "description": "Handling noisy environments, concurrency faults, and distributed failure modes."
+          }
+        ],
+        "isomorphicBridges": [
+          {
+            "domain": "General Dynamical Systems",
+            "targetNodeId": "hgd://general/dynamics/qubits-and-superposition",
+            "sharedInvariant": "Conservation and state equilibrium under boundary perturbation."
+          }
+        ]
+      },
       "variationProbes": {
         "conceptualVariants": [
           {
             "representationType": "verbal",
-            "content": "The fundamental invariant is that measurement collapses the superposition into a definite state with probability $|\\alpha|^2$ or $|\\beta|^2$."
+            "content": "Invarian & Operasi Inti\nHukum kekekalan fundamental sistem ini adalah Konservasi Probabilitas: jumlah peluang seluruh hasil akhir pengukuran wajib selalu bernilai tepat 100% (1.0)."
           },
           {
             "representationType": "symbolic",
@@ -41,7 +115,7 @@
       "forwardPass": {
         "probeType": "prediction_what_if",
         "microPrimer": "\"A classical bit is strictly either 0 or 1. A qubit is a quantum system that can exist in a simultaneous linear superposition of |0> and |1>. A Hadamard gate is a foundational quantum operation that transforms a definite state |0> into an equal superposition where both outcomes become equally likely upon measurement.\"",
-        "readingContext": "In classical computing, a bit is strictly either 0 or 1. A quantum bit (qubit) is a two-state quantum-mechanical system described as a linear superposition:\n$$|\\psi\\rangle = \\alpha |0\\rangle + \\beta |1\\rangle$$\nWhere $\\alpha, \\beta \\in \\mathbb{C}$ and $|\\alpha|^2 + |\\beta|^2 = 1$. The fundamental invariant is that measurement collapses the superposition into a definite state with probability $|\\alpha|^2$ or $|\\beta|^2$.",
+        "readingContext": "### 1. Pangkal Anomali\nSelama ini kita memproses informasi dengan saklar biner yang bernilai mutlak 0 atau 1. Cara ini bekerja sangat baik sampai kita menghadapi persoalan pencarian ruang kombinasi besar di mana cara sekuensial membutuhkan waktu lebih lama dari usia alam semesta. Saklar klasik tidak mampu merepresentasikan ruang kemungkinan paralel tanpa menduplikasi sirkuit fisik secara masif.\n\n### 2. Prototipe Intuitif\nBayangkan alih-alih saklar lampu on/off, kita memiliki koin logam yang seda",
         "prompt": "\"If a qubit initialized in state |0> is transformed by a Hadamard gate into an equal superposition, predict the probability distribution of measuring |0> versus |1>.\"",
         "options": [
           {
@@ -86,7 +160,7 @@
       },
       "lossRubric": {
         "conceptGapCriteria": [
-          "Fails to identify core mechanism: The fundamental invariant is that measurement collapses the superposition into a definite state with probability $|\\alpha|^2$ or $|\\beta|^2$.",
+          "Fails to identify core mechanism: Invarian & Operasi Inti\nHukum kekekalan fundamental sistem ini adalah Konservasi Probabilitas: jumlah peluang seluruh hasil akhir pengukuran wajib selalu bernilai tepat 100% (1.0).",
           "Confuses cause and effect in state transitions"
         ],
         "notationCriteria": [
@@ -104,7 +178,7 @@
         "learningRate": 0.25,
         "hintLadder": {
           "level0Reflective": "Reflective: What fundamental invariant governs Qubits and Superposition?",
-          "level1Directional": "Directional Clue: Examine how Qubits and Superposition handles boundary conditions: The fundamental invariant is that measurement collapses the superposition into a definite state with probability $|\\alpha|^2$ or $|\\beta|^2$.",
+          "level1Directional": "Directional Clue: Examine how Qubits and Superposition handles boundary conditions: Invarian & Operasi Inti\nHukum kekekalan fundamental sistem ini adalah Konservasi Probabilitas: jumlah peluang seluruh hasil akhir pengukuran wajib selalu bernilai tepat 100% (1.0).",
           "level2Constraint": "Constraint: Eliminate unconstrained assumptions. Ground truth: \"Measurement collapses the equal superposition (1/sqrt(2)|0> + 1/sqrt(2)|1>) into |0> with 50% probability and |1> with 50% probability.\"",
           "level3WorkedExample": "\"Worked Solution: The Hadamard gate maps |0> to (|0> + |1>)/sqrt(2). The probability of measuring state |k> equals the squared amplitude |1/sqrt(2)|^2 = 1/2 = 50%. Thus, measuring yields 50% probability for |0> and 50% probability for |1>.\""
         },
@@ -119,123 +193,7 @@
         {
           "sourceRef": "markdown-source",
           "locationTag": "Section: Qubits and Superposition",
-          "verbatimQuote": "In classical computing, a bit is strictly either 0 or 1. A quantum bit (qubit) is a two-state quantu"
-        }
-      ]
-    },
-    {
-      "id": "hgd://knowledgebase/quantum-computing/node-002",
-      "title": "Unitary Operations and Reversibility",
-      "cognitiveLevel": "apply",
-      "difficultyTier": "2_boundary_perturbation",
-      "workingMemoryBudget": {
-        "wordCount": 20,
-        "estimatedReadingSeconds": 3
-      },
-      "prerequisites": [
-        "hgd://knowledgebase/quantum-computing/node-001"
-      ],
-      "conceptSummary": "All quantum logic gates operating on closed systems must be represented by unitary operators $U^\\dagger U = I$.\nBecause unitary transformations preserve the inner product and norm of vectors, all quantum computation without measurement is strictly reversible. No quantum gate can perform irreversible erasure of quantum information without increasing thermodynamic entropy.",
-      "pacing": {
-        "timeLimitSeconds": 60,
-        "recommendedEpochs": 3,
-        "isCheckpoint": true,
-        "rollbackNodeId": "hgd://knowledgebase/quantum-computing/node-001"
-      },
-      "variationProbes": {
-        "conceptualVariants": [
-          {
-            "representationType": "verbal",
-            "content": "All quantum logic gates operating on closed systems must be represented by unitary operators $U^\\dagger U = I$."
-          }
-        ],
-        "proceduralPerturbations": [
-          {
-            "parameter": "boundary_condition",
-            "perturbation": "inverse_constraint",
-            "probe": "If boundary inputs invert, how does Unitary Operations and Reversibility preserve state?",
-            "expectedBoundaryBehavior": "\"Quantum operations must be unitary (U dagger U = I), which strictly preserves inner products and vector norms, guaranteeing 100% reversibility without entropy dissipation.\""
-          }
-        ]
-      },
-      "forwardPass": {
-        "probeType": "prediction_what_if",
-        "microPrimer": "\"Classical computing permits irreversible operations, such as resetting a bit to 0, which destroys previous state information and dissipates heat. In quantum computing, all closed-system transformations are governed by unitary operators, which strictly preserve quantum state lengths and angles.\"",
-        "readingContext": "All quantum logic gates operating on closed systems must be represented by unitary operators $U^\\dagger U = I$.\nBecause unitary transformations preserve the inner product and norm of vectors, all quantum computation without measurement is strictly reversible. No quantum gate can perform irreversible erasure of quantum information without increasing thermodynamic entropy.",
-        "prompt": "\"Predict why an irreversible classical operation like bit-erasure (reset to 0) cannot be represented as an isolated quantum logic gate.\"",
-        "options": [
-          {
-            "optionId": "opt_a",
-            "text": "\"Quantum operations must be unitary (U dagger U = I), which strictly preserves inner products and vector norms, guaranteeing 100% reversibility without entropy dissipation.\"",
-            "isCorrect": true,
-            "causalRationale": "Correct: \"Quantum operations must be unitary (U dagger U = I), which strictly preserves inner products and vector norms, guaranteeing 100% reversibility without entropy dissipation.\". This adheres strictly to the governing invariant of Unitary Operations and Reversibility."
-          },
-          {
-            "optionId": "opt_b",
-            "text": "The system remains completely unchanged because Unitary Operations and Reversibility acts as an invariant identity operator without state transitions.",
-            "isCorrect": false,
-            "diagnosticAxis": "conceptGap",
-            "causalRationale": "Misconception: Assumes operations produce zero observable effect, ignoring active transformation.",
-            "specificRemediation": "Review core mechanism: All quantum logic gates operating on closed systems must be represented by unitary operators $U^\\dagger U = I$."
-          },
-          {
-            "optionId": "opt_c",
-            "text": "The state diverges uncontrollably because boundary conditions are violated immediately.",
-            "isCorrect": false,
-            "diagnosticAxis": "reasoningBug",
-            "causalRationale": "Reasoning Slip: Assumes instability without verifying whether mathematical bounds are preserved.",
-            "specificRemediation": "Trace boundary constraints step-by-step."
-          }
-        ],
-        "expectedMentalModel": [
-          "unitary",
-          "reversibility",
-          "norm preservation",
-          "inner product",
-          "entropy"
-        ],
-        "groundTruth": "\"Quantum operations must be unitary (U dagger U = I), which strictly preserves inner products and vector norms, guaranteeing 100% reversibility without entropy dissipation.\""
-      },
-      "lossRubric": {
-        "conceptGapCriteria": [
-          "Fails to identify core mechanism: All quantum logic gates operating on closed systems must be represented by unitary operators $U^\\dagger U = I$.",
-          "Confuses cause and effect in state transitions"
-        ],
-        "missingPrerequisiteMap": {
-          "hgd://knowledgebase/quantum-computing/node-001": "Foundational upstream concept"
-        },
-        "notationCriteria": [
-          "Uses ambiguous notation",
-          "Confuses variables"
-        ],
-        "strategyCriteria": [
-          "Applies inapplicable heuristics"
-        ],
-        "reasoningCriteria": [
-          "Off-by-one or boundary condition omission"
-        ]
-      },
-      "backwardPass": {
-        "learningRate": 0.25,
-        "hintLadder": {
-          "level0Reflective": "Reflective: What fundamental invariant governs Unitary Operations and Reversibility?",
-          "level1Directional": "Directional Clue: Examine how Unitary Operations and Reversibility handles boundary conditions: All quantum logic gates operating on closed systems must be represented by unitary operators $U^\\dagger U = I$.",
-          "level2Constraint": "Constraint: Eliminate unconstrained assumptions. Ground truth: \"Quantum operations must be unitary (U dagger U = I), which strictly preserves inner products and vector norms, guaranteeing 100% reversibility without entropy dissipation.\"",
-          "level3WorkedExample": "\"Worked Solution: Unitary operators U satisfy U dagger U = I, preserving the inner product <psi|phi> between all states. If two distinct states both collapsed to |0>, their distinctness would be destroyed, violating inner product conservation and unitarity.\""
-        },
-        "microRemediations": {
-          "conceptGap": "Core Invariant: \"Quantum operations must be unitary (U dagger U = I), which strictly preserves inner products and vector norms, guaranteeing 100% reversibility without entropy dissipation.\"",
-          "missingPrerequisite": "Review prerequisite: hgd://knowledgebase/quantum-computing/node-001",
-          "notationBreakdown": "Ensure accurate notation and units for Unitary Operations and Reversibility.",
-          "methodChoice": "Apply deductive causal reasoning rather than guessing.",
-          "reasoningBug": "Trace boundary edge cases step-by-step."
-        }
-      },
-      "sources": [
-        {
-          "sourceRef": "markdown-source",
-          "locationTag": "Section: Unitary Operations and Reversibility",
-          "verbatimQuote": "All quantum logic gates operating on closed systems must be represented by unitary operators $U^\\dag"
+          "verbatimQuote": "### 1. Pangkal Anomali\nSelama ini kita memproses informasi dengan saklar biner yang bernilai mutlak "
         }
       ]
     }

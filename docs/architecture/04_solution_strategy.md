@@ -60,3 +60,24 @@ To prevent the dark side of high-stakes learning (burnout, anxiety, toxic involu
 The curriculum and telemetry are 100% represented in standard JSON Draft 2020-12:
 * The UI receives `curriculum-manifest.json` and loads active `shards/shard_XXX.json`.
 * State is persisted in `learner-state.json`. Any modern web, mobile, or terminal app can render the experience with zero proprietary server logic.
+
+---
+
+## 4.7 Universal Invariant Learning Architecture (UILA 5-Block Grounding)
+
+Blind prediction without mental model initialization causes cognitive paralysis. UILA establishes weight initialization prior to the forward pass:
+* **Block 1: Pangkal Anomali**: Exposes failure points of legacy methods without early jargon.
+* **Block 2: Prototipe Intuitif**: Anchors an isomorphic real-world physical model resolving the anomaly.
+* **Block 3: Invarian & Operasi Inti**: Isolates conserved invariants with Side-by-Side Contrasting Cases.
+* **Block 4: Notasi Sebagai Kontrak**: Formalizes symbols and formulas as shorthand contracts.
+* **Block 5: Uji Tegangan Batas**: The active Forward Pass evaluating boundary edge conditions.
+
+---
+
+## 4.8 Multi-Dimensional Curriculum Expansion & Cognitive Convergence Heatmap
+
+Curricula expand across three orthogonal dimensions upon invariant mastery:
+* **Vertical Depth Spiral**: Re-visiting concepts with advanced mathematical and systems rigor.
+* **Horizontal Branching Tracks**: Elective specializations across algorithmic and implementation paths.
+* **Lateral Isomorphic Bridges**: Connecting the mastered invariant across different disciplines.
+* **Mastery Heatmap**: A GitHub-style activity grid mapping training epochs and mastered invariants into a 4-tier emerald matrix.

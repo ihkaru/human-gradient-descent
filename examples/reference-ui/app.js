@@ -11,6 +11,11 @@ import {
   renderFrontierList,
   renderStats,
 } from "./ui-renderer.js";
+import {
+  renderHeatmap,
+  renderUILABlocks,
+  renderSubwayMap,
+} from "./uila-renderer.js";
 
 let currentManifest = null;
 let currentShards = new Map();
@@ -68,6 +73,7 @@ async function loadCurriculum(key) {
     selectNode(learnerState.activeFrontier[0]);
     updateFrontierView();
     updateStatsView();
+    renderHeatmap(learnerState, "heatmap-card");
   } catch (err) {
     console.error("Failed to load curriculum:", err);
   }
@@ -109,6 +115,9 @@ async function selectNode(nodeId) {
   if (!activeNode) return;
 
   renderActiveNode(activeNode, (opt, card) => handleOptionSelected(opt, card));
+  renderUILABlocks(activeNode, "uila-container");
+  renderSubwayMap(activeNode, "subway-map-container");
+  renderHeatmap(learnerState, "heatmap-card");
   resetLossDisplay();
   startTimer(activeNode.pacing.timeLimitSeconds || 60);
   updateFrontierView();
@@ -138,6 +147,7 @@ function handleOptionSelected(opt, card) {
     recomputeFrontier();
     updateFrontierView();
     updateStatsView();
+    renderHeatmap(learnerState, "heatmap-card");
 
     setTimeout(() => {
       if (learnerState.activeFrontier.length > 0) {
@@ -248,6 +258,7 @@ function evaluatePrediction(userAnswer) {
     recomputeFrontier();
     updateFrontierView();
     updateStatsView();
+    renderHeatmap(learnerState, "heatmap-card");
 
     setTimeout(() => {
       if (learnerState.activeFrontier.length > 0) {

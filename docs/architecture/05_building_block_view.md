@@ -75,3 +75,9 @@ flowchart TD
 
 ### 7. `DAGCycleDetector`
 * **Responsibility**: Guarantees acyclicity across encyclopedic-scale multi-parent curriculum DAGs via Tarjan's Strongly Connected Components algorithm ($O(V + E)$) and Kahn's topological sort, preventing deadlock in the learner frontier queue.
+
+### 8. `UILABuilder` & `ExpansionBuilder`
+* **Responsibility**: Deconstructs markdown sections into the 5-block Universal Invariant Learning Architecture (Anomaly, Prototype, Invariant, Contract, Boundary Stress-Test) and generates multi-dimensional expansion pathways (Depth Spiral, Branching Tracks, and Isomorphic Cross-Domain Bridges).
+
+### 9. `Headless UI & Heatmap Renderer`
+* **Responsibility**: Zero-backend reference web client providing high-contrast diagnostic hypothesis selection, side-by-side contrasting case tables, and a GitHub-style activity contribution calendar for visual mastery tracking.

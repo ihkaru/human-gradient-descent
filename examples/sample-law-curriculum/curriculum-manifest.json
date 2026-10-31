@@ -18,7 +18,7 @@
   ],
   "scale": {
     "totalNodes": 4,
-    "totalShards": 2,
+    "totalShards": 4,
     "approxWordCount": 520,
     "estimatedLearningHours": 1.4
   },
@@ -49,18 +49,32 @@
     {
       "shardId": "shard_001",
       "filePath": "shards/shard_001.json",
-      "nodeCount": 2,
+      "nodeCount": 1,
       "nodeIds": [
-        "hgd://knowledgebase/contract-law-basics/node-001",
-        "hgd://knowledgebase/contract-law-basics/node-002"
+        "hgd://knowledgebase/contract-law-basics/node-001"
       ]
     },
     {
       "shardId": "shard_002",
       "filePath": "shards/shard_002.json",
-      "nodeCount": 2,
+      "nodeCount": 1,
       "nodeIds": [
-        "hgd://knowledgebase/contract-law-basics/node-003",
+        "hgd://knowledgebase/contract-law-basics/node-002"
+      ]
+    },
+    {
+      "shardId": "shard_003",
+      "filePath": "shards/shard_003.json",
+      "nodeCount": 1,
+      "nodeIds": [
+        "hgd://knowledgebase/contract-law-basics/node-003"
+      ]
+    },
+    {
+      "shardId": "shard_004",
+      "filePath": "shards/shard_004.json",
+      "nodeCount": 1,
+      "nodeIds": [
         "hgd://knowledgebase/contract-law-basics/node-004"
       ]
     }
@@ -75,19 +89,19 @@
       },
       {
         "id": "hgd://knowledgebase/contract-law-basics/node-002",
-        "shardId": "shard_001",
+        "shardId": "shard_002",
         "title": "Consideration and Bargained-for Exchange",
         "cognitiveLevel": "apply"
       },
       {
         "id": "hgd://knowledgebase/contract-law-basics/node-003",
-        "shardId": "shard_002",
+        "shardId": "shard_003",
         "title": "Material Breach and Constructive Conditions",
         "cognitiveLevel": "analyze"
       },
       {
         "id": "hgd://knowledgebase/contract-law-basics/node-004",
-        "shardId": "shard_002",
+        "shardId": "shard_004",
         "title": "Expectation Damages and Mitigation",
         "cognitiveLevel": "evaluate"
       }

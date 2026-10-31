@@ -24,4 +24,9 @@
 | **Rollback** | Moving the active frontier backward to a previously verified checkpoint to re-train foundational prerequisites. |
 | **Shard** | Partitioned JSON file containing 20–50 competency nodes, keeping memory and token overhead bounded to $O(1)$. |
 | **Time-Bounded Mode** | High-velocity sprint training mode with active countdown timers per node and automated timeout escalation. |
+| **UILA (Universal Invariant Learning Architecture)** | The 5-block sequence (Anomaly, Prototype, Invariant, Contract, Boundary Stress-Test) initializing mental models prior to boundary prediction. |
+| **Contrasting Cases** | A side-by-side comparative matrix contrasting beginner misconceptions directly against the true physical mental model. |
+| **Depth Spiral** | Vertical curriculum expansion re-visiting an already mastered competency node with higher mathematical and engineering rigor. |
+| **Knowledge Subway Map** | Interactive transit-line visualization of the curriculum DAG displaying Core tracks, Depth Spiral tracks, and Isomorphic Bridges. |
+| **Cognitive Convergence Heatmap** | GitHub-style contribution matrix tracking daily training epochs, streaks, and invariant mastery levels using a 4-tier emerald scale. |
 | **Working Memory Budget** | Limiting challenge prompts to $\le 50$ words ($\le 2-3$ seconds) to avoid overloading the phonological working memory buffer. |

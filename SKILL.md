@@ -68,14 +68,28 @@ When an AI Coding Agent is requested to create, expand, or tutor a curriculum:
    # Curriculum Title
    Overview text...
 
-   ## Section Title
-   <!-- hgd:tier: 2_boundary_perturbation -->
-   <!-- hgd:prereqs: ["Prerequisite Section Title"] -->
-   <!-- hgd:probe: "Predict: What happens when parameter X approaches zero?" -->
-   <!-- hgd:truth: "State Y collapses because invariant Z is violated." -->
-   <!-- hgd:models: ["parameter x", "state y", "invariant z"] -->
+   ## Section Title (UILA 5-Block Standard)
+   <!-- hgd:tier: 1_foundational_fluency -->
+   <!-- hgd:prereqs: [] -->
+
+   ### 1. Pangkal Anomali
+   Skenario di mana pemahaman/alat lama runtuh atau meledak biayanya.
+
+   ### 2. Prototipe Intuitif
+   Objek fisik atau sandbox isomorfis di dunia nyata.
+
+   ### 3. Invarian & Operasi Inti
+   Hukum kekekalan dan tabel komparasi pemula vs kenyataan:
+   | Apa yang Dipikirkan Pemula (Salah) | Apa yang Sebenarnya Terjadi |
+   | Assumes static unconstrained value | Governed by conservation law |
+
+   ### 4. Notasi Sebagai Kontrak
+   Minimal formalization dan dekonstruksi simbol:
+   * `Symbol`: Arti fisik dalam model mental.
+
+   ### 5. Uji Tegangan Batas
+   <!-- hgd:probe: "Uji inferensi batas saat parameter dibuat ekstrem (0, infinity, collapse)" -->
    <!-- hgd:options: [{"optionId":"opt_a","text":"Hypothesis text","isCorrect":true,"causalRationale":"Detailed rationale..."}] -->
-   Section content explaining the concept...
    ```
 2. **Compile to Sharded DAG**:
    `bun run cli compile <input.md> -o <output_dir>`

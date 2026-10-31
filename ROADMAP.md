@@ -65,9 +65,10 @@ flowchart LR
 | **021** | [`phases/021_mental_tracing_execution_probes.md`](./phases/021_mental_tracing_execution_probes.md) | Codebase AST Execution Prediction Probes (Mental Tracing) | ✅ Completed |
 | **022** | [`phases/022_anti_owl_grounding_and_scratch_synthesizer.md`](./phases/022_anti_owl_grounding_and_scratch_synthesizer.md) | Cold-Start Anti-Owl Grounding & Scratch Topic Synthesizer | ✅ Completed |
 | **023** | [`phases/023_diagnostic_multiple_choice_hypotheses.md`](./phases/023_diagnostic_multiple_choice_hypotheses.md) | Diagnostic Multiple-Choice Hypotheses with Causal Rationales | ✅ Completed |
-| **024** | Reserved for What-If Parameter Perturbation Engine. | What-If Parameter Perturbation Engine | 📋 Planned |
-| **025** | Reserved for Blind Analogy & Isomorphism Pairings. | Blind Analogy Pairing & Structural Isomorphism Challenges | 📋 Planned |
-| **026–030** | Reserved for Advanced Synthesis Prompts. | Advanced Prompt Templates & Token-Efficient Generators | 📋 Planned |
+| **024** | [`phases/024_uila_5_block_learning_architecture.md`](./phases/024_uila_5_block_learning_architecture.md) | Universal Invariant Learning Architecture (UILA 5-Block Framework) | ✅ Completed |
+| **025** | [`phases/025_github_style_mastery_heatmap.md`](./phases/025_github_style_mastery_heatmap.md) | Learner Effort & Cognitive Convergence Heatmap (GitHub-Style Grid) | ✅ Completed |
+| **026** | [`phases/026_curriculum_expansion_subway_and_spiral.md`](./phases/026_curriculum_expansion_subway_and_spiral.md) | Multi-Dimensional Curriculum Expansion (Depth Spiral & Subway Map) | ✅ Completed |
+| **027–030** | Reserved for Advanced Synthesis Prompts. | Advanced Prompt Templates & Token-Efficient Generators | 📋 Planned |
 
 ---
 

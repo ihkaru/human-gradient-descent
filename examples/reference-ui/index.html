@@ -8,6 +8,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&family=Google+Sans+Text:wght@400;500&family=Google+Sans+Code:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="uila-heatmap.css">
 </head>
 <body>
   <div class="container">
@@ -42,6 +43,9 @@
         </div>
       </div>
     </header>
+
+    <!-- Learner Effort & Cognitive Convergence Heatmap -->
+    <div id="heatmap-card" class="heatmap-card"></div>
 
     <!-- Main Grid -->
     <main class="grid-main">
@@ -81,10 +85,13 @@
           <div class="primer-content" id="primer-text">Loading concept primer...</div>
         </div>
 
-        <!-- Forward Pass Challenge Box -->
+        <!-- UILA 5-Block Learning Architecture (Blocks 1 to 4) -->
+        <div id="uila-container" class="uila-container"></div>
+
+        <!-- Forward Pass: Blok 5 Uji Tegangan Batas -->
         <div>
           <span style="font-size: 0.8rem; font-weight: 600; color: var(--accent-cyan); text-transform: uppercase;">
-            Forward Pass: Generation Effect (Predict Before Explanation)
+            Blok 5: Uji Tegangan Batas (Boundary Stress-Test)
           </span>
           <div class="prompt-box" id="prompt-text">
             Generating challenge prompt...
@@ -204,7 +211,10 @@
         </p>
         <div id="frontier-nodes" class="frontier-list"></div>
 
-        <div style="border-top: 1px solid var(--border-color); padding-top: 1rem;">
+        <!-- Knowledge Subway Map & Pathways -->
+        <div id="subway-map-container" style="border-top: 1px solid var(--border-color); padding-top: 1rem; margin-top: 1rem;"></div>
+
+        <div style="border-top: 1px solid var(--border-color); padding-top: 1rem; margin-top: 1rem;">
           <span style="font-size: 0.8rem; font-weight: 600; color: var(--text-muted); text-transform: uppercase;">
             Architectural Guarantees
           </span>

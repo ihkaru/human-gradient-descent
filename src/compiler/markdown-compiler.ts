@@ -10,6 +10,8 @@ import type {
 } from "../types/curriculum.js";
 import { DAGCycleDetector } from "../validator/dag-cycle-detector.js";
 import { buildDiagnosticOptions } from "./options-builder.js";
+import { parseUILABlocks } from "./uila-builder.js";
+import { parseExpansionPathways } from "./expansion-builder.js";
 
 export interface CompileOptions {
   curriculumId: string;
@@ -45,7 +47,7 @@ export class MarkdownCurriculumCompiler {
       this.synthesizeNode(s, idx, options, titleToIdMap)
     );
 
-    const nodesPerShard = options.nodesPerShard || 2;
+    const nodesPerShard = options.nodesPerShard || 1;
     const shards: NodeShard[] = [];
     const shardCatalog: CurriculumManifest["shards"] = [];
     const dagNodes: CurriculumManifest["dag"]["nodes"] = [];
@@ -171,10 +173,10 @@ export class MarkdownCurriculumCompiler {
     for (const line of lines) {
       if (line.startsWith("# ") && isIntro) {
         docTitle = line.replace(/^#\s*/, "").trim();
-      } else if (line.startsWith("## ") || line.startsWith("### ")) {
+      } else if (line.startsWith("## ")) {
         isIntro = false;
         flush();
-        currentTitle = line.replace(/^#+\s*/, "").trim();
+        currentTitle = line.replace(/^##\s*/, "").trim();
       } else if (isIntro && line.trim().length > 0) {
         docDescLines.push(line.trim());
       } else {
@@ -255,6 +257,8 @@ export class MarkdownCurriculumCompiler {
         isCheckpoint: (idx + 1) % 2 === 0,
         rollbackNodeId: prereqs[0],
       },
+      uila: parseUILABlocks(s.body, ann, s.title),
+      expansionPathways: parseExpansionPathways(ann, s.title, id),
       variationProbes: {
         conceptualVariants,
         proceduralPerturbations: [

@@ -10,9 +10,31 @@ A comprehensive curriculum on quantum information theory, superposition, entangl
 <!-- hgd:worked: "Worked Solution: The Hadamard gate maps |0> to (|0> + |1>)/sqrt(2). The probability of measuring state |k> equals the squared amplitude |1/sqrt(2)|^2 = 1/2 = 50%. Thus, measuring yields 50% probability for |0> and 50% probability for |1>." -->
 <!-- hgd:models: ["hadamard", "superposition", "equal probability", "50%", "collapse"] -->
 <!-- hgd:options: [{"optionId":"opt_a","text":"Equal 50% probability for |0> and 50% probability for |1>, because the Hadamard gate creates an equal superposition (|0> + |1>)/sqrt(2), and measuring collapses the probability proportional to squared amplitude |1/sqrt(2)|^2 = 0.5.","isCorrect":true,"causalRationale":"Correct! The Hadamard gate generates an equal linear superposition where amplitudes are 1/sqrt(2). Squaring the amplitude yields 0.5 for each basis state."},{"optionId":"opt_b","text":"100% probability for |0> and 0% for |1>, because an isolated bit cannot change its underlying binary value without an external classical flip operation.","isCorrect":false,"diagnosticAxis":"missingPrerequisite","causalRationale":"Classical Fallacy: Treats qubits as classical deterministic bits. Qubits obey linear quantum superposition, not classical binary states.","specificRemediation":"Review Prerequisite: Understand that qubits exist in linear superposition prior to measurement."},{"optionId":"opt_c","text":"70.7% probability for |0> and 70.7% probability for |1>, because the wave function amplitude 1/sqrt(2) translates directly into measurement probability without squaring.","isCorrect":false,"diagnosticAxis":"notationBreakdown","causalRationale":"Amplitude Squaring Slip: Confuses state amplitude (1/sqrt(2) approx 0.707) with Born rule measurement probability (|amplitude|^2).","specificRemediation":"Born Rule Invariant: Measurement probabilities are given by the absolute square of the amplitude |alpha|^2, not the raw amplitude."},{"optionId":"opt_d","text":"The qubit simultaneously outputs both 0 and 1 in reality, so measuring it records both states at the exact same physical moment.","isCorrect":false,"diagnosticAxis":"conceptGap","causalRationale":"Collapse Misconception: Measurement strictly collapses the superposition into a single definite classical outcome (|0> OR |1>), never both simultaneously.","specificRemediation":"Measurement Invariant: Measurement forces a quantum collapse into exactly one eigenvalue state."}] -->
-In classical computing, a bit is strictly either 0 or 1. A quantum bit (qubit) is a two-state quantum-mechanical system described as a linear superposition:
+
+### 1. Pangkal Anomali
+Selama ini kita memproses informasi dengan saklar biner yang bernilai mutlak 0 atau 1. Cara ini bekerja sangat baik sampai kita menghadapi persoalan pencarian ruang kombinasi besar di mana cara sekuensial membutuhkan waktu lebih lama dari usia alam semesta. Saklar klasik tidak mampu merepresentasikan ruang kemungkinan paralel tanpa menduplikasi sirkuit fisik secara masif.
+
+### 2. Prototipe Intuitif
+Bayangkan alih-alih saklar lampu on/off, kita memiliki koin logam yang sedang berputar kencang di atas meja. Selama koin berputar, statusnya bukan angka dan bukan gambar, melainkan kombinasi dinamis keduanya. Memiringkan meja akan mengubah kecenderungan jatuhnya koin tanpa harus menghentikan putarannya terlebih dahulu.
+
+### 3. Invarian & Operasi Inti
+Hukum kekekalan fundamental sistem ini adalah Konservasi Probabilitas: jumlah peluang seluruh hasil akhir pengukuran wajib selalu bernilai tepat 100% (1.0).
+
+| Apa yang Dipikirkan Pemula (Salah) | Apa yang Sebenarnya Terjadi dalam Model Mental |
+|---|---|
+| Qubit menyimpan nilai 0 dan 1 sekaligus saat dibaca di layar. | Qubit hanya berada dalam superposisi saat terisolasi. Pengukuran memaksanya runtuh menjadi salah satu nilai pasti. |
+| Pengukuran bersifat pasif dan tidak mengubah sistem. | Pengukuran adalah operasi fisik aktif yang menghancurkan superposisi. |
+
+### 4. Notasi Sebagai Kontrak
+Untuk menghindari narasi panjang, komunitas merekam koin berputar tersebut dengan notasi:
 $$|\psi\rangle = \alpha |0\rangle + \beta |1\rangle$$
-Where $\alpha, \beta \in \mathbb{C}$ and $|\alpha|^2 + |\beta|^2 = 1$. The fundamental invariant is that measurement collapses the superposition into a definite state with probability $|\alpha|^2$ or $|\beta|^2$.
+* `|psi>`: Status koin yang sedang berputar (gelombang kuantum).
+* `alpha, beta`: Amplitudo probabilitas kemiringan status.
+* `|0>, |1>`: Dua sisi koin saat jatuh di atas meja (keadaan terukur).
+* `|alpha|^2 + |beta|^2 = 1`: Kontrak hukum kekekalan total probabilitas.
+
+### 5. Uji Tegangan Batas
+Jika sebuah qubit diinisialisasi pada |0> lalu diputar oleh gerbang Hadamard menjadi superposisi seimbang, prediksikan distribusi probabilitas pengukurannya!
 
 ## Unitary Operations and Reversibility
 <!-- hgd:tier: 2_boundary_perturbation -->
@@ -58,5 +80,3 @@ This follows directly from the linearity of quantum operators. Because cloning i
 <!-- hgd:models: ["amplitude amplification", "inversion about mean", "geometric rotation", "quadratic speedup", "oracle"] -->
 Grover's algorithm searches an unstructured database of $N$ items in $O(\sqrt{N})$ operations, compared to classical $O(N)$.
 It achieves this by iteratively applying the Grover diffusion operator:
-$$G = (2|s\rangle\langle s| - I) O_\omega$$
-The mechanism works via amplitude amplification: the phase of the target state is inverted, and then all amplitudes are inverted about the mean, geometrically rotating the state vector toward the target.

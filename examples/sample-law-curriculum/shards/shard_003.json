@@ -1,0 +1,183 @@
+{
+  "shardId": "shard_003",
+  "curriculumId": "contract-law-basics",
+  "nodes": [
+    {
+      "id": "hgd://knowledgebase/contract-law-basics/node-003",
+      "title": "Material Breach and Constructive Conditions",
+      "cognitiveLevel": "analyze",
+      "difficultyTier": "3_isomorphic_transfer",
+      "workingMemoryBudget": {
+        "wordCount": 26,
+        "estimatedReadingSeconds": 3
+      },
+      "prerequisites": [
+        "hgd://knowledgebase/contract-law-basics/node-002"
+      ],
+      "conceptSummary": "When one party commits a material breach, the non-breaching party's constructive duties under the contract are suspended.\nThe core invariant is substantial performance: if a breach is minor and immaterial, the non-breaching party must still perform their obligations and may only sue for damages, rather than terminating the contract.",
+      "pacing": {
+        "timeLimitSeconds": 60,
+        "recommendedEpochs": 3,
+        "isCheckpoint": false,
+        "rollbackNodeId": "hgd://knowledgebase/contract-law-basics/node-002"
+      },
+      "uila": {
+        "block1_anomaly": {
+          "groundState": "Standard baseline state before encountering Material Breach and Constructive Conditions.",
+          "oldWay": "Legacy or naive mental model.",
+          "breakdownPoint": "Complexity explodes or edge conditions collapse when applying legacy methods to Material Breach and Constructive Conditions."
+        },
+        "block2_intuitivePrototype": {
+          "physicalObject": "Physical dynamic balance analog for Material Breach and Constructive Conditions.",
+          "isomorphicMapping": "Interactions in this physical model preserve the exact proportional relationships of Material Breach and Constructive Conditions.",
+          "deadlockResolution": "Bypasses the breakdown point by operating simultaneously across state transitions."
+        },
+        "block3_coreMechanics": {
+          "invariantProperty": "Conservation of system balance in Material Breach and Constructive Conditions.",
+          "variableComponents": [
+            "System inputs",
+            "Observable state amplitudes"
+          ],
+          "contrastingCases": [
+            {
+              "beginnerMisconception": "Assumes Material Breach and Constructive Conditions behaves like an unconstrained static value.",
+              "physicalReality": "In reality, Material Breach and Constructive Conditions is governed by conservation laws and boundary collapse."
+            }
+          ]
+        },
+        "block4_notationContract": {
+          "formulaOrCode": "f(Material Breach and Constructive Conditions) -> Invariant",
+          "minimalFormalization": "Minimal mathematical contract encoding the physical dynamics of Material Breach and Constructive Conditions.",
+          "termsDeconstruction": [
+            {
+              "symbol": "Theta",
+              "physicalMeaning": "Internal state representation of Material Breach and Constructive Conditions"
+            },
+            {
+              "symbol": "Invariant",
+              "physicalMeaning": "Conservation boundary that must hold true"
+            }
+          ]
+        }
+      },
+      "expansionPathways": {
+        "depthLevel": 1,
+        "deeperSpiralNodeId": "hgd://knowledgebase/contract-law-basics/node-003-deep-spiral",
+        "branches": [
+          {
+            "trackName": "Material Breach and Constructive Conditions Rigorous Implementation",
+            "targetNodeId": "hgd://knowledgebase/contract-law-basics/node-003-rigor",
+            "description": "Deep dive into proofs, memory models, and edge performance for Material Breach and Constructive Conditions."
+          },
+          {
+            "trackName": "Material Breach and Constructive Conditions Production Engineering",
+            "targetNodeId": "hgd://knowledgebase/contract-law-basics/node-003-prod",
+            "description": "Handling noisy environments, concurrency faults, and distributed failure modes."
+          }
+        ],
+        "isomorphicBridges": [
+          {
+            "domain": "General Dynamical Systems",
+            "targetNodeId": "hgd://general/dynamics/material-breach-and-constructive-conditions",
+            "sharedInvariant": "Conservation and state equilibrium under boundary perturbation."
+          }
+        ]
+      },
+      "variationProbes": {
+        "conceptualVariants": [
+          {
+            "representationType": "verbal",
+            "content": "The core invariant is substantial performance: if a breach is minor and immaterial, the non-breaching party must still perform their obligations and may only sue for damages, rather than terminating the contract."
+          }
+        ],
+        "proceduralPerturbations": [
+          {
+            "parameter": "boundary_condition",
+            "perturbation": "inverse_constraint",
+            "probe": "If boundary inputs invert, how does Material Breach and Constructive Conditions preserve state?",
+            "expectedBoundaryBehavior": "\"Cannot terminate: under the doctrine of substantial performance (Jacob & Youngs v. Kent), an immaterial breach only entitles the owner to difference-in-value damages, not contract forfeiture.\""
+          }
+        ]
+      },
+      "forwardPass": {
+        "probeType": "prediction_what_if",
+        "microPrimer": "When one party commits a material breach, the non-breaching party's constructive duties under the contract are suspended.",
+        "readingContext": "When one party commits a material breach, the non-breaching party's constructive duties under the contract are suspended.\nThe core invariant is substantial performance: if a breach is minor and immaterial, the non-breaching party must still perform their obligations and may only sue for damages, rather than terminating the contract.",
+        "prompt": "\"Predict whether a homeowner can lawfully terminate a building contract and refuse payment if the builder used identical pipe of Brand B instead of Brand A.\"",
+        "options": [
+          {
+            "optionId": "opt_a",
+            "text": "\"Cannot terminate: under the doctrine of substantial performance (Jacob & Youngs v. Kent), an immaterial breach only entitles the owner to difference-in-value damages, not contract forfeiture.\"",
+            "isCorrect": true,
+            "causalRationale": "Correct: \"Cannot terminate: under the doctrine of substantial performance (Jacob & Youngs v. Kent), an immaterial breach only entitles the owner to difference-in-value damages, not contract forfeiture.\". This adheres strictly to the governing invariant of Material Breach and Constructive Conditions."
+          },
+          {
+            "optionId": "opt_b",
+            "text": "The system remains completely unchanged because Material Breach and Constructive Conditions acts as an invariant identity operator without state transitions.",
+            "isCorrect": false,
+            "diagnosticAxis": "conceptGap",
+            "causalRationale": "Misconception: Assumes operations produce zero observable effect, ignoring active transformation.",
+            "specificRemediation": "Review core mechanism: The core invariant is substantial performance: if a breach is minor and immaterial, the non-breaching party must still perform their obligations and may only sue for damages, rather than terminating the contract."
+          },
+          {
+            "optionId": "opt_c",
+            "text": "The state diverges uncontrollably because boundary conditions are violated immediately.",
+            "isCorrect": false,
+            "diagnosticAxis": "reasoningBug",
+            "causalRationale": "Reasoning Slip: Assumes instability without verifying whether mathematical bounds are preserved.",
+            "specificRemediation": "Trace boundary constraints step-by-step."
+          }
+        ],
+        "expectedMentalModel": [
+          "substantial performance",
+          "immaterial breach",
+          "constructive condition",
+          "damages only"
+        ],
+        "groundTruth": "\"Cannot terminate: under the doctrine of substantial performance (Jacob & Youngs v. Kent), an immaterial breach only entitles the owner to difference-in-value damages, not contract forfeiture.\""
+      },
+      "lossRubric": {
+        "conceptGapCriteria": [
+          "Fails to identify core mechanism: The core invariant is substantial performance: if a breach is minor and immaterial, the non-breaching party must still perform their obligations and may only sue for damages, rather than terminating the contract.",
+          "Confuses cause and effect in state transitions"
+        ],
+        "missingPrerequisiteMap": {
+          "hgd://knowledgebase/contract-law-basics/node-002": "Foundational upstream concept"
+        },
+        "notationCriteria": [
+          "Uses ambiguous notation",
+          "Confuses variables"
+        ],
+        "strategyCriteria": [
+          "Applies inapplicable heuristics"
+        ],
+        "reasoningCriteria": [
+          "Off-by-one or boundary condition omission"
+        ]
+      },
+      "backwardPass": {
+        "learningRate": 0.25,
+        "hintLadder": {
+          "level0Reflective": "Reflective: What fundamental invariant governs Material Breach and Constructive Conditions?",
+          "level1Directional": "Directional Clue: Examine how Material Breach and Constructive Conditions handles boundary conditions: The core invariant is substantial performance: if a breach is minor and immaterial, the non-breaching party must still perform their obligations and may only sue for damages, rather than terminating the contract.",
+          "level2Constraint": "Constraint: Eliminate unconstrained assumptions. Ground truth: \"Cannot terminate: under the doctrine of substantial performance (Jacob & Youngs v. Kent), an immaterial breach only entitles the owner to difference-in-value damages, not contract forfeiture.\"",
+          "level3WorkedExample": "Worked Solution: \"Cannot terminate: under the doctrine of substantial performance (Jacob & Youngs v. Kent), an immaterial breach only entitles the owner to difference-in-value damages, not contract forfeiture.\". Applying this rule resolves the challenge step-by-step."
+        },
+        "microRemediations": {
+          "conceptGap": "Core Invariant: \"Cannot terminate: under the doctrine of substantial performance (Jacob & Youngs v. Kent), an immaterial breach only entitles the owner to difference-in-value damages, not contract forfeiture.\"",
+          "missingPrerequisite": "Review prerequisite: hgd://knowledgebase/contract-law-basics/node-002",
+          "notationBreakdown": "Ensure accurate notation and units for Material Breach and Constructive Conditions.",
+          "methodChoice": "Apply deductive causal reasoning rather than guessing.",
+          "reasoningBug": "Trace boundary edge cases step-by-step."
+        }
+      },
+      "sources": [
+        {
+          "sourceRef": "markdown-source",
+          "locationTag": "Section: Material Breach and Constructive Conditions",
+          "verbatimQuote": "When one party commits a material breach, the non-breaching party's constructive duties under the co"
+        }
+      ]
+    }
+  ]
+}

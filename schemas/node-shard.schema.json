@@ -220,6 +220,93 @@
               }
             }
           },
+          "uila": {
+            "type": "object",
+            "properties": {
+              "block1_anomaly": {
+                "type": "object",
+                "properties": {
+                  "groundState": { "type": "string" },
+                  "oldWay": { "type": "string" },
+                  "breakdownPoint": { "type": "string" }
+                }
+              },
+              "block2_intuitivePrototype": {
+                "type": "object",
+                "properties": {
+                  "physicalObject": { "type": "string" },
+                  "isomorphicMapping": { "type": "string" },
+                  "deadlockResolution": { "type": "string" }
+                }
+              },
+              "block3_coreMechanics": {
+                "type": "object",
+                "properties": {
+                  "invariantProperty": { "type": "string" },
+                  "variableComponents": { "type": "array", "items": { "type": "string" } },
+                  "contrastingCases": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "beginnerMisconception": { "type": "string" },
+                        "physicalReality": { "type": "string" }
+                      }
+                    }
+                  }
+                }
+              },
+              "block4_notationContract": {
+                "type": "object",
+                "properties": {
+                  "formulaOrCode": { "type": "string" },
+                  "minimalFormalization": { "type": "string" },
+                  "termsDeconstruction": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "symbol": { "type": "string" },
+                        "calloutLabel": { "type": "string" },
+                        "physicalMeaning": { "type": "string" }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "expansionPathways": {
+            "type": "object",
+            "properties": {
+              "depthLevel": { "type": "integer" },
+              "deeperSpiralNodeId": { "type": "string" },
+              "branches": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "required": ["trackName", "targetNodeId"],
+                  "properties": {
+                    "trackName": { "type": "string" },
+                    "targetNodeId": { "type": "string" },
+                    "description": { "type": "string" }
+                  }
+                }
+              },
+              "isomorphicBridges": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "required": ["domain", "targetNodeId", "sharedInvariant"],
+                  "properties": {
+                    "domain": { "type": "string" },
+                    "targetNodeId": { "type": "string" },
+                    "sharedInvariant": { "type": "string" }
+                  }
+                }
+              }
+            }
+          },
           "sources": {
             "type": "array",
             "items": {

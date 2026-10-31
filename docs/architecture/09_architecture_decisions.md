@@ -53,3 +53,19 @@
 * **Context**: High-velocity timed training can trigger cognitive thrashing, hurried guessing, and academic burnout.
 * **Decision**: Monitor latency anomalies and hurried slips in real-time, enforcing a 3-minute cooldown when `fatigueScore` $\ge 0.7$.
 * **Consequences**: Protects learner neuroplastic health and maintains sustainable training momentum.
+
+---
+
+## ADR-007: Universal Invariant Learning Architecture (UILA) Grounding vs Blind Prediction
+* **Status**: Accepted
+* **Context**: Forcing novice learners to predict system states from a vacuum (*zero-shot blind guessing*) causes cognitive paralysis and demoralization.
+* **Decision**: Structure every competency node into the 5-block UILA sequence. Blocks 1 to 4 provide foundational model initialization (breakdown scenario, isomorphic physical sandbox, invariant contrasting cases, and notation contracts), while Block 5 executes the boundary stress-test (Forward Pass).
+* **Consequences**: Eliminates the "Draw the Rest of the Owl" fallacy and grounds active prediction in rigorous causal mental models.
+
+---
+
+## ADR-008: Native CSS Grid for GitHub-Style Activity & Mastery Heatmap
+* **Status**: Accepted
+* **Context**: Learners require visual confirmation of incremental effort and daily streaks (*effort over innate ability*) without bloating bundle size.
+* **Decision**: Render a 4-tier emerald activity calendar using native CSS Grid and semantic HTML attributes, logging timestamps directly to `learner-state.json`.
+* **Consequences**: Zero third-party chart dependencies, $<1\text{ms}$ rendering, and complete offline responsiveness on mobile viewports.

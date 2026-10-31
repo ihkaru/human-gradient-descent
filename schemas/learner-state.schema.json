@@ -116,6 +116,18 @@
       "type": "array",
       "items": { "type": "string" }
     },
+    "dailyActivityLog": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "required": ["epochs", "nodesMastered", "intensity"],
+        "properties": {
+          "epochs": { "type": "integer", "minimum": 0 },
+          "nodesMastered": { "type": "integer", "minimum": 0 },
+          "intensity": { "type": "integer", "minimum": 0, "maximum": 4 }
+        }
+      }
+    },
     "lossHistory": {
       "type": "array",
       "items": {
