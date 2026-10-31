@@ -1,7 +1,7 @@
 # 8. Cross-Cutting Concepts
 
 > [!INFO] **Architecture Provenance & Freshness**
-> - **Verified Commit**: `5bc420f`
+> - **Verified Commit**: `ee9ff00`
 > - **Verified Timestamp**: `2026-10-31T20:31:00+07:00`
 > - **Tracked Paths**: `src/`, `schemas/`, `phases/`
 > - **Drift Status**: `verified`
