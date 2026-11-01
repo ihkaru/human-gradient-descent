@@ -143,6 +143,12 @@ When a learner masters a node ($\mathcal{L} \le 0.05$), the agent surfaces 3 exp
   `bun run cli compile <input.md> -o <curriculum_dir>`
 * **Validate Curricula & Shards**:
   `bun run cli validate <curriculum_dir>`
+* **Audit 3-Tier Pedagogical Invariants & Causal Closure**:
+  `bun run cli audit <curriculum_dir> [--strict] [--json]`
+* **Auto-Remediate Violations (Auto-Patcher)**:
+  `bun run cli remediate <curriculum_dir> [--dry-run]`
+* **Export Topological DAG (Mermaid / Markdown Report)**:
+  `bun run cli export-dag <curriculum_dir> [--format mermaid|markdown]`
 * **Verify DAG Acyclicity & Integrity (Tarjan SCC)**:
   `bun run cli check-dag <curriculum_dir> [--json]`
 * **Interactive Learning Session**:

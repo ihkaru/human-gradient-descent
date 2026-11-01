@@ -44,7 +44,7 @@ export function escapeHtml(str) {
     .replace(/'/g, "&#039;");
 }
 
-function preprocessMathTokens(text) {
+export function preprocessMathTokens(text) {
   if (!text) return "";
   let s = text;
 
