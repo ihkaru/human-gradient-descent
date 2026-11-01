@@ -69,6 +69,14 @@ flowchart TD
    * **STRICT PROHIBITION**: Never test an entity, operator, parameter, or constant in Block 5 (prompt or options) that has not been explicitly grounded in Blocks 1 to 4.
    * If testing an operator (e.g. "Hadamard gate"), it MUST have its physical analog in Block 2 (e.g. "tuas penyeimbang"), its transformation mechanics in Block 3, and its contract symbol in Block 4 ($H|0\rangle$). Testing unannounced jargon violates learning fairness and triggers cognitive panic.
 
+8. **Visual & Intuitive Diagram Anchoring (Mermaid First Principle)**:
+   * **Mandatory Directive for Authoring Agents**: Saat membuat materi kurikulum, agen WAJIB mencantumkan diagram visual **Mermaid** (`flowchart LR`, `flowchart TD`, `stateDiagram-v2`, `sequenceDiagram`) pada **Blok 2 (Prototipe Intuitif)** atau **Blok 3 (Invarian & Operasi Inti)** bilamana konsep melibatkan:
+     - Transisi status atau tahapan siklus hidup (misal: *Input Baseline -> Transformasi Operasi -> Pengukuran/Hasil*).
+     - Aliran kausal, *pipeline*, percabangan kondisi, atau *feedback loop*.
+     - Relasi pertukaran timbal balik antar entitas (*Party A Detriment <-> Bargained-for Exchange <-> Party B Benefit*).
+     - Perbedaan jalur antara ekspektasi salah vs mekanisme fisik sebenarnya.
+   * Diagram Mermaid menjembatani narasi analogi di Blok 2 dengan abstraksi formal di Blok 4, mengunci intuisi spasial-temporal pembelajar sebelum disajikan simbol matematika/steno.
+
 ---
 
 ## Author's Diagnostic Checklist (Matriks Uji Mandiri Penulis)
@@ -79,6 +87,7 @@ Before releasing or synthesizing any curriculum, the agent must self-audit again
 |:---|:---|:---|
 | Apakah masalah di Blok 1 terasa nyata tanpa pembaca perlu tahu teorinya terlebih dahulu? | Pembaca akan membaca teks sebagai hafalan akademis, bukan solusi fungsional. | Tulis ulang Blok 1 menggunakan skenario operasional/kegagalan fisik sederhana. |
 | Bisakah pembaca memprediksi arah perubahan (naik/turun) tanpa melihat rumus di Blok 4? | Penjelasan mekanik di Blok 2 & 3 gagal total membangun intuisi. | Ganti analogi di Blok 2 dengan model spasial/aliran yang lebih ketat secara relasi (isomorphic). |
+| Apakah konsep dinamis/multi-langkah didukung diagram alur Mermaid di Blok 2/3? | Pembaca harus membayangkan aliran spasial di kepala secara abstrak (beban kognitif berlebih). | Sisipkan diagram Mermaid (`flowchart LR` atau `stateDiagram-v2`) untuk memetakan transisi status dan invarian secara visual. |
 | Apakah ada simbol/istilah asing yang muncul tiba-tiba tanpa didekonstruksi? | Terjadi *split-attention effect* dan kepanikan kognitif. | Sisipkan jembatan penalaran atau hilangkan jargon yang tidak esensial. |
 | Apakah pembaca bisa menjawab pertanyaan di Blok 5 hanya dengan mengingat kata-kata di teks? | Pertanyaan evaluasi terlalu dangkal (hanya menguji memori, bukan model mental). | Ubah soal uji batas ke situasi baru (*transfer test*) yang belum pernah dicontohkan di teks. |
 | Apakah seluruh entitas, operator, dan konstanta di Blok 5 sudah memiliki padanan di Blok 2–4? | Terjadi *Orphan Probe Fallacy* dan rasa tidak adil pada pembelajar. | Masukkan analog fisik operator ke Blok 2 dan simbol steno ke Blok 4 sebelum mengujinya. |
@@ -102,6 +111,12 @@ Selama ini kita menyelesaikan [Kondisi X] dengan [Cara Lama Y]. Ini bekerja deng
 
 ### 2. Prototipe Intuitif
 Bayangkan alih-alih [Sistem Asli], kita punya [Objek Fisik Sederhana]. Jika Anda mengubah tuas A, cairan di wadah B otomatis naik...
+
+```mermaid
+flowchart LR
+  S0["Baseline State (S0)"] -->|Elementary Transform T| S1["Transformed Equilibrium (S1)"]
+  S1 -->|Observation / Perturbation| Outcome["Observable Outcome"]
+```
 
 ### 3. Invarian & Operasi Inti
 Hukum kekekalan: [Invarian Sistem].

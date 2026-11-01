@@ -189,4 +189,26 @@ describe("CurriculumAuditor Suite (3-Tier Evaluation Engine)", () => {
     expect(prompt).toContain("Question: Predict whether current flows when switch S is open.");
     expect(prompt).toContain("VERDICT INSTRUCTION:");
   });
+
+  it("records TIER2_VISUAL_MERMAID_DIAGRAM in passedRules when Mermaid diagram is present", () => {
+    const node = createValidNode("node-mermaid");
+    node.uila!.block2_intuitivePrototype!.isomorphicMapping =
+      "Physical model with diagram:\n```mermaid\nflowchart LR\n  A --> B\n```";
+
+    const manifest: CurriculumManifest = {
+      curriculumId: "test-curr",
+      title: "Test Curr",
+      domain: "stem",
+      version: "1.0.0",
+      schemaVersion: "2026.1",
+      scale: { totalNodes: 1, totalShards: 1 },
+      pacing: { defaultMode: "self_paced" },
+      dag: { nodes: [{ id: "node-mermaid", title: "Binary Logic Gate", cognitiveLevel: "understand", shardId: "shard_001" }], edges: [] },
+      shards: [{ shardId: "shard_001", filePath: "shards/shard_001.json", nodeCount: 1, nodeIds: ["node-mermaid"] }],
+    };
+    const shard: NodeShard = { shardId: "shard_001", curriculumId: "test-curr", nodes: [node] };
+
+    const report = auditor.audit({ manifest, shards: [shard] });
+    expect(report.passedRules).toContain("TIER2_VISUAL_MERMAID_DIAGRAM_node-mermaid");
+  });
 });

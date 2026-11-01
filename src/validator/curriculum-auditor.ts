@@ -258,6 +258,10 @@ export class CurriculumAuditor {
       passedRules.push(`TIER2_ISOMORPHIC_GROUNDING_${node.id}`);
     }
 
+    if (pObj.includes("mermaid") || (node.conceptSummary || "").includes("mermaid")) {
+      passedRules.push(`TIER2_VISUAL_MERMAID_DIAGRAM_${node.id}`);
+    }
+
     const prompt = (node.forwardPass?.prompt || "").toLowerCase();
     const isTransfer = /\b(predict|determine|calculate|observe|infer|if|outcome|what happens)\b/.test(prompt);
     if (!isTransfer && prompt.length > 0) {

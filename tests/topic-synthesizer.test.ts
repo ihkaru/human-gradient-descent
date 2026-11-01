@@ -50,4 +50,16 @@ describe("TopicCurriculumSynthesizer Suite (Scratch Material Generator)", () => 
     expect(dagRes.topologicalOrder).toBeDefined();
     expect(dagRes.topologicalOrder!.length).toBe(pkg.manifest.dag.nodes.length);
   });
+
+  it("embeds visual Mermaid flowcharts in Block 2 prototypes for intuitive spatial scaffolding", () => {
+    const pkg = synthesizer.synthesizeFromTopic("Thermodynamics Entropy");
+    expect(pkg.markdown).toContain("```mermaid");
+    expect(pkg.markdown).toContain("flowchart");
+
+    for (const shard of pkg.shards) {
+      for (const node of shard.nodes) {
+        expect(node.uila?.block2_intuitivePrototype?.isomorphicMapping).toContain("flowchart");
+      }
+    }
+  });
 });
