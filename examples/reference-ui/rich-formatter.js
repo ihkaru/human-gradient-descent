@@ -7,6 +7,8 @@ export function initFormatters() {
         startOnLoad: false,
         theme: "dark",
         securityLevel: "loose",
+        htmlLabels: true,
+        themeCSS: ".node foreignObject { overflow: visible !important; } .edgeLabel foreignObject { overflow: visible !important; }",
         fontFamily: "Google Sans, sans-serif",
         themeVariables: {
           darkMode: true,

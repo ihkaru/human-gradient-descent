@@ -19,9 +19,9 @@ Bayangkan alih-alih saklar lampu on/off yang kaku, kita memiliki koin logam di a
 
 ```mermaid
 flowchart LR
-    Bit0["Klasik: Bit Diam |0>"] -->|Sentakan Tuas Hadamard| Sup["Kuantum: Koin Berputar (|0>+|1>)/sqrt(2)"]
-    Sup -->|Pengukuran Aktif| Out0["Hasil Pasti 0 (50%)"]
-    Sup -->|Pengukuran Aktif| Out1["Hasil Pasti 1 (50%)"]
+    Bit0["Klasik: Bit Diam |0>"] -->|Sentakan Tuas Hadamard| Sup["$$\lvert \psi \rangle = \frac{1}{\sqrt{2}}(\lvert 0 \rangle + \lvert 1 \rangle)$$"]
+    Sup -->|Pengukuran Aktif| Out0["$$|0\rangle \text{ (50%)}$$"]
+    Sup -->|Pengukuran Aktif| Out1["$$|1\rangle \text{ (50%)}$$"]
 ```
 
 ### 3. Invarian & Operasi Inti

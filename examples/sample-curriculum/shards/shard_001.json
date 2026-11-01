@@ -26,7 +26,7 @@
         },
         "block2_intuitivePrototype": {
           "physicalObject": "Physical sandbox model",
-          "isomorphicMapping": "Bayangkan alih-alih saklar lampu on/off yang kaku, kita memiliki koin logam di atas meja. Ketika koin diam terlentang di sisi '0', ia adalah bit klasik. Namun, sistem kita memiliki **Tuas Penyeimbang (dikenal sebagai Gerbang Hadamard)**. Ketika tuas Hadamard ini disentak, koin diputar kencang di atas meja. Selama koin berputar seimbang, statusnya bukan angka mutlak dan bukan gambar mutlak, melainkan kombinasi dinamis di mana kedua sisi memiliki potensi muncul yang setara saat dihentikan.\n\n```mermaid\nflowchart LR\n    Bit0[\"Klasik: Bit Diam |0>\"] -->|Sentakan Tuas Hadamard| Sup[\"Kuantum: Koin Berputar (|0>+|1>)/sqrt(2)\"]\n    Sup -->|Pengukuran Aktif| Out0[\"Hasil Pasti 0 (50%)\"]\n    Sup -->|Pengukuran Aktif| Out1[\"Hasil Pasti 1 (50%)\"]\n```",
+          "isomorphicMapping": "Bayangkan alih-alih saklar lampu on/off yang kaku, kita memiliki koin logam di atas meja. Ketika koin diam terlentang di sisi '0', ia adalah bit klasik. Namun, sistem kita memiliki **Tuas Penyeimbang (dikenal sebagai Gerbang Hadamard)**. Ketika tuas Hadamard ini disentak, koin diputar kencang di atas meja. Selama koin berputar seimbang, statusnya bukan angka mutlak dan bukan gambar mutlak, melainkan kombinasi dinamis di mana kedua sisi memiliki potensi muncul yang setara saat dihentikan.\n\n```mermaid\nflowchart LR\n    Bit0[\"Klasik: Bit Diam |0>\"] -->|Sentakan Tuas Hadamard| Sup[\"$$\\lvert \\psi \\rangle = \\frac{1}{\\sqrt{2}}(\\lvert 0 \\rangle + \\lvert 1 \\rangle)$$\"]\n    Sup -->|Pengukuran Aktif| Out0[\"$$|0\\rangle \\text{ (50%)}$$\"]\n    Sup -->|Pengukuran Aktif| Out1[\"$$|1\\rangle \\text{ (50%)}$$\"]\n```",
           "deadlockResolution": "Resolves the deadlock identified in Block 1 through isomorphic interaction."
         },
         "block3_coreMechanics": {
@@ -108,7 +108,7 @@
           },
           {
             "representationType": "symbolic",
-            "content": "H|0\\rangle = \\frac{1}{\\sqrt{2}}|0\\rangle + \\frac{1}{\\sqrt{2}}|1\\rangle"
+            "content": "\\lvert \\psi \\rangle = \\frac{1}{\\sqrt{2}}(\\lvert 0 \\rangle + \\lvert 1 \\rangle)"
           }
         ],
         "proceduralPerturbations": [
