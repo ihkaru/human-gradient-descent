@@ -10,7 +10,8 @@ const IGNORE_DIRS = new Set([
   "build",
   ".cache",
   ".session-cache",
-  "vendor"
+  "vendor",
+  "target"
 ]);
 const IGNORE_EXTENSIONS = new Set([
   ".png",

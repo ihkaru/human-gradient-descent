@@ -119,7 +119,7 @@ function extractBlock4(content: string, title: string): Block4NotationContract {
   for (const b of bulletLines) {
     const colonIdx = b.indexOf(":");
     if (colonIdx > 0) {
-      const sym = b.slice(1, colonIdx).replace(/[`*_-]/g, "").trim();
+      const sym = b.slice(1, colonIdx).replace(/[`*]/g, "").trim();
       const meaning = b.slice(colonIdx + 1).trim();
       terms.push({ symbol: sym, physicalMeaning: meaning });
     }

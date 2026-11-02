@@ -1,0 +1,132 @@
+{
+  "schemaVersion": "2026.1",
+  "curriculumId": "rust-io-uring",
+  "title": "Rust io_uring: Zero-Syscall Asynchronous I/O Architecture",
+  "description": "An advanced systems engineering curriculum compiled with the Human Gradient Descent paradigm. Explores the physical shift from readiness-based epoll context-switching to completion-based shared memory ring buffers in Linux and Rust.",
+  "domain": "KnowledgeBase",
+  "domainType": "general",
+  "compositionalPrimitives": [
+    "the syscall tax and context switch inadequacy",
+    "submission and completion ring mechanics",
+    "kernel polling via ioring_setup_sqpoll",
+    "zero-copy json streaming with registered buffers"
+  ],
+  "version": "1.0.0",
+  "license": "MIT",
+  "authors": [
+    "ihkaru"
+  ],
+  "scale": {
+    "totalNodes": 4,
+    "totalShards": 4,
+    "approxWordCount": 2386,
+    "estimatedLearningHours": 1.4
+  },
+  "pacing": {
+    "defaultMode": "time_bounded",
+    "timeBoundedConfig": {
+      "defaultNodeTimeoutSeconds": 60,
+      "totalCurriculumBudgetMinutes": 15,
+      "autoEscalateHintOnTimeout": true,
+      "stagnationWarningSeconds": 25
+    },
+    "checkpoints": [
+      {
+        "checkpointId": "cp-01",
+        "title": "Milestone Checkpoint: Submission and Completion Ring Mechanics",
+        "milestoneNodeId": "hgd://knowledgebase/rust-io-uring/node-002",
+        "requiredMasteryTheta": 0.9
+      },
+      {
+        "checkpointId": "cp-02",
+        "title": "Milestone Checkpoint: Zero-Copy JSON Streaming with Registered Buffers",
+        "milestoneNodeId": "hgd://knowledgebase/rust-io-uring/node-004",
+        "requiredMasteryTheta": 0.9
+      }
+    ]
+  },
+  "shards": [
+    {
+      "shardId": "shard_001",
+      "filePath": "shards/shard_001.json",
+      "nodeCount": 1,
+      "nodeIds": [
+        "hgd://knowledgebase/rust-io-uring/node-001"
+      ]
+    },
+    {
+      "shardId": "shard_002",
+      "filePath": "shards/shard_002.json",
+      "nodeCount": 1,
+      "nodeIds": [
+        "hgd://knowledgebase/rust-io-uring/node-002"
+      ]
+    },
+    {
+      "shardId": "shard_003",
+      "filePath": "shards/shard_003.json",
+      "nodeCount": 1,
+      "nodeIds": [
+        "hgd://knowledgebase/rust-io-uring/node-003"
+      ]
+    },
+    {
+      "shardId": "shard_004",
+      "filePath": "shards/shard_004.json",
+      "nodeCount": 1,
+      "nodeIds": [
+        "hgd://knowledgebase/rust-io-uring/node-004"
+      ]
+    }
+  ],
+  "dag": {
+    "nodes": [
+      {
+        "id": "hgd://knowledgebase/rust-io-uring/node-001",
+        "shardId": "shard_001",
+        "title": "The Syscall Tax and Context Switch Inadequacy",
+        "cognitiveLevel": "understand"
+      },
+      {
+        "id": "hgd://knowledgebase/rust-io-uring/node-002",
+        "shardId": "shard_002",
+        "title": "Submission and Completion Ring Mechanics",
+        "cognitiveLevel": "apply"
+      },
+      {
+        "id": "hgd://knowledgebase/rust-io-uring/node-003",
+        "shardId": "shard_003",
+        "title": "Kernel Polling via IORING_SETUP_SQPOLL",
+        "cognitiveLevel": "analyze"
+      },
+      {
+        "id": "hgd://knowledgebase/rust-io-uring/node-004",
+        "shardId": "shard_004",
+        "title": "Zero-Copy JSON Streaming with Registered Buffers",
+        "cognitiveLevel": "evaluate"
+      }
+    ],
+    "edges": [
+      {
+        "from": "hgd://knowledgebase/rust-io-uring/node-001",
+        "to": "hgd://knowledgebase/rust-io-uring/node-002",
+        "relationType": "prerequisite"
+      },
+      {
+        "from": "hgd://knowledgebase/rust-io-uring/node-002",
+        "to": "hgd://knowledgebase/rust-io-uring/node-003",
+        "relationType": "prerequisite"
+      },
+      {
+        "from": "hgd://knowledgebase/rust-io-uring/node-001",
+        "to": "hgd://knowledgebase/rust-io-uring/node-004",
+        "relationType": "prerequisite"
+      },
+      {
+        "from": "hgd://knowledgebase/rust-io-uring/node-003",
+        "to": "hgd://knowledgebase/rust-io-uring/node-004",
+        "relationType": "prerequisite"
+      }
+    ]
+  }
+}

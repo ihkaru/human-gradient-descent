@@ -43,6 +43,10 @@ const CURRICULA = {
     manifest: "../sample-law-curriculum/curriculum-manifest.json",
     basePath: "../sample-law-curriculum/",
   },
+  uring: {
+    manifest: "../sample-uring-curriculum/curriculum-manifest.json",
+    basePath: "../sample-uring-curriculum/",
+  },
 };
 
 let activeCurriculumKey = "quantum";

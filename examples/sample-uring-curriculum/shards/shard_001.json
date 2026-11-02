@@ -1,0 +1,194 @@
+{
+  "shardId": "shard_001",
+  "curriculumId": "rust-io-uring",
+  "nodes": [
+    {
+      "id": "hgd://knowledgebase/rust-io-uring/node-001",
+      "title": "The Syscall Tax and Context Switch Inadequacy",
+      "cognitiveLevel": "understand",
+      "difficultyTier": "1_foundational_fluency",
+      "workingMemoryBudget": {
+        "wordCount": 23,
+        "estimatedReadingSeconds": 3
+      },
+      "prerequisites": [],
+      "conceptSummary": "<!-- hgd:options: [\n  {\"optionId\": \"opt_a\", \"text\": \"The CPU spends the majority of its execution cycles in kernel trap transitions and TLB cache flushes caused by millions of context switches rather than serializing JSON.\", \"isCorrect\": true, \"causalRationale\": \"Accurately identifies the physical cost of user-to-kernel boundary crossings at scale.\"},\n  {\"optionId\": \"opt_b\", \"text\": \"The JSON parser exceeds memory limits because Rust cannot free heap allocations without an active garbage collection pass.\", \"isCorrect\": false, \"diagnosticAxis\": \"conceptGap\", \"causalRationale\": \"Misattributes system bottleneck to language runtime memory management rather than OS I/O overhead.\"},\n  {\"optionId\": \"opt_c\", \"text\": \"TCP sockets automatically terminate connections when packets arrive faster than 100 microseconds apart.\", \"isCorrect\": false, \"diagnosticAxis\": \"reasoningBug\", \"causalRationale\": \"Invents a fictitious network protocol cutoff rule unsupported by transport layer specifications.\"}\n]",
+      "pacing": {
+        "timeLimitSeconds": 60,
+        "recommendedEpochs": 3,
+        "isCheckpoint": false
+      },
+      "uila": {
+        "block1_anomaly": {
+          "groundState": "Initial state prior to The Syscall Tax and Context Switch Inadequacy.",
+          "oldWay": "Conventional assumption or baseline approach.",
+          "breakdownPoint": "Selama ini server web klasik berbasis `epoll` bekerja dengan pola kesiapan (*readiness*). Setiap kali data siap, aplikasi wajib memanggil *syscall* `read()` dan `write()`. Pada beban ekstrem (500.000 RPS), CPU membuang lebih dari 70% energinya hanya untuk bolak-balik menyeberangi perbatasan proteksi *ring 3* (user) dan *ring 0* (kernel), memicu invalidasi cache TLB."
+        },
+        "block2_intuitivePrototype": {
+          "physicalObject": "Physical sandbox model",
+          "isomorphicMapping": "Physical sandbox model: Bayangkan kantor pos di mana setiap kali Anda ingin mengirim atau mengambil 1 lembar surat, Anda harus mengetuk pintu satpam, diperiksa paspor, dan menunggu pintu gerbang dibuka satu per satu. Sistem *io_uring* mengganti pintu gerbang itu dengan ban berjalan (*conveyor belt*) bersama tanpa satpam di mana surat ditaruh langsung ke wadah putar.\n\n```mermaid\nflowchart LR\n    subgraph Classical[\"Epoll: 2 Syscalls Per Request\"]\n        U1[\"User Space JSON\"] -->|Syscall read| K1[\"Kernel Switch ($$\\tau_{\\text{trap}}$$)\"]\n        K1 -->|Context Return| U2[\"Process Data\"]\n        U2 -->|Syscall write| K2[\"Kernel Switch ($$\\tau_{\\text{trap}}$$)\"]\n    end\n    subgraph Ring[\"io_uring: Shared Memory Ring\"]\n        SQ[\"Submission Queue (SQ)\"] -->|Lockless Read| KW[\"Kernel Worker\"]\n        KW -->|Event Push| CQ[\"Completion Queue (CQ)\"]\n    end\n```",
+          "deadlockResolution": "Resolves the deadlock identified in Block 1 through isomorphic interaction."
+        },
+        "block3_coreMechanics": {
+          "invariantProperty": "Invarian fundamental sistem ini adalah **Dual-Ring Shared Memory Separation**: ruang memori antrean pengajuan (*Submission Queue*) dan penyelesaian (*Completion Queue*) dipetakan ke dalam memori bersama via `mmap`. Pertukaran data terjadi secara asinkron tanpa *syscall* pemblokir.",
+          "variableComponents": [
+            "System inputs",
+            "Observable state amplitudes"
+          ],
+          "contrastingCases": [
+            {
+              "beginnerMisconception": "Mengira io_uring hanya epoll versi lebih baru",
+              "physicalReality": "io_uring adalah model *completion-based* (Proactor), bukan *readiness-based* (Reactor)"
+            },
+            {
+              "beginnerMisconception": "Mengira syscall membaca data langsung tanpa jeda",
+              "physicalReality": "Setiap syscall memicu penyalinan konteks register CPU dan flushing pipeline instruksi"
+            },
+            {
+              "beginnerMisconception": "Mengira kernel wajib dipanggil saat menaruh tugas I/O",
+              "physicalReality": "Tugas ditaruh langsung ke memori RAM bersama tanpa interupsi perangkat keras"
+            }
+          ]
+        },
+        "block4_notationContract": {
+          "formulaOrCode": "\\mathcal{O}(\\text{Syscall Overhead}) = 2N \\cdot \\tau_{\\text{switch}} \\xrightarrow{\\text{io\\_uring}} \\mathcal{O}(1)",
+          "minimalFormalization": "Formula penghematan beban konteks kernel:",
+          "termsDeconstruction": [
+            {
+              "symbol": "N",
+              "physicalMeaning": "Jumlah transaksi permintaan HTTP JSON per detik."
+            },
+            {
+              "symbol": "\\tau_{switch}",
+              "physicalMeaning": "Penalti latensi penyeberangan proteksi prosesor (1.2 - 2.5 mikrodetik)."
+            },
+            {
+              "symbol": "\\mathcal{O}(1)",
+              "physicalMeaning": "Pengajuan batch tanpa pembengkakan transisi trap kernel."
+            }
+          ]
+        }
+      },
+      "expansionPathways": {
+        "depthLevel": 1,
+        "deeperSpiralNodeId": "hgd://knowledgebase/rust-io-uring/node-001-deep-spiral",
+        "branches": [
+          {
+            "trackName": "The Syscall Tax and Context Switch Inadequacy Rigorous Implementation",
+            "targetNodeId": "hgd://knowledgebase/rust-io-uring/node-001-rigor",
+            "description": "Deep dive into proofs, memory models, and edge performance for The Syscall Tax and Context Switch Inadequacy."
+          },
+          {
+            "trackName": "The Syscall Tax and Context Switch Inadequacy Production Engineering",
+            "targetNodeId": "hgd://knowledgebase/rust-io-uring/node-001-prod",
+            "description": "Handling noisy environments, concurrency faults, and distributed failure modes."
+          }
+        ],
+        "isomorphicBridges": [
+          {
+            "domain": "General Dynamical Systems",
+            "targetNodeId": "hgd://general/dynamics/the-syscall-tax-and-context-switch-inadequacy",
+            "sharedInvariant": "Conservation and state equilibrium under boundary perturbation."
+          }
+        ]
+      },
+      "variationProbes": {
+        "conceptualVariants": [
+          {
+            "representationType": "verbal",
+            "content": "Invarian & Operasi Inti\nInvarian fundamental sistem ini adalah **Dual-Ring Shared Memory Separation**: ruang memori antrean pengajuan (*Submission Queue*) dan penyelesaian (*Completion Queue*) dipetakan ke dalam memori bersama via `mmap`."
+          },
+          {
+            "representationType": "symbolic",
+            "content": "\\tau_{\\text{trap}}"
+          }
+        ],
+        "proceduralPerturbations": [
+          {
+            "parameter": "boundary_condition",
+            "perturbation": "inverse_constraint",
+            "probe": "If boundary inputs invert, how does The Syscall Tax and Context Switch Inadequacy preserve state?",
+            "expectedBoundaryBehavior": "\"The CPU spends the majority of its execution cycles in kernel trap transitions and TLB cache flushes caused by millions of context switches rather than executing application JSON logic.\""
+          }
+        ]
+      },
+      "forwardPass": {
+        "probeType": "prediction_what_if",
+        "microPrimer": "\"Traditional network servers rely on epoll readiness. Handling each incoming request requires repeated read and write syscalls, forcing the CPU to switch between user and kernel space, invalidating processor caches under heavy load.\"",
+        "readingContext": "<!-- hgd:options: [\n  {\"optionId\": \"opt_a\", \"text\": \"The CPU spends the majority of its execution cycles in kernel trap transitions and TLB cache flushes caused by millions of context switches rather than serializing JSON.\", \"isCorrect\": true, \"causalRationale\": \"Accurately identifies the physical cost of user-to-kernel boundary crossings at scale.\"},\n  {\"optionId\": \"opt_b\", \"text\": \"The JSON parser exceeds memory limits because Rust cannot free heap allocations without an active garbage collect",
+        "prompt": "\"Predict: Why does an epoll JSON server hit a throughput ceiling when handling 500,000 requests per second even when network bandwidth is plenty?\"",
+        "options": [
+          {
+            "optionId": "opt_a",
+            "text": "\"The CPU spends the majority of its execution cycles in kernel trap transitions and TLB cache flushes caused by millions of context switches rather than executing application JSON logic.\"",
+            "isCorrect": true,
+            "causalRationale": "Correct: \"The CPU spends the majority of its execution cycles in kernel trap transitions and TLB cache flushes caused by millions of context switches rather than executing application JSON logic.\". This adheres strictly to the governing invariant of The Syscall Tax and Context Switch Inadequacy."
+          },
+          {
+            "optionId": "opt_b",
+            "text": "The system remains completely unchanged because The Syscall Tax and Context Switch Inadequacy acts as an invariant identity operator without state transitions.",
+            "isCorrect": false,
+            "diagnosticAxis": "conceptGap",
+            "causalRationale": "Misconception: Assumes operations produce zero observable effect, ignoring active transformation.",
+            "specificRemediation": "Review core mechanism: Invarian & Operasi Inti\nInvarian fundamental sistem ini adalah **Dual-Ring Shared Memory Separation**: ruang memori antrean pengajuan (*Submission Queue*) dan penyelesaian (*Completion Queue*) dipetakan ke dalam memori bersama via `mmap`."
+          },
+          {
+            "optionId": "opt_c",
+            "text": "The state diverges uncontrollably because boundary conditions are violated immediately.",
+            "isCorrect": false,
+            "diagnosticAxis": "reasoningBug",
+            "causalRationale": "Reasoning Slip: Assumes instability without verifying whether mathematical bounds are preserved.",
+            "specificRemediation": "Trace boundary constraints step-by-step."
+          }
+        ],
+        "expectedMentalModel": [
+          "syscall",
+          "context switch",
+          "epoll",
+          "tlb flush",
+          "kernel trap",
+          "throughput ceiling"
+        ],
+        "groundTruth": "\"The CPU spends the majority of its execution cycles in kernel trap transitions and TLB cache flushes caused by millions of context switches rather than executing application JSON logic.\""
+      },
+      "lossRubric": {
+        "conceptGapCriteria": [
+          "Fails to identify core mechanism: Invarian & Operasi Inti\nInvarian fundamental sistem ini adalah **Dual-Ring Shared Memory Separation**: ruang memori antrean pengajuan (*Submission Queue*) dan penyelesaian (*Completion Queue*) dipetakan ke dalam memori bersama via `mmap`.",
+          "Confuses cause and effect in state transitions"
+        ],
+        "notationCriteria": [
+          "Uses ambiguous notation",
+          "Confuses variables"
+        ],
+        "strategyCriteria": [
+          "Applies inapplicable heuristics"
+        ],
+        "reasoningCriteria": [
+          "Off-by-one or boundary condition omission"
+        ]
+      },
+      "backwardPass": {
+        "learningRate": 0.25,
+        "hintLadder": {
+          "level0Reflective": "Reflective: What fundamental invariant governs The Syscall Tax and Context Switch Inadequacy?",
+          "level1Directional": "Directional Clue: Examine how The Syscall Tax and Context Switch Inadequacy handles boundary conditions: Invarian & Operasi Inti\nInvarian fundamental sistem ini adalah **Dual-Ring Shared Memory Separation**: ruang memori antrean pengajuan (*Submission Queue*) dan penyelesaian (*Completion Queue*) dipetakan ke dalam memori bersama via `mmap`.",
+          "level2Constraint": "Constraint: Eliminate unconstrained assumptions. Ground truth: \"The CPU spends the majority of its execution cycles in kernel trap transitions and TLB cache flushes caused by millions of context switches rather than executing application JSON logic.\"",
+          "level3WorkedExample": "\"Worked Solution: At 500k RPS, 2 syscalls per request yields 1,000,000 context switches per second. Each context switch incurs 1.2 to 2.5 microseconds in register saving and memory barrier penalties, consuming over 70% of available CPU clock cycles.\""
+        },
+        "microRemediations": {
+          "conceptGap": "Core Invariant: \"The CPU spends the majority of its execution cycles in kernel trap transitions and TLB cache flushes caused by millions of context switches rather than executing application JSON logic.\"",
+          "notationBreakdown": "Ensure accurate notation and units for The Syscall Tax and Context Switch Inadequacy.",
+          "methodChoice": "Apply deductive causal reasoning rather than guessing.",
+          "reasoningBug": "Trace boundary edge cases step-by-step."
+        }
+      },
+      "sources": [
+        {
+          "sourceRef": "markdown-source",
+          "locationTag": "Section: The Syscall Tax and Context Switch Inadequacy",
+          "verbatimQuote": "<!-- hgd:options: [\n  {\"optionId\": \"opt_a\", \"text\": \"The CPU spends the majority of its execution cy"
+        }
+      ]
+    }
+  ]
+}

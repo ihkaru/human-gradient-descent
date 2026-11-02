@@ -1,0 +1,202 @@
+{
+  "shardId": "shard_002",
+  "curriculumId": "rust-io-uring",
+  "nodes": [
+    {
+      "id": "hgd://knowledgebase/rust-io-uring/node-002",
+      "title": "Submission and Completion Ring Mechanics",
+      "cognitiveLevel": "apply",
+      "difficultyTier": "2_boundary_perturbation",
+      "workingMemoryBudget": {
+        "wordCount": 22,
+        "estimatedReadingSeconds": 3
+      },
+      "prerequisites": [
+        "hgd://knowledgebase/rust-io-uring/node-001"
+      ],
+      "conceptSummary": "<!-- hgd:options: [\n  {\"optionId\": \"opt_a\", \"text\": \"The submission ring overflows and returns an explicit -EBUSY status, requiring the application to submit pending entries and await completions.\", \"isCorrect\": true, \"causalRationale\": \"Accurately describes circular buffer backpressure under queue saturation.\"},\n  {\"optionId\": \"opt_b\", \"text\": \"The kernel silently drops old socket connections without notifying the application.\", \"isCorrect\": false, \"diagnosticAxis\": \"conceptGap\", \"causalRationale\": \"Mistakes ring buffer saturation for ungraceful network packet dropping.\"},\n  {\"optionId\": \"opt_c\", \"text\": \"The ring dynamically doubles its size in physical RAM without kernel reallocation limits.\", \"isCorrect\": false, \"diagnosticAxis\": \"notationBreakdown\", \"causalRationale\": \"Ignores the fixed mmap ring capacity negotiated at initialization.\"}\n] -->\n\n### 1. Pangkal Anomali\nJika antrean I/O menggunakan struktur antrean biasa dengan penguncian (*mutex*), perebutan kunci antara *thread* apl",
+      "pacing": {
+        "timeLimitSeconds": 60,
+        "recommendedEpochs": 3,
+        "isCheckpoint": true,
+        "rollbackNodeId": "hgd://knowledgebase/rust-io-uring/node-001"
+      },
+      "uila": {
+        "block1_anomaly": {
+          "groundState": "Initial state prior to Submission and Completion Ring Mechanics.",
+          "oldWay": "Conventional assumption or baseline approach.",
+          "breakdownPoint": "Jika antrean I/O menggunakan struktur antrean biasa dengan penguncian (*mutex*), perebutan kunci antara *thread* aplikasi dan kernel akan menghancurkan skalabilitas multi-inti prosesor (*lock contention*)."
+        },
+        "block2_intuitivePrototype": {
+          "physicalObject": "Physical sandbox model",
+          "isomorphicMapping": "Physical sandbox model: Bayangkan wadah jam putar melingkar dengan dua jarum jam independen: jarum hijau dikendalikan Anda (ekor penulis), dan jarum merah dikendalikan petugas dapur (kepala pembaca). Tak ada yang perlu berbicara atau memegang kunci; masing-masing hanya memajukan jarumnya sendiri secara melingkar.\n\n```mermaid\nflowchart TD\n    subgraph SQ[\"Submission Ring (SQ)\"]\n        SQ_Tail[\"User: sqe_tail++\"] --> SQ_Entries[\"SQE Descriptors (Read/Write/Send)\"]\n        SQ_Entries --> SQ_Head[\"Kernel: sqe_head++\"]\n    end\n    subgraph CQ[\"Completion Ring (CQ)\"]\n        CQ_Tail[\"Kernel: cqe_tail++\"] --> CQ_Entries[\"CQE Results (Bytes / Status)\"]\n        CQ_Entries --> CQ_Head[\"User: cqe_head++\"]\n    end\n```",
+          "deadlockResolution": "Resolves the deadlock identified in Block 1 through isomorphic interaction."
+        },
+        "block3_coreMechanics": {
+          "invariantProperty": "Invarian fundamental antrean adalah **Lockless Single-Producer Single-Consumer (SPSC)**: aplikasi pengguna hanya memodifikasi `sq_tail` dan membaca `cq_head`, sedangkan kernel Linux hanya memodifikasi `sq_head` dan menulis `cq_tail`. Keduanya beroperasi tanpa *mutex lock*.",
+          "variableComponents": [
+            "System inputs",
+            "Observable state amplitudes"
+          ],
+          "contrastingCases": [
+            {
+              "beginnerMisconception": "Mengira SQ dan CQ memerlukan mutex lock bersama",
+              "physicalReality": "Pointer kepala dan ekor dipisahkan pada cache line berbeda dengan operasi atomik"
+            },
+            {
+              "beginnerMisconception": "Mengira hasil I/O langsung menimpa data yang dikirim",
+              "physicalReality": "Hasil selesai ditulis ke antrean CQ terpisah dengan status kode return bytes"
+            }
+          ]
+        },
+        "block4_notationContract": {
+          "formulaOrCode": "\\text{Free Slots} = \\text{Ring Capacity} - (\\text{sq\\_tail} - \\text{sq\\_head})",
+          "minimalFormalization": "Formula kondisi kapasitas cincin sirkular:",
+          "termsDeconstruction": [
+            {
+              "symbol": "Ring Capacity",
+              "physicalMeaning": "Kapasitas slot cincin yang dinegosiasikan saat inisialisasi ($2^N$)."
+            },
+            {
+              "symbol": "SQEs",
+              "physicalMeaning": "Submission Queue Entries (lembar deskriptor tugas pengajuan I/O yang ditulis ke antrean SQ)."
+            },
+            {
+              "symbol": "sq_tail",
+              "physicalMeaning": "Indeks atomik posisi pengajuan oleh aplikasi pengguna."
+            },
+            {
+              "symbol": "sq_head",
+              "physicalMeaning": "Indeks atomik konsumsi tugas oleh kernel Linux."
+            }
+          ]
+        }
+      },
+      "expansionPathways": {
+        "depthLevel": 1,
+        "deeperSpiralNodeId": "hgd://knowledgebase/rust-io-uring/node-002-deep-spiral",
+        "branches": [
+          {
+            "trackName": "Submission and Completion Ring Mechanics Rigorous Implementation",
+            "targetNodeId": "hgd://knowledgebase/rust-io-uring/node-002-rigor",
+            "description": "Deep dive into proofs, memory models, and edge performance for Submission and Completion Ring Mechanics."
+          },
+          {
+            "trackName": "Submission and Completion Ring Mechanics Production Engineering",
+            "targetNodeId": "hgd://knowledgebase/rust-io-uring/node-002-prod",
+            "description": "Handling noisy environments, concurrency faults, and distributed failure modes."
+          }
+        ],
+        "isomorphicBridges": [
+          {
+            "domain": "General Dynamical Systems",
+            "targetNodeId": "hgd://general/dynamics/submission-and-completion-ring-mechanics",
+            "sharedInvariant": "Conservation and state equilibrium under boundary perturbation."
+          }
+        ]
+      },
+      "variationProbes": {
+        "conceptualVariants": [
+          {
+            "representationType": "verbal",
+            "content": "Invarian & Operasi Inti\nInvarian fundamental antrean adalah **Lockless Single-Producer Single-Consumer (SPSC)**: aplikasi pengguna hanya memodifikasi `sq_tail` dan membaca `cq_head`, sedangkan kernel Linux hanya memodifikasi `sq_head` dan menulis `cq_tail`."
+          },
+          {
+            "representationType": "symbolic",
+            "content": "\\text{Free Slots} = \\text{Ring Capacity} - (\\text{sq\\_tail} - \\text{sq\\_head})"
+          }
+        ],
+        "proceduralPerturbations": [
+          {
+            "parameter": "boundary_condition",
+            "perturbation": "inverse_constraint",
+            "probe": "If boundary inputs invert, how does Submission and Completion Ring Mechanics preserve state?",
+            "expectedBoundaryBehavior": "\"The submission ring overflows and returns an explicit -EBUSY or backpressure status, requiring the user application to submit pending entries and wait for completion queue drains.\""
+          }
+        ]
+      },
+      "forwardPass": {
+        "probeType": "prediction_what_if",
+        "microPrimer": "\"io_uring operates via two lockless ring buffers: the Submission Queue (SQ) where user space writes I/O requests, and the Completion Queue (CQ) where the kernel posts completed results.\"",
+        "readingContext": "<!-- hgd:options: [\n  {\"optionId\": \"opt_a\", \"text\": \"The submission ring overflows and returns an explicit -EBUSY status, requiring the application to submit pending entries and await completions.\", \"isCorrect\": true, \"causalRationale\": \"Accurately describes circular buffer backpressure under queue saturation.\"},\n  {\"optionId\": \"opt_b\", \"text\": \"The kernel silently drops old socket connections without notifying the application.\", \"isCorrect\": false, \"diagnosticAxis\": \"conceptGap\", \"causalRationa",
+        "prompt": "\"Predict: What occurs when the user application enqueues Submission Queue Entries (SQEs) faster than the kernel consumes them, filling the ring buffer?\"",
+        "options": [
+          {
+            "optionId": "opt_a",
+            "text": "\"The submission ring overflows and returns an explicit -EBUSY or backpressure status, requiring the user application to submit pending entries and wait for completion queue drains.\"",
+            "isCorrect": true,
+            "causalRationale": "Correct: \"The submission ring overflows and returns an explicit -EBUSY or backpressure status, requiring the user application to submit pending entries and wait for completion queue drains.\". This adheres strictly to the governing invariant of Submission and Completion Ring Mechanics."
+          },
+          {
+            "optionId": "opt_b",
+            "text": "The system remains completely unchanged because Submission and Completion Ring Mechanics acts as an invariant identity operator without state transitions.",
+            "isCorrect": false,
+            "diagnosticAxis": "conceptGap",
+            "causalRationale": "Misconception: Assumes operations produce zero observable effect, ignoring active transformation.",
+            "specificRemediation": "Review core mechanism: Invarian & Operasi Inti\nInvarian fundamental antrean adalah **Lockless Single-Producer Single-Consumer (SPSC)**: aplikasi pengguna hanya memodifikasi `sq_tail` dan membaca `cq_head`, sedangkan kernel Linux hanya memodifikasi `sq_head` dan menulis `cq_tail`."
+          },
+          {
+            "optionId": "opt_c",
+            "text": "The state diverges uncontrollably because boundary conditions are violated immediately.",
+            "isCorrect": false,
+            "diagnosticAxis": "reasoningBug",
+            "causalRationale": "Reasoning Slip: Assumes instability without verifying whether mathematical bounds are preserved.",
+            "specificRemediation": "Trace boundary constraints step-by-step."
+          }
+        ],
+        "expectedMentalModel": [
+          "submission queue",
+          "completion queue",
+          "ring buffer",
+          "sqe",
+          "cqe",
+          "overflow",
+          "ebusy"
+        ],
+        "groundTruth": "\"The submission ring overflows and returns an explicit -EBUSY or backpressure status, requiring the user application to submit pending entries and wait for completion queue drains.\""
+      },
+      "lossRubric": {
+        "conceptGapCriteria": [
+          "Fails to identify core mechanism: Invarian & Operasi Inti\nInvarian fundamental antrean adalah **Lockless Single-Producer Single-Consumer (SPSC)**: aplikasi pengguna hanya memodifikasi `sq_tail` dan membaca `cq_head`, sedangkan kernel Linux hanya memodifikasi `sq_head` dan menulis `cq_tail`.",
+          "Confuses cause and effect in state transitions"
+        ],
+        "missingPrerequisiteMap": {
+          "hgd://knowledgebase/rust-io-uring/node-001": "Foundational upstream concept"
+        },
+        "notationCriteria": [
+          "Uses ambiguous notation",
+          "Confuses variables"
+        ],
+        "strategyCriteria": [
+          "Applies inapplicable heuristics"
+        ],
+        "reasoningCriteria": [
+          "Off-by-one or boundary condition omission"
+        ]
+      },
+      "backwardPass": {
+        "learningRate": 0.25,
+        "hintLadder": {
+          "level0Reflective": "Reflective: What fundamental invariant governs Submission and Completion Ring Mechanics?",
+          "level1Directional": "Directional Clue: Examine how Submission and Completion Ring Mechanics handles boundary conditions: Invarian & Operasi Inti\nInvarian fundamental antrean adalah **Lockless Single-Producer Single-Consumer (SPSC)**: aplikasi pengguna hanya memodifikasi `sq_tail` dan membaca `cq_head`, sedangkan kernel Linux hanya memodifikasi `sq_head` dan menulis `cq_tail`.",
+          "level2Constraint": "Constraint: Eliminate unconstrained assumptions. Ground truth: \"The submission ring overflows and returns an explicit -EBUSY or backpressure status, requiring the user application to submit pending entries and wait for completion queue drains.\"",
+          "level3WorkedExample": "\"Worked Solution: The SQ ring uses atomic head and tail pointers. When tail - head equals the ring capacity, the ring is full. Calling io_uring_enter flushes the batch to kernel execution, clearing room for subsequent submissions.\""
+        },
+        "microRemediations": {
+          "conceptGap": "Core Invariant: \"The submission ring overflows and returns an explicit -EBUSY or backpressure status, requiring the user application to submit pending entries and wait for completion queue drains.\"",
+          "missingPrerequisite": "Review prerequisite: hgd://knowledgebase/rust-io-uring/node-001",
+          "notationBreakdown": "Ensure accurate notation and units for Submission and Completion Ring Mechanics.",
+          "methodChoice": "Apply deductive causal reasoning rather than guessing.",
+          "reasoningBug": "Trace boundary edge cases step-by-step."
+        }
+      },
+      "sources": [
+        {
+          "sourceRef": "markdown-source",
+          "locationTag": "Section: Submission and Completion Ring Mechanics",
+          "verbatimQuote": "<!-- hgd:options: [\n  {\"optionId\": \"opt_a\", \"text\": \"The submission ring overflows and returns an ex"
+        }
+      ]
+    }
+  ]
+}
