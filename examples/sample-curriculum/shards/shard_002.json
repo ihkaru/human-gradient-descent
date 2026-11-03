@@ -14,7 +14,7 @@
       "prerequisites": [
         "hgd://knowledgebase/quantum-computing/node-001"
       ],
-      "conceptSummary": "### 1. Pangkal Anomali\nDi komputasi klasik kita terbiasa menghapus data dengan reset bit ke 0. Pendekatan ini runtuh di dunia kuantum karena penghapusan informasi menghasilkan disipasi panas termodinamika dan merusak ortogonalitas vektor keadaan.\n\n### 2. Prototipe Intuitif\nBayangkan alih-alih perajang kertas yang menghancurkan lembaran dokumen, sistem kita adalah prisma cermin putar tanpa gesekan. Setiap berkas cahaya yang masuk dapat dikembalikan persis ke arah semula hanya dengan membalik arah putaran cermin.\n\n```mermaid\nflowchart LR\n    StateIn[\"Keadaan Masuk |psi>\"] -->|Gerbang Uniter U| Trans[\"Ruang Terputar\"]\n    Trans -->|Pembalik Hermisian U^\\dagger| StateIn\n```\n\n### 3. Invarian & Operasi Inti\nInvarian mutlak sistem adalah **Reversibilitas dan Preservasi Norma Vektor**. Tidak ada probabilitas yang boleh hilang atau bocor keluar dari sistem tertutup.\n\n| Apa yang Dipikirkan Pemula (Salah) | Apa yang Sebenarnya Terjadi dalam Model Mental |\n|---|---|\n| Gerbang kuantum bebas menghap",
+      "conceptSummary": "### 1. Pangkal Anomali\nDalam komputasi konvensional, kita menganggap remeh operasi penghapusan data. Saat Anda mengetik tombol `Backspace` atau menimpa variabel dengan angka 0 (`x = 0`), komputer menghancurkan status informasi sebelumnya tanpa jejak.\n\nHukum termodinamika yang dipelajari di bangku SMA (Prinsip Landauer) menyatakan bahwa setiap kali kita menghapus 1 bit informasi secara permanen, sistem wajib membuang energi minimal sebesar $k_B T \\ln 2$ dalam bentuk panas ke lingkungan. Di dunia mikroskopis kuantum, panas ini memicu getaran acak (*thermal noise*) yang menghancurkan koherensi partikel kuantum seketika.\n\nLebih mendalam lagi, mekanika kuantum adalah teori linier. Jika sebuah operasi menghapus status |0> dan status |1> menjadi sama-sama |0>, maka kita kehilangan kemampuan melacak dari mana keadaan tersebut berasal. Kemampuan membalikkan waktu (*time-reversibility*) lenyap, dan hukum kekekalan informasi alam semesta dilanggar.\n\n### 2. Prototipe Intuitif\nBayangkan alih-alih m",
       "pacing": {
         "timeLimitSeconds": 60,
         "recommendedEpochs": 3,
@@ -25,45 +25,53 @@
         "block1_anomaly": {
           "groundState": "Initial state prior to Unitary Operations and Reversibility.",
           "oldWay": "Conventional assumption or baseline approach.",
-          "breakdownPoint": "Di komputasi klasik kita terbiasa menghapus data dengan reset bit ke 0. Pendekatan ini runtuh di dunia kuantum karena penghapusan informasi menghasilkan disipasi panas termodinamika dan merusak ortogonalitas vektor keadaan."
+          "breakdownPoint": "Dalam komputasi konvensional, kita menganggap remeh operasi penghapusan data. Saat Anda mengetik tombol `Backspace` atau menimpa variabel dengan angka 0 (`x = 0`), komputer menghancurkan status informasi sebelumnya tanpa jejak.\n\nHukum termodinamika yang dipelajari di bangku SMA (Prinsip Landauer) menyatakan bahwa setiap kali kita menghapus 1 bit informasi secara permanen, sistem wajib membuang energi minimal sebesar $k_B T \\ln 2$ dalam bentuk panas ke lingkungan. Di dunia mikroskopis kuantum, panas ini memicu getaran acak (*thermal noise*) yang menghancurkan koherensi partikel kuantum seketika.\n\nLebih mendalam lagi, mekanika kuantum adalah teori linier. Jika sebuah operasi menghapus status |0> dan status |1> menjadi sama-sama |0>, maka kita kehilangan kemampuan melacak dari mana keadaan tersebut berasal. Kemampuan membalikkan waktu (*time-reversibility*) lenyap, dan hukum kekekalan informasi alam semesta dilanggar."
         },
         "block2_intuitivePrototype": {
           "physicalObject": "Physical sandbox model",
-          "isomorphicMapping": "Bayangkan alih-alih perajang kertas yang menghancurkan lembaran dokumen, sistem kita adalah prisma cermin putar tanpa gesekan. Setiap berkas cahaya yang masuk dapat dikembalikan persis ke arah semula hanya dengan membalik arah putaran cermin.\n\n```mermaid\nflowchart LR\n    StateIn[\"Keadaan Masuk |psi>\"] -->|Gerbang Uniter U| Trans[\"Ruang Terputar\"]\n    Trans -->|Pembalik Hermisian U^\\dagger| StateIn\n```",
+          "isomorphicMapping": "Bayangkan alih-alih mesin penghancur kertas kantor yang merajang dokumen menjadi debu tak berbekas, laboratorium kuantum kita dilengkapi dengan sebuah prisma cermin optik putar tanpa gesekan.\n\nSetiap berkas sinar laser yang dipantulkan oleh cermin ini tidak pernah kehilangan intensitas cahayanya. Sudut datang selalu sama dengan sudut pantul sesuai hukum Snellius pemantulan cahaya di SMA. Jika cermin diputar sejauh $\\theta$ derajat searah jarum jam, kita dapat mengembalikan berkas sinar tepat ke posisi awalnya hanya dengan memutar balik cermin sejauh $\\theta$ derajat berlawanan jarum jam.\n\n```mermaid\nflowchart LR\n    StateIn[\"Keadaan Masuk |\\psi\\rangle\"] -->|Gerbang Uniter U (Rotasi Cermin)| Trans[\"Keadaan Terputar U|\\psi\\rangle\"]\n    Trans -->|Pembalik Hermisian U^\\dagger (Rotasi Balik)| StateIn\n```",
           "deadlockResolution": "Resolves the deadlock identified in Block 1 through isomorphic interaction."
         },
         "block3_coreMechanics": {
-          "invariantProperty": "Invarian mutlak sistem adalah **Reversibilitas dan Preservasi Norma Vektor**. Tidak ada probabilitas yang boleh hilang atau bocor keluar dari sistem tertutup.",
+          "invariantProperty": "Invarian mutlak sistem ini adalah **Preservasi Norma Vektor dan Reversibilitas Penuh (Norm Preservation & Unitary Inversion)**: panjang vektor probabilitas dalam ruang kuantum wajib selalu bernilai tepat 1.0, dan setiap gerbang kuantum $U$ wajib memiliki pasangan pembalik eksak yang disebut Hermisian Konjugat ($U^\\dagger$).\n\nDalam bahasa geometri SMA, gerbang kuantum tidak pernah meregangkan atau memendekkan panjang anak panah vektor; gerbang kuantum murni hanya merotasi arah anak panah tersebut di ruang koordinat.",
           "variableComponents": [
             "System inputs",
             "Observable state amplitudes"
           ],
           "contrastingCases": [
             {
-              "beginnerMisconception": "Gerbang kuantum bebas menghapus status qubit menjadi nol.",
-              "physicalReality": "Gerbang kuantum tertutup wajib uniter dan sepenuhnya reversibel tanpa disipasi entropi."
+              "beginnerMisconception": "Gerbang kuantum bebas menghapus status qubit menjadi nol kapan saja.",
+              "physicalReality": "Gerbang kuantum terisolasi wajib uniter dan sepenuhnya reversibel tanpa kehilangan informasi."
             },
             {
-              "beginnerMisconception": "Pengurangan sudut vektor tidak mengubah panjang keadaan.",
-              "physicalReality": "Operator uniter menjaga sudut dalam dan panjang norma vektor tetap 1.0."
+              "beginnerMisconception": "Pengurangan sudut vektor dapat memperkecil total peluang menjadi 0.8.",
+              "physicalReality": "Operator uniter menjaga sudut dalam dan panjang norma vektor tetap tepat 1.0."
+            },
+            {
+              "beginnerMisconception": "Konjugat hermisian adalah perkalian matriks biasa tanpa sifat fisik.",
+              "physicalReality": "Hermisian konjugat adalah operasi fisik pembalik rotasi yang mengembalikan sistem ke asal."
             }
           ]
         },
         "block4_notationContract": {
           "formulaOrCode": "U^\\dagger U = I",
-          "minimalFormalization": "Transformasi kuantum diatur oleh kontrak operator uniter steno:",
+          "minimalFormalization": "Transformasi kuantum diatur oleh kontrak operator uniter steno:\n\nFormula ringkas ini adalah paspor legalitas bagi setiap operasi gerbang logika kuantum:",
           "termsDeconstruction": [
             {
               "symbol": "U",
-              "physicalMeaning": "Operator transformasi gerbang kuantum."
+              "physicalMeaning": "Operator transformasi gerbang kuantum (rotasi cermin maju)."
             },
             {
               "symbol": "U^\\dagger",
-              "physicalMeaning": "Hermisian konjugat (pembalik rotasi cermin)."
+              "physicalMeaning": "Hermisian konjugat dari matriks U (rotasi cermin mundur pembalik keadaan)."
             },
             {
               "symbol": "I",
-              "physicalMeaning": "Matriks identitas (keadaan kembali utuh tanpa kehilangan informasi)."
+              "physicalMeaning": "Matriks identitas (keadaan kembali utuh tanpa distorsi atau kehilangan informasi)."
+            },
+            {
+              "symbol": "\\langle\\psi|\\phi\\rangle",
+              "physicalMeaning": "Perkalian titik (inner product) antar dua vektor keadaan yang selalu kekal."
             }
           ]
         }
@@ -91,6 +99,28 @@
           }
         ]
       },
+      "glossary": [
+        {
+          "term": "Operator Uniter",
+          "definition": "Matriks transformasi linear yang mempertahankan panjang vektor dan hasil kali dalam",
+          "highSchoolAnchor": "Prisma cermin putar yang membelokkan berkas cahaya tanpa menyerap intensitas energinya"
+        },
+        {
+          "term": "Hermisian Konjugat (Dagger †)",
+          "definition": "Operasi transposisi matriks yang dipadukan dengan konjugasi bilangan kompleks",
+          "highSchoolAnchor": "Putaran balik cermin berlawanan arah jarum jam untuk membatalkan pantulan sinar"
+        },
+        {
+          "term": "Matriks Identitas (I)",
+          "definition": "Matriks skalar diagonal yang tidak mengubah vektor saat dikalikan",
+          "highSchoolAnchor": "Angka 1 dalam perkalian matematika biasa ($x \\times 1 = x$); keadaan sistem tidak berubah"
+        },
+        {
+          "term": "Ortogonalitas",
+          "definition": "Hubungan dua vektor yang membentuk sudut siku-siku 90 derajat (inner product bernilai nol)",
+          "highSchoolAnchor": "Sumbu X dan sumbu Y pada diagram Kartesius pelajaran matematika koordinat"
+        }
+      ],
       "variationProbes": {
         "conceptualVariants": [
           {
@@ -113,31 +143,36 @@
       },
       "forwardPass": {
         "probeType": "prediction_what_if",
-        "microPrimer": "\"Classical computing permits irreversible operations, such as resetting a bit to 0, which destroys previous state information and dissipates heat. In quantum computing, all closed-system transformations are governed by unitary operators, which strictly preserve quantum state lengths and angles.\"",
-        "readingContext": "### 1. Pangkal Anomali\nDi komputasi klasik kita terbiasa menghapus data dengan reset bit ke 0. Pendekatan ini runtuh di dunia kuantum karena penghapusan informasi menghasilkan disipasi panas termodinamika dan merusak ortogonalitas vektor keadaan.\n\n### 2. Prototipe Intuitif\nBayangkan alih-alih perajang kertas yang menghancurkan lembaran dokumen, sistem kita adalah prisma cermin putar tanpa gesekan. Setiap berkas cahaya yang masuk dapat dikembalikan persis ke arah semula hanya dengan membalik arah",
+        "microPrimer": "\"Classical computing permits irreversible operations, like bit-erasure, destroying information and dissipating heat. In quantum computing, all closed transformations are governed by unitary operators, which strictly preserve quantum state lengths and angles without information loss.\"",
+        "readingContext": "### 1. Pangkal Anomali\nDalam komputasi konvensional, kita menganggap remeh operasi penghapusan data. Saat Anda mengetik tombol `Backspace` atau menimpa variabel dengan angka 0 (`x = 0`), komputer menghancurkan status informasi sebelumnya tanpa jejak.\n\nHukum termodinamika yang dipelajari di bangku SMA (Prinsip Landauer) menyatakan bahwa setiap kali kita menghapus 1 bit informasi secara permanen, sistem wajib membuang energi minimal sebesar $k_B T \\ln 2$ dalam bentuk panas ke lingkungan. Di dunia",
         "prompt": "\"Predict why an irreversible classical operation like bit-erasure (reset to 0) cannot be represented as an isolated quantum logic gate.\"",
         "options": [
           {
             "optionId": "opt_a",
-            "text": "\"Quantum operations must be unitary (U dagger U = I), which strictly preserves inner products and vector norms, guaranteeing 100% reversibility without entropy dissipation.\"",
+            "text": "Quantum operations must be unitary (U dagger U = I), strictly preserving vector lengths and inner products, guaranteeing 100% reversibility without entropy loss.",
             "isCorrect": true,
-            "causalRationale": "Correct: \"Quantum operations must be unitary (U dagger U = I), which strictly preserves inner products and vector norms, guaranteeing 100% reversibility without entropy dissipation.\". This adheres strictly to the governing invariant of Unitary Operations and Reversibility."
+            "causalRationale": "Accurately identifies unitarity as the conservation law of quantum transformations."
           },
           {
             "optionId": "opt_b",
-            "text": "The system remains completely unchanged because Unitary Operations and Reversibility acts as an invariant identity operator without state transitions.",
+            "text": "The reset operation produces excessive voltage that burns physical quantum chips.",
             "isCorrect": false,
             "diagnosticAxis": "conceptGap",
-            "causalRationale": "Misconception: Assumes operations produce zero observable effect, ignoring active transformation.",
-            "specificRemediation": "Review core mechanism: ### 1."
+            "causalRationale": "Confuses abstract information-theoretic reversibility with physical electrical short-circuiting."
           },
           {
             "optionId": "opt_c",
-            "text": "The state diverges uncontrollably because boundary conditions are violated immediately.",
+            "text": "The classical bit has higher mass than quantum states, violating classical momentum conservation.",
             "isCorrect": false,
             "diagnosticAxis": "reasoningBug",
-            "causalRationale": "Reasoning Slip: Assumes instability without verifying whether mathematical bounds are preserved.",
-            "specificRemediation": "Trace boundary constraints step-by-step."
+            "causalRationale": "Applies classical momentum conservation where quantum linear algebraic unitarity governs."
+          },
+          {
+            "optionId": "opt_d",
+            "text": "Unitary operators allow any arbitrary vector to increase its total probability length to 2.0 whenever needed.",
+            "isCorrect": false,
+            "diagnosticAxis": "notationBreakdown",
+            "causalRationale": "Violates the norm-preservation constraint which strictly fixes total length to exactly 1.0."
           }
         ],
         "expectedMentalModel": [
@@ -188,7 +223,7 @@
         {
           "sourceRef": "markdown-source",
           "locationTag": "Section: Unitary Operations and Reversibility",
-          "verbatimQuote": "### 1. Pangkal Anomali\nDi komputasi klasik kita terbiasa menghapus data dengan reset bit ke 0. Pende"
+          "verbatimQuote": "### 1. Pangkal Anomali\nDalam komputasi konvensional, kita menganggap remeh operasi penghapusan data."
         }
       ]
     }

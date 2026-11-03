@@ -12,7 +12,7 @@
         "estimatedReadingSeconds": 3
       },
       "prerequisites": [],
-      "conceptSummary": "### 1. Pangkal Anomali\nKita sering mengira kesepakatan hukum didasarkan pada kesamaan isi pikiran batiniah (subjective meeting of minds). Pendekatan ini runtuh seketika saat salah satu pihak menandatangani kontrak jual beli tanah resmi lalu berdalih bahwa ia hanya bercanda di dalam hati (seperti dalam kasus landmark Lucy v. Zehmer). Pengadilan tidak dapat membaca isi tengkorak kepala manusia.\n\n### 2. Prototipe Intuitif\nBayangkan cermin pantulan di kasir toko. Cermin hanya merekam gerakan fisik tangan yang menyerahkan barang dan menandatangani kertas tanda terima. Cermin tidak bisa menangkap keraguan atau lelucon rahasia di dalam pikiran orang tersebut.\n\n### 3. Invarian & Operasi Inti\nInvarian mutlak sistem adalah **Teori Objektif Perjanjian**: keabsahan kesepakatan diukur dari manifestasi lahiriah yang dapat ditangkap oleh orang wajar (reasonable person), bukan niat subjektif rahasia.\n\n| Apa yang Dipikirkan Pemula (Salah) | Apa yang Sebenarnya Terjadi dalam Model Mental |\n|---|---|\n| K",
+      "conceptSummary": "<!-- hgd:options: [\n  {\"optionId\":\"opt_a\",\"text\":\"The contract is binding under the objective theory of contracts: assent is judged by a reasonable person's outward manifestation, not hidden subjective intent (Lucy v. Zehmer).\",\"isCorrect\":true,\"causalRationale\":\"Correct: Outward objective manifestation binds the parties regardless of secret subjective intent.\"},\n  {\"optionId\":\"opt_b\",\"text\":\"The contract is void because subjective mutual assent (meeting of minds) was absent during signing.\",\"isCorrect\":false,\"diagnosticAxis\":\"conceptGap\",\"causalRationale\":\"Subjective Fallacy: Law discarded subjective intent in favor of outward reasonable manifestation.\"},\n  {\"optionId\":\"opt_c\",\"text\":\"The contract is unenforceable because contracts signed in social settings are per se invalid.\",\"isCorrect\":false,\"diagnosticAxis\":\"reasoningBug\",\"causalRationale\":\"Setting Irrelevance: Location does not invalidate an otherwise formal written offer and acceptance.\"},\n  {\"optionId\":\"opt_d\",\"text\":\"The cont",
       "pacing": {
         "timeLimitSeconds": 60,
         "recommendedEpochs": 3,
@@ -22,49 +22,53 @@
         "block1_anomaly": {
           "groundState": "Initial state prior to Objective Mutual Assent.",
           "oldWay": "Conventional assumption or baseline approach.",
-          "breakdownPoint": "Kita sering mengira kesepakatan hukum didasarkan pada kesamaan isi pikiran batiniah (subjective meeting of minds). Pendekatan ini runtuh seketika saat salah satu pihak menandatangani kontrak jual beli tanah resmi lalu berdalih bahwa ia hanya bercanda di dalam hati (seperti dalam kasus landmark Lucy v. Zehmer). Pengadilan tidak dapat membaca isi tengkorak kepala manusia."
+          "breakdownPoint": "Dalam kehidupan bermasyarakat, kita sering mengira bahwa kesepakatan hukum yang sah mensyaratkan adanya kesamaan isi pikiran batiniah (*subjective meeting of the minds*). Kita membayangkan bahwa kedua belah pihak harus sama-sama memiliki niat tulus dari lubuk hati terdalam.\n\nNamun anggapan ini runtuh seketika dalam transaksi nyata. Bayangkan jika seseorang menuliskan surat jual beli tanah secara resmi, menyepakati harga, dan menandatanganinya di atas materai, namun beberapa minggu kemudian ia menolak menyerahkan sertifikat tanah dengan dalih: *\"Waktu itu saya hanya bercanda di dalam hati; saya tidak benar-benar berniat menjual tanah saya!\"* (seperti dalam kasus hukum terkenal *Lucy v. Zehmer*).\n\nJika pengadilan mengizinkan orang membatalkan perjanjian hanya dengan mengklaim bahwa hatinya sedang bercanda, maka seluruh roda ekonomi perdagangan akan hancur. Pengadilan manusia tidak memiliki teknologi untuk membelah tengkorak kepala seseorang dan membaca apa yang ia pikirkan di dalam hatinya secara rahasia."
         },
         "block2_intuitivePrototype": {
           "physicalObject": "Physical sandbox model",
-          "isomorphicMapping": "Bayangkan cermin pantulan di kasir toko. Cermin hanya merekam gerakan fisik tangan yang menyerahkan barang dan menandatangani kertas tanda terima. Cermin tidak bisa menangkap keraguan atau lelucon rahasia di dalam pikiran orang tersebut.",
+          "isomorphicMapping": "Bayangkan sebuah cermin pantulan di atas meja kasir toko swalayan.\n\nCermin kasir tersebut hanya bisa merekam apa yang tampak secara fisik di depan mata: tangan pembeli yang meletakkan uang tunai di atas meja, bibir yang mengucapkan kata setuju, dan pena yang menandatangani tanda terima. Cermin tidak bisa melihat apakah di dalam hati pembeli tersebut ia sedang menggerutu, bercanda, atau melamun.\n\nHukum bertindak persis seperti cermin kasir tersebut. Hukum tidak menilai apa yang Anda bisikkan di dalam hati; hukum menilai apa yang dilihat dan didengar oleh seorang \"Orang Wajar\" (*Reasonable Person*) yang berada di ruangan tersebut.\n\n```mermaid\nflowchart LR\n    Manifestation[\"Tindakan Nyata Lahiriah: Tanda Tangan & Kata-Kata Jelas\"] --> ObjectiveMirror[\"Cermin Pengamat Wajar (Reasonable Person)\"]\n    ObjectiveMirror --> ValidContract[\"Kontrak Sah Mengikat Secara Hukum (Enforceable)\"]\n    SecretThought[\"Niat Rahasia / Candaan di Dalam Hati\"] -.->|Ditolak Pengadilan| ObjectiveMirror\n```",
           "deadlockResolution": "Resolves the deadlock identified in Block 1 through isomorphic interaction."
         },
         "block3_coreMechanics": {
-          "invariantProperty": "Invarian mutlak sistem adalah **Teori Objektif Perjanjian**: keabsahan kesepakatan diukur dari manifestasi lahiriah yang dapat ditangkap oleh orang wajar (reasonable person), bukan niat subjektif rahasia.",
+          "invariantProperty": "Invarian mutlak sistem ini adalah **Teori Objektif Perjanjian (Objective Theory of Contracts)**: keabsahan suatu kesepakatan hukum diukur semata-mata dari manifestasi lahiriah yang dapat ditangkap oleh akal sehat orang wajar (*reasonable person*), bukan dari niat subjektif atau reservasi mental rahasia yang tidak diucapkan.\n\nJika kata-kata dan tindakan Anda menunjukkan kesungguhan seorang penjual yang wajar, maka Anda terikat secara hukum, terlepas dari apa pun lelucon batin yang Anda simpan di dalam kepala.",
           "variableComponents": [
             "System inputs",
             "Observable state amplitudes"
           ],
           "contrastingCases": [
             {
-              "beginnerMisconception": "Kontrak batal jika penandatangan tidak bersungguh-sungguh di dalam hati.",
-              "physicalReality": "Manifestasi lahiriah yang wajar mengikat secara mutlak tanpa memedulikan reservasi mental tersembunyi."
+              "beginnerMisconception": "Kontrak otomatis batal jika penandatangan mengaku tidak bersungguh-sungguh di dalam hati.",
+              "physicalReality": "Manifestasi lahiriah yang wajar mengikat para pihak secara mutlak tanpa memedulikan niat tersembunyi."
             },
             {
-              "beginnerMisconception": "Suasana santai di restoran otomatis membatalkan keseriusan hukum.",
-              "physicalReality": "Format dokumen tertulis yang jelas mengesampingkan dalih lelucon non-verbal."
+              "beginnerMisconception": "Menandatangani kesepakatan di restoran atau kafe otomatis tidak sah secara hukum.",
+              "physicalReality": "Lokasi santai tidak membatalkan kekuatan hukum selama tindakan dan isi dokumen tertulis jelas."
+            },
+            {
+              "beginnerMisconception": "Pengadilan wajib memanggil saksi paranormal untuk membaca isi hati terdakwa.",
+              "physicalReality": "Pengadilan hanya memeriksa bukti fisik rekaman kata-kata, tindakan, dan teks dokumen tertulis."
             }
           ]
         },
         "block4_notationContract": {
           "formulaOrCode": "K = Offer(O) + Acceptance(A)",
-          "minimalFormalization": "Kesepakatan objektif dirumuskan dalam kontrak steno:",
+          "minimalFormalization": "Kesepakatan objektif dirumuskan dalam kontrak steno:\n\nPersamaan formal di atas merangkum syarat pembentukan kontrak:",
           "termsDeconstruction": [
             {
               "symbol": "K",
-              "physicalMeaning": "Kontrak yang mengikat secara hukum (binding agreement)."
+              "physicalMeaning": "Kontrak yang mengikat secara sah menurut hukum (*binding legal contract*)."
             },
             {
               "symbol": "Offer(O)",
-              "physicalMeaning": "Penawaran definitif yang dimanifestasikan ke luar."
+              "physicalMeaning": "Penawaran definitif yang dimanifestasikan secara lahiriah dengan syarat-syarat yang jelas."
             },
             {
               "symbol": "Acceptance(A)",
-              "physicalMeaning": "Penerimaan tegas tanpa syarat."
+              "physicalMeaning": "Penerimaan tegas tanpa syarat (*mirror image*) yang dikomunikasikan ke pihak penawar."
             },
             {
               "symbol": "Lucy v. Zehmer",
-              "physicalMeaning": "Preseden yurisprudensi objektivitas manifestasi lahiriah."
+              "physicalMeaning": "Preseden yurisprudensi penting yang menegakkan prinsip objektivitas lahiriah."
             }
           ]
         }
@@ -92,11 +96,43 @@
           }
         ]
       },
+      "glossary": [
+        {
+          "term": "Objective Mutual Assent",
+          "definition": "Kesepakatan bersama yang dinilai dari kata-kata dan perbuatan lahiriah yang tampak",
+          "highSchoolAnchor": "Mengacungkan tangan dan menyebut \"Saya beli\" di kantin sekolah; penjual menganggap transaksi sah"
+        },
+        {
+          "term": "Reasonable Person",
+          "definition": "Standar hipotetis orang berakal sehat dengan kehati-hatian dan pertimbangan wajar",
+          "highSchoolAnchor": "Teman sekelas yang berpikiran logis dan tidak mudah tertipu oleh alasan aneh"
+        },
+        {
+          "term": "Lucy v. Zehmer",
+          "definition": "Kasus hukum penting tahun 1954 yang menetapkan objektivitas kontrak di atas candaan rahasia",
+          "highSchoolAnchor": "Peristiwa nyata di mana perjanjian di atas serbet restoran tetap sah karena tampak serius"
+        },
+        {
+          "term": "Offer (Penawaran)",
+          "definition": "Pernyataan kesediaan untuk terikat pada syarat tertentu jika pihak lain menyetujuinya",
+          "highSchoolAnchor": "Murid yang menawarkan pensilnya seharga Rp 5.000 kepada teman sebangkunya"
+        },
+        {
+          "term": "Acceptance (Penerimaan)",
+          "definition": "Pernyataan persetujuan tanpa syarat terhadap seluruh butir penawaran yang diajukan",
+          "highSchoolAnchor": "Teman sebangku yang langsung menyerahkan uang Rp 5.000 dan mengambil pensil tersebut"
+        },
+        {
+          "term": "Subjective Intent",
+          "definition": "Niat, maksud, atau pikiran tersembunyi di dalam batin seseorang yang tidak diungkapkan",
+          "highSchoolAnchor": "Memikirkan lelucon April Mop di dalam hati tanpa memberi tahu siapa pun"
+        }
+      ],
       "variationProbes": {
         "conceptualVariants": [
           {
             "representationType": "verbal",
-            "content": "### 1."
+            "content": "Zehmer).\",\"isCorrect\":true,\"causalRationale\":\"Correct: Outward objective manifestation binds the parties regardless of secret subjective intent.\"},\n  {\"optionId\":\"opt_b\",\"text\":\"The contract is void because subjective mutual assent (meeting of minds) was absent during signing.\",\"isCorrect\":false,\"diagnosticAxis\":\"conceptGap\",\"causalRationale\":\"Subjective Fallacy: Law discarded subjective intent in favor of outward reasonable manifestation.\"},\n  {\"optionId\":\"opt_c\",\"text\":\"The contract is unenforceable because contracts signed in social settings are per se invalid.\",\"isCorrect\":false,\"diagnosticAxis\":\"reasoningBug\",\"causalRationale\":\"Setting Irrelevance: Location does not invalidate an otherwise formal written offer and acceptance.\"},\n  {\"optionId\":\"opt_d\",\"text\":\"The contract requires approval from the governor before any outward manifestation can be evaluated.\",\"isCorrect\":false,\"diagnosticAxis\":\"missingPrerequisite\",\"causalRationale\":\"Fictitious governmental approval requirement unrelated to common law contract formation.\"}\n] -->\n\n### 1."
           },
           {
             "representationType": "symbolic",
@@ -115,28 +151,30 @@
       "forwardPass": {
         "probeType": "prediction_what_if",
         "microPrimer": "\"A valid contract requires mutual assent. Under the objective theory of contracts, assent is determined by a reasonable person's outward manifestation, rather than secret subjective intent (Lucy v. Zehmer).\"",
-        "readingContext": "### 1. Pangkal Anomali\nKita sering mengira kesepakatan hukum didasarkan pada kesamaan isi pikiran batiniah (subjective meeting of minds). Pendekatan ini runtuh seketika saat salah satu pihak menandatangani kontrak jual beli tanah resmi lalu berdalih bahwa ia hanya bercanda di dalam hati (seperti dalam kasus landmark Lucy v. Zehmer). Pengadilan tidak dapat membaca isi tengkorak kepala manusia.\n\n### 2. Prototipe Intuitif\nBayangkan cermin pantulan di kasir toko. Cermin hanya merekam gerakan fisik t",
+        "readingContext": "<!-- hgd:options: [\n  {\"optionId\":\"opt_a\",\"text\":\"The contract is binding under the objective theory of contracts: assent is judged by a reasonable person's outward manifestation, not hidden subjective intent (Lucy v. Zehmer).\",\"isCorrect\":true,\"causalRationale\":\"Correct: Outward objective manifestation binds the parties regardless of secret subjective intent.\"},\n  {\"optionId\":\"opt_b\",\"text\":\"The contract is void because subjective mutual assent (meeting of minds) was absent during signing.\",\"is",
         "prompt": "\"Predict contract enforceability if Party A writes and signs a formal land sale contract but secretly considers it an elaborate practical joke.\"",
         "options": [
           {
             "optionId": "opt_a",
-            "text": "The contract is binding under the objective theory of contracts: assent is judged by a reasonable person's outward manifestation, not hidden subjective intent (Lucy v. Zehmer).",
+            "text": "\"The contract is binding under the objective theory of contracts: assent is judged by a reasonable person's outward manifestation, not hidden subjective intent (Lucy v. Zehmer).\"",
             "isCorrect": true,
-            "causalRationale": "Correct: Outward objective manifestation binds the parties regardless of secret subjective intent."
+            "causalRationale": "Correct: \"The contract is binding under the objective theory of contracts: assent is judged by a reasonable person's outward manifestation, not hidden subjective intent (Lucy v. Zehmer).\". This adheres strictly to the governing invariant of Objective Mutual Assent."
           },
           {
             "optionId": "opt_b",
-            "text": "The contract is void because subjective mutual assent (meeting of minds) was absent during signing.",
+            "text": "The system remains completely unchanged because Objective Mutual Assent acts as an invariant identity operator without state transitions.",
             "isCorrect": false,
             "diagnosticAxis": "conceptGap",
-            "causalRationale": "Subjective Fallacy: Law discarded subjective intent in favor of outward reasonable manifestation."
+            "causalRationale": "Misconception: Assumes operations produce zero observable effect, ignoring active transformation.",
+            "specificRemediation": "Review core mechanism: Zehmer).\",\"isCorrect\":true,\"causalRationale\":\"Correct: Outward objective manifestation binds the parties regardless of secret subjective intent.\"},\n  {\"optionId\":\"opt_b\",\"text\":\"The contract is void because subjective mutual assent (meeting of minds) was absent during signing.\",\"isCorrect\":false,\"diagnosticAxis\":\"conceptGap\",\"causalRationale\":\"Subjective Fallacy: Law discarded subjective intent in favor of outward reasonable manifestation.\"},\n  {\"optionId\":\"opt_c\",\"text\":\"The contract is unenforceable because contracts signed in social settings are per se invalid.\",\"isCorrect\":false,\"diagnosticAxis\":\"reasoningBug\",\"causalRationale\":\"Setting Irrelevance: Location does not invalidate an otherwise formal written offer and acceptance.\"},\n  {\"optionId\":\"opt_d\",\"text\":\"The contract requires approval from the governor before any outward manifestation can be evaluated.\",\"isCorrect\":false,\"diagnosticAxis\":\"missingPrerequisite\",\"causalRationale\":\"Fictitious governmental approval requirement unrelated to common law contract formation.\"}\n] -->\n\n### 1."
           },
           {
             "optionId": "opt_c",
-            "text": "The contract is unenforceable because contracts signed in social settings are per se invalid.",
+            "text": "The state diverges uncontrollably because boundary conditions are violated immediately.",
             "isCorrect": false,
             "diagnosticAxis": "reasoningBug",
-            "causalRationale": "Setting Irrelevance: Location does not invalidate an otherwise formal written offer and acceptance."
+            "causalRationale": "Reasoning Slip: Assumes instability without verifying whether mathematical bounds are preserved.",
+            "specificRemediation": "Trace boundary constraints step-by-step."
           }
         ],
         "expectedMentalModel": [
@@ -149,7 +187,7 @@
       },
       "lossRubric": {
         "conceptGapCriteria": [
-          "Fails to identify core mechanism: ### 1.",
+          "Fails to identify core mechanism: Zehmer).\",\"isCorrect\":true,\"causalRationale\":\"Correct: Outward objective manifestation binds the parties regardless of secret subjective intent.\"},\n  {\"optionId\":\"opt_b\",\"text\":\"The contract is void because subjective mutual assent (meeting of minds) was absent during signing.\",\"isCorrect\":false,\"diagnosticAxis\":\"conceptGap\",\"causalRationale\":\"Subjective Fallacy: Law discarded subjective intent in favor of outward reasonable manifestation.\"},\n  {\"optionId\":\"opt_c\",\"text\":\"The contract is unenforceable because contracts signed in social settings are per se invalid.\",\"isCorrect\":false,\"diagnosticAxis\":\"reasoningBug\",\"causalRationale\":\"Setting Irrelevance: Location does not invalidate an otherwise formal written offer and acceptance.\"},\n  {\"optionId\":\"opt_d\",\"text\":\"The contract requires approval from the governor before any outward manifestation can be evaluated.\",\"isCorrect\":false,\"diagnosticAxis\":\"missingPrerequisite\",\"causalRationale\":\"Fictitious governmental approval requirement unrelated to common law contract formation.\"}\n] -->\n\n### 1.",
           "Confuses cause and effect in state transitions"
         ],
         "notationCriteria": [
@@ -167,7 +205,7 @@
         "learningRate": 0.25,
         "hintLadder": {
           "level0Reflective": "Reflective: What fundamental invariant governs Objective Mutual Assent?",
-          "level1Directional": "Directional Clue: Examine how Objective Mutual Assent handles boundary conditions: ### 1.",
+          "level1Directional": "Directional Clue: Examine how Objective Mutual Assent handles boundary conditions: Zehmer).\",\"isCorrect\":true,\"causalRationale\":\"Correct: Outward objective manifestation binds the parties regardless of secret subjective intent.\"},\n  {\"optionId\":\"opt_b\",\"text\":\"The contract is void because subjective mutual assent (meeting of minds) was absent during signing.\",\"isCorrect\":false,\"diagnosticAxis\":\"conceptGap\",\"causalRationale\":\"Subjective Fallacy: Law discarded subjective intent in favor of outward reasonable manifestation.\"},\n  {\"optionId\":\"opt_c\",\"text\":\"The contract is unenforceable because contracts signed in social settings are per se invalid.\",\"isCorrect\":false,\"diagnosticAxis\":\"reasoningBug\",\"causalRationale\":\"Setting Irrelevance: Location does not invalidate an otherwise formal written offer and acceptance.\"},\n  {\"optionId\":\"opt_d\",\"text\":\"The contract requires approval from the governor before any outward manifestation can be evaluated.\",\"isCorrect\":false,\"diagnosticAxis\":\"missingPrerequisite\",\"causalRationale\":\"Fictitious governmental approval requirement unrelated to common law contract formation.\"}\n] -->\n\n### 1.",
           "level2Constraint": "Constraint: Eliminate unconstrained assumptions. Ground truth: \"The contract is binding under the objective theory of contracts: assent is judged by a reasonable person's outward manifestation, not hidden subjective intent (Lucy v. Zehmer).\"",
           "level3WorkedExample": "\"Worked Solution: In Lucy v. Zehmer, Zehmer claimed his agreement on a restaurant napkin was merely executed in jest. The court held that an outward expression of serious intent creates a binding contract regardless of secret mental reservations.\""
         },
@@ -182,7 +220,7 @@
         {
           "sourceRef": "markdown-source",
           "locationTag": "Section: Objective Mutual Assent",
-          "verbatimQuote": "### 1. Pangkal Anomali\nKita sering mengira kesepakatan hukum didasarkan pada kesamaan isi pikiran ba"
+          "verbatimQuote": "<!-- hgd:options: [\n  {\"optionId\":\"opt_a\",\"text\":\"The contract is binding under the objective theory"
         }
       ]
     }

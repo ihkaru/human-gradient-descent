@@ -2,7 +2,7 @@
   "schemaVersion": "2026.1",
   "curriculumId": "rust-io-uring",
   "title": "Rust io_uring: Zero-Syscall Asynchronous I/O Architecture",
-  "description": "An advanced systems engineering curriculum compiled with the Human Gradient Descent paradigm. Explores the physical shift from readiness-based epoll context-switching to completion-based shared memory ring buffers in Linux and Rust.",
+  "description": "An advanced systems engineering curriculum compiled with the Human Gradient Descent paradigm. Explores the physical shift from readiness-based epoll context-switching to completion-based shared memory ring buffers in Linux and high-performance Rust.",
   "domain": "KnowledgeBase",
   "domainType": "general",
   "compositionalPrimitives": [
@@ -19,7 +19,7 @@
   "scale": {
     "totalNodes": 4,
     "totalShards": 4,
-    "approxWordCount": 2386,
+    "approxWordCount": 4998,
     "estimatedLearningHours": 1.4
   },
   "pacing": {

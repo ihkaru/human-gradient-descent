@@ -14,7 +14,7 @@
       "prerequisites": [
         "hgd://knowledgebase/quantum-computing/node-001"
       ],
-      "conceptSummary": "### 1. Pangkal Anomali\nKita terbiasa menganalisis dua objek terpisah secara independen. Cara ini runtuh total saat dua partikel terjerat: status lokal salah satu pihak tidak dapat didefinisikan tanpa menyertakan pasangannya, memicu paradoks Einstein-Podolsky-Rosen.\n\n### 2. Prototipe Intuitif\nBayangkan sepasang koin berputar di meja Alice dan Bob yang porosnya dihubungkan kawat torsi tak kasat mata. Begitu koin Alice jatuh pada sisi angka, koin Bob seketika ikut jatuh pada sisi angka, namun tak seorang pun dapat memilih sisi mana yang jatuh lebih dulu.\n\n```mermaid\nflowchart LR\n    EntangledPair[\"Sumber Bell (|00>+|11>)/sqrt(2)\"] --> Alice[\"Alice (Ukur Koin)\"]\n    EntangledPair --> Bob[\"Bob (Korelasi Spontan)\"]\n    Alice -.->|No-Signaling Invariant| Bob\n```\n\n### 3. Invarian & Operasi Inti\nInvarian mutlak sistem adalah **No-Signaling Theorem**: korelasi kuantum tidak dapat dimanfaatkan untuk komunikasi superluminal karena probabilitas lokal Bob selalu tepat 50/50 acak murni.\n\n| Apa yang D",
+      "conceptSummary": "### 1. Pangkal Anomali\nDalam fisika klasik yang kita pelajari di sekolah, alam semesta bekerja berdasarkan prinsip lokalitas (Locality): sebuah benda di Jakarta tidak bisa dipengaruhi secara langsung oleh benda di Tokyo kecuali ada perantara fisik seperti kabel listrik, gelombang radio, atau tumbukan mekanik yang merambat dengan kecepatan maksimal cahaya ($c \\approx 300.000\\text{ km/s}$).\n\nNamun, ketika dua partikel kuantum mengalami interaksi erat dan membentuk status keterikatan (*entangled state*), status kedua partikel tersebut melebur menjadi satu fungsi gelombang tunggal yang tak dapat dipisahkan secara matematis. Jika satu partikel dibawa ke planet Mars dan partikel lainnya berada di Bumi, mengukur partikel di Bumi seketika membuat partikel di Mars menunjukkan hasil yang berkorelasi sempurna tanpa jeda waktu sedikit pun!\n\nKenyataan ini sempat membuat Albert Einstein menolaknya sebagai *\"spooky action at a distance\"* (aksi hantu dari kejauhan). Bagaimana mungkin hukum relativitas",
       "pacing": {
         "timeLimitSeconds": 60,
         "recommendedEpochs": 3,
@@ -25,45 +25,57 @@
         "block1_anomaly": {
           "groundState": "Initial state prior to Quantum Entanglement and Non-Locality.",
           "oldWay": "Conventional assumption or baseline approach.",
-          "breakdownPoint": "Kita terbiasa menganalisis dua objek terpisah secara independen. Cara ini runtuh total saat dua partikel terjerat: status lokal salah satu pihak tidak dapat didefinisikan tanpa menyertakan pasangannya, memicu paradoks Einstein-Podolsky-Rosen."
+          "breakdownPoint": "Dalam fisika klasik yang kita pelajari di sekolah, alam semesta bekerja berdasarkan prinsip lokalitas (Locality): sebuah benda di Jakarta tidak bisa dipengaruhi secara langsung oleh benda di Tokyo kecuali ada perantara fisik seperti kabel listrik, gelombang radio, atau tumbukan mekanik yang merambat dengan kecepatan maksimal cahaya ($c \\approx 300.000\\text{ km/s}$).\n\nNamun, ketika dua partikel kuantum mengalami interaksi erat dan membentuk status keterikatan (*entangled state*), status kedua partikel tersebut melebur menjadi satu fungsi gelombang tunggal yang tak dapat dipisahkan secara matematis. Jika satu partikel dibawa ke planet Mars dan partikel lainnya berada di Bumi, mengukur partikel di Bumi seketika membuat partikel di Mars menunjukkan hasil yang berkorelasi sempurna tanpa jeda waktu sedikit pun!\n\nKenyataan ini sempat membuat Albert Einstein menolaknya sebagai *\"spooky action at a distance\"* (aksi hantu dari kejauhan). Bagaimana mungkin hukum relativitas khusus tidak dilanggar jika korelasi terjadi seketika?"
         },
         "block2_intuitivePrototype": {
           "physicalObject": "Physical sandbox model",
-          "isomorphicMapping": "Bayangkan sepasang koin berputar di meja Alice dan Bob yang porosnya dihubungkan kawat torsi tak kasat mata. Begitu koin Alice jatuh pada sisi angka, koin Bob seketika ikut jatuh pada sisi angka, namun tak seorang pun dapat memilih sisi mana yang jatuh lebih dulu.\n\n```mermaid\nflowchart LR\n    EntangledPair[\"Sumber Bell (|00>+|11>)/sqrt(2)\"] --> Alice[\"Alice (Ukur Koin)\"]\n    EntangledPair --> Bob[\"Bob (Korelasi Spontan)\"]\n    Alice -.->|No-Signaling Invariant| Bob\n```",
+          "isomorphicMapping": "Bayangkan sepasang koin berputar ajaib yang disiapkan oleh seorang ilmuwan di laboratorium. Satu koin diberikan kepada Alice di Jakarta, dan koin pasangannya diberikan kepada Bob di London.\n\nKoin ini bukan koin biasa; poros putaran keduanya terhubung oleh sebuah tali torsi kuantum tak kasat mata di ruang matematis. Selama tidak ada yang menyentuh, kedua koin terus berputar kencang di atas meja masing-masing.\n\nBegitu Alice menepuk koinnya di Jakarta dan koin tersebut mendarat pada sisi Angka ('0'), tali torsi tak kasat mata membuat koin Bob di London seketika ikut berhenti pada sisi Angka ('0'). Namun kuncinya adalah: **Alice tidak pernah bisa memilih apakah koinnya akan berhenti pada Angka atau Gambar**. Dari sudut pandang Bob di London, koinnya tetap terasa jatuh secara acak 50:50. Bob tidak tahu bahwa Alice sudah menepuk koin sampai Alice menelepon Bob melalui telepon biasa.\n\n```mermaid\nflowchart LR\n    Source[\"Sumber Partikel Terikat |\\Phi^+\\rangle\"] -->|Koin A| Alice[\"Alice di Jakarta (Ukur Koin)\"]\n    Source -->|Koin B| Bob[\"Bob di London (Korelasi Spontan)\"]\n    Alice -.->|Korelasi Terikat Seketika| Bob\n    Alice -->|Kanal Klasik Kecepatan Cahaya (Telepon/Internet)| Bob\n```",
           "deadlockResolution": "Resolves the deadlock identified in Block 1 through isomorphic interaction."
         },
         "block3_coreMechanics": {
-          "invariantProperty": "Invarian mutlak sistem adalah **No-Signaling Theorem**: korelasi kuantum tidak dapat dimanfaatkan untuk komunikasi superluminal karena probabilitas lokal Bob selalu tepat 50/50 acak murni.",
+          "invariantProperty": "Invarian mutlak sistem keterikatan adalah **Teorema Tanpa Sinyal (No-Signaling Theorem)**: korelasi kuantum non-lokal tidak pernah bisa dimanfaatkan untuk mengirimkan data atau pesan bermakna lebih cepat dari cahaya.\n\nProbabilitas marginal lokal pada instrumen Bob selalu bernilai tepat 50/50 (50% untuk hasil 0 dan 50% untuk hasil 1), terlepas dari apa pun yang dilakukan Alice di tempat yang sangat jauh. Korelasi baru bisa terbukti setelah data pengukuran kedua belah pihak dicocokkan melalui saluran komunikasi klasik biasa.",
           "variableComponents": [
             "System inputs",
             "Observable state amplitudes"
           ],
           "contrastingCases": [
             {
-              "beginnerMisconception": "Alice bisa mengirim pesan morse instan dengan mengukur qubitnya.",
-              "physicalReality": "Alice tidak bisa mengontrol hasil pengukurannya sendiri, sehingga Bob hanya melihat derau 50/50 acak."
+              "beginnerMisconception": "Alice bisa mengirim kode morse instan ke Bob hanya dengan mengukur qubitnya.",
+              "physicalReality": "Alice tidak bisa mengendalikan hasil runtuhnya gelombang, sehingga bagi Bob hasilnya tetap tampak seperti derau acak murni."
             },
             {
-              "beginnerMisconception": "Keterikatan berarti ada kabel sinyal fisik yang melintasi ruang.",
-              "physicalReality": "Keterikatan adalah korelasi non-lokal intrinsik dalam ruang Hilbert gabungan."
+              "beginnerMisconception": "Keterikatan berarti ada gelombang radio tak kasat mata yang merambat super cepat.",
+              "physicalReality": "Keterikatan adalah korelasi statistik non-lokal dalam ruang probabilitas gabungan, bukan gelombang fisik perantara."
+            },
+            {
+              "beginnerMisconception": "Jika Alice tidak mengukur qubitnya, qubit Bob tidak memiliki probabilitas.",
+              "physicalReality": "Masing-masing qubit selalu memiliki probabilitas marginal lokal 50:50 yang independen saat diamati terisolasi."
             }
           ]
         },
         "block4_notationContract": {
           "formulaOrCode": "|\\Phi^+\\rangle = \\frac{1}{\\sqrt{2}}(|00\\rangle + |11\\rangle)",
-          "minimalFormalization": "Keadaan terikat direkam dalam kontrak status Bell:",
+          "minimalFormalization": "Keadaan keterikatan maksimum direkam dalam kontrak status Bell:\n\nKontrak persamaan ini mendefinisikan ikatan tak terpisahkan antara dua pengamat:",
           "termsDeconstruction": [
             {
               "symbol": "|\\Phi^+>",
-              "physicalMeaning": "Keadaan Bell terikat antara Alice dan Bob."
+              "physicalMeaning": "Keadaan Bell terikat simetris antara qubit Alice dan qubit Bob."
             },
             {
-              "symbol": "|00>, |11>",
-              "physicalMeaning": "Korelasi hasil pengukuran bersama."
+              "symbol": "|00>",
+              "physicalMeaning": "Kemungkinan bersama di mana Alice mengukur 0 DAN Bob mengukur 0."
+            },
+            {
+              "symbol": "|11>",
+              "physicalMeaning": "Kemungkinan bersama di mana Alice mengukur 1 DAN Bob mengukur 1."
             },
             {
               "symbol": "1/sqrt(2)",
-              "physicalMeaning": "Faktor normalisasi probabilitas marginal 50/50."
+              "physicalMeaning": "Faktor penyeimbang normalisasi yang menjamin total probabilitas $(1/\\sqrt{2})^2 + (1/\\sqrt{2})^2 = 0.5 + 0.5 = 1.0$."
+            },
+            {
+              "symbol": "\\rho_{Bob} = \\frac{1}{2}|0\\rangle\\langle 0| + \\frac{1}{2}|1\\rangle\\langle 1|",
+              "physicalMeaning": "Matriks densitas lokal Bob yang membuktikan ketiadaan sinyal superluminal."
             }
           ]
         }
@@ -91,11 +103,43 @@
           }
         ]
       },
+      "glossary": [
+        {
+          "term": "Quantum Entanglement",
+          "definition": "Kondisi di mana fungsi gelombang gabungan dua partikel tidak dapat difaktorkan menjadi perkalian status mandiri",
+          "highSchoolAnchor": "Sepasang sepatu dalam dua kotak tertutup; jika Anda membuka satu kotak dan melihat sepatu kiri, kotak kedua pasti berisi sepatu kanan"
+        },
+        {
+          "term": "Bell State",
+          "definition": "Satu dari empat keadaan kuantum dua-qubit terikat secara maksimal yang membentuk basis ortonormal",
+          "highSchoolAnchor": "Pasangan koin yang selalu mendarat pada sisi yang persis seragam saat dihentikan bersama"
+        },
+        {
+          "term": "No-Signaling Theorem",
+          "definition": "Teorema dalam teori informasi kuantum bahwa korelasi Bell tidak dapat mentransmisikan informasi melampaui kecepatan cahaya",
+          "highSchoolAnchor": "Mengetahui isi kotak sepatu tidak membuat Anda bisa mengirim pesan SMS ke teman Anda tanpa pulsa seluler"
+        },
+        {
+          "term": "Non-Locality",
+          "definition": "Karakteristik fisika kuantum di mana hasil pengukuran lokal bergantung pada pengukuran jarak jauh tanpa pertukaran energi",
+          "highSchoolAnchor": "Dua magnet yang terasa saling tolak menolak di udara, namun dalam ruang status probabilitas"
+        },
+        {
+          "term": "Probabilitas Marginal",
+          "definition": "Peluang terjadinya suatu kejadian lokal dengan mengabaikan seluruh variabel di lokasi luar",
+          "highSchoolAnchor": "Melempar dadu di kamar sendiri; peluang munculnya angka 4 tetap 1/6 terlepas dari apa yang sedang terjadi di luar rumah"
+        },
+        {
+          "term": "Kecepatan Cahaya (c)",
+          "definition": "Batas kecepatan universal perambatan materi dan informasi di ruang hampa ($3 \\times 10^8\\text{ m/s}$)",
+          "highSchoolAnchor": "Pelajaran Fisika Optik SMA: tidak ada sinyal atau informasi apa pun yang bisa mendahului berkas cahaya"
+        }
+      ],
       "variationProbes": {
         "conceptualVariants": [
           {
             "representationType": "verbal",
-            "content": "```mermaid\nflowchart LR\n    EntangledPair[\"Sumber Bell (|00>+|11>)/sqrt(2)\"] --> Alice[\"Alice (Ukur Koin)\"]\n    EntangledPair --> Bob[\"Bob (Korelasi Spontan)\"]\n    Alice -.->|No-Signaling Invariant| Bob\n```\n\n### 3."
+            "content": "### 1."
           },
           {
             "representationType": "symbolic",
@@ -114,30 +158,35 @@
       "forwardPass": {
         "probeType": "prediction_what_if",
         "microPrimer": "\"When two qubits are entangled, their joint state cannot be described independently. Measuring one instantaneously determines the other across arbitrary distances, yet this correlation cannot send faster-than-light signals.\"",
-        "readingContext": "### 1. Pangkal Anomali\nKita terbiasa menganalisis dua objek terpisah secara independen. Cara ini runtuh total saat dua partikel terjerat: status lokal salah satu pihak tidak dapat didefinisikan tanpa menyertakan pasangannya, memicu paradoks Einstein-Podolsky-Rosen.\n\n### 2. Prototipe Intuitif\nBayangkan sepasang koin berputar di meja Alice dan Bob yang porosnya dihubungkan kawat torsi tak kasat mata. Begitu koin Alice jatuh pada sisi angka, koin Bob seketika ikut jatuh pada sisi angka, namun tak s",
+        "readingContext": "### 1. Pangkal Anomali\nDalam fisika klasik yang kita pelajari di sekolah, alam semesta bekerja berdasarkan prinsip lokalitas (Locality): sebuah benda di Jakarta tidak bisa dipengaruhi secara langsung oleh benda di Tokyo kecuali ada perantara fisik seperti kabel listrik, gelombang radio, atau tumbukan mekanik yang merambat dengan kecepatan maksimal cahaya ($c \\approx 300.000\\text{ km/s}$).\n\nNamun, ketika dua partikel kuantum mengalami interaksi erat dan membentuk status keterikatan (*entangled st",
         "prompt": "\"If Alice and Bob share an entangled Bell state (|00> + |11>)/sqrt(2), predict whether Alice can transmit an instantaneous binary message to Bob by measuring her qubit.\"",
         "options": [
           {
             "optionId": "opt_a",
-            "text": "\"Alice cannot transmit information faster than light because Bob's local marginal probability remains exactly 50/50 until classical measurement correlations are communicated.\"",
+            "text": "Alice cannot transmit information faster than light because Bob's local marginal probability remains exactly 50/50 until classical measurement correlations are communicated.",
             "isCorrect": true,
-            "causalRationale": "Correct: \"Alice cannot transmit information faster than light because Bob's local marginal probability remains exactly 50/50 until classical measurement correlations are communicated.\". This adheres strictly to the governing invariant of Quantum Entanglement and Non-Locality."
+            "causalRationale": "Accurately articulates the No-Signaling Theorem preventing faster-than-light communication via entanglement."
           },
           {
             "optionId": "opt_b",
-            "text": "The system remains completely unchanged because Quantum Entanglement and Non-Locality acts as an invariant identity operator without state transitions.",
+            "text": "Alice transmits instantaneous binary text because measuring her qubit physically pulls Bob's qubit like a tight rope.",
             "isCorrect": false,
             "diagnosticAxis": "conceptGap",
-            "causalRationale": "Misconception: Assumes operations produce zero observable effect, ignoring active transformation.",
-            "specificRemediation": "Review core mechanism: ```mermaid\nflowchart LR\n    EntangledPair[\"Sumber Bell (|00>+|11>)/sqrt(2)\"] --> Alice[\"Alice (Ukur Koin)\"]\n    EntangledPair --> Bob[\"Bob (Korelasi Spontan)\"]\n    Alice -.->|No-Signaling Invariant| Bob\n```\n\n### 3."
+            "causalRationale": "Fails to recognize that Alice cannot control which eigenvalue state her measurement collapses into."
           },
           {
             "optionId": "opt_c",
-            "text": "The state diverges uncontrollably because boundary conditions are violated immediately.",
+            "text": "Entanglement breaks down immediately if the physical distance exceeds 10 meters because radio waves decay inversely with squared distance.",
+            "isCorrect": false,
+            "diagnosticAxis": "missingPrerequisite",
+            "causalRationale": "Misattributes quantum non-locality to classical electromagnetic dipole radiation decay."
+          },
+          {
+            "optionId": "opt_d",
+            "text": "Bob always measures 1 regardless of Alice's outcome because entanglement inverts polarization at long distances.",
             "isCorrect": false,
             "diagnosticAxis": "reasoningBug",
-            "causalRationale": "Reasoning Slip: Assumes instability without verifying whether mathematical bounds are preserved.",
-            "specificRemediation": "Trace boundary constraints step-by-step."
+            "causalRationale": "Contradicts the Bell state formula where outcomes are perfectly correlated (both 0 or both 1)."
           }
         ],
         "expectedMentalModel": [
@@ -151,7 +200,7 @@
       },
       "lossRubric": {
         "conceptGapCriteria": [
-          "Fails to identify core mechanism: ```mermaid\nflowchart LR\n    EntangledPair[\"Sumber Bell (|00>+|11>)/sqrt(2)\"] --> Alice[\"Alice (Ukur Koin)\"]\n    EntangledPair --> Bob[\"Bob (Korelasi Spontan)\"]\n    Alice -.->|No-Signaling Invariant| Bob\n```\n\n### 3.",
+          "Fails to identify core mechanism: ### 1.",
           "Confuses cause and effect in state transitions"
         ],
         "missingPrerequisiteMap": {
@@ -172,7 +221,7 @@
         "learningRate": 0.25,
         "hintLadder": {
           "level0Reflective": "Reflective: What fundamental invariant governs Quantum Entanglement and Non-Locality?",
-          "level1Directional": "Directional Clue: Examine how Quantum Entanglement and Non-Locality handles boundary conditions: ```mermaid\nflowchart LR\n    EntangledPair[\"Sumber Bell (|00>+|11>)/sqrt(2)\"] --> Alice[\"Alice (Ukur Koin)\"]\n    EntangledPair --> Bob[\"Bob (Korelasi Spontan)\"]\n    Alice -.->|No-Signaling Invariant| Bob\n```\n\n### 3.",
+          "level1Directional": "Directional Clue: Examine how Quantum Entanglement and Non-Locality handles boundary conditions: ### 1.",
           "level2Constraint": "Constraint: Eliminate unconstrained assumptions. Ground truth: \"Alice cannot transmit information faster than light because Bob's local marginal probability remains exactly 50/50 until classical measurement correlations are communicated.\"",
           "level3WorkedExample": "\"Worked Solution: While Alice's measurement instantly fixes Bob's outcome, Alice cannot choose whether she measures 0 or 1. From Bob's perspective, his density matrix remains a random 50/50 mixture. Therefore, no information is transmitted until classical signals arrive (No-Signaling Theorem).\""
         },
@@ -188,7 +237,7 @@
         {
           "sourceRef": "markdown-source",
           "locationTag": "Section: Quantum Entanglement and Non-Locality",
-          "verbatimQuote": "### 1. Pangkal Anomali\nKita terbiasa menganalisis dua objek terpisah secara independen. Cara ini run"
+          "verbatimQuote": "### 1. Pangkal Anomali\nDalam fisika klasik yang kita pelajari di sekolah, alam semesta bekerja berda"
         }
       ]
     }

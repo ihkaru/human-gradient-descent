@@ -2,7 +2,7 @@
   "schemaVersion": "2026.1",
   "curriculumId": "quantum-computing",
   "title": "Quantum Computing Foundations",
-  "description": "A comprehensive curriculum on quantum information theory, superposition, entanglement, and algorithmic speedups.",
+  "description": "A comprehensive, domain-agnostic curriculum on quantum information theory, superposition, entanglement, and algorithmic speedups compiled with the Human Gradient Descent paradigm.",
   "domain": "KnowledgeBase",
   "domainType": "general",
   "compositionalPrimitives": [
@@ -20,7 +20,7 @@
   "scale": {
     "totalNodes": 5,
     "totalShards": 5,
-    "approxWordCount": 2396,
+    "approxWordCount": 5527,
     "estimatedLearningHours": 1.8
   },
   "pacing": {

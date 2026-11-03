@@ -14,7 +14,7 @@
       "prerequisites": [
         "hgd://knowledgebase/contract-law-basics/node-002"
       ],
-      "conceptSummary": "### 1. Pangkal Anomali\nPemilik rumah sering berupaya membatalkan seluruh pembayaran kontrak pembangunan hanya karena pipa yang dipasang bermerek Reading Pipe Brand B bukannya Brand A, padahal kualitas fisiknya identik. Jika deviasi sepele membatalkan seluruh pembayaran, industri konstruksi akan lumpuh akibat pemerasan pembeli.\n\n### 2. Prototipe Intuitif\nBayangkan saluran pipa air di sebuah bangunan. Jika sambungan pipa utama pecah dan merendam seluruh fondasi (material breach), katup air wajib ditutup total. Namun jika cat pipa luar sedikit berbeda merek (immaterial breach), air tetap mengalir lancar dan pemilik cukup meminta selisih harga cat kaleng.\n\n### 3. Invarian & Operasi Inti\nInvarian mutlak sistem adalah **Doktrin Pelaksanaan Substansial (Substantial Performance - Jacob & Youngs v. Kent)**: pelanggaran minor yang tidak melukai tujuan pokok kontrak tidak membatalkan kewajiban pihak lain, melainkan hanya memberikan hak klaim ganti rugi selisih nilai.\n\n| Apa yang Dipikirkan Pemula",
+      "conceptSummary": "<!-- hgd:options: [\n  {\"optionId\":\"opt_a\",\"text\":\"Cannot terminate: under the doctrine of substantial performance (Jacob & Youngs v. Kent), an immaterial breach only entitles the owner to difference-in-value damages, not contract forfeiture.\",\"isCorrect\":true,\"causalRationale\":\"Correct: Substantial performance prevents forfeiture for minor, immaterial variances.\"},\n  {\"optionId\":\"opt_b\",\"text\":\"Can terminate immediately because any deviation from express contract specifications constitutes a complete material breach.\",\"isCorrect\":false,\"diagnosticAxis\":\"conceptGap\",\"causalRationale\":\"Strict Condition Fallacy: Equity rejects economic forfeiture when performance is substantially complete.\"},\n  {\"optionId\":\"opt_c\",\"text\":\"Owner must pay full contract price with zero deduction because the builder acted in good faith.\",\"isCorrect\":false,\"diagnosticAxis\":\"reasoningBug\",\"causalRationale\":\"Damage Entitlement Slip: Immaterial breach still entitles the non-breaching party to nominal or differenc",
       "pacing": {
         "timeLimitSeconds": 60,
         "recommendedEpochs": 3,
@@ -25,45 +25,53 @@
         "block1_anomaly": {
           "groundState": "Initial state prior to Material Breach and Constructive Conditions.",
           "oldWay": "Conventional assumption or baseline approach.",
-          "breakdownPoint": "Pemilik rumah sering berupaya membatalkan seluruh pembayaran kontrak pembangunan hanya karena pipa yang dipasang bermerek Reading Pipe Brand B bukannya Brand A, padahal kualitas fisiknya identik. Jika deviasi sepele membatalkan seluruh pembayaran, industri konstruksi akan lumpuh akibat pemerasan pembeli."
+          "breakdownPoint": "Bayangkan Anda menyewa seorang kontraktor untuk membangun rumah tinggal senilai Rp 1.000.000.000. Kontraktor menyelesaikan rumah tersebut dengan sangat megah, kokoh, dan siap huni.\n\nNamun saat memeriksa kamar mandi, Anda menemukan bahwa pipa air yang dipasang di dalam dinding bermerek *Reading Pipe*, padahal dalam lampiran perjanjian tertulis merek *Cohoes Pipe*. Kedua pipa ini terbuat dari besi galvanis yang persis sama, memiliki daya tahan yang identik, dan harga di toko bangunan sama persis.\n\nPemilik rumah kemudian menyatakan: *\"Anda telah melanggar klausul kontrak! Karena Anda tidak memasang pipa merek Cohoes, saya membatalkan seluruh kontrak dan menolak membayar sisa tagihan Rp 500.000.000!\"*\n\nJika hukum mengizinkan pembatalan total atas pelanggaran sepele semacam ini, maka para pembeli yang beritikad buruk akan selalu mencari kesalahan kecil untuk menghindari kewajiban pembayaran mereka (*economic forfeiture*)."
         },
         "block2_intuitivePrototype": {
           "physicalObject": "Physical sandbox model",
-          "isomorphicMapping": "Bayangkan saluran pipa air di sebuah bangunan. Jika sambungan pipa utama pecah dan merendam seluruh fondasi (material breach), katup air wajib ditutup total. Namun jika cat pipa luar sedikit berbeda merek (immaterial breach), air tetap mengalir lancar dan pemilik cukup meminta selisih harga cat kaleng.",
+          "isomorphicMapping": "Bayangkan instalasi pipa air di sebuah bangunan bertingkat.\n\nTerdapat dua jenis kebocoran yang sangat berbeda:\n* **Kasus 1: Pipa Utama Pecah (Material Breach)**: Pipa saluran utama pecah sehingga air membanjiri ruang tamu dan membahayakan pondasi bangunan. Tujuan pokok rumah tidak tercapai. Di sini, katup air utama wajib ditutup total dan pembayaran dihentikan sementara.\n* **Kasus 2: Warna Cat Pipa Sedikit Pudar (Immaterial Breach)**: Air tetap mengalir jernih dan lancar dengan tekanan sempurna, hanya warna cat pipa di dalam gudang sedikit pudar. Katup air utama tidak boleh ditutup! Pemilik rumah cukup meminta ganti rugi seharga satu kaleng cat untuk mengecat ulang.\n\n```mermaid\nflowchart TD\n    Performance[\"Pelaksanaan Kontrak Selesai Secara Esensial (99%)\"] --> Evaluation{\"Apakah Pelanggaran Merusak Tujuan Pokok Kontrak?\"}\n    Evaluation -->|Ya: Material Breach| Forfeiture[\"Hak Membatalkan Kontrak & Menolak Bayar\"]\n    Evaluation -->|Tidak: Immaterial Breach| Substantial[\"Doktrin Substantial Performance: Wajib Bayar Penuh Dikurangi Selisih Nilai\"]\n```",
           "deadlockResolution": "Resolves the deadlock identified in Block 1 through isomorphic interaction."
         },
         "block3_coreMechanics": {
-          "invariantProperty": "Invarian mutlak sistem adalah **Doktrin Pelaksanaan Substansial (Substantial Performance - Jacob & Youngs v. Kent)**: pelanggaran minor yang tidak melukai tujuan pokok kontrak tidak membatalkan kewajiban pihak lain, melainkan hanya memberikan hak klaim ganti rugi selisih nilai.",
+          "invariantProperty": "Invarian mutlak sistem adalah **Doktrin Pelaksanaan Substansial (Substantial Performance - Jacob & Youngs v. Kent)**: jika satu pihak telah melaksanakan kewajiban pokoknya dengan itikad baik dan hanya melakukan penyimpangan minor yang tidak melukai esensi kontrak, pihak lain **dilarang membatalkan kontrak** (*cannot forfeit*).\n\nKewajiban pembayaran tetap berlaku penuh, dikurangi selisih depresiasi riil (*difference-in-value*) antara apa yang dijanjikan dan apa yang diserahkan.",
           "variableComponents": [
             "System inputs",
             "Observable state amplitudes"
           ],
           "contrastingCases": [
             {
-              "beginnerMisconception": "Setiap pelanggaran klausul kontrak otomatis membatalkan seluruh kesepakatan.",
-              "physicalReality": "Hukum membedakan pelanggaran material (hak terminasi) dengan pelanggaran minor (ganti rugi selisih nilai)."
+              "beginnerMisconception": "Setiap kesalahan kecil dalam kontrak otomatis memberi hak pembatalan total.",
+              "physicalReality": "Hukum membedakan pelanggaran material (hak terminasi) dengan pelanggaran minor (hak ganti rugi selisih nilai)."
             },
             {
-              "beginnerMisconception": "Kontraktor yang melakukan kesalahan kecil tidak berhak dibayar sepeser pun.",
-              "physicalReality": "Kontraktor berhak atas nilai kontrak penuh dikurangi selisih depresiasi kerusakan."
+              "beginnerMisconception": "Kontraktor yang salah merek pipa tidak berhak menerima uang sepeser pun.",
+              "physicalReality": "Kontraktor berhak atas seluruh sisa pembayaran kontrak dikurangi kompensasi kerusakan riil."
+            },
+            {
+              "beginnerMisconception": "Pelaksanaan substansial berarti pembuat janji bebas melanggar perjanjian kapan saja.",
+              "physicalReality": "Pelanggaran yang disengaja dengan niat jahat (*willful breach*) tidak dilindungi oleh doktrin ini."
             }
           ]
         },
         "block4_notationContract": {
           "formulaOrCode": "Remedy = DifferenceInValue \\neq ContractForfeiture",
-          "minimalFormalization": "Pembedaan akibat hukum pelanggaran dikontrakkan sebagai berikut:",
+          "minimalFormalization": "Pembedaan akibat hukum pelanggaran dikontrakkan sebagai berikut:\n\nFormula penentu solusi hukum:",
           "termsDeconstruction": [
             {
               "symbol": "Substantial Performance",
-              "physicalMeaning": "Pemenuhan esensial tujuan kontrak."
+              "physicalMeaning": "Pemenuhan tujuan pokok kontrak di atas 95% dengan itikad baik."
             },
             {
               "symbol": "Jacob & Youngs v. Kent",
-              "physicalMeaning": "Preseden penolakan pembatalan kontrak atas deviasi merek pipa minor."
+              "physicalMeaning": "Putusan hakim legendaris Benjamin Cardozo yang menolak pembatalan kontrak atas deviasi pipa minor."
             },
             {
               "symbol": "DifferenceInValue",
-              "physicalMeaning": "Ganti rugi proporsional selisih nilai riil."
+              "physicalMeaning": "Kompensasi selisih nilai pasar antara pipa Reading dan pipa Cohoes (yang dalam kasus ini bernilai Rp 0)."
+            },
+            {
+              "symbol": "Material Breach",
+              "physicalMeaning": "Pelanggaran substansial yang menggagalkan tujuan pokok perjanjian."
             }
           ]
         }
@@ -91,11 +99,43 @@
           }
         ]
       },
+      "glossary": [
+        {
+          "term": "Material Breach",
+          "definition": "Pelanggaran kontrak yang begitu mendasar sehingga menggagalkan tujuan pokok perjanjian",
+          "highSchoolAnchor": "Memesan seragam olahraga ukuran L tetapi yang dikirim seragam ukuran balita"
+        },
+        {
+          "term": "Immaterial Breach",
+          "definition": "Penyimpangan kecil atau cacat minor yang tidak merusak fungsi utama dari apa yang dijanjikan",
+          "highSchoolAnchor": "Memesan buku cetak bersampul biru tua tetapi yang dikirim bersampul biru dongker"
+        },
+        {
+          "term": "Substantial Performance",
+          "definition": "Doktrin hukum yang melindungi pihak yang telah menyelesaikan hampir seluruh kewajibannya dengan itikad baik",
+          "highSchoolAnchor": "Mengerjakan 98 soal ujian dengan benar; guru tidak boleh memberi nilai 0 hanya karena salah di 2 soal"
+        },
+        {
+          "term": "Economic Forfeiture",
+          "definition": "Kerugian finansial yang sangat tidak proporsional yang dialami pelaku janji akibat pembatalan sepihak",
+          "highSchoolAnchor": "Mengambil alih rumah megah secara gratis hanya karena gagang pintu kamar mandi sedikit longgar"
+        },
+        {
+          "term": "Jacob & Youngs v. Kent",
+          "definition": "Putusan pengadilan banding New York tahun 1921 yang menetapkan doktrin pelaksanaan substansial",
+          "highSchoolAnchor": "Kasus hukum nyata tentang perselisihan merek pipa air di sebuah rumah tinggal mewah"
+        },
+        {
+          "term": "Difference in Value",
+          "definition": "Ukuran ganti rugi berupa selisih harga pasar antara barang yang diminta dan barang yang diterima",
+          "highSchoolAnchor": "Harga pipa merek A Rp 50.000 vs merek B Rp 48.000; selisih yang harus diganti adalah Rp 2.000"
+        }
+      ],
       "variationProbes": {
         "conceptualVariants": [
           {
             "representationType": "verbal",
-            "content": "### 1."
+            "content": "<!-- hgd:options: [\n  {\"optionId\":\"opt_a\",\"text\":\"Cannot terminate: under the doctrine of substantial performance (Jacob & Youngs v."
           },
           {
             "representationType": "symbolic",
@@ -114,28 +154,30 @@
       "forwardPass": {
         "probeType": "prediction_what_if",
         "microPrimer": "\"When a party commits an immaterial breach, the contract is not forfeited. Under substantial performance (Jacob & Youngs v. Kent), the owner must pay and can only sue for damages.\"",
-        "readingContext": "### 1. Pangkal Anomali\nPemilik rumah sering berupaya membatalkan seluruh pembayaran kontrak pembangunan hanya karena pipa yang dipasang bermerek Reading Pipe Brand B bukannya Brand A, padahal kualitas fisiknya identik. Jika deviasi sepele membatalkan seluruh pembayaran, industri konstruksi akan lumpuh akibat pemerasan pembeli.\n\n### 2. Prototipe Intuitif\nBayangkan saluran pipa air di sebuah bangunan. Jika sambungan pipa utama pecah dan merendam seluruh fondasi (material breach), katup air wajib d",
+        "readingContext": "<!-- hgd:options: [\n  {\"optionId\":\"opt_a\",\"text\":\"Cannot terminate: under the doctrine of substantial performance (Jacob & Youngs v. Kent), an immaterial breach only entitles the owner to difference-in-value damages, not contract forfeiture.\",\"isCorrect\":true,\"causalRationale\":\"Correct: Substantial performance prevents forfeiture for minor, immaterial variances.\"},\n  {\"optionId\":\"opt_b\",\"text\":\"Can terminate immediately because any deviation from express contract specifications constitutes a com",
         "prompt": "\"Predict whether a homeowner can lawfully terminate a building contract and refuse payment if the builder used identical pipe of Brand B instead of Brand A.\"",
         "options": [
           {
             "optionId": "opt_a",
-            "text": "Cannot terminate: under the doctrine of substantial performance (Jacob & Youngs v. Kent), an immaterial breach only entitles the owner to difference-in-value damages, not contract forfeiture.",
+            "text": "\"Cannot terminate: under the doctrine of substantial performance (Jacob & Youngs v. Kent), an immaterial breach only entitles the owner to difference-in-value damages, not contract forfeiture.\"",
             "isCorrect": true,
-            "causalRationale": "Correct: Substantial performance prevents forfeiture for minor, immaterial variances."
+            "causalRationale": "Correct: \"Cannot terminate: under the doctrine of substantial performance (Jacob & Youngs v. Kent), an immaterial breach only entitles the owner to difference-in-value damages, not contract forfeiture.\". This adheres strictly to the governing invariant of Material Breach and Constructive Conditions."
           },
           {
             "optionId": "opt_b",
-            "text": "Can terminate immediately because any deviation from express contract specifications constitutes a complete material breach.",
+            "text": "The system remains completely unchanged because Material Breach and Constructive Conditions acts as an invariant identity operator without state transitions.",
             "isCorrect": false,
             "diagnosticAxis": "conceptGap",
-            "causalRationale": "Strict Condition Fallacy: Equity rejects economic forfeiture when performance is substantially complete."
+            "causalRationale": "Misconception: Assumes operations produce zero observable effect, ignoring active transformation.",
+            "specificRemediation": "Review core mechanism: <!-- hgd:options: [\n  {\"optionId\":\"opt_a\",\"text\":\"Cannot terminate: under the doctrine of substantial performance (Jacob & Youngs v."
           },
           {
             "optionId": "opt_c",
-            "text": "Owner must pay full contract price with zero deduction because the builder acted in good faith.",
+            "text": "The state diverges uncontrollably because boundary conditions are violated immediately.",
             "isCorrect": false,
             "diagnosticAxis": "reasoningBug",
-            "causalRationale": "Damage Entitlement Slip: Immaterial breach still entitles the non-breaching party to nominal or difference-in-value damages."
+            "causalRationale": "Reasoning Slip: Assumes instability without verifying whether mathematical bounds are preserved.",
+            "specificRemediation": "Trace boundary constraints step-by-step."
           }
         ],
         "expectedMentalModel": [
@@ -148,7 +190,7 @@
       },
       "lossRubric": {
         "conceptGapCriteria": [
-          "Fails to identify core mechanism: ### 1.",
+          "Fails to identify core mechanism: <!-- hgd:options: [\n  {\"optionId\":\"opt_a\",\"text\":\"Cannot terminate: under the doctrine of substantial performance (Jacob & Youngs v.",
           "Confuses cause and effect in state transitions"
         ],
         "missingPrerequisiteMap": {
@@ -169,7 +211,7 @@
         "learningRate": 0.25,
         "hintLadder": {
           "level0Reflective": "Reflective: What fundamental invariant governs Material Breach and Constructive Conditions?",
-          "level1Directional": "Directional Clue: Examine how Material Breach and Constructive Conditions handles boundary conditions: ### 1.",
+          "level1Directional": "Directional Clue: Examine how Material Breach and Constructive Conditions handles boundary conditions: <!-- hgd:options: [\n  {\"optionId\":\"opt_a\",\"text\":\"Cannot terminate: under the doctrine of substantial performance (Jacob & Youngs v.",
           "level2Constraint": "Constraint: Eliminate unconstrained assumptions. Ground truth: \"Cannot terminate: under the doctrine of substantial performance (Jacob & Youngs v. Kent), an immaterial breach only entitles the owner to difference-in-value damages, not contract forfeiture.\"",
           "level3WorkedExample": "\"Worked Solution: In Jacob & Youngs v. Kent, the builder installed Reading pipe instead of Cohoes pipe, which were identical in quality. Justice Cardozo held that trivial variances do not discharge payment when the builder substantially performed.\""
         },
@@ -185,7 +227,7 @@
         {
           "sourceRef": "markdown-source",
           "locationTag": "Section: Material Breach and Constructive Conditions",
-          "verbatimQuote": "### 1. Pangkal Anomali\nPemilik rumah sering berupaya membatalkan seluruh pembayaran kontrak pembangu"
+          "verbatimQuote": "<!-- hgd:options: [\n  {\"optionId\":\"opt_a\",\"text\":\"Cannot terminate: under the doctrine of substantia"
         }
       ]
     }

@@ -15,7 +15,7 @@
         "hgd://knowledgebase/quantum-computing/node-002",
         "hgd://knowledgebase/quantum-computing/node-003"
       ],
-      "conceptSummary": "### 1. Pangkal Anomali\nMencari satu kunci di antara N gembok acak secara klasik membutuhkan rata-rata N/2 percobaan. Untuk ruang pencarian skala besar, pencarian sekuensial membutuhkan jutaan tahun komputasi.\n\n### 2. Prototipe Intuitif\nBayangkan kolam air tenang dengan gelombang seragam. Kita menyentak gelombang target ke bawah menjadi palung negatif. Kemudian dinding pemantul rata-rata membalik seluruh gelombang: palung negatif melonjak tinggi ke atas permukaan air sementara gelombang lain meredup.\n\n### 3. Invarian & Operasi Inti\nInvarian mutlak sistem adalah **Rotasi Amplitudo Geometris Menuju Target**. Setiap putaran difusi memutar vektor keadaan mendekati keadaan solusi sebesar sudut tetap dalam $O(\\sqrt{N})$ langkah.\n\n| Apa yang Dipikirkan Pemula (Salah) | Apa yang Sebenarnya Terjadi dalam Model Mental |\n|---|---|\n| Grover memeriksa seluruh item basis secara instan dalam 1 langkah. | Grover memanipulasi interferensi konstruktif amplitudo secara bertahap dalam O(sqrt(N)) iterasi. |",
+      "conceptSummary": "### 1. Pangkal Anomali\nBayangkan Anda memegang sebuah buku telepon raksasa berisi 1.000.000 nama orang yang nomor teleponnya disusun acak total tanpa urutan abjad. Anda diberikan satu nomor telepon tertentu dan diminta mencari siapa pemilik nomor tersebut.\n\nSecara komputasi klasik, tidak ada trik pintar yang bisa dilakukan selain membuka lembar demi lembar dari halaman pertama sampai halaman terakhir. Rata-rata Anda harus memeriksa $N/2 = 500.000$ kali panggilan. Jika database berisi $N = 10^{12}$ data, komputer tercepat di dunia pun akan kehabisan waktu puluhan tahun untuk melakukan pencarian linear $O(N)$.\n\nMengapa komputasi klasik begitu lambat? Karena komputasi klasik memperlakukan data sebagai entitas diskrit yang terpisah. Menemukan satu data yang salah tidak memberikan petunjuk apa pun tentang di mana data yang benar berada.\n\n### 2. Prototipe Intuitif\nBayangkan sebuah kolam air tenang berbentuk lingkaran. Di atas permukaan air kolam ini terdapat $N$ gelombang kecil yang bergetar",
       "pacing": {
         "timeLimitSeconds": 60,
         "recommendedEpochs": 3,
@@ -26,49 +26,57 @@
         "block1_anomaly": {
           "groundState": "Initial state prior to Grover's Search and Quadratic Speedup.",
           "oldWay": "Conventional assumption or baseline approach.",
-          "breakdownPoint": "Mencari satu kunci di antara N gembok acak secara klasik membutuhkan rata-rata N/2 percobaan. Untuk ruang pencarian skala besar, pencarian sekuensial membutuhkan jutaan tahun komputasi."
+          "breakdownPoint": "Bayangkan Anda memegang sebuah buku telepon raksasa berisi 1.000.000 nama orang yang nomor teleponnya disusun acak total tanpa urutan abjad. Anda diberikan satu nomor telepon tertentu dan diminta mencari siapa pemilik nomor tersebut.\n\nSecara komputasi klasik, tidak ada trik pintar yang bisa dilakukan selain membuka lembar demi lembar dari halaman pertama sampai halaman terakhir. Rata-rata Anda harus memeriksa $N/2 = 500.000$ kali panggilan. Jika database berisi $N = 10^{12}$ data, komputer tercepat di dunia pun akan kehabisan waktu puluhan tahun untuk melakukan pencarian linear $O(N)$.\n\nMengapa komputasi klasik begitu lambat? Karena komputasi klasik memperlakukan data sebagai entitas diskrit yang terpisah. Menemukan satu data yang salah tidak memberikan petunjuk apa pun tentang di mana data yang benar berada."
         },
         "block2_intuitivePrototype": {
           "physicalObject": "Physical sandbox model",
-          "isomorphicMapping": "Bayangkan kolam air tenang dengan gelombang seragam. Kita menyentak gelombang target ke bawah menjadi palung negatif. Kemudian dinding pemantul rata-rata membalik seluruh gelombang: palung negatif melonjak tinggi ke atas permukaan air sementara gelombang lain meredup.",
+          "isomorphicMapping": "Bayangkan sebuah kolam air tenang berbentuk lingkaran. Di atas permukaan air kolam ini terdapat $N$ gelombang kecil yang bergetar dengan ketinggian rata-rata yang sama persis. Satu di antara gelombang tersebut adalah target rahasia yang ingin kita temukan.\n\nAlgoritma Grover bekerja seperti dua ketukan ritmis pada kolam:\n1. **Ketukan Pertama (Oracle Kuantum)**: Kita menyentak titik gelombang target ke bawah, membalik arah getarannya menjadi palung negatif (pembalikan fase $-1$). Tingginya sama, tetapi arahnya menusuk ke bawah air.\n2. **Ketukan Kedua (Operator Difusi / Refleksi Rata-Rata)**: Kita memasang dinding pemantul yang membalik seluruh gelombang terhadap garis tinggi rata-rata air kolam.\n\nKarena gelombang target berada jauh di bawah garis rata-rata (negatif), pantulan terhadap garis rata-rata membuat tinggi gelombang target melesat melonjak sangat tinggi di atas permukaan air! Sebaliknya, gelombang-gelombang lain yang berada sedikit di atas rata-rata justru tertekan turun mendekati nol.\n\n```mermaid\nflowchart LR\n    Step0[\"1. Superposisi Rata: Semua Item Amplitudo +1/\\sqrt{N}\"] --> Step1[\"2. Oracle: Balik Tanda Target Menjadi -1/\\sqrt{N}\"]\n    Step1 --> Step2[\"3. Operator Difusi: Refleksi Terhadap Nilai Rata-Rata (Mean)\"]\n    Step2 --> Step3[\"4. Amplitudo Target Melonjak Tinggi (P \\approx 100%)\"]\n    Step3 -.->|Ulangi O(\\sqrt{N}) Kali| FinalMeasure[\"Ukur: Menemukan Target Presisi\"]\n```",
           "deadlockResolution": "Resolves the deadlock identified in Block 1 through isomorphic interaction."
         },
         "block3_coreMechanics": {
-          "invariantProperty": "Invarian mutlak sistem adalah **Rotasi Amplitudo Geometris Menuju Target**. Setiap putaran difusi memutar vektor keadaan mendekati keadaan solusi sebesar sudut tetap dalam $O(\\sqrt{N})$ langkah.",
+          "invariantProperty": "Invarian mutlak sistem pencarian Grover adalah **Rotasi Geometris Amplitudo Menuju Target (Geometric Amplitude Rotation)**.\n\nSetiap siklus (Oracle + Difusi) memutar vektor status kuantum di bidang dua dimensi mendekati sumbu target dengan sudut rotasi konstan $\\theta \\approx 2/\\sqrt{N}$. Untuk mencapai probabilitas pengukuran mendekati 100%, sistem hanya membutuhkan jumlah langkah sebanyak:\n$$\\text{Langkah Optimal} \\approx \\frac{\\pi}{4}\\sqrt{N} = O(\\sqrt{N})$$\n\nJika $N = 1.000.000$ data, komputer klasik butuh 500.000 pemeriksaan, sedangkan algoritma Grover hanya butuh sekitar $\\frac{\\pi}{4}\\sqrt{1.000.000} \\approx 785$ iterasi! Ini adalah lompatan percepatan kuadratik (*quadratic speedup*) yang sangat masif.",
           "variableComponents": [
             "System inputs",
             "Observable state amplitudes"
           ],
           "contrastingCases": [
             {
-              "beginnerMisconception": "Grover memeriksa seluruh item basis secara instan dalam 1 langkah.",
-              "physicalReality": "Grover memanipulasi interferensi konstruktif amplitudo secara bertahap dalam O(sqrt(N)) iterasi."
+              "beginnerMisconception": "Grover memeriksa seluruh 1.000.000 data secara instan dalam 1 detik.",
+              "physicalReality": "Grover memanipulasi interferensi gelombang secara bertahap dalam $O(\\sqrt{N})$ iterasi rotasi."
             },
             {
-              "beginnerMisconception": "Inversion about the mean membatalkan pembalikan fase target.",
-              "physicalReality": "Pembalikan terhadap rata-rata justru melipatgandakan deviasi negatif menjadi amplitudo positif tertinggi."
+              "beginnerMisconception": "Pembalikan tanda target oleh Oracle langsung mengubah peluangnya menjadi 100%.",
+              "physicalReality": "Oracle hanya membalik fase negatif; peluang fisik $"
+            },
+            {
+              "beginnerMisconception": "Melakukan iterasi sebanyak-banyaknya pasti membuat pencarian semakin akurat.",
+              "physicalReality": "Karena Grover adalah rotasi sudut, melakukan iterasi berlebih (*over-rotation*) justru memutar vektor menjauhi target kembali ke nol!"
             }
           ]
         },
         "block4_notationContract": {
           "formulaOrCode": "D = 2|s\\rangle\\langle s| - I",
-          "minimalFormalization": "Operator difusi Grover dikontrakkan sebagai refleksi uniter terhadap keadaan rata-rata:",
+          "minimalFormalization": "Operator difusi Grover dikontrakkan sebagai refleksi uniter terhadap keadaan rata-rata superposisi:\n\nPersamaan formal ini mengatur pantulan gelombang amplitudo di atas kertas matematika:",
           "termsDeconstruction": [
             {
               "symbol": "D",
-              "physicalMeaning": "Operator difusi Grover (pembalik terhadap rata-rata)."
+              "physicalMeaning": "Operator difusi Grover (pembalik seluruh amplitudo terhadap nilai rata-rata)."
             },
             {
               "symbol": "|s>",
-              "physicalMeaning": "Keadaan superposisi seimbang seluruh item."
+              "physicalMeaning": "Vektor keadaan superposisi seimbang seluruh basis data $\\frac{1}{\\sqrt{N}}\\sum_{x=0}^{N-1}|x\\rangle$."
+            },
+            {
+              "symbol": "|s><s|",
+              "physicalMeaning": "Proyektor rata-rata ruang kuantum."
             },
             {
               "symbol": "I",
-              "physicalMeaning": "Matriks identitas inversi."
+              "physicalMeaning": "Matriks identitas inversi pembalik tanda."
             },
             {
               "symbol": "O(sqrt(N))",
-              "physicalMeaning": "Kontrak percepatan kuadratik atas kompleksitas klasik O(N)."
+              "physicalMeaning": "Kontrak percepatan kuadratik atas kompleksitas pencarian klasik $O(N)$."
             }
           ]
         }
@@ -96,6 +104,38 @@
           }
         ]
       },
+      "glossary": [
+        {
+          "term": "Algoritma Grover",
+          "definition": "Algoritma pencarian kuantum untuk database tak terstruktur dengan kompleksitas $O(\\sqrt{N})$",
+          "highSchoolAnchor": "Memilih satu kelereng warna hitam di antara 1.000.000 kelereng putih hanya dengan 785 ayunan saringan getar"
+        },
+        {
+          "term": "Oracle Kuantum",
+          "definition": "Gerbang kotak hitam yang menandai status target dengan membalik tanda fase amplitudo ($(-1)^{f(x)}$)",
+          "highSchoolAnchor": "Guru yang memberi tanda centang merah kecil di bagian belakang lembar jawaban siswa yang benar"
+        },
+        {
+          "term": "Pembalikan Fase (Phase Inversion)",
+          "definition": "Mengalikan amplitudo status kuantum tertentu dengan bilangan -1 tanpa mengubah peluang awalnya",
+          "highSchoolAnchor": "Membalik gelombang air puncak menjadi palung gelombang di bawah permukaan air kolam"
+        },
+        {
+          "term": "Inversion about the Mean",
+          "definition": "Operasi refleksi aljabar di mana setiap elemen $x_i$ dipetakan menjadi $2\\mu - x_i$ terhadap rata-rata $\\mu$",
+          "highSchoolAnchor": "Nilai ujian: jika rata-rata kelas 60, murid yang dapat nilai -20 dicerminkan melesat naik menjadi $2(60) - (-20) = 140$"
+        },
+        {
+          "term": "Interferensi Konstruktif",
+          "definition": "Perpaduan dua gelombang yang sefase sehingga saling memperkuat dan memperbesar amplitudo",
+          "highSchoolAnchor": "Pelajaran Gelombang Fisika SMA: dua puncak gelombang air bertemu dan menghasilkan ombak yang dua kali lebih tinggi"
+        },
+        {
+          "term": "Interferensi Destruktif",
+          "definition": "Perpaduan dua gelombang yang berlawanan fase sehingga saling meniadakan dan meratakan amplitudo",
+          "highSchoolAnchor": "Puncak gelombang bertemu palung gelombang air sehingga permukaan air menjadi tenang dan datar"
+        }
+      ],
       "variationProbes": {
         "conceptualVariants": [
           {
@@ -104,7 +144,7 @@
           },
           {
             "representationType": "symbolic",
-            "content": "D = 2|s\\rangle\\langle s| - I"
+            "content": "\\text{Langkah Optimal} \\approx \\frac{\\pi}{4}\\sqrt{N} = O(\\sqrt{N})"
           }
         ],
         "proceduralPerturbations": [
@@ -118,31 +158,36 @@
       },
       "forwardPass": {
         "probeType": "prediction_what_if",
-        "microPrimer": "\"Searching an unsorted list of N items classically requires N checks on average. Grover's algorithm uses quantum wave interference to amplify target probability amplitude while canceling incorrect candidates.\"",
-        "readingContext": "### 1. Pangkal Anomali\nMencari satu kunci di antara N gembok acak secara klasik membutuhkan rata-rata N/2 percobaan. Untuk ruang pencarian skala besar, pencarian sekuensial membutuhkan jutaan tahun komputasi.\n\n### 2. Prototipe Intuitif\nBayangkan kolam air tenang dengan gelombang seragam. Kita menyentak gelombang target ke bawah menjadi palung negatif. Kemudian dinding pemantul rata-rata membalik seluruh gelombang: palung negatif melonjak tinggi ke atas permukaan air sementara gelombang lain mere",
+        "microPrimer": "\"Searching an unsorted database of N items classically requires O(N) queries on average. Grover's algorithm uses quantum wave interference to iteratively amplify the target probability amplitude while canceling incorrect candidates in O(sqrt(N)) steps.\"",
+        "readingContext": "### 1. Pangkal Anomali\nBayangkan Anda memegang sebuah buku telepon raksasa berisi 1.000.000 nama orang yang nomor teleponnya disusun acak total tanpa urutan abjad. Anda diberikan satu nomor telepon tertentu dan diminta mencari siapa pemilik nomor tersebut.\n\nSecara komputasi klasik, tidak ada trik pintar yang bisa dilakukan selain membuka lembar demi lembar dari halaman pertama sampai halaman terakhir. Rata-rata Anda harus memeriksa $N/2 = 500.000$ kali panggilan. Jika database berisi $N = 10^{12",
         "prompt": "\"Predict how Grover's diffusion operator amplifies the probability amplitude of the target state while suppressing non-target states.\"",
         "options": [
           {
             "optionId": "opt_a",
-            "text": "\"Inverting the phase of the target state followed by inversion about the mean geometrically rotates the state vector toward the target basis in O(sqrt(N)) steps.\"",
+            "text": "Inverting the phase of the target state followed by inversion about the mean geometrically rotates the state vector toward the target basis in O(sqrt(N)) steps.",
             "isCorrect": true,
-            "causalRationale": "Correct: \"Inverting the phase of the target state followed by inversion about the mean geometrically rotates the state vector toward the target basis in O(sqrt(N)) steps.\". This adheres strictly to the governing invariant of Grover's Search and Quadratic Speedup."
+            "causalRationale": "Accurately articulates the two-step amplitude amplification cycle of Grover's algorithm."
           },
           {
             "optionId": "opt_b",
-            "text": "The system remains completely unchanged because Grover's Search and Quadratic Speedup acts as an invariant identity operator without state transitions.",
+            "text": "Grover checks all N entries simultaneously in exactly 1 step because quantum computers have infinite parallel cores.",
             "isCorrect": false,
             "diagnosticAxis": "conceptGap",
-            "causalRationale": "Misconception: Assumes operations produce zero observable effect, ignoring active transformation.",
-            "specificRemediation": "Review core mechanism: ### 1."
+            "causalRationale": "Magical Thinking Fallacy: Confuses quantum amplitude interference with fictitious infinite classical hardware replication."
           },
           {
             "optionId": "opt_c",
-            "text": "The state diverges uncontrollably because boundary conditions are violated immediately.",
+            "text": "The diffusion operator physically sorts the database in memory using classical quicksort before measuring.",
+            "isCorrect": false,
+            "diagnosticAxis": "missingPrerequisite",
+            "causalRationale": "Fails to recognize that Grover operates on completely unsorted, black-box oracle databases."
+          },
+          {
+            "optionId": "opt_d",
+            "text": "The oracle changes the probability of the target state to 100% on the very first query without needing diffusion.",
             "isCorrect": false,
             "diagnosticAxis": "reasoningBug",
-            "causalRationale": "Reasoning Slip: Assumes instability without verifying whether mathematical bounds are preserved.",
-            "specificRemediation": "Trace boundary constraints step-by-step."
+            "causalRationale": "Ignores that the oracle only flips the phase (sign), leaving the absolute measurement probability unchanged without diffusion."
           }
         ],
         "expectedMentalModel": [
@@ -193,7 +238,7 @@
         {
           "sourceRef": "markdown-source",
           "locationTag": "Section: Grover's Search and Quadratic Speedup",
-          "verbatimQuote": "### 1. Pangkal Anomali\nMencari satu kunci di antara N gembok acak secara klasik membutuhkan rata-rat"
+          "verbatimQuote": "### 1. Pangkal Anomali\nBayangkan Anda memegang sebuah buku telepon raksasa berisi 1.000.000 nama ora"
         }
       ]
     }

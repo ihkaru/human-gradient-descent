@@ -144,6 +144,12 @@ export interface SourceCitation {
   verbatimQuote?: string;
 }
 
+export interface GlossaryTerm {
+  term: string;
+  definition: string;
+  highSchoolAnchor?: string;
+}
+
 export interface CompetencyNode {
   id: string;
   title: string;
@@ -160,6 +166,7 @@ export interface CompetencyNode {
   lossRubric: LossRubric;
   backwardPass: BackwardPassScaffold;
   sources?: SourceCitation[];
+  glossary?: GlossaryTerm[];
 }
 
 export interface NodeShard {

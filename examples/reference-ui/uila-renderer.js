@@ -1,8 +1,20 @@
 // UILA, Heatmap & Subway Map Renderer Module
 import { formatRichText, renderDisplayFormula, renderAllRichElements, stripQuotes } from "./rich-formatter.js";
+import { attachGlossaryBadges, renderGlossaryPanel, setupGlossaryListeners } from "./glossary-popover.js";
 
 let activeStep = 0; // 0 = show all, 1 = b1, 2 = b2, 3 = b3, 4 = b4
 let isReadingCollapsed = false;
+
+function formatBlockNarrative(text, glossary) {
+  if (!text) return "";
+  const rich = formatRichText(text);
+  const badged = attachGlossaryBadges(rich, glossary);
+  const paras = badged.split(/\n\s*\n/).filter(Boolean);
+  if (paras.length <= 1) {
+    return `<div class="uila-narrative">${badged}</div>`;
+  }
+  return `<div class="uila-narrative">${paras.map((p) => `<p class="uila-paragraph">${p.trim()}</p>`).join("")}</div>`;
+}
 
 export function renderHeatmap(state, containerId) {
   const container = document.getElementById(containerId);
@@ -113,17 +125,14 @@ export function renderUILABlocks(node, containerId, onFocusTest) {
     ${showB1 ? `
       <div class="uila-block b1">
         <div class="uila-block-title">Blok 1: Pangkal Anomali (The Ground State & Inadequacy)</div>
-        <div class="uila-body">${formatRichText(b1?.breakdownPoint || "Skenario kegagalan pemahaman lama.")}</div>
+        <div class="uila-body">${formatBlockNarrative(b1?.breakdownPoint || "Skenario kegagalan pemahaman lama.", node?.glossary)}</div>
       </div>
     ` : ""}
 
     ${showB2 ? `
       <div class="uila-block b2">
         <div class="uila-block-title">Blok 2: Prototipe Intuitif (Isomorphic Sandbox)</div>
-        <div class="uila-body">
-          <strong>${stripQuotes(b2?.physicalObject || "Model Fisik")}:</strong>
-          ${formatRichText(b2?.isomorphicMapping || "Analogi relasional yang memecahkan anomali.")}
-        </div>
+        <div class="uila-body">${formatBlockNarrative(b2?.isomorphicMapping || "Analogi relasional yang memecahkan anomali.", node?.glossary)}</div>
       </div>
     ` : ""}
 
@@ -131,7 +140,7 @@ export function renderUILABlocks(node, containerId, onFocusTest) {
       <div class="uila-block b3">
         <div class="uila-block-title">Blok 3: Invarian & Operasi Inti (Core Mechanics)</div>
         <div class="uila-body">
-          <div>Hukum Kekekalan: <strong>${formatRichText(b3?.invariantProperty || "Invarian Sistem")}</strong></div>
+          ${formatBlockNarrative(b3?.invariantProperty || "Invarian Sistem", node?.glossary)}
           ${contrastingRows ? `
             <table class="contrasting-table">
               <thead>
@@ -152,11 +161,13 @@ export function renderUILABlocks(node, containerId, onFocusTest) {
         <div class="uila-block-title">Blok 4: Notasi Sebagai Kontrak (Minimal Formalization)</div>
         <div class="uila-body">
           <div id="uila-formula-container" class="formula-display-box"></div>
-          <p style="margin: 0.35rem 0 0 0; font-size: 0.8rem; color: var(--text-muted);">${formatRichText(b4?.minimalFormalization || "")}</p>
+          ${formatBlockNarrative(b4?.minimalFormalization || "", node?.glossary)}
           ${notationChips ? `<div class="notation-chips">${notationChips}</div>` : ""}
         </div>
       </div>
     ` : ""}
+
+    ${renderGlossaryPanel(node?.glossary)}
   `;
 
   if (showB4) {
@@ -167,6 +178,7 @@ export function renderUILABlocks(node, containerId, onFocusTest) {
   }
 
   renderAllRichElements(container);
+  setupGlossaryListeners(container, node?.glossary);
 
   container.querySelectorAll(".stepper-pill").forEach((pill) => {
     pill.addEventListener("click", (e) => {

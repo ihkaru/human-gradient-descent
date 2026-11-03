@@ -15,7 +15,7 @@
         "hgd://knowledgebase/rust-io-uring/node-001",
         "hgd://knowledgebase/rust-io-uring/node-003"
       ],
-      "conceptSummary": "<!-- hgd:options: [\n  {\"optionId\": \"opt_a\", \"text\": \"The Rust application buffer must remain strictly pinned and unmodified in memory until the kernel emits a completion CQE indicating hardware transmission is finished.\", \"isCorrect\": true, \"causalRationale\": \"Accurately identifies the DMA zero-copy memory lifecycle invariant.\"},\n  {\"optionId\": \"opt_b\", \"text\": \"Rust automatically creates a shadow heap clone of the buffer to allow instant reuse without waiting.\", \"isCorrect\": false, \"diagnosticAxis\": \"conceptGap\", \"causalRationale\": \"Contradicts the zero-copy invariant by falsely reintroducing memory duplication.\"},\n  {\"optionId\": \"opt_c\", \"text\": \"The buffer can be freed immediately because the CPU caches all bytes inside the L1 register file.\", \"isCorrect\": false, \"diagnosticAxis\": \"reasoningBug\", \"causalRationale\": \"Fails to account for asynchronous network interface DMA access to physical RAM.\"}\n] -->\n\n### 1. Pangkal Anomali\nSekalipun *syscall* sudah nol, penyalinan memori (*memcpy",
+      "conceptSummary": "<!-- hgd:options: [\n  {\"optionId\": \"opt_a\", \"text\": \"The Rust application buffer must remain strictly pinned and unmodified in memory until the kernel emits a completion CQE indicating physical transmission is finished.\", \"isCorrect\": true, \"causalRationale\": \"Accurately identifies the DMA zero-copy memory lifecycle invariant.\"},\n  {\"optionId\": \"opt_b\", \"text\": \"Rust automatically creates a shadow heap clone of the buffer to allow instant reuse without waiting.\", \"isCorrect\": false, \"diagnosticAxis\": \"conceptGap\", \"causalRationale\": \"Contradicts the zero-copy invariant by falsely reintroducing memory duplication.\"},\n  {\"optionId\": \"opt_c\", \"text\": \"The buffer can be freed immediately because the CPU caches all bytes inside the L1 register file.\", \"isCorrect\": false, \"diagnosticAxis\": \"reasoningBug\", \"causalRationale\": \"Fails to account for asynchronous network interface DMA access to physical RAM.\"},\n  {\"optionId\": \"opt_d\", \"text\": \"Zero-copy allows the network card to physically erase",
       "pacing": {
         "timeLimitSeconds": 60,
         "recommendedEpochs": 3,
@@ -26,41 +26,53 @@
         "block1_anomaly": {
           "groundState": "Initial state prior to Zero-Copy JSON Streaming with Registered Buffers.",
           "oldWay": "Conventional assumption or baseline approach.",
-          "breakdownPoint": "Sekalipun *syscall* sudah nol, penyalinan memori (*memcpy*) byte JSON dari *heap* aplikasi ke *buffer* soket kernel (`copy_from_user`) pada throughput 40 Gbps akan membuat *bus* memori RAM jenuh dan membatasi throughput maksimal."
+          "breakdownPoint": "Bayangkan Anda telah berhasil memangkas seluruh pemanggilan *syscall* hingga tepat nol menggunakan io_uring dan SQPOLL. Kinerja server melonjak drastis. Namun ketika throughput jaringan dinaikkan melampaui 40 Gbps, prosesor kembali mengalami kemacetan parah di jalur bus memori RAM (*memory bus bandwidth saturation*). Dari mana asal beban ini?\n\nMasalahnya terletak pada operasi penyalinan data (*Memory Copy / memcpy*).\n\nDalam arsitektur konvensional, ketika aplikasi Rust Anda menyusun string dokumen JSON di dalam memori heap (`User Space`), saat Anda memanggil fungsi pengiriman, CPU harus membaca setiap byte karakter JSON tersebut lalu menyalinnya ke dalam memori perantara kernel yang disebut `sk_buff` (*Kernel Socket Buffer*). Baru setelah itu, kartu jaringan membaca data dari kernel buffer untuk dikirim ke kabel fiber optik.\n\nArtinya, setiap byte data JSON harus melewati bus memori RAM sebanyak minimal dua kali! Jika server melayani bandwidth 40 Gbps, prosesor harus memompa data sebesar 80 Gbps di dalam jalur kawat tembaga motherboard. Panas meningkat dan jalur memori menjadi macet total."
         },
         "block2_intuitivePrototype": {
           "physicalObject": "Physical sandbox model",
-          "isomorphicMapping": "Physical sandbox model: Bayangkan alih-alih Anda menduplikasi naskah buku tebal untuk diserahkan ke kurir pengantar, Anda cukup mendaftarkan lemari brankas Anda (`IORING_REGISTER_BUFFERS`) ke sistem kurir. Kurir langsung membaca naskah asli dari brankas tanpa membuat salinan kertas baru.\n\n```mermaid\nflowchart TD\n    subgraph Traditional[\"Traditional Send: CPU Memory Copy\"]\n        UB[\"User Space JSON Buffer\"] -->|CPU memcpy copy_from_user| KB[\"Kernel sk_buff\"]\n        KB -->|DMA Controller| NIC_T[\"Network Interface Card\"]\n    end\n    subgraph ZeroCopy[\"io_uring Zero-Copy: Direct DMA\"]\n        RegBuf[\"Pinned Registered JSON Buffer\"] -->|Direct Hardware DMA| NIC_ZC[\"Network Interface Card\"]\n    end\n```",
+          "isomorphicMapping": "Bayangkan Anda memiliki sebuah gudang penyimpanan dokumen rahasia (memori RAM aplikasi Anda). Di luar gerbang ada truk kontainer pengiriman antar-pulau (kartu jaringan / *NIC*).\n\nDalam prosedur pengiriman lama:\n1. Anda memfotokopi naskah asli lembar demi lembar menjadi salinan kedua.\n2. Anda memasukkan salinan kedua tersebut ke dalam kotak kardus milik pos keliling (kernel socket buffer).\n3. Sopir truk mengambil kardus dari pos keliling untuk dimuat ke dalam kontainer.\n\nDua kali lipat kertas terbuang, dan waktu Anda habis hanya untuk berdiri di depan mesin fotokopi!\n\nDalam prosedur **Zero-Copy dengan Registered Buffers**:\nAnda mendaftarkan lemari brankas di gudang Anda secara resmi kepada otoritas pelabuhan (`IORING_REGISTER_BUFFERS`). Otoritas pelabuhan memasang gembok pengunci khusus agar lemari brankas tidak dipindahkan (*Pinned Pages*).\n\nKetika saatnya mengirim naskah, sopir truk kontainer membawa lengan robot pengambil (*Direct Memory Access / DMA*) langsung ke dalam lemari brankas Anda. Lengan robot membaca naskah asli secara langsung tanpa perlu ada fotokopi selembar kertas pun! Tidak ada kertas ganda, dan prosesor Anda sama sekali tidak menyentuh byte naskah tersebut saat pengiriman berlangsung.\n\n```mermaid\nflowchart TD\n    subgraph Traditional[\"Pengiriman Tradisional: CPU Dua Kali Salin\"]\n        UB[\"Buffer JSON Aplikasi (User RAM)\"] -->|CPU memcpy copy_from_user| KB[\"Buffer Soket Kernel (sk_buff)\"]\n        KB -->|DMA Controller| NIC_T[\"Kartu Jaringan (Kabel Fisik)\"]\n    end\n    subgraph ZeroCopy[\"io_uring Zero-Copy: DMA Langsung\"]\n        RegBuf[\"Buffer JSON Terdaftar & Terkunci (Pinned)\"] -->|Direct Hardware DMA| NIC_ZC[\"Kartu Jaringan (Kabel Fisik)\"]\n    end\n```",
           "deadlockResolution": "Resolves the deadlock identified in Block 1 through isomorphic interaction."
         },
         "block3_coreMechanics": {
-          "invariantProperty": "Invarian mutlak operasi ini adalah **Buffer Lifetime Pinning**: halaman memori yang didaftarkan (*registered buffers*) dikunci di dalam tabel halaman kernel (*pinned pages*), dan hak kepemilikan (*ownership*) dalam Rust wajib dijaga tetap hidup hingga CQE konfirmasi fisik terbit.",
+          "invariantProperty": "Invarian mutlak sistem transmisi zero-copy adalah **Kekekalan Masa Hidup Buffer Terkunci (Buffer Lifetime Pinning Invariant)**:\nHalaman memori fisik yang didaftarkan ke kernel dikunci (*pinned*) agar sistem operasi tidak menukarnya ke dalam file swap di hard disk. \n\nKonsekuensi krusialnya: di dalam bahasa pemrograman Rust yang menjamin keamanan memori (*memory safety*), hak kepemilikan (*ownership*) dari buffer JSON tersebut **dilarang keras dibebaskan, dimodifikasi, atau digunakan kembali** sampai kernel menerbitkan kartu CQE konfirmasi bahwa kartu jaringan fisik telah selesai memancarkan seluruh sinyal listrik/cahaya ke kabel jaringan.\n\nJika seorang pemrogram ceroboh menggunakan kata kunci `unsafe` untuk mendaur ulang buffer sebelum konfirmasi terbit, kartu jaringan akan membaca data yang sedang diubah di tengah jalan, memicu korupsi paket data (*data corruption*) atau celah keamanan *use-after-free*.",
           "variableComponents": [
             "System inputs",
             "Observable state amplitudes"
           ],
           "contrastingCases": [
             {
-              "beginnerMisconception": "Mengira buffer bisa langsung di-drop setelah `send_zc`",
-              "physicalReality": "Buffer wajib tetap hidup di RAM sampai kartu jaringan selesai membaca fisik via DMA"
+              "beginnerMisconception": "Mengira buffer memori bisa langsung ditimpa segera setelah fungsi `send_zc` dipanggil.",
+              "physicalReality": "Buffer fisik wajib tetap utuh dan tak tersentuh di RAM sampai kartu CQE konfirmasi fisik diterima dari kernel."
             },
             {
-              "beginnerMisconception": "Mengira zero-copy selalu lebih cepat untuk payload 10 byte",
-              "physicalReality": "Untuk payload mikro (<64 byte), overhead pin halaman memori bisa melampaui biaya memcpy kecil"
+              "beginnerMisconception": "Mengira zero-copy selalu lebih kencang untuk semua ukuran pesan, termasuk 10 byte.",
+              "physicalReality": "Untuk pesan berukuran mikro (<64 byte), biaya registrasi halaman memori justru bisa lebih mahal dari biaya memcpy kecil."
+            },
+            {
+              "beginnerMisconception": "Mengira Rust otomatis membuat salinan bayangan rahasia jika kita mengubah buffer.",
+              "physicalReality": "Rust mematuhi aturan zero-copy murni; tidak ada salinan tersembunyi yang dibuat tanpa izin eksplisit pengembang."
             }
           ]
         },
         "block4_notationContract": {
-          "formulaOrCode": "\\text{Memory Traffic} = \\begin{cases} 2 \\cdot \\text{Size}_{\\text{payload}} \\text{ (User } \\to \\text{ Kernel } \\to \\text{ NIC)}, & \\text{Traditional Copy} \\\\ 1 \\cdot \\text{Size}_{\\text{payload}} \\text{ (User } \\xrightarrow{\\text{DMA}} \\text{ NIC)}, & \\text{io\\_uring Zero-Copy} \\end{cases}",
-          "minimalFormalization": "Formula penghematan bandwidth memori:",
+          "formulaOrCode": "\\text{Memory Traffic} = \\begin{cases} 2 \\cdot \\text{Size}_{\\text{payload}} \\text{ (User } \\to \\text{ Kernel } \\to \\text{ NIC)}, & \\text{Tradisional Copy} \\\\ 1 \\cdot \\text{Size}_{\\text{payload}} \\text{ (User } \\xrightarrow{\\text{DMA}} \\text{ NIC)}, & \\text{io\\_uring Zero-Copy} \\end{cases}",
+          "minimalFormalization": "Formula penghematan lalu lintas bus memori:\n\nKontrak aljabar efisiensi memori perangkat keras:",
           "termsDeconstruction": [
             {
               "symbol": "IORING_OP_SEND_ZC",
-              "physicalMeaning": "Perintah operasi kernel io_uring untuk transmisi paket zero-copy langsung via DMA."
+              "physicalMeaning": "Perintah operasi kernel io_uring untuk transmisi paket *zero-copy* langsung via pengontrol DMA."
             },
             {
               "symbol": "Size_{payload}",
-              "physicalMeaning": "Ukuran dokumen JSON yang disajikan."
+              "physicalMeaning": "Ukuran byte dari dokumen payload JSON yang dikirimkan."
+            },
+            {
+              "symbol": "Registered Buffers",
+              "physicalMeaning": "Alokasi memori yang telah didaftarkan sebelumnya via `io_uring_register_buffers` untuk mengeliminasi pemetaan halaman dinamis."
+            },
+            {
+              "symbol": "CQE_F_MORE",
+              "physicalMeaning": "Bendera penyelesaian parsial yang mengindikasikan apakah buffer sudah aman digunakan kembali atau masih dipegang oleh perangkat keras."
             }
           ]
         }
@@ -88,15 +100,47 @@
           }
         ]
       },
+      "glossary": [
+        {
+          "term": "Zero-Copy",
+          "definition": "Teknik transmisi data di mana CPU tidak menyalin data dari satu area memori ke area lain",
+          "highSchoolAnchor": "Meminjamkan buku catatan asli kepada teman untuk dibaca langsung, bukan memfotokopinya dulu"
+        },
+        {
+          "term": "DMA (Direct Memory Access)",
+          "definition": "Fitur pengontrol perangkat keras untuk membaca dan menulis RAM tanpa keterlibatan CPU",
+          "highSchoolAnchor": "Jalur pipa air otomatis langsung dari tandon ke kran taman tanpa perlu ditimba manual dengan ember"
+        },
+        {
+          "term": "Registered Buffers",
+          "definition": "Mekanisme prapendaftaran buffer memori ke kernel untuk mengunci tabel halaman virtual",
+          "highSchoolAnchor": "Mendaftarkan nomor plat kendaraan resmi ke gerbang tol otomatis agar palang pintu langsung terbuka"
+        },
+        {
+          "term": "Pinned Memory",
+          "definition": "Halaman memori virtual yang dikunci pada RAM fisik dan dilarang dipindahkan ke swap disk",
+          "highSchoolAnchor": "Memaku papan pengumuman di dinding agar tidak tertiup angin atau dipindahkan ke gudang belakang"
+        },
+        {
+          "term": "Ownership (Kepemilikan Rust)",
+          "definition": "Aturan kompilator Rust bahwa setiap nilai memori hanya boleh memiliki satu pemilik tunggal",
+          "highSchoolAnchor": "Kunci gembok loker sekolah; hanya siswa pemilik kunci yang sah yang boleh membuka dan mengambil isinya"
+        },
+        {
+          "term": "sk_buff",
+          "definition": "Struktur data kernel Linux yang menampung paket data jaringan di memori sistem operasi",
+          "highSchoolAnchor": "Kotak kardus pos standar tempat kurir membungkus paket barang kiriman sebelum dimasukkan ke mobil"
+        }
+      ],
       "variationProbes": {
         "conceptualVariants": [
           {
             "representationType": "verbal",
-            "content": "<!-- hgd:options: [\n  {\"optionId\": \"opt_a\", \"text\": \"The Rust application buffer must remain strictly pinned and unmodified in memory until the kernel emits a completion CQE indicating hardware transmission is finished.\", \"isCorrect\": true, \"causalRationale\": \"Accurately identifies the DMA zero-copy memory lifecycle invariant.\"},\n  {\"optionId\": \"opt_b\", \"text\": \"Rust automatically creates a shadow heap clone of the buffer to allow instant reuse without waiting.\", \"isCorrect\": false, \"diagnosticAxis\": \"conceptGap\", \"causalRationale\": \"Contradicts the zero-copy invariant by falsely reintroducing memory duplication.\"},\n  {\"optionId\": \"opt_c\", \"text\": \"The buffer can be freed immediately because the CPU caches all bytes inside the L1 register file.\", \"isCorrect\": false, \"diagnosticAxis\": \"reasoningBug\", \"causalRationale\": \"Fails to account for asynchronous network interface DMA access to physical RAM.\"}\n] -->\n\n### 1."
+            "content": "<!-- hgd:options: [\n  {\"optionId\": \"opt_a\", \"text\": \"The Rust application buffer must remain strictly pinned and unmodified in memory until the kernel emits a completion CQE indicating physical transmission is finished.\", \"isCorrect\": true, \"causalRationale\": \"Accurately identifies the DMA zero-copy memory lifecycle invariant.\"},\n  {\"optionId\": \"opt_b\", \"text\": \"Rust automatically creates a shadow heap clone of the buffer to allow instant reuse without waiting.\", \"isCorrect\": false, \"diagnosticAxis\": \"conceptGap\", \"causalRationale\": \"Contradicts the zero-copy invariant by falsely reintroducing memory duplication.\"},\n  {\"optionId\": \"opt_c\", \"text\": \"The buffer can be freed immediately because the CPU caches all bytes inside the L1 register file.\", \"isCorrect\": false, \"diagnosticAxis\": \"reasoningBug\", \"causalRationale\": \"Fails to account for asynchronous network interface DMA access to physical RAM.\"},\n  {\"optionId\": \"opt_d\", \"text\": \"Zero-copy allows the network card to physically erase the hard drive whenever a packet collision occurs.\", \"isCorrect\": false, \"diagnosticAxis\": \"missingPrerequisite\", \"causalRationale\": \"Gross misunderstanding of network packet transmission and storage hardware boundaries.\"}\n] -->\n\n### 1."
           },
           {
             "representationType": "symbolic",
-            "content": "\\text{Memory Traffic} = \\begin{cases} 2 \\cdot \\text{Size}_{\\text{payload}} \\text{ (User } \\to \\text{ Kernel } \\to \\text{ NIC)}, & \\text{Traditional Copy} \\\\ 1 \\cdot \\text{Size}_{\\text{payload}} \\text{ (User } \\xrightarrow{\\text{DMA}} \\text{ NIC)}, & \\text{io\\_uring Zero-Copy} \\end{cases}"
+            "content": "\\text{Memory Traffic} = \\begin{cases} 2 \\cdot \\text{Size}_{\\text{payload}} \\text{ (User } \\to \\text{ Kernel } \\to \\text{ NIC)}, & \\text{Tradisional Copy} \\\\ 1 \\cdot \\text{Size}_{\\text{payload}} \\text{ (User } \\xrightarrow{\\text{DMA}} \\text{ NIC)}, & \\text{io\\_uring Zero-Copy} \\end{cases}"
           }
         ],
         "proceduralPerturbations": [
@@ -111,7 +155,7 @@
       "forwardPass": {
         "probeType": "prediction_what_if",
         "microPrimer": "\"When serving JSON responses, copying payload bytes from user memory into kernel socket buffers consumes valuable memory bandwidth. io_uring eliminates this with registered buffers and zero-copy send.\"",
-        "readingContext": "<!-- hgd:options: [\n  {\"optionId\": \"opt_a\", \"text\": \"The Rust application buffer must remain strictly pinned and unmodified in memory until the kernel emits a completion CQE indicating hardware transmission is finished.\", \"isCorrect\": true, \"causalRationale\": \"Accurately identifies the DMA zero-copy memory lifecycle invariant.\"},\n  {\"optionId\": \"opt_b\", \"text\": \"Rust automatically creates a shadow heap clone of the buffer to allow instant reuse without waiting.\", \"isCorrect\": false, \"diagnosticA",
+        "readingContext": "<!-- hgd:options: [\n  {\"optionId\": \"opt_a\", \"text\": \"The Rust application buffer must remain strictly pinned and unmodified in memory until the kernel emits a completion CQE indicating physical transmission is finished.\", \"isCorrect\": true, \"causalRationale\": \"Accurately identifies the DMA zero-copy memory lifecycle invariant.\"},\n  {\"optionId\": \"opt_b\", \"text\": \"Rust automatically creates a shadow heap clone of the buffer to allow instant reuse without waiting.\", \"isCorrect\": false, \"diagnosticA",
         "prompt": "\"Predict: What safety constraint does Rust's ownership model enforce when performing an asynchronous zero-copy send (IORING_OP_SEND_ZC) with registered buffers?\"",
         "options": [
           {
@@ -126,7 +170,7 @@
             "isCorrect": false,
             "diagnosticAxis": "conceptGap",
             "causalRationale": "Misconception: Assumes operations produce zero observable effect, ignoring active transformation.",
-            "specificRemediation": "Review core mechanism: <!-- hgd:options: [\n  {\"optionId\": \"opt_a\", \"text\": \"The Rust application buffer must remain strictly pinned and unmodified in memory until the kernel emits a completion CQE indicating hardware transmission is finished.\", \"isCorrect\": true, \"causalRationale\": \"Accurately identifies the DMA zero-copy memory lifecycle invariant.\"},\n  {\"optionId\": \"opt_b\", \"text\": \"Rust automatically creates a shadow heap clone of the buffer to allow instant reuse without waiting.\", \"isCorrect\": false, \"diagnosticAxis\": \"conceptGap\", \"causalRationale\": \"Contradicts the zero-copy invariant by falsely reintroducing memory duplication.\"},\n  {\"optionId\": \"opt_c\", \"text\": \"The buffer can be freed immediately because the CPU caches all bytes inside the L1 register file.\", \"isCorrect\": false, \"diagnosticAxis\": \"reasoningBug\", \"causalRationale\": \"Fails to account for asynchronous network interface DMA access to physical RAM.\"}\n] -->\n\n### 1."
+            "specificRemediation": "Review core mechanism: <!-- hgd:options: [\n  {\"optionId\": \"opt_a\", \"text\": \"The Rust application buffer must remain strictly pinned and unmodified in memory until the kernel emits a completion CQE indicating physical transmission is finished.\", \"isCorrect\": true, \"causalRationale\": \"Accurately identifies the DMA zero-copy memory lifecycle invariant.\"},\n  {\"optionId\": \"opt_b\", \"text\": \"Rust automatically creates a shadow heap clone of the buffer to allow instant reuse without waiting.\", \"isCorrect\": false, \"diagnosticAxis\": \"conceptGap\", \"causalRationale\": \"Contradicts the zero-copy invariant by falsely reintroducing memory duplication.\"},\n  {\"optionId\": \"opt_c\", \"text\": \"The buffer can be freed immediately because the CPU caches all bytes inside the L1 register file.\", \"isCorrect\": false, \"diagnosticAxis\": \"reasoningBug\", \"causalRationale\": \"Fails to account for asynchronous network interface DMA access to physical RAM.\"},\n  {\"optionId\": \"opt_d\", \"text\": \"Zero-copy allows the network card to physically erase the hard drive whenever a packet collision occurs.\", \"isCorrect\": false, \"diagnosticAxis\": \"missingPrerequisite\", \"causalRationale\": \"Gross misunderstanding of network packet transmission and storage hardware boundaries.\"}\n] -->\n\n### 1."
           },
           {
             "optionId": "opt_c",
@@ -149,7 +193,7 @@
       },
       "lossRubric": {
         "conceptGapCriteria": [
-          "Fails to identify core mechanism: <!-- hgd:options: [\n  {\"optionId\": \"opt_a\", \"text\": \"The Rust application buffer must remain strictly pinned and unmodified in memory until the kernel emits a completion CQE indicating hardware transmission is finished.\", \"isCorrect\": true, \"causalRationale\": \"Accurately identifies the DMA zero-copy memory lifecycle invariant.\"},\n  {\"optionId\": \"opt_b\", \"text\": \"Rust automatically creates a shadow heap clone of the buffer to allow instant reuse without waiting.\", \"isCorrect\": false, \"diagnosticAxis\": \"conceptGap\", \"causalRationale\": \"Contradicts the zero-copy invariant by falsely reintroducing memory duplication.\"},\n  {\"optionId\": \"opt_c\", \"text\": \"The buffer can be freed immediately because the CPU caches all bytes inside the L1 register file.\", \"isCorrect\": false, \"diagnosticAxis\": \"reasoningBug\", \"causalRationale\": \"Fails to account for asynchronous network interface DMA access to physical RAM.\"}\n] -->\n\n### 1.",
+          "Fails to identify core mechanism: <!-- hgd:options: [\n  {\"optionId\": \"opt_a\", \"text\": \"The Rust application buffer must remain strictly pinned and unmodified in memory until the kernel emits a completion CQE indicating physical transmission is finished.\", \"isCorrect\": true, \"causalRationale\": \"Accurately identifies the DMA zero-copy memory lifecycle invariant.\"},\n  {\"optionId\": \"opt_b\", \"text\": \"Rust automatically creates a shadow heap clone of the buffer to allow instant reuse without waiting.\", \"isCorrect\": false, \"diagnosticAxis\": \"conceptGap\", \"causalRationale\": \"Contradicts the zero-copy invariant by falsely reintroducing memory duplication.\"},\n  {\"optionId\": \"opt_c\", \"text\": \"The buffer can be freed immediately because the CPU caches all bytes inside the L1 register file.\", \"isCorrect\": false, \"diagnosticAxis\": \"reasoningBug\", \"causalRationale\": \"Fails to account for asynchronous network interface DMA access to physical RAM.\"},\n  {\"optionId\": \"opt_d\", \"text\": \"Zero-copy allows the network card to physically erase the hard drive whenever a packet collision occurs.\", \"isCorrect\": false, \"diagnosticAxis\": \"missingPrerequisite\", \"causalRationale\": \"Gross misunderstanding of network packet transmission and storage hardware boundaries.\"}\n] -->\n\n### 1.",
           "Confuses cause and effect in state transitions"
         ],
         "missingPrerequisiteMap": {
@@ -170,7 +214,7 @@
         "learningRate": 0.25,
         "hintLadder": {
           "level0Reflective": "Reflective: What fundamental invariant governs Zero-Copy JSON Streaming with Registered Buffers?",
-          "level1Directional": "Directional Clue: Examine how Zero-Copy JSON Streaming with Registered Buffers handles boundary conditions: <!-- hgd:options: [\n  {\"optionId\": \"opt_a\", \"text\": \"The Rust application buffer must remain strictly pinned and unmodified in memory until the kernel emits a completion CQE indicating hardware transmission is finished.\", \"isCorrect\": true, \"causalRationale\": \"Accurately identifies the DMA zero-copy memory lifecycle invariant.\"},\n  {\"optionId\": \"opt_b\", \"text\": \"Rust automatically creates a shadow heap clone of the buffer to allow instant reuse without waiting.\", \"isCorrect\": false, \"diagnosticAxis\": \"conceptGap\", \"causalRationale\": \"Contradicts the zero-copy invariant by falsely reintroducing memory duplication.\"},\n  {\"optionId\": \"opt_c\", \"text\": \"The buffer can be freed immediately because the CPU caches all bytes inside the L1 register file.\", \"isCorrect\": false, \"diagnosticAxis\": \"reasoningBug\", \"causalRationale\": \"Fails to account for asynchronous network interface DMA access to physical RAM.\"}\n] -->\n\n### 1.",
+          "level1Directional": "Directional Clue: Examine how Zero-Copy JSON Streaming with Registered Buffers handles boundary conditions: <!-- hgd:options: [\n  {\"optionId\": \"opt_a\", \"text\": \"The Rust application buffer must remain strictly pinned and unmodified in memory until the kernel emits a completion CQE indicating physical transmission is finished.\", \"isCorrect\": true, \"causalRationale\": \"Accurately identifies the DMA zero-copy memory lifecycle invariant.\"},\n  {\"optionId\": \"opt_b\", \"text\": \"Rust automatically creates a shadow heap clone of the buffer to allow instant reuse without waiting.\", \"isCorrect\": false, \"diagnosticAxis\": \"conceptGap\", \"causalRationale\": \"Contradicts the zero-copy invariant by falsely reintroducing memory duplication.\"},\n  {\"optionId\": \"opt_c\", \"text\": \"The buffer can be freed immediately because the CPU caches all bytes inside the L1 register file.\", \"isCorrect\": false, \"diagnosticAxis\": \"reasoningBug\", \"causalRationale\": \"Fails to account for asynchronous network interface DMA access to physical RAM.\"},\n  {\"optionId\": \"opt_d\", \"text\": \"Zero-copy allows the network card to physically erase the hard drive whenever a packet collision occurs.\", \"isCorrect\": false, \"diagnosticAxis\": \"missingPrerequisite\", \"causalRationale\": \"Gross misunderstanding of network packet transmission and storage hardware boundaries.\"}\n] -->\n\n### 1.",
           "level2Constraint": "Constraint: Eliminate unconstrained assumptions. Ground truth: \"The application buffer must remain valid and unmodified in memory until the kernel emits a completion CQE indicating the network interface has completed physical transmission.\"",
           "level3WorkedExample": "\"Worked Solution: In traditional write, user memory can be modified immediately after the syscall returns because data was copied to kernel sk_buff. In zero-copy, kernel hardware DMA reads directly from user memory. Modifying or dropping the Rust buffer before CQE completion causes data corruption or use-after-free.\""
         },

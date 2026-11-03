@@ -12,6 +12,7 @@ import { DAGCycleDetector } from "../validator/dag-cycle-detector.js";
 import { buildDiagnosticOptions } from "./options-builder.js";
 import { parseUILABlocks } from "./uila-builder.js";
 import { parseExpansionPathways } from "./expansion-builder.js";
+import { parseGlossaryTerms } from "./glossary-builder.js";
 
 export interface CompileOptions {
   curriculumId: string;
@@ -259,6 +260,7 @@ export class MarkdownCurriculumCompiler {
       },
       uila: parseUILABlocks(s.body, ann, s.title),
       expansionPathways: parseExpansionPathways(ann, s.title, id),
+      glossary: parseGlossaryTerms(s.body, ann, s.title),
       variationProbes: {
         conceptualVariants,
         proceduralPerturbations: [

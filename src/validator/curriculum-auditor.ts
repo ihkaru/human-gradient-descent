@@ -213,6 +213,7 @@ export class CurriculumAuditor {
       (node.uila?.block3_coreMechanics?.contrastingCases || []).map(c => `${c.beginnerMisconception} ${c.physicalReality}`).join(" "),
       node.uila?.block4_notationContract?.formulaOrCode, node.uila?.block4_notationContract?.minimalFormalization,
       (node.uila?.block4_notationContract?.termsDeconstruction || []).map(t => `${t.symbol} ${t.calloutLabel || ""} ${t.physicalMeaning}`).join(" "),
+      (node.glossary || []).map(g => `${g.term} ${g.definition} ${g.highSchoolAnchor || ""}`).join(" "),
     ].filter(Boolean).join(" ").toLowerCase()
       .replace(/\\rangle/g, ">").replace(/\\langle/g, "<")
       .replace(/\\([a-zA-Z]+)/g, "$1");

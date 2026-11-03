@@ -14,7 +14,7 @@
       "prerequisites": [
         "hgd://knowledgebase/contract-law-basics/node-003"
       ],
-      "conceptSummary": "### 1. Pangkal Anomali\nKaryawan yang dipecat secara sewenang-wenang sering kali sengaja berdiam diri di rumah dan menolak tawaran pekerjaan pengganti yang identik di kota yang sama dengan asumsi pengadilan akan memberinya gaji penuh tanpa potongan.\n\n### 2. Prototipe Intuitif\nBayangkan sebuah perahu bocor akibat kelalaian perahu lain. Pemilik perahu berhak menuntut ongkos tambal perahu, tetapi ia tidak boleh sengaja duduk diam menonton perahu tenggelam ke dasar danau tanpa menimba air (mitigasi) lalu menuntut ganti rugi kapal selam baru.\n\n### 3. Invarian & Operasi Inti\nInvarian mutlak sistem adalah **Kewajiban Mitigasi Kerugian (Doctrine of Avoidable Consequences)**: pemulihan ganti rugi bertujuan mengembalikan posisi harapan (expectation interest), namun kerugian yang sebenarnya dapat dicegah dengan usaha wajar tidak boleh dibebankan kepada pelaku wanprestasi.\n\n| Apa yang Dipikirkan Pemula (Salah) | Apa yang Sebenarnya Terjadi dalam Model Mental |\n|---|---|\n| Ganti rugi kontrak bertuju",
+      "conceptSummary": "<!-- hgd:options: [\n  {\"optionId\":\"opt_a\",\"text\":\"Recovery is reduced by the avoidable salary under the doctrine of avoidable consequences: an aggrieved party has an affirmative duty to mitigate damages with reasonable effort.\",\"isCorrect\":true,\"causalRationale\":\"Correct: The duty to mitigate deducts losses that could have been avoided with reasonable effort.\"},\n  {\"optionId\":\"opt_b\",\"text\":\"The employee recovers 100% full salary because breach damages are designed to punish wrongful termination.\",\"isCorrect\":false,\"diagnosticAxis\":\"conceptGap\",\"causalRationale\":\"Punitive Fallacy: Contract damages are compensatory, never punitive.\"},\n  {\"optionId\":\"opt_c\",\"text\":\"The employee forfeits all remedies because rejecting an alternative job constitutes a waiver of breach claims.\",\"isCorrect\":false,\"diagnosticAxis\":\"reasoningBug\",\"causalRationale\":\"Waiver Confusion: Failure to mitigate only reduces damages; it does not extinguish the breach claim itself.\"},\n  {\"optionId\":\"opt_d\",\"text\":\"The em",
       "pacing": {
         "timeLimitSeconds": 60,
         "recommendedEpochs": 3,
@@ -25,45 +25,53 @@
         "block1_anomaly": {
           "groundState": "Initial state prior to Expectation Damages and Mitigation.",
           "oldWay": "Conventional assumption or baseline approach.",
-          "breakdownPoint": "Karyawan yang dipecat secara sewenang-wenang sering kali sengaja berdiam diri di rumah dan menolak tawaran pekerjaan pengganti yang identik di kota yang sama dengan asumsi pengadilan akan memberinya gaji penuh tanpa potongan."
+          "breakdownPoint": "Bayangkan seorang manajer keuangan memiliki kontrak kerja selama 1 tahun dengan gaji Rp 20.000.000 per bulan. Pada bulan kedua, perusahaan secara mendadak memecatnya secara sewenang-wenang tanpa alasan sah (*wrongful termination*).\n\nSatu minggu kemudian, perusahaan saingan yang berada di seberang jalan menawarkan posisi dan gaji yang persis sama. Namun sang manajer menolak tawaran tersebut dan memilih berlibur santai di rumah selama 10 bulan penuh sambil berpikir: *\"Biar saja aku menganggur, nanti di pengadilan aku akan menuntut bekas perusahaanku membayar ganti rugi penuh 10 bulan gaji yaitu Rp 200.000.000!\"*\n\nApakah pengadilan akan mengabulkan tuntutan tersebut? Jika hukum mengizinkan korban pemutusan kontrak untuk bermalas-malasan dan membiarkan kerugian membengkak tanpa berusaha mencari pengganti, maka efisiensi perekonomian nasional akan mengalami pemborosan sumber daya yang masif (*economic waste*)."
         },
         "block2_intuitivePrototype": {
           "physicalObject": "Physical sandbox model",
-          "isomorphicMapping": "Bayangkan sebuah perahu bocor akibat kelalaian perahu lain. Pemilik perahu berhak menuntut ongkos tambal perahu, tetapi ia tidak boleh sengaja duduk diam menonton perahu tenggelam ke dasar danau tanpa menimba air (mitigasi) lalu menuntut ganti rugi kapal selam baru.",
+          "isomorphicMapping": "Bayangkan sebuah perahu nelayan yang sedang bersandar di dermaga dan lambungnya tertabrak oleh perahu lain hingga mengalami kebocoran kecil.\n\nPemilik perahu yang tertabrak tentu berhak meminta ganti rugi biaya penambalan lambung perahu. Namun ia tidak boleh sengaja duduk bersila di pinggir dermaga sambil tersenyum menonton air perlahan menenggelamkan perahunya ke dasar danau tanpa berusaha menimba air keluar (*mitigasi kerugian*), lalu menuntut ganti rugi kapal selam mewah yang baru!\n\nHukum mengharuskan korban untuk mengambil ember dan berusaha menimba air agar kerusakan tidak meluas. Biaya ember dan tenaga menimba air akan diganti oleh pihak penabrak, tetapi kerusakan tambahan akibat sengaja membiarkan kapal tenggelam adalah tanggung jawab korban sendiri.\n\n```mermaid\nflowchart LR\n    Breach[\"Pemutusan Kontrak Sepihak (Kerugian Awal)\"] --> InjuredDuty[\"Kewajiban Afirmatif Mitigasi (Menimba Air / Cari Kerja Serupa)\"]\n    InjuredDuty -->|Berusaha Wajar| Recoverable[\"Ganti Rugi Harapan Penuh Dikurangi Penghasilan Mitigasi\"]\n    InjuredDuty -.->|Sengaja Menolak Kerja Pengganti| AvoidableLoss[\"Kerugian yang Dapat Dihindari: Dipotong dari Total Klaim\"]\n```",
           "deadlockResolution": "Resolves the deadlock identified in Block 1 through isomorphic interaction."
         },
         "block3_coreMechanics": {
-          "invariantProperty": "Invarian mutlak sistem adalah **Kewajiban Mitigasi Kerugian (Doctrine of Avoidable Consequences)**: pemulihan ganti rugi bertujuan mengembalikan posisi harapan (expectation interest), namun kerugian yang sebenarnya dapat dicegah dengan usaha wajar tidak boleh dibebankan kepada pelaku wanprestasi.",
+          "invariantProperty": "Invarian mutlak sistem pemulihan kontrak adalah **Kewajiban Mitigasi Kerugian (Doctrine of Avoidable Consequences)**: tujuan ganti rugi kontrak (*Expectation Damages*) adalah menempatkan korban pada posisi finansial yang semestinya ia nikmati seandainya kontrak dilaksanakan secara sempurna.\n\nNamun, kerugian yang secara nyata dapat dihindari melalui upaya wajar (*reasonable effort*) **tidak dapat ditagihkan kepada pelaku wanprestasi**. Ganti rugi kontrak bersifat kompensasi murni (*compensatory*), bukan hukuman (*punitive*).",
           "variableComponents": [
             "System inputs",
             "Observable state amplitudes"
           ],
           "contrastingCases": [
             {
-              "beginnerMisconception": "Ganti rugi kontrak bertujuan menghukum pihak yang melanggar janji.",
-              "physicalReality": "Ganti rugi kontrak bersifat kompensatoris untuk menutup kerugian riil, bukan denda hukuman."
+              "beginnerMisconception": "Ganti rugi kontrak bertujuan untuk menghukum dan memenjarakan pihak yang melanggar janji.",
+              "physicalReality": "Ganti rugi kontrak adalah kompensasi ekonomi perdata murni untuk menutup kerugian bersih riil."
             },
             {
-              "beginnerMisconception": "Korban wanprestasi boleh membiarkan kerugian membesar tanpa batas.",
-              "physicalReality": "Korban memiliki kewajiban afirmatif untuk memitigasi kerugian yang dapat dihindari."
+              "beginnerMisconception": "Korban pelanggaran kontrak boleh membiarkan kerugian membesar tanpa batas.",
+              "physicalReality": "Korban memiliki kewajiban hukum untuk melakukan upaya wajar mencegah pembengkakan kerugian."
+            },
+            {
+              "beginnerMisconception": "Menolak pekerjaan pengganti otomatis menghapuskan seluruh hak gugat korban.",
+              "physicalReality": "Penolakan hanya memotong nilai kerugian yang dapat dihindari, hak gugat atas sisa kerugian tetap ada."
             }
           ]
         },
         "block4_notationContract": {
           "formulaOrCode": "Damages = Loss(Expectation) - Avoidable(Mitigation)",
-          "minimalFormalization": "Rumus pemulihan expectation damages dikontrakkan sebagai:",
+          "minimalFormalization": "Formula pemulihan expectation damages dirumuskan sebagai:\n\nPersamaan matematika pemulihan ganti rugi:",
           "termsDeconstruction": [
             {
+              "symbol": "Damages",
+              "physicalMeaning": "Jumlah uang kompensasi bersih yang wajib dibayarkan oleh pihak yang melanggar."
+            },
+            {
               "symbol": "Loss(Expectation)",
-              "physicalMeaning": "Posisi yang semestinya dinikmati korban jika kontrak terlaksana penuh."
+              "physicalMeaning": "Posisi keuntungan finansial yang semestinya dinikmati korban jika kontrak berjalan lancar."
             },
             {
               "symbol": "Avoidable(Mitigation)",
-              "physicalMeaning": "Kerugian yang dapat dihindari dengan upaya wajar yang wajib dipotong."
+              "physicalMeaning": "Nilai penghasilan atau penghematan yang semestinya bisa diperoleh korban melalui ikhtiar wajar."
             },
             {
-              "symbol": "DutyToMitigate",
-              "physicalMeaning": "Kontrak pencegahan pemborosan ekonomi (avoidable consequences)."
+              "symbol": "Incidental Damages",
+              "physicalMeaning": "Biaya tambahan yang wajar dikeluarkan korban dalam proses mitigasi (misal ongkos transportasi melamar pekerjaan baru)."
             }
           ]
         }
@@ -91,11 +99,43 @@
           }
         ]
       },
+      "glossary": [
+        {
+          "term": "Expectation Damages",
+          "definition": "Ganti rugi yang menempatkan korban pada posisi seolah-olah kontrak telah terlaksana sempurna",
+          "highSchoolAnchor": "Mengganti uang tiket konser yang dibatalkan ditambah selisih biaya agar tetap bisa menonton di hari lain"
+        },
+        {
+          "term": "Mitigation of Damages",
+          "definition": "Kewajiban hukum pihak yang dirugikan untuk mengambil langkah wajar guna memperkecil kerugian",
+          "highSchoolAnchor": "Mengambil ember untuk menimba air saat perahu bocor agar barang dagangan di atasnya tidak ikut hanyut"
+        },
+        {
+          "term": "Avoidable Consequences",
+          "definition": "Doktrin bahwa kerugian yang sebenarnya bisa dicegah tidak boleh dibebankan ke pihak lawan",
+          "highSchoolAnchor": "Tidak boleh menuntut ganti rugi seragam basah kuyup jika kamu sengaja berdiri di bawah air hujan setelah payungmu rusak"
+        },
+        {
+          "term": "Compensatory Damages",
+          "definition": "Uang ganti rugi yang dihitung semata-mata untuk mengembalikan kerugian ekonomi aktual",
+          "highSchoolAnchor": "Membayar tepat seharga barang yang rusak, tidak lebih dan tidak kurang"
+        },
+        {
+          "term": "Punitive Damages",
+          "definition": "Ganti rugi berupa denda hukuman tambahan di luar kerugian riil (dilarang dalam hukum kontrak biasa)",
+          "highSchoolAnchor": "Hukuman denda uang sanksi yang biasa diterapkan dalam kasus kejahatan kriminal, bukan kontrak bisnis"
+        },
+        {
+          "term": "Reliance Damages",
+          "definition": "Pengembalian biaya yang telah dikeluarkan korban karena mempercayai janji pihak lawan",
+          "highSchoolAnchor": "Mengganti ongkos cat dan renovasi ruko yang telanjur dikeluarkan sebelum pemilik ruko membatalkan sewa"
+        }
+      ],
       "variationProbes": {
         "conceptualVariants": [
           {
             "representationType": "verbal",
-            "content": "### 1."
+            "content": "<!-- hgd:options: [\n  {\"optionId\":\"opt_a\",\"text\":\"Recovery is reduced by the avoidable salary under the doctrine of avoidable consequences: an aggrieved party has an affirmative duty to mitigate damages with reasonable effort.\",\"isCorrect\":true,\"causalRationale\":\"Correct: The duty to mitigate deducts losses that could have been avoided with reasonable effort.\"},\n  {\"optionId\":\"opt_b\",\"text\":\"The employee recovers 100% full salary because breach damages are designed to punish wrongful termination.\",\"isCorrect\":false,\"diagnosticAxis\":\"conceptGap\",\"causalRationale\":\"Punitive Fallacy: Contract damages are compensatory, never punitive.\"},\n  {\"optionId\":\"opt_c\",\"text\":\"The employee forfeits all remedies because rejecting an alternative job constitutes a waiver of breach claims.\",\"isCorrect\":false,\"diagnosticAxis\":\"reasoningBug\",\"causalRationale\":\"Waiver Confusion: Failure to mitigate only reduces damages; it does not extinguish the breach claim itself.\"},\n  {\"optionId\":\"opt_d\",\"text\":\"The employer is immediately sentenced to 10 years in federal prison for breach of contract.\",\"isCorrect\":false,\"diagnosticAxis\":\"missingPrerequisite\",\"causalRationale\":\"Confuses civil breach of contract remedies with criminal penal sanctions.\"}\n] -->\n\n### 1."
           },
           {
             "representationType": "symbolic",
@@ -114,28 +154,30 @@
       "forwardPass": {
         "probeType": "prediction_what_if",
         "microPrimer": "\"Contract remedies place the injured party in the position they would have occupied had the contract been performed. Under the duty to mitigate, avoidable damages cannot be recovered.\"",
-        "readingContext": "### 1. Pangkal Anomali\nKaryawan yang dipecat secara sewenang-wenang sering kali sengaja berdiam diri di rumah dan menolak tawaran pekerjaan pengganti yang identik di kota yang sama dengan asumsi pengadilan akan memberinya gaji penuh tanpa potongan.\n\n### 2. Prototipe Intuitif\nBayangkan sebuah perahu bocor akibat kelalaian perahu lain. Pemilik perahu berhak menuntut ongkos tambal perahu, tetapi ia tidak boleh sengaja duduk diam menonton perahu tenggelam ke dasar danau tanpa menimba air (mitigasi)",
-        "prompt": "\"Predict whether an wrongfully terminated employee who rejects an identical job in the same city can recover their full unpaid contract salary.\"",
+        "readingContext": "<!-- hgd:options: [\n  {\"optionId\":\"opt_a\",\"text\":\"Recovery is reduced by the avoidable salary under the doctrine of avoidable consequences: an aggrieved party has an affirmative duty to mitigate damages with reasonable effort.\",\"isCorrect\":true,\"causalRationale\":\"Correct: The duty to mitigate deducts losses that could have been avoided with reasonable effort.\"},\n  {\"optionId\":\"opt_b\",\"text\":\"The employee recovers 100% full salary because breach damages are designed to punish wrongful termination",
+        "prompt": "\"Predict whether a wrongfully terminated employee who rejects an identical job in the same city can recover their full unpaid contract salary.\"",
         "options": [
           {
             "optionId": "opt_a",
-            "text": "Recovery is reduced by the avoidable salary under the doctrine of avoidable consequences: an aggrieved party has an affirmative duty to mitigate damages with reasonable effort.",
+            "text": "\"Recovery is reduced by the avoidable salary under the doctrine of avoidable consequences: an aggrieved party has an affirmative duty to mitigate damages with reasonable effort.\"",
             "isCorrect": true,
-            "causalRationale": "Correct: The duty to mitigate deducts losses that could have been avoided with reasonable effort."
+            "causalRationale": "Correct: \"Recovery is reduced by the avoidable salary under the doctrine of avoidable consequences: an aggrieved party has an affirmative duty to mitigate damages with reasonable effort.\". This adheres strictly to the governing invariant of Expectation Damages and Mitigation."
           },
           {
             "optionId": "opt_b",
-            "text": "The employee recovers 100% full salary because breach damages are designed to punish wrongful termination.",
+            "text": "The system remains completely unchanged because Expectation Damages and Mitigation acts as an invariant identity operator without state transitions.",
             "isCorrect": false,
             "diagnosticAxis": "conceptGap",
-            "causalRationale": "Punitive Fallacy: Contract damages are compensatory, never punitive."
+            "causalRationale": "Misconception: Assumes operations produce zero observable effect, ignoring active transformation.",
+            "specificRemediation": "Review core mechanism: <!-- hgd:options: [\n  {\"optionId\":\"opt_a\",\"text\":\"Recovery is reduced by the avoidable salary under the doctrine of avoidable consequences: an aggrieved party has an affirmative duty to mitigate damages with reasonable effort.\",\"isCorrect\":true,\"causalRationale\":\"Correct: The duty to mitigate deducts losses that could have been avoided with reasonable effort.\"},\n  {\"optionId\":\"opt_b\",\"text\":\"The employee recovers 100% full salary because breach damages are designed to punish wrongful termination.\",\"isCorrect\":false,\"diagnosticAxis\":\"conceptGap\",\"causalRationale\":\"Punitive Fallacy: Contract damages are compensatory, never punitive.\"},\n  {\"optionId\":\"opt_c\",\"text\":\"The employee forfeits all remedies because rejecting an alternative job constitutes a waiver of breach claims.\",\"isCorrect\":false,\"diagnosticAxis\":\"reasoningBug\",\"causalRationale\":\"Waiver Confusion: Failure to mitigate only reduces damages; it does not extinguish the breach claim itself.\"},\n  {\"optionId\":\"opt_d\",\"text\":\"The employer is immediately sentenced to 10 years in federal prison for breach of contract.\",\"isCorrect\":false,\"diagnosticAxis\":\"missingPrerequisite\",\"causalRationale\":\"Confuses civil breach of contract remedies with criminal penal sanctions.\"}\n] -->\n\n### 1."
           },
           {
             "optionId": "opt_c",
-            "text": "The employee forfeits all remedies because rejecting an alternative job constitutes a waiver of breach claims.",
+            "text": "The state diverges uncontrollably because boundary conditions are violated immediately.",
             "isCorrect": false,
             "diagnosticAxis": "reasoningBug",
-            "causalRationale": "Waiver Confusion: Failure to mitigate only reduces damages; it does not extinguish the breach claim itself."
+            "causalRationale": "Reasoning Slip: Assumes instability without verifying whether mathematical bounds are preserved.",
+            "specificRemediation": "Trace boundary constraints step-by-step."
           }
         ],
         "expectedMentalModel": [
@@ -148,7 +190,7 @@
       },
       "lossRubric": {
         "conceptGapCriteria": [
-          "Fails to identify core mechanism: ### 1.",
+          "Fails to identify core mechanism: <!-- hgd:options: [\n  {\"optionId\":\"opt_a\",\"text\":\"Recovery is reduced by the avoidable salary under the doctrine of avoidable consequences: an aggrieved party has an affirmative duty to mitigate damages with reasonable effort.\",\"isCorrect\":true,\"causalRationale\":\"Correct: The duty to mitigate deducts losses that could have been avoided with reasonable effort.\"},\n  {\"optionId\":\"opt_b\",\"text\":\"The employee recovers 100% full salary because breach damages are designed to punish wrongful termination.\",\"isCorrect\":false,\"diagnosticAxis\":\"conceptGap\",\"causalRationale\":\"Punitive Fallacy: Contract damages are compensatory, never punitive.\"},\n  {\"optionId\":\"opt_c\",\"text\":\"The employee forfeits all remedies because rejecting an alternative job constitutes a waiver of breach claims.\",\"isCorrect\":false,\"diagnosticAxis\":\"reasoningBug\",\"causalRationale\":\"Waiver Confusion: Failure to mitigate only reduces damages; it does not extinguish the breach claim itself.\"},\n  {\"optionId\":\"opt_d\",\"text\":\"The employer is immediately sentenced to 10 years in federal prison for breach of contract.\",\"isCorrect\":false,\"diagnosticAxis\":\"missingPrerequisite\",\"causalRationale\":\"Confuses civil breach of contract remedies with criminal penal sanctions.\"}\n] -->\n\n### 1.",
           "Confuses cause and effect in state transitions"
         ],
         "missingPrerequisiteMap": {
@@ -169,7 +211,7 @@
         "learningRate": 0.25,
         "hintLadder": {
           "level0Reflective": "Reflective: What fundamental invariant governs Expectation Damages and Mitigation?",
-          "level1Directional": "Directional Clue: Examine how Expectation Damages and Mitigation handles boundary conditions: ### 1.",
+          "level1Directional": "Directional Clue: Examine how Expectation Damages and Mitigation handles boundary conditions: <!-- hgd:options: [\n  {\"optionId\":\"opt_a\",\"text\":\"Recovery is reduced by the avoidable salary under the doctrine of avoidable consequences: an aggrieved party has an affirmative duty to mitigate damages with reasonable effort.\",\"isCorrect\":true,\"causalRationale\":\"Correct: The duty to mitigate deducts losses that could have been avoided with reasonable effort.\"},\n  {\"optionId\":\"opt_b\",\"text\":\"The employee recovers 100% full salary because breach damages are designed to punish wrongful termination.\",\"isCorrect\":false,\"diagnosticAxis\":\"conceptGap\",\"causalRationale\":\"Punitive Fallacy: Contract damages are compensatory, never punitive.\"},\n  {\"optionId\":\"opt_c\",\"text\":\"The employee forfeits all remedies because rejecting an alternative job constitutes a waiver of breach claims.\",\"isCorrect\":false,\"diagnosticAxis\":\"reasoningBug\",\"causalRationale\":\"Waiver Confusion: Failure to mitigate only reduces damages; it does not extinguish the breach claim itself.\"},\n  {\"optionId\":\"opt_d\",\"text\":\"The employer is immediately sentenced to 10 years in federal prison for breach of contract.\",\"isCorrect\":false,\"diagnosticAxis\":\"missingPrerequisite\",\"causalRationale\":\"Confuses civil breach of contract remedies with criminal penal sanctions.\"}\n] -->\n\n### 1.",
           "level2Constraint": "Constraint: Eliminate unconstrained assumptions. Ground truth: \"Recovery is reduced by the avoidable salary under the doctrine of avoidable consequences: an aggrieved party has an affirmative duty to mitigate damages with reasonable effort.\"",
           "level3WorkedExample": "\"Worked Solution: The injured party has a duty to mitigate damages by accepting substantially similar employment. Rejecting an identical replacement job means the resulting wage loss was avoidable and cannot be recovered from the breaching employer.\""
         },
@@ -185,7 +227,7 @@
         {
           "sourceRef": "markdown-source",
           "locationTag": "Section: Expectation Damages and Mitigation",
-          "verbatimQuote": "### 1. Pangkal Anomali\nKaryawan yang dipecat secara sewenang-wenang sering kali sengaja berdiam diri"
+          "verbatimQuote": "<!-- hgd:options: [\n  {\"optionId\":\"opt_a\",\"text\":\"Recovery is reduced by the avoidable salary under "
         }
       ]
     }

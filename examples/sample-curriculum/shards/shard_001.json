@@ -12,7 +12,7 @@
         "estimatedReadingSeconds": 3
       },
       "prerequisites": [],
-      "conceptSummary": "### 1. Pangkal Anomali\nSelama ini kita memproses informasi dengan saklar biner yang bernilai mutlak 0 atau 1. Cara ini bekerja sangat baik sampai kita menghadapi persoalan pencarian ruang kombinasi besar di mana cara sekuensial membutuhkan waktu lebih lama dari usia alam semesta. Saklar klasik tidak mampu merepresentasikan ruang kemungkinan paralel tanpa menduplikasi sirkuit fisik secara masif.\n\n### 2. Prototipe Intuitif\nBayangkan alih-alih saklar lampu on/off yang kaku, kita memiliki koin logam di atas meja. Ketika koin diam terlentang di sisi '0', ia adalah bit klasik. Namun, sistem kita memiliki **Tuas Penyeimbang (dikenal sebagai Gerbang Hadamard)**. Ketika tuas Hadamard ini disentak, koin diputar kencang di atas meja. Selama koin berputar seimbang, statusnya bukan angka mutlak dan bukan gambar mutlak, melainkan kombinasi dinamis di mana kedua sisi memiliki potensi muncul yang setara saat dihentikan.\n\n```mermaid\nflowchart LR\n    Bit0[\"Klasik: Bit Diam |0>\"] -->|Sentakan Tuas Hadama",
+      "conceptSummary": "### 1. Pangkal Anomali\nSelama puluhan tahun, seluruh revolusi komputasi digital dibangun di atas saklar listrik sederhana. Saklar ini hanya mengenal dua keadaan mutlak: arus mengalir (logika 1) atau arus terputus (logika 0). Hukum rangkaian listrik arus searah yang kita pelajari di bangku SMA mengajarkan bahwa sebuah lampu di kamar tidur hanya bisa menyala atau padam.\n\nPendekatan biner ini bekerja luar biasa untuk membuat kalkulator, internet, dan smartphone. Namun, cara ini menghadapi dinding kebuntuan fisik saat kita mencoba menyelesaikan persoalan komputasi kombinatorial raksasa. Bayangkan Anda disuruh mencari rute terpendek di antara 100 kota, atau melipat rantai molekul protein obat kanker. Sebuah komputer klasik harus memeriksa kombinasi jalur tersebut satu demi satu secara berurutan. Untuk ruang kemungkinan yang memiliki miliaran kombinasi, proses evaluasi sekuensial ini membutuhkan waktu lebih lama dari usia alam semesta!\n\nKomputer klasik tidak mampu menampung seluruh ruang kem",
       "pacing": {
         "timeLimitSeconds": 60,
         "recommendedEpochs": 3,
@@ -22,37 +22,37 @@
         "block1_anomaly": {
           "groundState": "Initial state prior to Qubits and Superposition.",
           "oldWay": "Conventional assumption or baseline approach.",
-          "breakdownPoint": "Selama ini kita memproses informasi dengan saklar biner yang bernilai mutlak 0 atau 1. Cara ini bekerja sangat baik sampai kita menghadapi persoalan pencarian ruang kombinasi besar di mana cara sekuensial membutuhkan waktu lebih lama dari usia alam semesta. Saklar klasik tidak mampu merepresentasikan ruang kemungkinan paralel tanpa menduplikasi sirkuit fisik secara masif."
+          "breakdownPoint": "Selama puluhan tahun, seluruh revolusi komputasi digital dibangun di atas saklar listrik sederhana. Saklar ini hanya mengenal dua keadaan mutlak: arus mengalir (logika 1) atau arus terputus (logika 0). Hukum rangkaian listrik arus searah yang kita pelajari di bangku SMA mengajarkan bahwa sebuah lampu di kamar tidur hanya bisa menyala atau padam.\n\nPendekatan biner ini bekerja luar biasa untuk membuat kalkulator, internet, dan smartphone. Namun, cara ini menghadapi dinding kebuntuan fisik saat kita mencoba menyelesaikan persoalan komputasi kombinatorial raksasa. Bayangkan Anda disuruh mencari rute terpendek di antara 100 kota, atau melipat rantai molekul protein obat kanker. Sebuah komputer klasik harus memeriksa kombinasi jalur tersebut satu demi satu secara berurutan. Untuk ruang kemungkinan yang memiliki miliaran kombinasi, proses evaluasi sekuensial ini membutuhkan waktu lebih lama dari usia alam semesta!\n\nKomputer klasik tidak mampu menampung seluruh ruang kemungkinan paralel secara bersamaan tanpa menduplikasi keping chip silikon dalam jumlah yang mustahil dibuat secara fisik. Kita membutuhkan satuan pembawa informasi baru yang mampu menyimpan potensi paralel sebelum dievaluasi."
         },
         "block2_intuitivePrototype": {
           "physicalObject": "Physical sandbox model",
-          "isomorphicMapping": "Bayangkan alih-alih saklar lampu on/off yang kaku, kita memiliki koin logam di atas meja. Ketika koin diam terlentang di sisi '0', ia adalah bit klasik. Namun, sistem kita memiliki **Tuas Penyeimbang (dikenal sebagai Gerbang Hadamard)**. Ketika tuas Hadamard ini disentak, koin diputar kencang di atas meja. Selama koin berputar seimbang, statusnya bukan angka mutlak dan bukan gambar mutlak, melainkan kombinasi dinamis di mana kedua sisi memiliki potensi muncul yang setara saat dihentikan.\n\n```mermaid\nflowchart LR\n    Bit0[\"Klasik: Bit Diam |0>\"] -->|Sentakan Tuas Hadamard| Sup[\"$$\\lvert \\psi \\rangle = \\frac{1}{\\sqrt{2}}(\\lvert 0 \\rangle + \\lvert 1 \\rangle)$$\"]\n    Sup -->|Pengukuran Aktif| Out0[\"$$|0\\rangle \\text{ (50%)}$$\"]\n    Sup -->|Pengukuran Aktif| Out1[\"$$|1\\rangle \\text{ (50%)}$$\"]\n```",
+          "isomorphicMapping": "Bayangkan alih-alih saklar lampu dinding yang kaku, kita meletakkan sebuah koin logam di atas meja laboratorium.\n\nKetika koin diam terlentang di sisi angka, ia merepresentasikan bit klasik bernilai '0'. Ketika koin dibalik terlentang di sisi gambar, ia bernilai '1'. Namun di atas meja ini terpasang sebuah tuas mekanis presisi yang disebut **Tuas Hadamard (Gerbang Hadamard)**.\n\nKetika tuas Hadamard disentak dengan ketukan presisi, koin logam tersebut tidak sekadar dibalik, melainkan diputar kencang berdiri di atas meja. Selama koin berputar kencang seimbang, status fisiknya bukan angka mutlak dan bukan gambar mutlak. Koin berada dalam status dinamis yang memiliki potensi 50% memunculkan angka dan 50% memunculkan gambar saat seseorang menepuk meja untuk menghentikan putaran tersebut.\n\n```mermaid\nflowchart LR\n    Bit0[\"Koin Diam Terlentang |0> (Bit Klasik)\"] -->|Sentakan Tuas Hadamard| Sup[\"Koin Berputar Seimbang $$\\lvert \\psi \\rangle = \\frac{1}{\\sqrt{2}}(\\lvert 0 \\rangle + \\lvert 1 \\rangle)$$\"]\n    Sup -->|Tepukan Tangan / Pengukuran| Out0[\"Mendarat pada |0> (P = 50%)\"]\n    Sup -->|Tepukan Tangan / Pengukuran| Out1[\"Mendarat pada |1> (P = 50%)\"]\n```",
           "deadlockResolution": "Resolves the deadlock identified in Block 1 through isomorphic interaction."
         },
         "block3_coreMechanics": {
-          "invariantProperty": "Invarian fundamental sistem ini adalah **Konservasi Probabilitas Mutlak**: seberapa pun koin diputar atau dimanipulasi oleh gerbang Hadamard, total probabilitas seluruh kemungkinan hasil pengukuran wajib selalu bernilai tepat 100% (1.0). Operasi Hadamard membagi amplitudo keadaan secara simetris seimbang.",
+          "invariantProperty": "Invarian fundamental sistem ini adalah **Konservasi Probabilitas Mutlak (Absolute Probability Conservation)**: seberapa pun koin diputar atau dimanipulasi oleh gerbang logika kuantum, total peluang dari seluruh kemungkinan hasil pengukuran wajib selalu bernilai tepat 100% ($1.0$).\n\nDi tingkat mekanika gelombang, gerbang Hadamard membagi amplitudo kemungkinan secara simetris seimbang menjadi $\\frac{1}{\\sqrt{2}}$. Karena aturan alam (Aturan Born) menyatakan bahwa peluang fisik adalah kuadrat dari amplitudo, maka $(\\frac{1}{\\sqrt{2}})^2 + (\\frac{1}{\\sqrt{2}})^2 = \\frac{1}{2} + \\frac{1}{2} = 1.0$.",
           "variableComponents": [
             "System inputs",
             "Observable state amplitudes"
           ],
           "contrastingCases": [
             {
-              "beginnerMisconception": "Qubit menyimpan nilai 0 dan 1 sekaligus saat dibaca di layar.",
-              "physicalReality": "Qubit hanya berada dalam superposisi saat terisolasi. Pengukuran memaksanya runtuh menjadi salah satu nilai pasti."
+              "beginnerMisconception": "Qubit menyimpan nilai 0 dan 1 sekaligus saat dibaca di layar monitor.",
+              "physicalReality": "Qubit hanya berada dalam superposisi saat terisolasi. Pembacaan aktif memaksanya runtuh menjadi salah satu nilai biner pasti."
             },
             {
-              "beginnerMisconception": "Pengukuran bersifat pasif dan tidak mengubah sistem.",
-              "physicalReality": "Pengukuran adalah operasi fisik aktif yang menghancurkan superposisi."
+              "beginnerMisconception": "Pengukuran bersifat pasif dan tidak mengubah sistem fisik.",
+              "physicalReality": "Pengukuran adalah interaksi fisik aktif yang seketika menghancurkan superposisi kuantum."
             },
             {
-              "beginnerMisconception": "Gerbang Hadamard mengubah koin menjadi bit acak rusak.",
-              "physicalReality": "Hadamard adalah operasi rotasi deterministik yang presisi menciptakan superposisi seimbang."
+              "beginnerMisconception": "Gerbang Hadamard mengubah koin menjadi bit acak yang rusak.",
+              "physicalReality": "Hadamard adalah rotasi matematis deterministik yang presisi menciptakan superposisi seimbang."
             }
           ]
         },
         "block4_notationContract": {
           "formulaOrCode": "H|0\\rangle = \\frac{1}{\\sqrt{2}}|0\\rangle + \\frac{1}{\\sqrt{2}}|1\\rangle",
-          "minimalFormalization": "Untuk menghindari narasi panjang, komunitas sains merekam mekanisme sentakan tuas penyeimbang Hadamard di atas dengan kontrak steno:",
+          "minimalFormalization": "Untuk menghindari narasi panjang, komunitas sains merekam mekanisme sentakan tuas penyeimbang Hadamard di atas dengan kontrak steno matematika:\n\nPersamaan di atas adalah cetak biru formal yang merangkum seluruh perilaku mekanika fisik:",
           "termsDeconstruction": [
             {
               "symbol": "H",
@@ -60,7 +60,7 @@
             },
             {
               "symbol": "|0>",
-              "physicalMeaning": "Keadaan awal koin diam terlentang pada sisi 0."
+              "physicalMeaning": "Notasi Dirac Ket untuk keadaan awal koin diam terlentang pada sisi 0."
             },
             {
               "symbol": "1/sqrt(2)",
@@ -100,11 +100,43 @@
           }
         ]
       },
+      "glossary": [
+        {
+          "term": "Qubit",
+          "definition": "Satuan dasar informasi kuantum berupa vektor keadaan berdimensi dua dalam ruang Hilbert",
+          "highSchoolAnchor": "Koin logam di atas meja; saat diam terlentang ia bit biasa, saat diputar kencang ia qubit"
+        },
+        {
+          "term": "Superposisi",
+          "definition": "Prinsip penjumlahan linear dari dua keadaan kuantum ortogonal sebelum pengukuran",
+          "highSchoolAnchor": "Koin yang sedang berputar kencang; menyimpan potensi kedua sisi secara dinamis"
+        },
+        {
+          "term": "Gerbang Hadamard",
+          "definition": "Operator uniter yang merotasi basis komputasi menjadi superposisi probabilitas seimbang",
+          "highSchoolAnchor": "Tuas sentak presisi yang menyenggol koin diam agar mulai berputar seimbang di meja"
+        },
+        {
+          "term": "Notasi Ket |ψ⟩",
+          "definition": "Notasi bra-ket Dirac untuk merepresentasikan vektor keadaan kuantum",
+          "highSchoolAnchor": "Simbol kurung vektor penunjuk arah panah di koordinat Kartesius $(x,y)$ pelajaran Fisika SMA"
+        },
+        {
+          "term": "Amplitudo Probabilitas",
+          "definition": "Bilangan kompleks yang kuadrat mutlaknya menghasilkan nilai peluang pengukuran fisik",
+          "highSchoolAnchor": "Tinggi puncak gelombang air; semakin tinggi ombak, semakin besar energi yang dilepaskan saat menabrak karang"
+        },
+        {
+          "term": "Runtuhnya Gelombang (Collapse)",
+          "definition": "Transisi diskontinu dari keadaan superposisi menjadi satu nilai tunggal akibat pengukuran",
+          "highSchoolAnchor": "Menepuk telapak tangan ke koin yang sedang berputar di meja, memaksanya diam di satu sisi"
+        }
+      ],
       "variationProbes": {
         "conceptualVariants": [
           {
             "representationType": "verbal",
-            "content": "Invarian & Operasi Inti\nInvarian fundamental sistem ini adalah **Konservasi Probabilitas Mutlak**: seberapa pun koin diputar atau dimanipulasi oleh gerbang Hadamard, total probabilitas seluruh kemungkinan hasil pengukuran wajib selalu bernilai tepat 100% (1.0)."
+            "content": "Invarian & Operasi Inti\nInvarian fundamental sistem ini adalah **Konservasi Probabilitas Mutlak (Absolute Probability Conservation)**: seberapa pun koin diputar atau dimanipulasi oleh gerbang logika kuantum, total peluang dari seluruh kemungkinan hasil pengukuran wajib selalu bernilai tepat 100% ($1.0$)."
           },
           {
             "representationType": "symbolic",
@@ -122,8 +154,8 @@
       },
       "forwardPass": {
         "probeType": "prediction_what_if",
-        "microPrimer": "\"A classical bit is strictly 0 or 1. A qubit exists in a simultaneous linear superposition of |0> and |1>. A Hadamard gate is a foundational operation that transforms definite state |0> into an equal superposition where both outcomes become equally likely upon measurement.\"",
-        "readingContext": "### 1. Pangkal Anomali\nSelama ini kita memproses informasi dengan saklar biner yang bernilai mutlak 0 atau 1. Cara ini bekerja sangat baik sampai kita menghadapi persoalan pencarian ruang kombinasi besar di mana cara sekuensial membutuhkan waktu lebih lama dari usia alam semesta. Saklar klasik tidak mampu merepresentasikan ruang kemungkinan paralel tanpa menduplikasi sirkuit fisik secara masif.\n\n### 2. Prototipe Intuitif\nBayangkan alih-alih saklar lampu on/off yang kaku, kita memiliki koin logam",
+        "microPrimer": "\"A classical bit is strictly 0 or 1. A qubit exists in a simultaneous linear superposition of |0> and |1>. A Hadamard gate transforms definite state |0> into an equal superposition where both outcomes become equally likely upon measurement.\"",
+        "readingContext": "### 1. Pangkal Anomali\nSelama puluhan tahun, seluruh revolusi komputasi digital dibangun di atas saklar listrik sederhana. Saklar ini hanya mengenal dua keadaan mutlak: arus mengalir (logika 1) atau arus terputus (logika 0). Hukum rangkaian listrik arus searah yang kita pelajari di bangku SMA mengajarkan bahwa sebuah lampu di kamar tidur hanya bisa menyala atau padam.\n\nPendekatan biner ini bekerja luar biasa untuk membuat kalkulator, internet, dan smartphone. Namun, cara ini menghadapi dinding k",
         "prompt": "\"If a qubit initialized in state |0> is transformed by a Hadamard gate into an equal superposition, predict the probability distribution of measuring |0> versus |1>.\"",
         "options": [
           {
@@ -137,24 +169,21 @@
             "text": "100% probability for |0> and 0% for |1>, because an isolated bit cannot change its underlying binary value without an external classical flip operation.",
             "isCorrect": false,
             "diagnosticAxis": "missingPrerequisite",
-            "causalRationale": "Classical Fallacy: Treats qubits as classical deterministic bits. Qubits obey linear quantum superposition, not classical binary states.",
-            "specificRemediation": "Review Prerequisite: Understand that qubits exist in linear superposition prior to measurement."
+            "causalRationale": "Classical Fallacy: Treats qubits as classical deterministic bits. Qubits obey linear quantum superposition, not classical binary states."
           },
           {
             "optionId": "opt_c",
             "text": "70.7% probability for |0> and 70.7% probability for |1>, because the wave function amplitude 1/sqrt(2) translates directly into measurement probability without squaring.",
             "isCorrect": false,
             "diagnosticAxis": "notationBreakdown",
-            "causalRationale": "Amplitude Squaring Slip: Confuses state amplitude (1/sqrt(2) approx 0.707) with Born rule measurement probability (|amplitude|^2).",
-            "specificRemediation": "Born Rule Invariant: Measurement probabilities are given by the absolute square of the amplitude |alpha|^2, not the raw amplitude."
+            "causalRationale": "Amplitude Squaring Slip: Confuses state amplitude (1/sqrt(2) approx 0.707) with Born rule measurement probability (|amplitude|^2)."
           },
           {
             "optionId": "opt_d",
             "text": "The qubit simultaneously outputs both 0 and 1 in reality, so measuring it records both states at the exact same physical moment.",
             "isCorrect": false,
             "diagnosticAxis": "conceptGap",
-            "causalRationale": "Collapse Misconception: Measurement strictly collapses the superposition into a single definite classical outcome (|0> OR |1>), never both simultaneously.",
-            "specificRemediation": "Measurement Invariant: Measurement forces a quantum collapse into exactly one eigenvalue state."
+            "causalRationale": "Collapse Misconception: Measurement strictly collapses the superposition into a single definite classical outcome (|0> OR |1>), never both simultaneously."
           }
         ],
         "expectedMentalModel": [
@@ -168,7 +197,7 @@
       },
       "lossRubric": {
         "conceptGapCriteria": [
-          "Fails to identify core mechanism: Invarian & Operasi Inti\nInvarian fundamental sistem ini adalah **Konservasi Probabilitas Mutlak**: seberapa pun koin diputar atau dimanipulasi oleh gerbang Hadamard, total probabilitas seluruh kemungkinan hasil pengukuran wajib selalu bernilai tepat 100% (1.0).",
+          "Fails to identify core mechanism: Invarian & Operasi Inti\nInvarian fundamental sistem ini adalah **Konservasi Probabilitas Mutlak (Absolute Probability Conservation)**: seberapa pun koin diputar atau dimanipulasi oleh gerbang logika kuantum, total peluang dari seluruh kemungkinan hasil pengukuran wajib selalu bernilai tepat 100% ($1.0$).",
           "Confuses cause and effect in state transitions"
         ],
         "notationCriteria": [
@@ -186,7 +215,7 @@
         "learningRate": 0.25,
         "hintLadder": {
           "level0Reflective": "Reflective: What fundamental invariant governs Qubits and Superposition?",
-          "level1Directional": "Directional Clue: Examine how Qubits and Superposition handles boundary conditions: Invarian & Operasi Inti\nInvarian fundamental sistem ini adalah **Konservasi Probabilitas Mutlak**: seberapa pun koin diputar atau dimanipulasi oleh gerbang Hadamard, total probabilitas seluruh kemungkinan hasil pengukuran wajib selalu bernilai tepat 100% (1.0).",
+          "level1Directional": "Directional Clue: Examine how Qubits and Superposition handles boundary conditions: Invarian & Operasi Inti\nInvarian fundamental sistem ini adalah **Konservasi Probabilitas Mutlak (Absolute Probability Conservation)**: seberapa pun koin diputar atau dimanipulasi oleh gerbang logika kuantum, total peluang dari seluruh kemungkinan hasil pengukuran wajib selalu bernilai tepat 100% ($1.0$).",
           "level2Constraint": "Constraint: Eliminate unconstrained assumptions. Ground truth: \"Measurement collapses the equal superposition (1/sqrt(2)|0> + 1/sqrt(2)|1>) into |0> with 50% probability and |1> with 50% probability.\"",
           "level3WorkedExample": "\"Worked Solution: The Hadamard gate maps |0> to (|0> + |1>)/sqrt(2). The probability of measuring state |k> equals the squared amplitude |1/sqrt(2)|^2 = 1/2 = 50%. Thus, measuring yields 50% probability for |0> and 50% probability for |1>.\""
         },
@@ -201,7 +230,7 @@
         {
           "sourceRef": "markdown-source",
           "locationTag": "Section: Qubits and Superposition",
-          "verbatimQuote": "### 1. Pangkal Anomali\nSelama ini kita memproses informasi dengan saklar biner yang bernilai mutlak "
+          "verbatimQuote": "### 1. Pangkal Anomali\nSelama puluhan tahun, seluruh revolusi komputasi digital dibangun di atas sak"
         }
       ]
     }

@@ -74,9 +74,9 @@ function extractBlock3(content: string, title: string): Block3CoreMechanics {
   const rawText = match ? match[1].trim() : "";
   const contrastingCases = extractContrastingCases(rawText, title);
 
-  const linesBeforeTable = rawText.split("\n").filter((l) => !l.includes("|") && l.trim().length > 0);
-  const invariantProperty = linesBeforeTable.length > 0
-    ? linesBeforeTable.join(" ").trim()
+  const nonTableLines = rawText.split("\n").filter((l) => !l.includes("|"));
+  const invariantProperty = nonTableLines.length > 0
+    ? nonTableLines.join("\n").trim()
     : `Conservation of system balance in ${title}.`;
 
   return {
@@ -133,9 +133,9 @@ function extractBlock4(content: string, title: string): Block4NotationContract {
   const formulaMatch = rawText.match(/\$\$([\s\S]*?)\$\$/) || rawText.match(/`([^`]+)`/);
   const formulaOrCode = formulaMatch ? formulaMatch[1].trim() : `f(${title}) -> Invariant`;
 
-  const narrativeLines = rawText.split("\n").filter((l) => !l.trim().startsWith("*") && !l.trim().startsWith("-") && !l.includes("$$") && l.trim().length > 0);
+  const narrativeLines = rawText.split("\n").filter((l) => !l.trim().startsWith("*") && !l.trim().startsWith("-") && !l.includes("$$"));
   const minimalFormalization = narrativeLines.length > 0
-    ? narrativeLines[0].trim()
+    ? narrativeLines.join("\n").trim()
     : `Minimal mathematical contract encoding the physical dynamics of ${title}.`;
 
   return {

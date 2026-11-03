@@ -2,7 +2,7 @@
   "schemaVersion": "2026.1",
   "curriculumId": "contract-law-basics",
   "title": "Contract Law Foundations",
-  "description": "A comprehensive curriculum on mutual assent, consideration doctrine, material breach, and expectation damages.",
+  "description": "A comprehensive curriculum on mutual assent, consideration doctrine, material breach, and expectation damages compiled with the Human Gradient Descent paradigm.",
   "domain": "KnowledgeBase",
   "domainType": "general",
   "compositionalPrimitives": [
@@ -19,7 +19,7 @@
   "scale": {
     "totalNodes": 4,
     "totalShards": 4,
-    "approxWordCount": 1989,
+    "approxWordCount": 3963,
     "estimatedLearningHours": 1.4
   },
   "pacing": {

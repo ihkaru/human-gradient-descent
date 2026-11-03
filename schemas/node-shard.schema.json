@@ -318,6 +318,18 @@
                 "verbatimQuote": { "type": "string" }
               }
             }
+          },
+          "glossary": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["term", "definition"],
+              "properties": {
+                "term": { "type": "string" },
+                "definition": { "type": "string" },
+                "highSchoolAnchor": { "type": "string" }
+              }
+            }
           }
         }
       }

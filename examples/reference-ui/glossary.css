@@ -1,0 +1,157 @@
+/* Interactive Glossary & High School (SMA) Concept Grounding Styles */
+
+.glossary-term-badge {
+  display: inline;
+  color: #38bdf8;
+  border-bottom: 1.5px dashed rgba(56, 189, 248, 0.6);
+  cursor: pointer;
+  padding: 0 2px;
+  border-radius: 2px;
+  transition: all 0.15s ease;
+  font-weight: 500;
+}
+
+.glossary-term-badge:hover {
+  background: rgba(56, 189, 248, 0.15);
+  border-bottom-color: #38bdf8;
+  color: #e0f2fe;
+}
+
+.glossary-term-badge:focus-visible {
+  outline: 2px solid var(--accent-cyan);
+  outline-offset: 2px;
+}
+
+/* Accordion Panel at Bottom of UILA */
+.glossary-accordion {
+  margin-top: 1rem;
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  border-radius: var(--radius-sm);
+  background: rgba(16, 185, 129, 0.04);
+  padding: 0.6rem 0.85rem;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.glossary-accordion-header {
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  user-select: none;
+  list-style: none;
+}
+
+.glossary-accordion-header::-webkit-details-marker {
+  display: none;
+}
+
+.glossary-accordion-title {
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--accent-emerald);
+  letter-spacing: 0.03em;
+}
+
+.glossary-accordion-hint {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+}
+
+.glossary-panel-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 0.65rem;
+  margin-top: 0.75rem;
+}
+
+.glossary-panel-item {
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-sm);
+  padding: 0.55rem 0.7rem;
+  cursor: pointer;
+  transition: border-color 0.15s ease, transform 0.1s ease;
+  font-size: 0.8rem;
+}
+
+.glossary-panel-item:hover {
+  border-color: var(--accent-emerald);
+  transform: translateY(-1px);
+}
+
+.glossary-panel-term {
+  color: var(--accent-cyan);
+  margin-bottom: 0.2rem;
+}
+
+.glossary-panel-def {
+  color: var(--text-color);
+  font-size: 0.78rem;
+  line-height: 1.4;
+}
+
+.glossary-panel-anchor {
+  margin-top: 0.35rem;
+  font-size: 0.75rem;
+  line-height: 1.4;
+  color: #a7f3d0;
+  background: rgba(6, 78, 59, 0.3);
+  border-left: 2px solid var(--accent-emerald);
+  padding: 0.25rem 0.45rem;
+  border-radius: 0 4px 4px 0;
+}
+
+.glossary-anchor-tag {
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 0.65rem;
+  color: #34d399;
+  margin-right: 0.3rem;
+  display: inline-block;
+}
+
+/* Modal Popup Enhancements */
+.glossary-modal-card {
+  max-width: 540px;
+}
+
+.glossary-modal-anchor-box {
+  margin-top: 0.85rem;
+  padding: 0.85rem 1rem;
+  background: rgba(6, 78, 59, 0.35);
+  border: 1px solid rgba(52, 211, 153, 0.35);
+  border-radius: var(--radius-md);
+}
+
+.glossary-modal-anchor-title {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #34d399;
+  letter-spacing: 0.04em;
+  margin-bottom: 0.3rem;
+}
+
+.glossary-modal-anchor-text {
+  font-size: 0.85rem;
+  line-height: 1.55;
+  color: #ecfdf5;
+}
+
+/* Rich Narrative Paragraphs */
+.uila-narrative {
+  font-size: 0.85rem;
+  line-height: 1.6;
+  color: var(--text-color);
+}
+
+.uila-paragraph {
+  margin-bottom: 0.6rem;
+  line-height: 1.6;
+}
+
+.uila-paragraph:last-child {
+  margin-bottom: 0;
+}

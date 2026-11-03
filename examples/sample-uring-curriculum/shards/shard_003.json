@@ -14,7 +14,7 @@
       "prerequisites": [
         "hgd://knowledgebase/rust-io-uring/node-002"
       ],
-      "conceptSummary": "<!-- hgd:options: [\n  {\"optionId\": \"opt_a\", \"text\": \"The dedicated kernel thread reads submissions directly from shared RAM without syscalls, but permanently consumes an entire CPU core in a continuous poll loop.\", \"isCorrect\": true, \"causalRationale\": \"Accurately identifies the zero-syscall mechanism and its dedicated core resource trade-off.\"},\n  {\"optionId\": \"opt_b\", \"text\": \"The network card processes HTTP JSON requests directly on its onboard silicon without CPU intervention.\", \"isCorrect\": false, \"diagnosticAxis\": \"conceptGap\", \"causalRationale\": \"Confuses software kernel worker polling with smart NIC hardware offload.\"},\n  {\"optionId\": \"opt_c\", \"text\": \"SQPOLL eliminates all context switches by running user application code inside kernel ring 0.\", \"isCorrect\": false, \"diagnosticAxis\": \"reasoningBug\", \"causalRationale\": \"Violates operating system memory isolation and user-space privilege boundaries.\"}\n] -->\n\n### 1. Pangkal Anomali\nBahkan dengan *ring buffer*, pemanggilan fungsi p",
+      "conceptSummary": "<!-- hgd:options: [\n  {\"optionId\": \"opt_a\", \"text\": \"The dedicated kernel thread reads submissions directly from shared RAM without syscalls, but permanently consumes an entire CPU core in a continuous poll loop.\", \"isCorrect\": true, \"causalRationale\": \"Accurately identifies the zero-syscall mechanism and its dedicated core resource trade-off.\"},\n  {\"optionId\": \"opt_b\", \"text\": \"The network card processes HTTP JSON requests directly on its onboard silicon without CPU intervention.\", \"isCorrect\": false, \"diagnosticAxis\": \"conceptGap\", \"causalRationale\": \"Confuses software kernel worker polling with smart NIC hardware offload.\"},\n  {\"optionId\": \"opt_c\", \"text\": \"SQPOLL eliminates all context switches by running user application code inside kernel ring 0.\", \"isCorrect\": false, \"diagnosticAxis\": \"reasoningBug\", \"causalRationale\": \"Violates operating system memory isolation and user-space privilege boundaries.\"},\n  {\"optionId\": \"opt_d\", \"text\": \"The kernel completely turns off all electrici",
       "pacing": {
         "timeLimitSeconds": 60,
         "recommendedEpochs": 3,
@@ -25,41 +25,53 @@
         "block1_anomaly": {
           "groundState": "Initial state prior to Kernel Polling via IORING_SETUP_SQPOLL.",
           "oldWay": "Conventional assumption or baseline approach.",
-          "breakdownPoint": "Bahkan dengan *ring buffer*, pemanggilan fungsi pengajuan normal masih memerlukan satu *syscall* ringkas (`io_uring_enter`) untuk membangunkan kernel. Pada server dengan jutaan operasi per detik, satu *syscall* itu pun masih meninggalkan beban latensi."
+          "breakdownPoint": "Bahkan setelah kita menggunakan antrean cincin (*ring buffer*) ganda yang canggih, dalam mode standar masih ada satu ganjalan kecil: setelah aplikasi meletakkan tiket SQE ke dalam antrean, bagaimana kernel tahu bahwa ada tiket baru yang harus dikerjakan?\n\nDalam mode standar, aplikasi masih harus memanggil satu *syscall* ringkas bernama `io_uring_enter()` untuk membangunkan kernel dan berkata: *\"Hei kernel, aku baru saja menaruh 10 tiket di ban berjalan, tolong segera proses!\"*\n\nMeskipun biaya satu syscall untuk 10 tiket jauh lebih murah daripada 10 syscall terpisah, pada server ultra-ekstrem (seperti server transaksi bursa saham frekuensi tinggi atau server gateway JSON dengan latensi sub-milidetik), pemanggilan `io_uring_enter()` ini masih menghasilkan jeda waktu beberapa mikrodetik. Pemrogram sistem menginginkan nol mutlak: **Zero Syscalls**. Bagaimana cara menghilangkannya sama sekali?"
         },
         "block2_intuitivePrototype": {
           "physicalObject": "Physical sandbox model",
-          "isomorphicMapping": "Physical sandbox model: Bayangkan alih-alih Anda harus membunyikan bel setiap kali meletakkan berkas di nampan keluar, seorang asisten khusus berdiri tepat di depan nampan dan terus-menerus mengamati nampan tanpa henti. Begitu berkas diletakkan, asisten langsung menyambarnya seketika tanpa perlu dipanggil.\n\n```mermaid\nflowchart LR\n    App[\"User App (Rust JSON Server)\"] -->|Atomic Store sqe_tail| SharedRAM[\"Shared Memory SQ\"]\n    KernelThread[\"Dedicated io_uring-sq Thread\"] -->|Continuous Spin Poll| SharedRAM\n    KernelThread -->|Direct Dispatch| NIC[\"Network Socket Hardware\"]\n    NIC -->|DMA Completion| CQ[\"Shared Memory CQ\"]\n    App -->|Lockless Read cqe_head| CQ\n```",
+          "isomorphicMapping": "Bayangkan sebuah kantor layanan darurat.\n\nPada mode normal: Setiap kali Anda meletakkan berkas di kotak keluar, Anda harus memencet bel dinding agar petugas di ruang sebelah bangun dari kursinya dan datang mengambil berkas tersebut. Bunyi bel ini adalah analogi dari *syscall* `io_uring_enter()`.\n\nPada mode **SQPOLL (Submission Queue Polling)**: Kepala kantor menugaskan seorang asisten khusus (*Dedicated Kernel Thread*) yang berdiri tegak tepat di depan kotak keluar Anda. Asisten ini tidak pernah duduk, tidak pernah membaca koran, dan tidak pernah berkedip. Matanya terus-menerus menatap mangkok kotak keluar dengan kecepatan ribuan kali per detik (*spin-polling loop*).\n\nBegitu tangan Anda menjatuhkan selembar berkas ke dalam kotak, dalam hitungan nanodetik asisten langsung menyambar berkas itu dan langsung berlari mengantarkannya ke kartu jaringan. Anda tidak perlu lagi menyentuh bel dinding! Panggilan bel resmi menjadi tepat nol.\n\nNamun imbalannya jelas: asisten tersebut tidak bisa mengerjakan pekerjaan lain. Satu kursi kerja (satu inti prosesor / CPU core) sepenuhnya terpakai 100% hanya untuk mengawasi kotak keluar tersebut.\n\n```mermaid\nflowchart LR\n    App[\"Aplikasi Rust (JSON Server)\"] -->|Atomic Store sq_tail| SharedRAM[\"Shared RAM (Submission Ring)\"]\n    KernelThread[\"Dedicated Kernel Thread (io_uring-sq)\"] -->|Spin-Poll Terus Menerus Tanpa Henti| SharedRAM\n    KernelThread -->|Kirim Langsung| NIC[\"Perangkat Keras Kartu Jaringan (NIC)\"]\n    NIC -->|DMA Selesai| CQ[\"Shared RAM (Completion Ring)\"]\n    App -->|Atomic Read cq_head| CQ\n```",
           "deadlockResolution": "Resolves the deadlock identified in Block 1 through isomorphic interaction."
         },
         "block3_coreMechanics": {
-          "invariantProperty": "Invarian mutlak modus ini adalah **Zero-Syscall Steady State Execution**: selama frekuensi pengajuan permintaan lebih cepat daripada waktu *timeout* tidur *thread* kernel (`sq_thread_idle`), jumlah pemanggilan *syscall* per permintaan HTTP adalah **tepat nol**.",
+          "invariantProperty": "Invarian mutlak modus ini adalah **Eksekusi Kondisi Mantap Tanpa Syscall (Zero-Syscall Steady State Execution)**: selama interval kedatangan antar-permintaan jaringan lebih cepat daripada batas waktu tidur *thread* kernel (`sq_thread_idle`), jumlah pemanggilan *syscall* per permintaan HTTP adalah **tepat 0.00**.\n\nProsesor hanya melakukan operasi penulisan memori RAM biasa (*memory write*) dan instruksi memori penjamin urutan (*memory barrier*). Sistem operasi tidak pernah terinterupsi.",
           "variableComponents": [
             "System inputs",
             "Observable state amplitudes"
           ],
           "contrastingCases": [
             {
-              "beginnerMisconception": "Mengira SQPOLL gratis tanpa konsumsi daya",
-              "physicalReality": "SQPOLL mengunci 1 core CPU penuh pada penggunaan 100% untuk memantau memori"
+              "beginnerMisconception": "Mengira SQPOLL adalah fitur gratis tanpa ada biaya konsumsi daya listrik.",
+              "physicalReality": "SQPOLL mengunci 1 inti prosesor fisik (100% CPU utilization) untuk terus-menerus berputar mengawasi memori."
             },
             {
-              "beginnerMisconception": "Mengira kernel thread tidur di antara setiap request",
-              "physicalReality": "Thread berputar (*spin-poll*) aktif di memori RAM selama batas waktu idle belum tercapai"
+              "beginnerMisconception": "Mengira kernel thread tidur santai di antara setiap paket data yang datang.",
+              "physicalReality": "Thread melakukan putaran aktif (*spin loop*) di memori RAM selama batas waktu idle belum terlampaui."
+            },
+            {
+              "beginnerMisconception": "Mengira SQPOLL cocok diaktifkan di semua server kecil atau laptop hemat daya.",
+              "physicalReality": "Pada mesin dengan hanya 1 atau 2 core vCPU, SQPOLL justru akan merebut jatah komputasi aplikasi utama."
             }
           ]
         },
         "block4_notationContract": {
-          "formulaOrCode": "\\text{Cost}_{\\text{SQPOLL}} = \\begin{cases} 0 \\text{ syscalls}, & \\text{if } \\Delta t_{\\text{inter-request}} < t_{\\text{idle}} \\\\ 1 \\text{ wake syscall}, & \\text{if thread fell asleep} \\end{cases}",
-          "minimalFormalization": "Formula penghematan penalti transisi sistem:",
+          "formulaOrCode": "\\text{Cost}_{\\text{SQPOLL}} = \\begin{cases} 0 \\text{ syscalls}, & \\text{jika } \\Delta t_{\\text{inter-request}} < t_{\\text{idle}} \\\\ 1 \\text{ wake syscall}, & \\text{jika thread sempat tertidur} \\end{cases}",
+          "minimalFormalization": "Formula biaya transisi eksekusi sistem:\n\nKontrak aljabar kinerja sistem pada mode polling:",
           "termsDeconstruction": [
             {
               "symbol": "t_{idle}",
-              "physicalMeaning": "Durasi toleransi tidur thread kernel (misal 2000 milidetik)."
+              "physicalMeaning": "Durasi toleransi tidur thread kernel sebelum memasuki mode hemat daya (misalnya dikonfigurasi 2000 milidetik)."
             },
             {
               "symbol": "\\Delta t_{inter-request}",
-              "physicalMeaning": "Interval kedatangan antar-permintaan JSON."
+              "physicalMeaning": "Waktu jeda antar kedatangan transaksi HTTP JSON dari jaringan."
+            },
+            {
+              "symbol": "Zero Syscall",
+              "physicalMeaning": "Kondisi mantap di mana aplikasi melayani ribuan klien tanpa satu pun penyeberangan proteksi prosesor."
+            },
+            {
+              "symbol": "IORING_SETUP_SQPOLL",
+              "physicalMeaning": "Bendera konfigurasi kernel saat inisialisasi cincin io_uring."
             }
           ]
         }
@@ -87,15 +99,47 @@
           }
         ]
       },
+      "glossary": [
+        {
+          "term": "SQPOLL",
+          "definition": "Modus kernel Linux di mana sebuah kthread didedikasikan untuk melakukan polling SQ",
+          "highSchoolAnchor": "Satpam jaga yang berdiri tegak mengamati gerbang tanpa berkedip agar tamu tak perlu memencet bel"
+        },
+        {
+          "term": "Spin Loop (Busy Waiting)",
+          "definition": "Teknik pemrograman di mana prosesor terus menguji suatu kondisi dalam putaran ketat berulang",
+          "highSchoolAnchor": "Murid yang setiap 2 detik melihat ke arah jendela untuk melihat apakah mobil jemputan sudah tiba"
+        },
+        {
+          "term": "Kernel Thread (kthread)",
+          "definition": "Entitas eksekusi independen yang berjalan di dalam ranah kernel sistem operasi",
+          "highSchoolAnchor": "Petugas teknisi internal gedung yang bekerja otomatis di balik layar tanpa perintah siswa"
+        },
+        {
+          "term": "vCPU / Core Prosesor",
+          "definition": "Unit komputasi pemrosesan fisik independen di dalam silikon chip prosesor",
+          "highSchoolAnchor": "Meja kerja terpisah di kantor; jika ada 4 meja kerja, 4 orang bisa menghitung mandiri bersamaan"
+        },
+        {
+          "term": "Memory Barrier",
+          "definition": "Instruksi prosesor perangkat keras untuk menjamin urutan pembacaan dan penulisan memori",
+          "highSchoolAnchor": "Garis antrean tali pembatas di bank; orang di belakang dilarang maju sebelum orang di depan selesai"
+        },
+        {
+          "term": "Steady State",
+          "definition": "Kondisi operasional stabil di mana parameter sistem tidak lagi berubah drastis terhadap waktu",
+          "highSchoolAnchor": "Kecepatan konstan mobil di jalan tol setelah selesai melewati tanjakan gerbang masuk"
+        }
+      ],
       "variationProbes": {
         "conceptualVariants": [
           {
             "representationType": "verbal",
-            "content": "<!-- hgd:options: [\n  {\"optionId\": \"opt_a\", \"text\": \"The dedicated kernel thread reads submissions directly from shared RAM without syscalls, but permanently consumes an entire CPU core in a continuous poll loop.\", \"isCorrect\": true, \"causalRationale\": \"Accurately identifies the zero-syscall mechanism and its dedicated core resource trade-off.\"},\n  {\"optionId\": \"opt_b\", \"text\": \"The network card processes HTTP JSON requests directly on its onboard silicon without CPU intervention.\", \"isCorrect\": false, \"diagnosticAxis\": \"conceptGap\", \"causalRationale\": \"Confuses software kernel worker polling with smart NIC hardware offload.\"},\n  {\"optionId\": \"opt_c\", \"text\": \"SQPOLL eliminates all context switches by running user application code inside kernel ring 0.\", \"isCorrect\": false, \"diagnosticAxis\": \"reasoningBug\", \"causalRationale\": \"Violates operating system memory isolation and user-space privilege boundaries.\"}\n] -->\n\n### 1."
+            "content": "<!-- hgd:options: [\n  {\"optionId\": \"opt_a\", \"text\": \"The dedicated kernel thread reads submissions directly from shared RAM without syscalls, but permanently consumes an entire CPU core in a continuous poll loop.\", \"isCorrect\": true, \"causalRationale\": \"Accurately identifies the zero-syscall mechanism and its dedicated core resource trade-off.\"},\n  {\"optionId\": \"opt_b\", \"text\": \"The network card processes HTTP JSON requests directly on its onboard silicon without CPU intervention.\", \"isCorrect\": false, \"diagnosticAxis\": \"conceptGap\", \"causalRationale\": \"Confuses software kernel worker polling with smart NIC hardware offload.\"},\n  {\"optionId\": \"opt_c\", \"text\": \"SQPOLL eliminates all context switches by running user application code inside kernel ring 0.\", \"isCorrect\": false, \"diagnosticAxis\": \"reasoningBug\", \"causalRationale\": \"Violates operating system memory isolation and user-space privilege boundaries.\"},\n  {\"optionId\": \"opt_d\", \"text\": \"The kernel completely turns off all electricity to memory RAM to save power during submission polling.\", \"isCorrect\": false, \"diagnosticAxis\": \"missingPrerequisite\", \"causalRationale\": \"Physical impossibility that contradicts basic electrical computer power requirements.\"}\n] -->\n\n### 1."
           },
           {
             "representationType": "symbolic",
-            "content": "\\text{Cost}_{\\text{SQPOLL}} = \\begin{cases} 0 \\text{ syscalls}, & \\text{if } \\Delta t_{\\text{inter-request}} < t_{\\text{idle}} \\\\ 1 \\text{ wake syscall}, & \\text{if thread fell asleep} \\end{cases}"
+            "content": "\\text{Cost}_{\\text{SQPOLL}} = \\begin{cases} 0 \\text{ syscalls}, & \\text{jika } \\Delta t_{\\text{inter-request}} < t_{\\text{idle}} \\\\ 1 \\text{ wake syscall}, & \\text{jika thread sempat tertidur} \\end{cases}"
           }
         ],
         "proceduralPerturbations": [
@@ -125,7 +169,7 @@
             "isCorrect": false,
             "diagnosticAxis": "conceptGap",
             "causalRationale": "Misconception: Assumes operations produce zero observable effect, ignoring active transformation.",
-            "specificRemediation": "Review core mechanism: <!-- hgd:options: [\n  {\"optionId\": \"opt_a\", \"text\": \"The dedicated kernel thread reads submissions directly from shared RAM without syscalls, but permanently consumes an entire CPU core in a continuous poll loop.\", \"isCorrect\": true, \"causalRationale\": \"Accurately identifies the zero-syscall mechanism and its dedicated core resource trade-off.\"},\n  {\"optionId\": \"opt_b\", \"text\": \"The network card processes HTTP JSON requests directly on its onboard silicon without CPU intervention.\", \"isCorrect\": false, \"diagnosticAxis\": \"conceptGap\", \"causalRationale\": \"Confuses software kernel worker polling with smart NIC hardware offload.\"},\n  {\"optionId\": \"opt_c\", \"text\": \"SQPOLL eliminates all context switches by running user application code inside kernel ring 0.\", \"isCorrect\": false, \"diagnosticAxis\": \"reasoningBug\", \"causalRationale\": \"Violates operating system memory isolation and user-space privilege boundaries.\"}\n] -->\n\n### 1."
+            "specificRemediation": "Review core mechanism: <!-- hgd:options: [\n  {\"optionId\": \"opt_a\", \"text\": \"The dedicated kernel thread reads submissions directly from shared RAM without syscalls, but permanently consumes an entire CPU core in a continuous poll loop.\", \"isCorrect\": true, \"causalRationale\": \"Accurately identifies the zero-syscall mechanism and its dedicated core resource trade-off.\"},\n  {\"optionId\": \"opt_b\", \"text\": \"The network card processes HTTP JSON requests directly on its onboard silicon without CPU intervention.\", \"isCorrect\": false, \"diagnosticAxis\": \"conceptGap\", \"causalRationale\": \"Confuses software kernel worker polling with smart NIC hardware offload.\"},\n  {\"optionId\": \"opt_c\", \"text\": \"SQPOLL eliminates all context switches by running user application code inside kernel ring 0.\", \"isCorrect\": false, \"diagnosticAxis\": \"reasoningBug\", \"causalRationale\": \"Violates operating system memory isolation and user-space privilege boundaries.\"},\n  {\"optionId\": \"opt_d\", \"text\": \"The kernel completely turns off all electricity to memory RAM to save power during submission polling.\", \"isCorrect\": false, \"diagnosticAxis\": \"missingPrerequisite\", \"causalRationale\": \"Physical impossibility that contradicts basic electrical computer power requirements.\"}\n] -->\n\n### 1."
           },
           {
             "optionId": "opt_c",
@@ -148,7 +192,7 @@
       },
       "lossRubric": {
         "conceptGapCriteria": [
-          "Fails to identify core mechanism: <!-- hgd:options: [\n  {\"optionId\": \"opt_a\", \"text\": \"The dedicated kernel thread reads submissions directly from shared RAM without syscalls, but permanently consumes an entire CPU core in a continuous poll loop.\", \"isCorrect\": true, \"causalRationale\": \"Accurately identifies the zero-syscall mechanism and its dedicated core resource trade-off.\"},\n  {\"optionId\": \"opt_b\", \"text\": \"The network card processes HTTP JSON requests directly on its onboard silicon without CPU intervention.\", \"isCorrect\": false, \"diagnosticAxis\": \"conceptGap\", \"causalRationale\": \"Confuses software kernel worker polling with smart NIC hardware offload.\"},\n  {\"optionId\": \"opt_c\", \"text\": \"SQPOLL eliminates all context switches by running user application code inside kernel ring 0.\", \"isCorrect\": false, \"diagnosticAxis\": \"reasoningBug\", \"causalRationale\": \"Violates operating system memory isolation and user-space privilege boundaries.\"}\n] -->\n\n### 1.",
+          "Fails to identify core mechanism: <!-- hgd:options: [\n  {\"optionId\": \"opt_a\", \"text\": \"The dedicated kernel thread reads submissions directly from shared RAM without syscalls, but permanently consumes an entire CPU core in a continuous poll loop.\", \"isCorrect\": true, \"causalRationale\": \"Accurately identifies the zero-syscall mechanism and its dedicated core resource trade-off.\"},\n  {\"optionId\": \"opt_b\", \"text\": \"The network card processes HTTP JSON requests directly on its onboard silicon without CPU intervention.\", \"isCorrect\": false, \"diagnosticAxis\": \"conceptGap\", \"causalRationale\": \"Confuses software kernel worker polling with smart NIC hardware offload.\"},\n  {\"optionId\": \"opt_c\", \"text\": \"SQPOLL eliminates all context switches by running user application code inside kernel ring 0.\", \"isCorrect\": false, \"diagnosticAxis\": \"reasoningBug\", \"causalRationale\": \"Violates operating system memory isolation and user-space privilege boundaries.\"},\n  {\"optionId\": \"opt_d\", \"text\": \"The kernel completely turns off all electricity to memory RAM to save power during submission polling.\", \"isCorrect\": false, \"diagnosticAxis\": \"missingPrerequisite\", \"causalRationale\": \"Physical impossibility that contradicts basic electrical computer power requirements.\"}\n] -->\n\n### 1.",
           "Confuses cause and effect in state transitions"
         ],
         "missingPrerequisiteMap": {
@@ -169,7 +213,7 @@
         "learningRate": 0.25,
         "hintLadder": {
           "level0Reflective": "Reflective: What fundamental invariant governs Kernel Polling via IORING_SETUP_SQPOLL?",
-          "level1Directional": "Directional Clue: Examine how Kernel Polling via IORING_SETUP_SQPOLL handles boundary conditions: <!-- hgd:options: [\n  {\"optionId\": \"opt_a\", \"text\": \"The dedicated kernel thread reads submissions directly from shared RAM without syscalls, but permanently consumes an entire CPU core in a continuous poll loop.\", \"isCorrect\": true, \"causalRationale\": \"Accurately identifies the zero-syscall mechanism and its dedicated core resource trade-off.\"},\n  {\"optionId\": \"opt_b\", \"text\": \"The network card processes HTTP JSON requests directly on its onboard silicon without CPU intervention.\", \"isCorrect\": false, \"diagnosticAxis\": \"conceptGap\", \"causalRationale\": \"Confuses software kernel worker polling with smart NIC hardware offload.\"},\n  {\"optionId\": \"opt_c\", \"text\": \"SQPOLL eliminates all context switches by running user application code inside kernel ring 0.\", \"isCorrect\": false, \"diagnosticAxis\": \"reasoningBug\", \"causalRationale\": \"Violates operating system memory isolation and user-space privilege boundaries.\"}\n] -->\n\n### 1.",
+          "level1Directional": "Directional Clue: Examine how Kernel Polling via IORING_SETUP_SQPOLL handles boundary conditions: <!-- hgd:options: [\n  {\"optionId\": \"opt_a\", \"text\": \"The dedicated kernel thread reads submissions directly from shared RAM without syscalls, but permanently consumes an entire CPU core in a continuous poll loop.\", \"isCorrect\": true, \"causalRationale\": \"Accurately identifies the zero-syscall mechanism and its dedicated core resource trade-off.\"},\n  {\"optionId\": \"opt_b\", \"text\": \"The network card processes HTTP JSON requests directly on its onboard silicon without CPU intervention.\", \"isCorrect\": false, \"diagnosticAxis\": \"conceptGap\", \"causalRationale\": \"Confuses software kernel worker polling with smart NIC hardware offload.\"},\n  {\"optionId\": \"opt_c\", \"text\": \"SQPOLL eliminates all context switches by running user application code inside kernel ring 0.\", \"isCorrect\": false, \"diagnosticAxis\": \"reasoningBug\", \"causalRationale\": \"Violates operating system memory isolation and user-space privilege boundaries.\"},\n  {\"optionId\": \"opt_d\", \"text\": \"The kernel completely turns off all electricity to memory RAM to save power during submission polling.\", \"isCorrect\": false, \"diagnosticAxis\": \"missingPrerequisite\", \"causalRationale\": \"Physical impossibility that contradicts basic electrical computer power requirements.\"}\n] -->\n\n### 1.",
           "level2Constraint": "Constraint: Eliminate unconstrained assumptions. Ground truth: \"The dedicated kernel thread continuously reads submissions from shared memory without waiting for io_uring_enter syscalls, consuming an entire dedicated CPU core in a spin-poll loop.\"",
           "level3WorkedExample": "\"Worked Solution: In SQPOLL mode, submitting an I/O request requires only writing the SQE and updating sq_tail via atomic memory release. The kernel thread picks it up in sub-microsecond latency, achieving literally zero syscalls per I/O event at the cost of 100% load on the dedicated polling core.\""
         },
