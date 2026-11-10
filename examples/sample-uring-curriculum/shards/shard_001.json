@@ -26,7 +26,7 @@
         },
         "block2_intuitivePrototype": {
           "physicalObject": "Physical sandbox model",
-          "isomorphicMapping": "Bayangkan sebuah kantor pos besar. Di dalam kantor ada seorang juru ketik (aplikasi Anda di *User Space*), dan di halaman luar ada seorang kurir pengantar paket (kernel Linux yang mengendalikan kabel jaringan fisik).\n\nDi antara ruangan juru ketik dan halaman luar terpasang sebuah pintu gerbang besi lapis baja yang dijaga ketat oleh satpam bersenjata (*Kernel Protection Barrier*).\n\nDalam model lama (`epoll`), setiap kali juru ketik ingin mengirim satu lembar surat:\n1. Juru ketik harus berdiri dari mejanya, berjalan menuju pintu gerbang.\n2. Juru ketik mengetuk pintu, satpam memeriksa tanda pengenal dan paspor (pemeriksaan hak akses izin memori).\n3. Pintu gerbang dibuka, juru ketik menyerahkan satu surat kepada kurir.\n4. Juru ketik kembali ke mejanya dan mulai mengetik surat berikutnya.\n\nJika hanya ada 10 surat sehari, prosedur keamanan ini tidak terasa melelahkan. Tetapi bayangkan jika juru ketik harus mengirim 500.000 lembar surat setiap detik! Juru ketik akan pingsan karena waktunya habis terkuras hanya untuk berjalan bolak-balik mengetuk pintu gerbang satpam.\n\nSistem baru *io_uring* membuang ritual bolak-balik tersebut. Satpam memasang sebuah ban berjalan melingkar (*conveyor belt*) yang menembus celah bawah pintu gerbang. Juru ketik cukup meletakkan tumpukan surat di atas ban berjalan tanpa perlu berdiri, dan kurir di halaman luar mengambil surat tersebut secara mandiri. Pintu gerbang tidak pernah perlu dibuka lagi!\n\n```mermaid\nflowchart LR\n    subgraph Classical[\"Model Lama: Epoll (2 Syscalls Per Request)\"]\n        U1[\"Aplikasi User (Juru Ketik)\"] -->|Syscall read (Ketuk Pintu)| K1[\"Kernel Trap Barrier (\\tau_{trap})\"]\n        K1 -->|Ganti Konteks CPU| U2[\"Proses Dokumen JSON\"]\n        U2 -->|Syscall write (Ketuk Pintu)| K2[\"Kernel Trap Barrier (\\tau_{trap})\"]\n    end\n    subgraph Ring[\"Model io_uring: Ban Berjalan (Shared Memory)\"]\n        SQ[\"Submission Queue (Ban Kirim)\"] -->|Ambil Tanpa Gangguan| KW[\"Kernel Worker (Kurir Luar)\"]\n        KW -->|Taruh Bukti Selesai| CQ[\"Completion Queue (Ban Hasil)\"]\n    end\n```",
+          "isomorphicMapping": "Bayangkan sebuah kantor pos besar. Di dalam kantor ada seorang juru ketik (aplikasi Anda di *User Space*), dan di halaman luar ada seorang kurir pengantar paket (kernel Linux yang mengendalikan kabel jaringan fisik).\n\nDi antara ruangan juru ketik dan halaman luar terpasang sebuah pintu gerbang besi lapis baja yang dijaga ketat oleh satpam bersenjata (*Kernel Protection Barrier*).\n\nDalam model lama (`epoll`), setiap kali juru ketik ingin mengirim satu lembar surat:\n1. Juru ketik harus berdiri dari mejanya, berjalan menuju pintu gerbang.\n2. Juru ketik mengetuk pintu, satpam memeriksa tanda pengenal dan paspor (pemeriksaan hak akses izin memori).\n3. Pintu gerbang dibuka, juru ketik menyerahkan satu surat kepada kurir.\n4. Juru ketik kembali ke mejanya dan mulai mengetik surat berikutnya.\n\nJika hanya ada 10 surat sehari, prosedur keamanan ini tidak terasa melelahkan. Tetapi bayangkan jika juru ketik harus mengirim 500.000 lembar surat setiap detik! Juru ketik akan pingsan karena waktunya habis terkuras hanya untuk berjalan bolak-balik mengetuk pintu gerbang satpam.\n\nSistem baru *io_uring* membuang ritual bolak-balik tersebut. Satpam memasang sebuah ban berjalan melingkar (*conveyor belt*) yang menembus celah bawah pintu gerbang. Juru ketik cukup meletakkan tumpukan surat di atas ban berjalan tanpa perlu berdiri, dan kurir di halaman luar mengambil surat tersebut secara mandiri. Pintu gerbang tidak pernah perlu dibuka lagi!\n\n```mermaid\nflowchart LR\n    subgraph Classical[\"Model Lama: Epoll (2 Syscalls Per Request)\"]\n        U1[\"Aplikasi User (Juru Ketik)\"] -->|Syscall read (Ketuk Pintu)| K1[\"Kernel Trap Barrier ($$\\tau_{\\text{trap}}$$)\"]\n        K1 -->|Ganti Konteks CPU| U2[\"Proses Dokumen JSON\"]\n        U2 -->|Syscall write (Ketuk Pintu)| K2[\"Kernel Trap Barrier ($$\\tau_{\\text{trap}}$$)\"]\n    end\n    subgraph Ring[\"Model io_uring: Ban Berjalan (Shared Memory)\"]\n        SQ[\"Submission Queue (Ban Kirim)\"] -->|Ambil Tanpa Gangguan| KW[\"Kernel Worker (Kurir Luar)\"]\n        KW -->|Taruh Bukti Selesai| CQ[\"Completion Queue (Ban Hasil)\"]\n    end\n```",
           "deadlockResolution": "Resolves the deadlock identified in Block 1 through isomorphic interaction."
         },
         "block3_coreMechanics": {
@@ -59,15 +59,15 @@
               "physicalMeaning": "Jumlah transaksi permintaan HTTP JSON per detik (misal $500.000\\text{ RPS}$)."
             },
             {
-              "symbol": "\\tau_{switch}",
+              "symbol": "$\\tau_{\\text{switch}}$",
               "physicalMeaning": "Penalti latensi penyeberangan proteksi prosesor (berkisar antara 1.2 hingga 2.5 mikrodetik per transisi)."
             },
             {
-              "symbol": "2N \\cdot \\tau_{switch}",
+              "symbol": "$2N \\cdot \\tau_{\\text{switch}}$",
               "physicalMeaning": "Total waktu CPU yang terbuang percuma pada model klasik epoll (mencapai $1.000.000 \\times 1.5\\,\\mu\\text{s} = 1.5\\text{ detik}$ waktu inti prosesor)."
             },
             {
-              "symbol": "\\mathcal{O}(1)",
+              "symbol": "$\\mathcal{O}(1)$",
               "physicalMeaning": "Pengajuan tugas secara rombongan (*batch*) pada io_uring yang memangkas biaya transisi trap menjadi mendekati nol."
             }
           ]
@@ -146,7 +146,7 @@
           },
           {
             "representationType": "symbolic",
-            "content": "\\mathcal{O}(\\text{Syscall Overhead}) = 2N \\cdot \\tau_{\\text{switch}} \\xrightarrow{\\text{io\\_uring}} \\mathcal{O}(1)"
+            "content": "\\tau_{\\text{trap}}"
           }
         ],
         "proceduralPerturbations": [

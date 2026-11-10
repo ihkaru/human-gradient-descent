@@ -62,11 +62,11 @@
               "physicalMeaning": "Kapasitas total slot yang dipesan dalam memori RAM (wajib bilangan biner pangkat dua, misal $1024, 2048, 4096$)."
             },
             {
-              "symbol": "sq_tail",
+              "symbol": "$sq_tail$",
               "physicalMeaning": "Indeks atomik posisi pengajuan tugas yang dimajukan oleh aplikasi Rust."
             },
             {
-              "symbol": "sq_head",
+              "symbol": "$sq_head$",
               "physicalMeaning": "Indeks atomik posisi pengambilan tugas yang dimajukan oleh kernel Linux."
             },
             {

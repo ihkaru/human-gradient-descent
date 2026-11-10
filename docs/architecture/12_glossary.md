@@ -30,3 +30,21 @@
 | **Knowledge Subway Map** | Interactive transit-line visualization of the curriculum DAG displaying Core tracks, Depth Spiral tracks, and Isomorphic Bridges. |
 | **Cognitive Convergence Heatmap** | GitHub-style contribution matrix tracking daily training epochs, streaks, and invariant mastery levels using a 4-tier emerald scale. |
 | **Working Memory Budget** | Limiting challenge prompts to $\le 50$ words ($\le 2-3$ seconds) to avoid overloading the phonological working memory buffer. |
+
+---
+
+## 12.2 Standar Taksonomi Istilah Pendidikan Teknis (Instructional Design & CBE Taxonomy)
+
+Untuk mencegah kerancuan terminologis dan memastikan ketepatan akademik yang netral domain (tanpa mengikat sistem pada kata spesifik seperti "kuliah"):
+
+| Entitas Sistem | Istilah Teknis Pendidikan Resmi | Istilah Kolokial yang Dihindari | Definisi Standar Instruksional |
+|:---|:---|:---|:---|
+| **Program Instance** (`curriculumId`) | **Program Pembelajaran** (*Learning Program*) | ❌ Kurikulum (terlalu luas) / Mata Kuliah | Paket ajar terstruktur untuk menguasai satu domain kompetensi tertentu secara utuh. |
+| **Manifest Root** (`curriculum-manifest.json`) | **Cetak Biru Instruksional** (*Instructional Blueprint*) | ❌ RPS (terikat semester) / Daftar Isi | Dokumen desain instruksional yang memegang peta prasyarat global, pos checkpoint, dan kebijakan waktu. |
+| **Relasi Graf** (`dag.nodes` & `dag.edges`) | **Peta Jalur Prasyarat Kompetensi** (*Prerequisite Learning Map*) | ❌ Bagan Materi / Pohon Bab | Graf asiklik (DAG) yang mengunci urutan kausal kompetensi hulu ke hilir. |
+| **Simpul Kompetensi** (`CompetencyNode` di Shard) | **Unit Kompetensi** (*Competency Unit*) | ❌ Bab / Pertemuan Mingguan | Satuan terkecil yang mengisolasi dan menguji tepat satu invarian mekanistik tunggal (*monocentric*). |
+| **Capaian Kognitif** (`cognitiveLevel`) | **Tingkat Capaian Kognitif** (*Cognitive Mastery Level*) | ❌ Level Nilai | Klasifikasi kemampuan kognitif berdasarkan Taksonomi Bloom (*understand* s.d. *create*). |
+| **Konstruksi Mental** (Blok 1–4 UILA) | **Fase Pembentukan Skema Mental** (*Cognitive Schema Acquisition*) | ❌ Bahan Bacaan / Teori Pasif | Tahapan bertingkat membangun intuisi: Anomali $\to$ Prototipe Fisik $\to$ Invarian Kontras $\to$ Notasi Kontrak. |
+| **Uji Batas** (Blok 5 / `forwardPass`) | **Asesmen Diagnostik Kasus Batas** (*Boundary Stress-Test Probe*) | ❌ Kuis / PR / Latihan Soal | Penyelidikan respon model mental terhadap kondisi batas ekstrem ($0, \infty$) dengan hipotesis kausal. |
+| **Tangga Bantuan** (`backwardPass`) | **Perancah Progresif** (*Progressive Instructional Scaffolding*) | ❌ Kunci Jawaban / Bocoran | Intervensi minimal bertingkat (Refleksi $\to$ Arah $\to$ Batasan $\to$ Worked Example) sesuai ZPD Vygotsky. |
+| **Vektor Bobot** ($\Theta \in [0.0, 1.0]$) | **Vektor Penguasaan Kompetensi** (*Competency Mastery Vector*) | ❌ Nilai Rapor / IPK | Nilai peluang penguasaan invarian riil yang diperbarui melalui proses gradient descent kognitif. |

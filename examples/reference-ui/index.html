@@ -32,21 +32,21 @@
         </div>
       </div>
       <div class="header-controls">
-        <select id="select-curriculum" aria-label="Curriculum Domain">
-          <option value="quantum">Quantum Computing (STEM)</option>
-          <option value="law">Contract Law Basics (Humanities)</option>
-          <option value="uring">Rust io_uring Server (Systems)</option>
+        <select id="select-curriculum" aria-label="Program Pembelajaran (Learning Program)">
+          <option value="quantum">Program: Quantum Computing (STEM)</option>
+          <option value="law">Program: Contract Law Basics (Humanities)</option>
+          <option value="uring">Program: Rust io_uring Server (Systems)</option>
         </select>
-        <select id="select-pacing" aria-label="Pacing Mode">
+        <select id="select-pacing" aria-label="Mode Kecepatan (Pacing Mode)">
           <option value="time_bounded">Time-Bounded Sprint</option>
           <option value="self_paced">Self-Paced Mastery</option>
         </select>
         <div class="badge emerald">
-          <span>Mastered:</span>
+          <span>Dikuasai:</span>
           <strong id="stat-mastered">0 / 0</strong>
         </div>
         <div class="badge cyan">
-          <span>Progress:</span>
+          <span>Progres:</span>
           <strong id="stat-progress">0%</strong>
         </div>
       </div>
@@ -76,7 +76,7 @@
 
         <!-- Node Meta -->
         <div class="card-title">
-          <span id="node-title">Loading Competency Node...</span>
+          <span id="node-title">Memuat Unit Kompetensi...</span>
           <div style="display: flex; gap: 0.4rem;">
             <span id="node-level" class="badge cyan">understand</span>
             <span id="node-tier" class="badge amber">foundational_fluency</span>
@@ -91,7 +91,7 @@
               <line x1="12" y1="16" x2="12" y2="12"/>
               <line x1="12" y1="8" x2="12.01" y2="8"/>
             </svg>
-            <span>Intuitive Concept Primer (Grounding Anchor)</span>
+            <span>Jangkar Pemahaman Intuitif (Grounding Anchor)</span>
           </div>
           <div class="primer-content" id="primer-text">Loading concept primer...</div>
         </div>
@@ -102,7 +102,7 @@
         <!-- Forward Pass: Blok 5 Uji Tegangan Batas -->
         <div>
           <span style="font-size: 0.8rem; font-weight: 600; color: var(--accent-cyan); text-transform: uppercase;">
-            Blok 5: Uji Tegangan Batas (Boundary Stress-Test)
+            Blok 5: Asesmen Diagnostik Kasus Batas (Boundary Stress-Test)
           </span>
           <div class="prompt-box" id="prompt-text">
             Generating challenge prompt...
@@ -115,7 +115,7 @@
         <!-- Diagnostic Hypotheses (Multiple Choice with Causal Rationales) -->
         <div id="options-container" style="display: flex; flex-direction: column; gap: 0.65rem;">
           <span style="font-size: 0.8rem; font-weight: 600; color: var(--accent-amber); text-transform: uppercase;">
-            Select Predicted Causal Hypothesis:
+            Pilih Hipotesis Diagnostik (Diagnostic Causal Hypotheses):
           </span>
           <div id="options-list" class="options-list"></div>
         </div>
@@ -141,7 +141,7 @@
         <!-- 5-Axis Diagnostic Loss -->
         <div style="border-top: 1px solid var(--border-color); padding-top: 1rem;">
           <div class="card-title" style="margin-bottom: 0.75rem;">
-            <span>5-Axis Diagnostic Error Vector</span>
+            <span>Vektor Diagnosis Kesalahan (5-Axis Diagnostic Vector)</span>
             <span class="badge rose">Total Loss: <strong id="loss-total">1.00</strong></span>
           </div>
           <div class="loss-bar-container">
@@ -176,7 +176,7 @@
         <!-- Backward Pass Hint Ladder -->
         <div style="border-top: 1px solid var(--border-color); padding-top: 1rem;">
           <span style="font-size: 0.8rem; font-weight: 600; color: var(--accent-amber); text-transform: uppercase; margin-bottom: 0.5rem; display: block;">
-            Backward Pass: Progressive Hint Ladder (Credit Penalized)
+            Perancah Progresif: Progressive Hint Ladder (Credit Penalized)
           </span>
           <div class="hint-accordion">
             <div class="hint-item">
@@ -214,11 +214,11 @@
       <!-- Right Column: Frontier & Architecture Status -->
       <aside class="card" aria-label="Frontier Queue and Architecture">
         <div class="card-title">
-          <span>Active Frontier Queue</span>
-          <span class="badge cyan">DAG Status</span>
+          <span>Antrean Unit Siap Dikuasai (Active Frontier)</span>
+          <span class="badge cyan">Status Graf DAG</span>
         </div>
         <p style="font-size: 0.8rem; color: var(--text-muted);">
-          Nodes are dynamically unlocked as all prerequisite dependencies converge below error threshold.
+          Unit Kompetensi terbuka secara otomatis setelah seluruh prasyarat hulu berhasil dikuasai (Mastered).
         </p>
         <div id="frontier-nodes" class="frontier-list"></div>
 

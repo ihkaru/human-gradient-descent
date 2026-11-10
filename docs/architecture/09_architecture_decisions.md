@@ -69,3 +69,27 @@
 * **Context**: Learners require visual confirmation of incremental effort and daily streaks (*effort over innate ability*) without bloating bundle size.
 * **Decision**: Render a 4-tier emerald activity calendar using native CSS Grid and semantic HTML attributes, logging timestamps directly to `learner-state.json`.
 * **Consequences**: Zero third-party chart dependencies, $<1\text{ms}$ rendering, and complete offline responsiveness on mobile viewports.
+
+---
+
+## ADR-009: Educational Technology & CBE Taxonomy Alignment
+* **Status**: Accepted
+* **Context**: Informal terms like "curriculum" (often conflated with entire 4-year degree programs), "mata kuliah" (university-specific), or "bab" (publishing unit) create semantic confusion across corporate, medical, and technical disciplines.
+* **Decision**: Standardize on Competency-Based Education (CBE) and Instructional Systems Design (ISD) taxonomy:
+  - Macro catalog: **Program Pembelajaran** (*Learning Program*).
+  - Root manifest: **Cetak Biru Instruksional** (*Instructional Blueprint*).
+  - Graph topology: **Peta Jalur Prasyarat Kompetensi** (*Prerequisite Learning Map*).
+  - Sharded nodes: **Unit Kompetensi** (*Competency Unit*).
+  - Assessment: **Asesmen Diagnostik Kasus Batas** (*Boundary Stress-Test Probe*).
+  - Scaffolding: **Perancah Progresif** (*Progressive Instructional Scaffolding*).
+* **Consequences**: Establishes complete domain neutrality (applicable to STEM, corporate procurement, systems engineering, and law) without reliance on campus-specific vocabulary.
+
+---
+
+## ADR-010: Zero-Failure Math Delimiter Enforcement & Mermaid Sanitization
+* **Status**: Accepted
+* **Context**: Bare LaTeX notation symbols (e.g. `\tau_{switch}`, `\mathcal{O}(1)`) lacked `$` delimiters, causing KaTeX auto-render to skip them. Similarly, unescaped LaTeX escapes in Mermaid node labels caused browser lexer crashes and raw code fallbacks.
+* **Decision**:
+  1. Mandate deterministic wrapping of raw LaTeX symbols in `$...$` at compiler time and UI render time.
+  2. Implement client-side `sanitizeMermaidCode` to auto-wrap label math in `$$...$$` and provide a resilient fallback before rendering.
+* **Consequences**: Guarantees 100% deterministic, zero-crash rendering of complex mathematical notation and visual diagrams across all supported curricula.

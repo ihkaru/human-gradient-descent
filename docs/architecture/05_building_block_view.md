@@ -85,3 +85,9 @@ flowchart TD
 
 ### 10. `CurriculumAuditor`
 * **Responsibility**: Autonomous 3-tier evaluation engine executing sub-20ms deterministic AST static linting (schema validation, Tarjan SCC acyclicity, phonological working memory budgets <= 50 words, Causal Closure / zero orphan entities, 5-axis diagnostic MCQs, and contrasting cases), semantic causal oracle checks (isomorphic physical models, authentic cognitive traps vs strawmen, state prediction transfer tests), and adversarial virtual novice simulation protocols.
+
+### 11. `AutoRemediator`
+* **Responsibility**: Deterministic causal auto-patcher resolving working memory overflows, balancing 5-axis diagnostic distractors, and enforcing exact-one correct options without human intervention (`hgd remediate`).
+
+### 12. `DAGExporter`
+* **Responsibility**: Portable graph exporter generating standard GitHub-compatible Mermaid flowcharts and markdown topological matrices with dynamic learner mastery state overlays (`hgd export-dag`).

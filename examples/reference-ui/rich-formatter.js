@@ -138,20 +138,43 @@ export async function renderDisplayFormula(rawFormula, containerEl) {
   containerEl.innerHTML = `<code class="fallback-formula">${escapeHtml(formula)}</code>`;
 }
 
+export function sanitizeMermaidCode(rawCode) {
+  if (!rawCode) return "";
+  let code = rawCode;
+  // Convert raw LaTeX commands in node labels into $$...$$ so Mermaid with htmlLabels:true passes them to KaTeX
+  code = code.replace(/\["([^"]*?)"\]/g, (match, label) => {
+    if (label.includes("\\") && !label.includes("$$")) {
+      const fixed = label.replace(/\\([a-zA-Z]+)(_\{[^}]+\}|[a-zA-Z0-9_{}]+)?/g, (m) => `$$${m}$$`);
+      return `["${fixed}"]`;
+    }
+    return match;
+  });
+  return code;
+}
+
 export async function renderMermaidElement(code, containerEl) {
   if (!containerEl || !code) return;
   containerEl.className = "mermaid-diagram-box";
 
   if (window.mermaid) {
     const uniqueId = `mermaid-${Math.random().toString(36).slice(2, 9)}`;
+    const sanitized = sanitizeMermaidCode(code);
     try {
-      const { svg } = await window.mermaid.render(uniqueId, code);
+      const { svg } = await window.mermaid.render(uniqueId, sanitized);
       containerEl.innerHTML = svg;
       return;
     } catch (err) {
-      console.warn("Mermaid render error:", err);
-      containerEl.innerHTML = `<pre class="fallback-code">${escapeHtml(code)}</pre>`;
-      return;
+      console.warn("Mermaid render error, trying sanitized fallback:", err);
+      try {
+        const safeCode = code.replace(/\["([^"]*?)"\]/g, (_, l) => `["${l.replace(/[\\]/g, "").replace(/\{/g, "(").replace(/\}/g, ")")}"]`);
+        const { svg } = await window.mermaid.render(`${uniqueId}-fb`, safeCode);
+        containerEl.innerHTML = svg;
+        return;
+      } catch (err2) {
+        console.warn("Mermaid fallback error:", err2);
+        containerEl.innerHTML = `<pre class="fallback-code">${escapeHtml(code)}</pre>`;
+        return;
+      }
     }
   }
 

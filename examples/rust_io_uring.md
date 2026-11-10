@@ -43,9 +43,9 @@ Sistem baru *io_uring* membuang ritual bolak-balik tersebut. Satpam memasang seb
 ```mermaid
 flowchart LR
     subgraph Classical["Model Lama: Epoll (2 Syscalls Per Request)"]
-        U1["Aplikasi User (Juru Ketik)"] -->|Syscall read (Ketuk Pintu)| K1["Kernel Trap Barrier (\tau_{trap})"]
+        U1["Aplikasi User (Juru Ketik)"] -->|Syscall read (Ketuk Pintu)| K1["Kernel Trap Barrier ($$\tau_{\text{trap}}$$)"]
         K1 -->|Ganti Konteks CPU| U2["Proses Dokumen JSON"]
-        U2 -->|Syscall write (Ketuk Pintu)| K2["Kernel Trap Barrier (\tau_{trap})"]
+        U2 -->|Syscall write (Ketuk Pintu)| K2["Kernel Trap Barrier ($$\tau_{\text{trap}}$$)"]
     end
     subgraph Ring["Model io_uring: Ban Berjalan (Shared Memory)"]
         SQ["Submission Queue (Ban Kirim)"] -->|Ambil Tanpa Gangguan| KW["Kernel Worker (Kurir Luar)"]
@@ -74,9 +74,9 @@ $$\mathcal{O}(\text{Syscall Overhead}) = 2N \cdot \tau_{\text{switch}} \xrightar
 
 Persamaan di atas adalah kontrak penghematan biaya eksekusi sistem:
 * `N`: Jumlah transaksi permintaan HTTP JSON per detik (misal $500.000\text{ RPS}$).
-* `\tau_{switch}`: Penalti latensi penyeberangan proteksi prosesor (berkisar antara 1.2 hingga 2.5 mikrodetik per transisi).
-* `2N \cdot \tau_{switch}`: Total waktu CPU yang terbuang percuma pada model klasik epoll (mencapai $1.000.000 \times 1.5\,\mu\text{s} = 1.5\text{ detik}$ waktu inti prosesor).
-* `\mathcal{O}(1)`: Pengajuan tugas secara rombongan (*batch*) pada io_uring yang memangkas biaya transisi trap menjadi mendekati nol.
+* `$\tau_{\text{switch}}$`: Penalti latensi penyeberangan proteksi prosesor (berkisar antara 1.2 hingga 2.5 mikrodetik per transisi).
+* `$2N \cdot \tau_{\text{switch}}$`: Total waktu CPU yang terbuang percuma pada model klasik epoll (mencapai $1.000.000 \times 1.5\,\mu\text{s} = 1.5\text{ detik}$ waktu inti prosesor).
+* `$\mathcal{O}(1)$`: Pengajuan tugas secara rombongan (*batch*) pada io_uring yang memangkas biaya transisi trap menjadi mendekati nol.
 
 ### Glosarium & Jembatan Konsep SMA
 

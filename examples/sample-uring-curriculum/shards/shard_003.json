@@ -58,11 +58,11 @@
           "minimalFormalization": "Formula biaya transisi eksekusi sistem:\n\nKontrak aljabar kinerja sistem pada mode polling:",
           "termsDeconstruction": [
             {
-              "symbol": "t_{idle}",
+              "symbol": "$t_{idle}$",
               "physicalMeaning": "Durasi toleransi tidur thread kernel sebelum memasuki mode hemat daya (misalnya dikonfigurasi 2000 milidetik)."
             },
             {
-              "symbol": "\\Delta t_{inter-request}",
+              "symbol": "$\\Delta t_{inter-request}$",
               "physicalMeaning": "Waktu jeda antar kedatangan transaksi HTTP JSON dari jaringan."
             },
             {
@@ -70,7 +70,7 @@
               "physicalMeaning": "Kondisi mantap di mana aplikasi melayani ribuan klien tanpa satu pun penyeberangan proteksi prosesor."
             },
             {
-              "symbol": "IORING_SETUP_SQPOLL",
+              "symbol": "$IORING_SETUP_SQPOLL$",
               "physicalMeaning": "Bendera konfigurasi kernel saat inisialisasi cincin io_uring."
             }
           ]

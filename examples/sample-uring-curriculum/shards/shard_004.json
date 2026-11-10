@@ -59,11 +59,11 @@
           "minimalFormalization": "Formula penghematan lalu lintas bus memori:\n\nKontrak aljabar efisiensi memori perangkat keras:",
           "termsDeconstruction": [
             {
-              "symbol": "IORING_OP_SEND_ZC",
+              "symbol": "$IORING_OP_SEND_ZC$",
               "physicalMeaning": "Perintah operasi kernel io_uring untuk transmisi paket *zero-copy* langsung via pengontrol DMA."
             },
             {
-              "symbol": "Size_{payload}",
+              "symbol": "$Size_{payload}$",
               "physicalMeaning": "Ukuran byte dari dokumen payload JSON yang dikirimkan."
             },
             {
@@ -71,7 +71,7 @@
               "physicalMeaning": "Alokasi memori yang telah didaftarkan sebelumnya via `io_uring_register_buffers` untuk mengeliminasi pemetaan halaman dinamis."
             },
             {
-              "symbol": "CQE_F_MORE",
+              "symbol": "$CQE_F_MORE$",
               "physicalMeaning": "Bendera penyelesaian parsial yang mengindikasikan apakah buffer sudah aman digunakan kembali atau masih dipegang oleh perangkat keras."
             }
           ]

@@ -4,5 +4,7 @@ export declare function escapeHtml(str?: string | null): string;
 export declare function preprocessMathTokens(text?: string | null): string;
 export declare function formatRichText(rawText?: string | null): string;
 export declare function isMermaidCode(content: string): boolean;
+export declare function sanitizeMermaidCode(rawCode?: string | null): string;
+export declare function renderMermaidElement(code: string, containerEl: HTMLElement): Promise<void>;
 export declare function renderDisplayFormula(rawFormula: string, containerEl: HTMLElement): void;
 export declare function renderAllRichElements(rootEl: HTMLElement): Promise<void>;

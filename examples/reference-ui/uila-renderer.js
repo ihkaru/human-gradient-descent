@@ -38,12 +38,12 @@ export function renderHeatmap(state, containerId) {
   container.innerHTML = `
     <div class="heatmap-header">
       <span style="font-size: 0.8rem; font-weight: 700; text-transform: uppercase; color: var(--accent-emerald);">
-        Cognitive Convergence Heatmap
+        Peta Konvergensi Kognitif (Cognitive Convergence Heatmap)
       </span>
       <div class="heatmap-stats">
-        <span>Streak: <strong style="color: var(--text-color);">${streakDays} Days</strong></span>
+        <span>Streak: <strong style="color: var(--text-color);">${streakDays} Hari</strong></span>
         <span>Epochs: <strong style="color: var(--text-color);">${totalEpochs}</strong></span>
-        <span>Invariants Mastered: <strong style="color: var(--accent-emerald);">${masteredCount}</strong></span>
+        <span>Unit Dikuasai: <strong style="color: var(--accent-emerald);">${masteredCount}</strong></span>
       </div>
     </div>
     <div class="heatmap-grid">${cellsHtml}</div>
@@ -97,9 +97,13 @@ export function renderUILABlocks(node, containerId, onFocusTest) {
   let notationChips = "";
   if (b4?.termsDeconstruction) {
     for (const t of b4.termsDeconstruction) {
+      let sym = stripQuotes(t.symbol || "");
+      if ((sym.includes("\\") || sym.includes("_") || sym.includes("^")) && !sym.startsWith("$")) {
+        sym = `$${sym}$`;
+      }
       notationChips += `
         <div class="notation-chip">
-          <strong>${formatRichText(t.symbol)}:</strong> ${formatRichText(t.physicalMeaning)}
+          <strong>${formatRichText(sym)}:</strong> ${formatRichText(t.physicalMeaning)}
         </div>
       `;
     }
@@ -263,7 +267,7 @@ export function renderSubwayMap(node, containerId) {
 
   container.innerHTML = `
     <div style="font-size: 0.75rem; font-weight: 700; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.4rem;">
-      Curriculum Subway Map & Pathways (Click to Inspect)
+      Peta Jalur Prasyarat Kompetensi (Competency Pathways Map)
     </div>
     <div class="subway-map">
       <div class="subway-track interactive" id="subway-core">

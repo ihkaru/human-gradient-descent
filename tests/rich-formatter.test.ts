@@ -5,6 +5,7 @@ import {
   preprocessMathTokens,
   formatRichText,
   isMermaidCode,
+  sanitizeMermaidCode,
 } from "../examples/reference-ui/rich-formatter.js";
 
 describe("Rich Formatter & Parser Suite (Reference UI)", () => {
@@ -99,6 +100,21 @@ describe("Rich Formatter & Parser Suite (Reference UI)", () => {
     it("rejects non-Mermaid text or raw mathematical formulas", () => {
       expect(isMermaidCode("H|0\\rangle = \\frac{1}{\\sqrt{2}}|0\\rangle")).toBe(false);
       expect(isMermaidCode("Just normal explanation text")).toBe(false);
+    });
+  });
+
+  describe("sanitizeMermaidCode", () => {
+    it("wraps raw LaTeX commands in Mermaid node labels into $$ delimiters", () => {
+      const input = 'K1["Kernel Trap Barrier (\\tau_{trap})"]';
+      const output = sanitizeMermaidCode(input);
+      expect(output).toContain("$$");
+      expect(output).toBe('K1["Kernel Trap Barrier ($$\\tau_{trap}$$)"]');
+    });
+
+    it("preserves labels already properly wrapped in $$", () => {
+      const input = 'Sup["$$\\lvert \\psi \\rangle$$"]';
+      const output = sanitizeMermaidCode(input);
+      expect(output).toBe('Sup["$$\\lvert \\psi \\rangle$$"]');
     });
   });
 });
