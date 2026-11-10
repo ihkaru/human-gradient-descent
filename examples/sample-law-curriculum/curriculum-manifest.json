@@ -1,8 +1,8 @@
 {
   "schemaVersion": "2026.1",
   "curriculumId": "contract-law-basics",
-  "title": "Contract Law Foundations",
-  "description": "A comprehensive curriculum on mutual assent, consideration doctrine, material breach, and expectation damages compiled with the Human Gradient Descent paradigm.",
+  "title": "Contract Law Basics: Formation, Breach, and Remedies",
+  "description": "A foundational common-law jurisprudence curriculum compiled with the Human Gradient Descent paradigm. Explores objective mutual assent, consideration mechanics, material breach boundaries, and mitigation invariants in contract formation and dispute resolution.",
   "domain": "KnowledgeBase",
   "domainType": "general",
   "compositionalPrimitives": [
@@ -19,7 +19,7 @@
   "scale": {
     "totalNodes": 4,
     "totalShards": 4,
-    "approxWordCount": 3963,
+    "approxWordCount": 4253,
     "estimatedLearningHours": 1.4
   },
   "pacing": {

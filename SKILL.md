@@ -77,7 +77,14 @@ flowchart TD
      - Perbedaan jalur antara ekspektasi salah vs mekanisme fisik sebenarnya.
    * Diagram Mermaid menjembatani narasi analogi di Blok 2 dengan abstraksi formal di Blok 4, mengunci intuisi spasial-temporal pembelajar sebelum disajikan simbol matematika/steno.
 
-9. **Zero-Failure Math Delimiters & Mermaid Sanitization (ADR-010)**:
+9. **Deep Explanatory Narrative Invariant (> 3 Paragraphs per Block)**:
+   * **Mandatory Narrative Depth**: Setiap blok penjelasan (Blok 1, 2, 3, dan 4) **WAJIB** memuat minimal lebih dari 3 paragraf (artinya **minimal 4 paragraf**) narasi terstruktur yang relevan dan mendalam untuk membangun model mental yang utuh. Dilarang keras menyajikan penjelasan dangkal berupa 1–2 kalimat pendek:
+     - **Blok 1 (Pangkal Anomali)**: $\ge 4$ paragraf (Intuisi awal & asumsi awam $\to$ Konteks kecukupan cara lama $\to$ Titik kegagalan/ledakan kompleksitas saat diskalakan $\to$ Akar kausal perlunya primitif baru).
+     - **Blok 2 (Prototipe Intuitif)**: $\ge 4$ paragraf (Pengenalan objek fisik sandbox $\to$ Tuas/komponen interaktif model $\to$ Preservasi proporsi isomorfis dengan sistem nyata $\to$ Resolusi anomali secara fisik) didukung diagram Mermaid.
+     - **Blok 3 (Invarian & Operasi Inti)**: $\ge 4$ paragraf (Hukum kekekalan/ekuilibrium inti $\to$ Mekanisme transisi keadaan sistem $\to$ Batas kegagalan jika invarian dilanggar $\to$ Dekonstruksi jebakan pemikiran pemula vs realitas fisik) didukung Tabel Kontras.
+     - **Blok 4 (Notasi Sebagai Kontrak)**: $\ge 4$ paragraf (Urgensi formalisasi sebagai kontrak operasional $\to$ Korespondensi rumus dengan prototipe fisik $\to$ Makna fisik dan penalti variabel/konstanta $\to$ Jaminan keabsahan status sistem) didukung chip dekonstruksi simbol.
+
+10. **Zero-Failure Math Delimiters & Mermaid Sanitization (ADR-010)**:
    * **Mermaid Node Labels**: Any mathematical formula or LaTeX symbol inside a Mermaid node label `["..."]` **MUST** be explicitly wrapped in `$$...$$` (e.g., `["Kernel Trap ($$\\tau_{\\text{trap}}$$)"]`). **NEVER** write unescaped raw LaTeX backslashes or curly braces like `(\tau_{trap})` inside Mermaid labels.
    * **Notation Deconstruction Chips**: All mathematical symbols in `termsDeconstruction` must be wrapped in `$` delimiters (e.g., `$\tau_{\text{switch}}$`, `$\mathcal{O}(1)$`) so KaTeX auto-renders them with zero failure.
    * **Educational Taxonomy Compliance (ADR-009)**: Use formal Instructional Design / CBE terminology: *Program Pembelajaran* (Learning Program), *Cetak Biru Instruksional* (Instructional Blueprint), *Peta Jalur Prasyarat* (Prerequisite Map), *Unit Kompetensi* (Competency Unit). Avoid campus-specific terms like "kuliah" or vague terms like "bab".
@@ -93,6 +100,7 @@ Before releasing or synthesizing any curriculum, the agent must self-audit again
 | Apakah masalah di Blok 1 terasa nyata tanpa pembaca perlu tahu teorinya terlebih dahulu? | Pembaca akan membaca teks sebagai hafalan akademis, bukan solusi fungsional. | Tulis ulang Blok 1 menggunakan skenario operasional/kegagalan fisik sederhana. |
 | Bisakah pembaca memprediksi arah perubahan (naik/turun) tanpa melihat rumus di Blok 4? | Penjelasan mekanik di Blok 2 & 3 gagal total membangun intuisi. | Ganti analogi di Blok 2 dengan model spasial/aliran yang lebih ketat secara relasi (isomorphic). |
 | Apakah konsep dinamis/multi-langkah didukung diagram alur Mermaid di Blok 2/3? | Pembaca harus membayangkan aliran spasial di kepala secara abstrak (beban kognitif berlebih). | Sisipkan diagram Mermaid (`flowchart LR` atau `stateDiagram-v2`) untuk memetakan transisi status dan invarian secara visual. |
+| Apakah setiap blok penjelasan (Blok 1–4) memiliki minimal > 3 paragraf narasi terstruktur? | Penjelasan terpotong pendek (1–2 kalimat) gagal menanamkan model mental yang kokoh. | Kembangkan narasi menjadi minimal 4 paragraf utuh yang mengupas latar, mekanisme, batas, dan kontrak. |
 | Apakah ada simbol/istilah asing yang muncul tiba-tiba tanpa didekonstruksi? | Terjadi *split-attention effect* dan kepanikan kognitif. | Sisipkan jembatan penalaran atau hilangkan jargon yang tidak esensial. |
 | Apakah pembaca bisa menjawab pertanyaan di Blok 5 hanya dengan mengingat kata-kata di teks? | Pertanyaan evaluasi terlalu dangkal (hanya menguji memori, bukan model mental). | Ubah soal uji batas ke situasi baru (*transfer test*) yang belum pernah dicontohkan di teks. |
 | Apakah seluruh entitas, operator, dan konstanta di Blok 5 sudah memiliki padanan di Blok 2–4? | Terjadi *Orphan Probe Fallacy* dan rasa tidak adil pada pembelajar. | Masukkan analog fisik operator ke Blok 2 dan simbol steno ke Blok 4 sebelum mengujinya. |

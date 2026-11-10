@@ -15,7 +15,7 @@
         "hgd://knowledgebase/quantum-computing/node-001",
         "hgd://knowledgebase/quantum-computing/node-002"
       ],
-      "conceptSummary": "### 1. Pangkal Anomali\nDalam dunia komputasi klasik sehari-hari, tindakan menduplikasi data adalah hal yang paling sepele. Anda bisa menekan tombol `Ctrl+C` dan `Ctrl+V` untuk menyalin dokumen, lagu, atau video digital menjadi jutaan salinan identik tanpa merusak file aslinya sedikit pun.\n\nNamun saat Anda melangkah ke ranah kuantum, fondasi penyalinan ini hancur total. Alam semesta melarang keras pembuatan salinan identik dari suatu keadaan kuantum yang tidak diketahui! Anda tidak bisa membuat mesin fotokopi kuantum.\n\nMengapa hal ini menjadi anomali besar? Karena dalam pembuatan program komputer (misalnya penanganan kesalahan / *error correction* atau pencadangan memori / *backup*), menduplikasi data adalah pertahanan utama saat terjadi gangguan. Tanpa kemampuan menyalin bit, bagaimana arsitektur komputasi kuantum bisa melindungi informasi dari kerusakan?\n\n### 2. Prototipe Intuitif\nBayangkan sebuah gelembung busa sabun yang sangat tipis dan rapuh sedang melayang bergetar di udara. Bent",
+      "conceptSummary": "### 1. Pangkal Anomali\nDalam dunia komputasi digital klasik sehari-hari, tindakan menyalin data adalah operasi paling lumrah. Kita dapat menekan tombol `Ctrl+C` dan `Ctrl+V` untuk membuat jutaan salinan dokumen biner yang persis sama tanpa merusak file aslinya.\n\nNamun saat melangkah ke ranah informasi kuantum, kemampuan menyalin data ini runtuh total di hadapan hukum fisika fundamental.\n\nAlam semesta melarang keras pembuatan salinan identik dari suatu keadaan kuantum sembarang yang tidak diketahui tanpa menghancurkan keadaan aslinya.\n\nKetidakmampuan membuat salinan duplikat ini menjadi tantangan arsitektural masif dalam perancangan kode koreksi kesalahan kuantum (*quantum error correction*) dan pencadangan memori (*backup*), menuntut teknik perlindungan informasi baru tanpa kloning langsung.\n\n### 2. Prototipe Intuitif\nBayangkan sebuah gelembung busa sabun yang sangat tipis dan rapuh sedang melayang bergetar di udara laboratorium.\n\nPola getaran permukaan gelembung sabun tersebut membawa",
       "pacing": {
         "timeLimitSeconds": 60,
         "recommendedEpochs": 3,
@@ -26,69 +26,53 @@
         "block1_anomaly": {
           "groundState": "Initial state prior to Quantum No-Cloning Theorem.",
           "oldWay": "Conventional assumption or baseline approach.",
-          "breakdownPoint": "Dalam dunia komputasi klasik sehari-hari, tindakan menduplikasi data adalah hal yang paling sepele. Anda bisa menekan tombol `Ctrl+C` dan `Ctrl+V` untuk menyalin dokumen, lagu, atau video digital menjadi jutaan salinan identik tanpa merusak file aslinya sedikit pun.\n\nNamun saat Anda melangkah ke ranah kuantum, fondasi penyalinan ini hancur total. Alam semesta melarang keras pembuatan salinan identik dari suatu keadaan kuantum yang tidak diketahui! Anda tidak bisa membuat mesin fotokopi kuantum.\n\nMengapa hal ini menjadi anomali besar? Karena dalam pembuatan program komputer (misalnya penanganan kesalahan / *error correction* atau pencadangan memori / *backup*), menduplikasi data adalah pertahanan utama saat terjadi gangguan. Tanpa kemampuan menyalin bit, bagaimana arsitektur komputasi kuantum bisa melindungi informasi dari kerusakan?"
+          "breakdownPoint": "Dalam dunia komputasi digital klasik sehari-hari, tindakan menyalin data adalah operasi paling lumrah. Kita dapat menekan tombol `Ctrl+C` dan `Ctrl+V` untuk membuat jutaan salinan dokumen biner yang persis sama tanpa merusak file aslinya.\n\nNamun saat melangkah ke ranah informasi kuantum, kemampuan menyalin data ini runtuh total di hadapan hukum fisika fundamental.\n\nAlam semesta melarang keras pembuatan salinan identik dari suatu keadaan kuantum sembarang yang tidak diketahui tanpa menghancurkan keadaan aslinya.\n\nKetidakmampuan membuat salinan duplikat ini menjadi tantangan arsitektural masif dalam perancangan kode koreksi kesalahan kuantum (*quantum error correction*) dan pencadangan memori (*backup*), menuntut teknik perlindungan informasi baru tanpa kloning langsung."
         },
         "block2_intuitivePrototype": {
           "physicalObject": "Physical sandbox model",
-          "isomorphicMapping": "Bayangkan sebuah gelembung busa sabun yang sangat tipis dan rapuh sedang melayang bergetar di udara. Bentuk getaran permukaan gelembung tersebut membawa informasi rahasia yang unik.\n\nJika Anda ingin menduplikasi pola getaran gelembung itu ke gelembung kedua, mesin pencetak Anda harus menempelkan sensor fisik untuk mengukur lekukan permukaannya. Tetapi hukum alam menyatakan bahwa begitu sensor menyentuh permukaan gelembung sabun, gelembung itu seketika meletus dan musnah! Anda hanya mendapatkan satu angka kasar di titik sentuhan, sedangkan seluruh getaran halus di bagian lainnya lenyap selamanya.\n\n```mermaid\nflowchart TD\n    Original[\"Qubit Asli: |\\psi\\rangle = \\alpha|0\\rangle + \\beta|1\\rangle\"] --> Copier[\"Upaya Mesin Kloning Uniter U\"]\n    TargetBlank[\"Qubit Kosong: |0\\rangle\"] --> Copier\n    Copier -->|Linearitas Alami| LinOut[\"\\alpha|00\\rangle + \\beta|11\\rangle\"]\n    Copier -.->|Ekspektasi Salinan Sempurna| IdealOut[\"|\\psi\\rangle|\\psi\\rangle = \\alpha^2|00\\rangle + \\alpha\\beta|01\\rangle + \\alpha\\beta|10\\rangle + \\beta^2|11\\rangle\"]\n    LinOut -.->|Kontradiksi Suku Silang 2\\alpha\\beta \\neq 0| IdealOut\n```",
+          "isomorphicMapping": "Bayangkan sebuah gelembung busa sabun yang sangat tipis dan rapuh sedang melayang bergetar di udara laboratorium.\n\nPola getaran permukaan gelembung sabun tersebut membawa informasi amplitudo kuantum yang sangat presisi dan unik.\n\nJika Anda ingin menduplikasi pola getaran gelembung sabun tersebut ke gelembung kedua, mesin pencetak Anda harus menempelkan jarum sensor mekanis untuk membaca kontur lekukan permukaannya.\n\nNamun hukum alam menyatakan bahwa begitu jarum sensor menyentuh kulit gelembung sabun, gelembung itu seketika meletus hancur; Anda hanya memperoleh satu angka koordinat titik sentuh, sedangkan seluruh spektrum getaran halus lainnya musnah selamanya.\n\n```mermaid\nflowchart TD\n    Original[\"Qubit Asli: |\\\\psi\\\\rangle\"] --> Copier[\"Mesin Kloning Uniter U\"]\n    TargetBlank[\"Qubit Kosong: |0\\\\rangle\"] --> Copier\n    Copier -->|Linearitas| LinOut[\"\\\\alpha|00\\\\rangle + \\\\beta|11\\\\rangle\"]\n    Copier -.->|Ekspektasi Salinan| IdealOut[\"|\\\\psi\\\\rangle|\\\\psi\\\\rangle = \\\\alpha^2|00\\\\rangle + \\\\dots\"]\n    LinOut -.->|Kontradiksi 2\\\\alpha\\\\beta \\\\neq 0| IdealOut\n```",
           "deadlockResolution": "Resolves the deadlock identified in Block 1 through isomorphic interaction."
         },
         "block3_coreMechanics": {
-          "invariantProperty": "Invarian mutlak sistem ini adalah **Linearitas Operator Transformasi Kuantum (Linearity of Quantum Mechanics)**.\n\nDalam aljabar linear SMA, jika sebuah fungsi bersifat linear $f(x + y) = f(x) + f(y)$, maka fungsi tersebut tidak boleh memunculkan suku perkalian kuadrat secara tiba-tiba.",
+          "invariantProperty": "Invarian mutlak sistem ini adalah **Linearitas Operator Transformasi Kuantum (Linearity of Quantum Mechanics)**.\n\nDalam aljabar linear SMA, fungsi linear mematuhi sifat $f(x + y) = f(x) + f(y)$ dan dilarang memunculkan suku perkalian silang secara sembarangan.",
           "variableComponents": [
             "System inputs",
             "Observable state amplitudes"
           ],
           "contrastingCases": [
             {
-              "beginnerMisconception": "Jika sebuah mesin kloning uniter $U$ sanggup menyalin status basis $U(",
+              "beginnerMisconception": "Jika mesin kloning uniter sanggup menyalin status basis $U(",
               "physicalReality": "0\\rangle"
             },
             {
-              "beginnerMisconception": "Padahal, salinan sempurna sejati membutuhkan perkalian tensor $(\\alpha",
+              "beginnerMisconception": "Padahal salinan mandiri sejati membutuhkan perkalian tensor $(\\alpha",
               "physicalReality": "0\\rangle + \\beta"
             },
             {
               "beginnerMisconception": "Kita bisa mengukur qubit diam-diam lalu membuat tiruannya dengan komputer klasik.",
-              "physicalReality": "Setiap pengukuran meruntuhkan superposisi menjadi satu nilai tunggal, menghancurkan informasi fase kuantum asli."
+              "physicalReality": "Setiap pengukuran meruntuhkan superposisi, menghancurkan informasi fase kuantum asli."
             },
             {
-              "beginnerMisconception": "Teorema ini membuktikan bahwa komputer kuantum cacat dan tidak berguna.",
-              "physicalReality": "Teorema ini justru menjadi dasar keamanan mutlak Kriptografi Kuantum (QKD) yang mustahil disadap tanpa ketahuan."
-            },
-            {
-              "beginnerMisconception": "Mesin kloning gagal karena teknologi fabrikasi chip kuantum manusia belum maju.",
-              "physicalReality": "Larangan kloning adalah hukum fundamental aljabar alam semesta, bukan kelemahan rekayasa perangkat keras."
+              "beginnerMisconception": "Mesin kloning gagal karena teknologi fabrikasi chip kuantum belum maju.",
+              "physicalReality": "Larangan kloning adalah hukum fundamental aljabar alam, bukan kendala perangkat keras."
             }
           ]
         },
         "block4_notationContract": {
           "formulaOrCode": "U(|\\psi\\rangle |0\\rangle) = \\alpha|00\\rangle + \\beta|11\\rangle \\neq |\\psi\\rangle |\\psi\\rangle",
-          "minimalFormalization": "Teorema pelarangan kloning dirumuskan dalam kontrak pertidaksamaan linearitas aljabar:\n\nPersamaan kontrak formal ini membuktikan kemustahilan kloning secara matematis:",
+          "minimalFormalization": "Kemustahilan kloning kuantum diformalkan dalam kontrak pertidaksamaan linearitas aljabar uniter.\n\nHubungan pertidaksamaan di bawah ini merangkum pembuktian formal Teorema No-Cloning:\n\nPersamaan di atas menegaskan bahwa transformasi uniter $U$ hanya dapat menghasilkan kombinasi linear ortogonal, dan tidak mampu menghasilkan produk tensor mandiri $|\\psi\\rangle|\\psi\\rangle$ untuk status superposisi sembarang.\n\nKontrak pertidaksamaan ini memberikan jaminan matematis bagi protokol keamanan kriptografi kuantum bahwa setiap upaya penyadapan data kuantum akan selalu meninggalkan jejak gangguan yang terdeteksi seketika.",
           "termsDeconstruction": [
             {
               "symbol": "U",
-              "physicalMeaning": "Operator mesin kloning uniter yang diasumsikan ada."
+              "physicalMeaning": "Operator mesin kloning uniter yang diasumsikan ada secara hipotetis."
             },
             {
-              "symbol": "|\\psi>",
+              "symbol": "$|\\psi\\rangle$",
               "physicalMeaning": "Vektor keadaan superposisi sembarang $\\alpha|0\\rangle + \\beta|1\\rangle$."
             },
             {
-              "symbol": "|0>",
-              "physicalMeaning": "Qubit target awal yang disiapkan sebagai kertas kosong."
-            },
-            {
-              "symbol": "\\alpha|00> + \\beta|11>",
-              "physicalMeaning": "Hasil wajib berdasarkan prinsip linearitas mekanika kuantum."
-            },
-            {
-              "symbol": "|\\psi>|\\psi>",
-              "physicalMeaning": "Hasil salinan mandiri yang diharapkan pengamat."
-            },
-            {
-              "symbol": "\\neq",
-              "physicalMeaning": "Tanda ketidaksamaan mutlak akibat adanya suku silang $2\\alpha\\beta|01\\rangle \\neq 0$."
+              "symbol": "$\\neq$",
+              "physicalMeaning": "Tanda ketidaksamaan mutlak akibat adanya suku silang non-nol $2\\alpha\\beta|01\\rangle \\neq 0$."
             }
           ]
         }
@@ -119,35 +103,15 @@
       "glossary": [
         {
           "term": "No-Cloning Theorem",
-          "definition": "Teorema bahwa tidak ada transformasi uniter yang dapat menduplikasi keadaan kuantum sembarang",
-          "highSchoolAnchor": "Melukis bayangan asap di udara; begitu kuas menyentuh asap, bentuk asli asap buyar tertiup angin"
-        },
-        {
-          "term": "Linearitas (Linearity)",
-          "definition": "Sifat pemetaan matematis yang mempertahankan penjumlahan dan perkalian skalar",
-          "highSchoolAnchor": "Fungsi garis lurus $f(x) = ax$ di mana $f(x_1 + x_2) = f(x_1) + f(x_2)$ tanpa suku kuadrat lengkung"
-        },
-        {
-          "term": "Vektor Basis",
-          "definition": "Himpunan vektor satuan ortogonal yang menjadi fondasi pembentuk seluruh ruang vektor",
-          "highSchoolAnchor": "Sumbu koordinat panah $\\hat{i}$ dan $\\hat{j}$ dalam pelajaran vektor matematika SMA"
-        },
-        {
-          "term": "Kriptografi Kuantum (QKD)",
-          "definition": "Protokol distribusi kunci enkripsi rahasia yang dilindungi oleh teorema no-cloning",
-          "highSchoolAnchor": "Amplop surat bersegel lilin yang hancur berkeping-keping jika ada pihak ketiga yang mencoba mengintip"
-        },
-        {
-          "term": "Perkalian Tensor (⊗)",
-          "definition": "Operasi penggabungan dua ruang vektor independen menjadi satu ruang gabungan berdimensi tinggi",
-          "highSchoolAnchor": "Menggabungkan kemungkinan melempar dua buah koin sekaligus ($2 \\times 2 = 4$ hasil kombinasi)"
+          "definition": "Teorema transformasi uniter dilarang menduplikasi status sembarang",
+          "highSchoolAnchor": "Mencoba melukis asap di udara; begitu kuas menyentuh asap, bentuk aslinya buyar"
         }
       ],
       "variationProbes": {
         "conceptualVariants": [
           {
             "representationType": "verbal",
-            "content": "| Larangan kloning adalah hukum fundamental aljabar alam semesta, bukan kelemahan rekayasa perangkat keras."
+            "content": "Namun saat melangkah ke ranah informasi kuantum, kemampuan menyalin data ini runtuh total di hadapan hukum fisika fundamental."
           },
           {
             "representationType": "symbolic",
@@ -166,7 +130,7 @@
       "forwardPass": {
         "probeType": "prediction_what_if",
         "microPrimer": "\"Classical data can be duplicated endlessly. Quantum mechanics requires all transformations to be linear. A cloning operator would have to clone both basis states and arbitrary linear combinations, creating mathematical contradictions with unitarity.\"",
-        "readingContext": "### 1. Pangkal Anomali\nDalam dunia komputasi klasik sehari-hari, tindakan menduplikasi data adalah hal yang paling sepele. Anda bisa menekan tombol `Ctrl+C` dan `Ctrl+V` untuk menyalin dokumen, lagu, atau video digital menjadi jutaan salinan identik tanpa merusak file aslinya sedikit pun.\n\nNamun saat Anda melangkah ke ranah kuantum, fondasi penyalinan ini hancur total. Alam semesta melarang keras pembuatan salinan identik dari suatu keadaan kuantum yang tidak diketahui! Anda tidak bisa membuat m",
+        "readingContext": "### 1. Pangkal Anomali\nDalam dunia komputasi digital klasik sehari-hari, tindakan menyalin data adalah operasi paling lumrah. Kita dapat menekan tombol `Ctrl+C` dan `Ctrl+V` untuk membuat jutaan salinan dokumen biner yang persis sama tanpa merusak file aslinya.\n\nNamun saat melangkah ke ranah informasi kuantum, kemampuan menyalin data ini runtuh total di hadapan hukum fisika fundamental.\n\nAlam semesta melarang keras pembuatan salinan identik dari suatu keadaan kuantum sembarang yang tidak diketah",
         "prompt": "\"Predict what mathematical contradiction occurs if a unitary operator U clones an arbitrary unknown superposition state alpha|0> + beta|1>.\"",
         "options": [
           {
@@ -208,7 +172,7 @@
       },
       "lossRubric": {
         "conceptGapCriteria": [
-          "Fails to identify core mechanism: | Larangan kloning adalah hukum fundamental aljabar alam semesta, bukan kelemahan rekayasa perangkat keras.",
+          "Fails to identify core mechanism: Namun saat melangkah ke ranah informasi kuantum, kemampuan menyalin data ini runtuh total di hadapan hukum fisika fundamental.",
           "Confuses cause and effect in state transitions"
         ],
         "missingPrerequisiteMap": {
@@ -229,7 +193,7 @@
         "learningRate": 0.25,
         "hintLadder": {
           "level0Reflective": "Reflective: What fundamental invariant governs Quantum No-Cloning Theorem?",
-          "level1Directional": "Directional Clue: Examine how Quantum No-Cloning Theorem handles boundary conditions: | Larangan kloning adalah hukum fundamental aljabar alam semesta, bukan kelemahan rekayasa perangkat keras.",
+          "level1Directional": "Directional Clue: Examine how Quantum No-Cloning Theorem handles boundary conditions: Namun saat melangkah ke ranah informasi kuantum, kemampuan menyalin data ini runtuh total di hadapan hukum fisika fundamental.",
           "level2Constraint": "Constraint: Eliminate unconstrained assumptions. Ground truth: \"Linearity requires U(|psi>|0>) = alpha|00> + beta|11>, whereas a true copy requires (alpha|0> + beta|1>)(alpha|0> + beta|1>) containing cross-terms 2 alpha beta |01>, violating unitarity.\"",
           "level3WorkedExample": "\"Worked Solution: By linearity, U(alpha|0> + beta|1>)|0> = alpha|00> + beta|11>. But a cloned state requires |psi>|psi> = alpha^2|00> + alpha beta|01> + alpha beta|10> + beta^2|11>. Equating the two yields cross-terms 2 alpha beta = 0, which fails for arbitrary superpositions.\""
         },
@@ -245,7 +209,7 @@
         {
           "sourceRef": "markdown-source",
           "locationTag": "Section: Quantum No-Cloning Theorem",
-          "verbatimQuote": "### 1. Pangkal Anomali\nDalam dunia komputasi klasik sehari-hari, tindakan menduplikasi data adalah h"
+          "verbatimQuote": "### 1. Pangkal Anomali\nDalam dunia komputasi digital klasik sehari-hari, tindakan menyalin data adal"
         }
       ]
     }

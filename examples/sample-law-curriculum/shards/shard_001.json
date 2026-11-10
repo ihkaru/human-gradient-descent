@@ -22,15 +22,15 @@
         "block1_anomaly": {
           "groundState": "Initial state prior to Objective Mutual Assent.",
           "oldWay": "Conventional assumption or baseline approach.",
-          "breakdownPoint": "Dalam kehidupan bermasyarakat, kita sering mengira bahwa kesepakatan hukum yang sah mensyaratkan adanya kesamaan isi pikiran batiniah (*subjective meeting of the minds*). Kita membayangkan bahwa kedua belah pihak harus sama-sama memiliki niat tulus dari lubuk hati terdalam.\n\nNamun anggapan ini runtuh seketika dalam transaksi nyata. Bayangkan jika seseorang menuliskan surat jual beli tanah secara resmi, menyepakati harga, dan menandatanganinya di atas materai, namun beberapa minggu kemudian ia menolak menyerahkan sertifikat tanah dengan dalih: *\"Waktu itu saya hanya bercanda di dalam hati; saya tidak benar-benar berniat menjual tanah saya!\"* (seperti dalam kasus hukum terkenal *Lucy v. Zehmer*).\n\nJika pengadilan mengizinkan orang membatalkan perjanjian hanya dengan mengklaim bahwa hatinya sedang bercanda, maka seluruh roda ekonomi perdagangan akan hancur. Pengadilan manusia tidak memiliki teknologi untuk membelah tengkorak kepala seseorang dan membaca apa yang ia pikirkan di dalam hatinya secara rahasia."
+          "breakdownPoint": "Dalam kehidupan bermasyarakat, kita sering mengira bahwa kesepakatan hukum yang sah mensyaratkan adanya kesamaan isi pikiran batiniah (*subjective meeting of the minds*). Kita membayangkan bahwa kedua belah pihak harus sama-sama memiliki niat tulus dari lubuk hati terdalam.\n\nPemikiran awam ini awalnya tampak memadai dalam relasi pertemanan akrab di mana kepercayaan timbal balik terjaga secara informal. Namun anggapan ini runtuh seketika saat diterapkan pada transaksi perniagaan dan perdagangan nyata.\n\nBayangkan jika seseorang menuliskan surat jual beli tanah secara resmi, menyepakati harga, dan menandatanganinya di atas materai, namun beberapa minggu kemudian ia menolak menyerahkan sertifikat tanah dengan dalih: *\"Waktu itu saya hanya bercanda di dalam hati; saya tidak benar-benar berniat menjual tanah saya!\"* (seperti dalam kasus hukum terkenal *Lucy v. Zehmer*).\n\nJika pengadilan mengizinkan orang membatalkan perjanjian hanya dengan mengklaim bahwa hatinya sedang bercanda, maka seluruh roda ekonomi perdagangan akan hancur. Pengadilan manusia tidak memiliki teknologi untuk membelah tengkorak kepala seseorang dan membaca isi hatinya; oleh karena itu kesepakatan hukum wajib ditambatkan pada manifestasi lahiriah yang tampak nyata."
         },
         "block2_intuitivePrototype": {
           "physicalObject": "Physical sandbox model",
-          "isomorphicMapping": "Bayangkan sebuah cermin pantulan di atas meja kasir toko swalayan.\n\nCermin kasir tersebut hanya bisa merekam apa yang tampak secara fisik di depan mata: tangan pembeli yang meletakkan uang tunai di atas meja, bibir yang mengucapkan kata setuju, dan pena yang menandatangani tanda terima. Cermin tidak bisa melihat apakah di dalam hati pembeli tersebut ia sedang menggerutu, bercanda, atau melamun.\n\nHukum bertindak persis seperti cermin kasir tersebut. Hukum tidak menilai apa yang Anda bisikkan di dalam hati; hukum menilai apa yang dilihat dan didengar oleh seorang \"Orang Wajar\" (*Reasonable Person*) yang berada di ruangan tersebut.\n\n```mermaid\nflowchart LR\n    Manifestation[\"Tindakan Nyata Lahiriah: Tanda Tangan & Kata-Kata Jelas\"] --> ObjectiveMirror[\"Cermin Pengamat Wajar (Reasonable Person)\"]\n    ObjectiveMirror --> ValidContract[\"Kontrak Sah Mengikat Secara Hukum (Enforceable)\"]\n    SecretThought[\"Niat Rahasia / Candaan di Dalam Hati\"] -.->|Ditolak Pengadilan| ObjectiveMirror\n```",
+          "isomorphicMapping": "Bayangkan sebuah cermin pantulan di atas meja kasir toko swalayan.\n\nCermin kasir tersebut hanya bisa merekam apa yang tampak secara fisik di depan mata: tangan pembeli yang meletakkan uang tunai di atas meja, bibir yang mengucapkan kata setuju, dan pena yang menandatangani tanda terima. Cermin tidak bisa melihat apakah di dalam hati pembeli tersebut ia sedang menggerutu, bercanda, atau melamun.\n\nHukum bertindak persis seperti cermin kasir tersebut. Hukum tidak menilai apa yang Anda bisikkan di dalam hati; hukum menilai apa yang dilihat dan didengar oleh seorang \"Orang Wajar\" (*Reasonable Person*) yang berada di ruangan tersebut.\n\nJika gerak-gerik fisik, kata-kata yang diucapkan, dan tulisan yang ditandatangani mencerminkan transaksi serius di mata pengamat wajar, maka cermin merekam terjadinya kesepakatan sah yang mengikat kedua belah pihak tanpa celah keraguan subjektif.\n\n```mermaid\nflowchart LR\n    Manifestation[\"Tindakan Nyata Lahiriah: Tanda Tangan & Kata-Kata Jelas\"] --> ObjectiveMirror[\"Cermin Pengamat Wajar (Reasonable Person)\"]\n    ObjectiveMirror --> ValidContract[\"Kontrak Sah Mengikat Secara Hukum (Enforceable)\"]\n    SecretThought[\"Niat Rahasia / Candaan di Dalam Hati\"] -.->|Ditolak Pengadilan| ObjectiveMirror\n```",
           "deadlockResolution": "Resolves the deadlock identified in Block 1 through isomorphic interaction."
         },
         "block3_coreMechanics": {
-          "invariantProperty": "Invarian mutlak sistem ini adalah **Teori Objektif Perjanjian (Objective Theory of Contracts)**: keabsahan suatu kesepakatan hukum diukur semata-mata dari manifestasi lahiriah yang dapat ditangkap oleh akal sehat orang wajar (*reasonable person*), bukan dari niat subjektif atau reservasi mental rahasia yang tidak diucapkan.\n\nJika kata-kata dan tindakan Anda menunjukkan kesungguhan seorang penjual yang wajar, maka Anda terikat secara hukum, terlepas dari apa pun lelucon batin yang Anda simpan di dalam kepala.",
+          "invariantProperty": "Invarian mutlak sistem ini adalah **Teori Objektif Perjanjian (Objective Theory of Contracts)**: keabsahan suatu kesepakatan hukum diukur semata-mata dari manifestasi lahiriah yang dapat ditangkap oleh akal sehat orang wajar (*reasonable person*).\n\nKeterikatan hukum tidak bertumpu pada niat subjektif atau reservasi mental rahasia yang tidak diucapkan. Jika kata-kata dan tindakan Anda menunjukkan kesungguhan seorang penjual yang wajar, maka Anda terikat secara hukum, terlepas dari apa pun lelucon batin yang Anda simpan di dalam kepala.\n\nPihak lawan berhak mengandalkan tanda-tanda eksternal tersebut untuk mulai menanamkan modal, mengatur logistik, dan mengalokasikan sumber daya tanpa rasa cemas akan pembatalan sepihak.\n\nPemula sering mengira bahwa iktikad batiniah adalah penentu tunggal, padahal kepastian hukum perdata modern mengunci manifestasi obyektif sebagai invarian tertinggi guna mencegah kekacauan dalam lalu lintas bisnis.",
           "variableComponents": [
             "System inputs",
             "Observable state amplitudes"
@@ -52,7 +52,7 @@
         },
         "block4_notationContract": {
           "formulaOrCode": "K = Offer(O) + Acceptance(A)",
-          "minimalFormalization": "Kesepakatan objektif dirumuskan dalam kontrak steno:\n\nPersamaan formal di atas merangkum syarat pembentukan kontrak:",
+          "minimalFormalization": "Formalisasi pembentukan kontrak dibutuhkan untuk menetapkan batas tegas kapan sebuah dialog informal bertransformasi menjadi ikatan hukum yang mengikat.\n\nPersamaan aljabar hukum di bawah ini merangkum kontrak pembentukan perjanjian yang sah:\n\nPersamaan di atas menetapkan bahwa kontrak ($K$) lahir seketika saat penawaran definitif ($Offer$) disambut oleh penerimaan tegas yang setara ($Acceptance$) tanpa adanya modifikasi syarat.\n\nDengan mengunci persamaan ini, pengadilan tidak perlu berspekulasi mengenai motif psikologis para pihak; pembuktian cukup difokuskan pada ketersediaan bukti penawaran obyektif dan penerimaan lahiriah yang kongruen.",
           "termsDeconstruction": [
             {
               "symbol": "K",
@@ -99,33 +99,23 @@
       "glossary": [
         {
           "term": "Objective Mutual Assent",
-          "definition": "Kesepakatan bersama yang dinilai dari kata-kata dan perbuatan lahiriah yang tampak",
-          "highSchoolAnchor": "Mengacungkan tangan dan menyebut \"Saya beli\" di kantin sekolah; penjual menganggap transaksi sah"
+          "definition": "Kesepakatan bersama yang dinilai dari kata-kata dan perbuatan lahiriah",
+          "highSchoolAnchor": "Mengacungkan tangan dan menyebut \"Beli\" di kantin; penjual menganggap transaksi sah"
         },
         {
           "term": "Reasonable Person",
-          "definition": "Standar hipotetis orang berakal sehat dengan kehati-hatian dan pertimbangan wajar",
-          "highSchoolAnchor": "Teman sekelas yang berpikiran logis dan tidak mudah tertipu oleh alasan aneh"
+          "definition": "Standar hipotetis orang berakal sehat dengan kehati-hatian wajar",
+          "highSchoolAnchor": "Teman sekelas yang berpikiran logis dan tidak mudah tertipu oleh alasan bercanda"
         },
         {
           "term": "Lucy v. Zehmer",
-          "definition": "Kasus hukum penting tahun 1954 yang menetapkan objektivitas kontrak di atas candaan rahasia",
-          "highSchoolAnchor": "Peristiwa nyata di mana perjanjian di atas serbet restoran tetap sah karena tampak serius"
+          "definition": "Kasus hukum penting tahun 1954 yang menetapkan objektivitas kontrak",
+          "highSchoolAnchor": "Perjanjian di atas serbet restoran tetap sah mengikat karena tampak serius bagi pembeli"
         },
         {
           "term": "Offer (Penawaran)",
-          "definition": "Pernyataan kesediaan untuk terikat pada syarat tertentu jika pihak lain menyetujuinya",
+          "definition": "Pernyataan kesediaan terikat pada syarat tertentu jika pihak lain setuju",
           "highSchoolAnchor": "Murid yang menawarkan pensilnya seharga Rp 5.000 kepada teman sebangkunya"
-        },
-        {
-          "term": "Acceptance (Penerimaan)",
-          "definition": "Pernyataan persetujuan tanpa syarat terhadap seluruh butir penawaran yang diajukan",
-          "highSchoolAnchor": "Teman sebangku yang langsung menyerahkan uang Rp 5.000 dan mengambil pensil tersebut"
-        },
-        {
-          "term": "Subjective Intent",
-          "definition": "Niat, maksud, atau pikiran tersembunyi di dalam batin seseorang yang tidak diungkapkan",
-          "highSchoolAnchor": "Memikirkan lelucon April Mop di dalam hati tanpa memberi tahu siapa pun"
         }
       ],
       "variationProbes": {

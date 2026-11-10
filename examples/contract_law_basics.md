@@ -1,6 +1,6 @@
-# Contract Law Foundations
+# Contract Law Basics: Formation, Breach, and Remedies
 
-A comprehensive curriculum on mutual assent, consideration doctrine, material breach, and expectation damages compiled with the Human Gradient Descent paradigm.
+A foundational common-law jurisprudence curriculum compiled with the Human Gradient Descent paradigm. Explores objective mutual assent, consideration mechanics, material breach boundaries, and mitigation invariants in contract formation and dispute resolution.
 
 ## Objective Mutual Assent
 <!-- hgd:tier: 1_foundational_fluency -->
@@ -19,9 +19,11 @@ A comprehensive curriculum on mutual assent, consideration doctrine, material br
 ### 1. Pangkal Anomali
 Dalam kehidupan bermasyarakat, kita sering mengira bahwa kesepakatan hukum yang sah mensyaratkan adanya kesamaan isi pikiran batiniah (*subjective meeting of the minds*). Kita membayangkan bahwa kedua belah pihak harus sama-sama memiliki niat tulus dari lubuk hati terdalam.
 
-Namun anggapan ini runtuh seketika dalam transaksi nyata. Bayangkan jika seseorang menuliskan surat jual beli tanah secara resmi, menyepakati harga, dan menandatanganinya di atas materai, namun beberapa minggu kemudian ia menolak menyerahkan sertifikat tanah dengan dalih: *"Waktu itu saya hanya bercanda di dalam hati; saya tidak benar-benar berniat menjual tanah saya!"* (seperti dalam kasus hukum terkenal *Lucy v. Zehmer*).
+Pemikiran awam ini awalnya tampak memadai dalam relasi pertemanan akrab di mana kepercayaan timbal balik terjaga secara informal. Namun anggapan ini runtuh seketika saat diterapkan pada transaksi perniagaan dan perdagangan nyata.
 
-Jika pengadilan mengizinkan orang membatalkan perjanjian hanya dengan mengklaim bahwa hatinya sedang bercanda, maka seluruh roda ekonomi perdagangan akan hancur. Pengadilan manusia tidak memiliki teknologi untuk membelah tengkorak kepala seseorang dan membaca apa yang ia pikirkan di dalam hatinya secara rahasia.
+Bayangkan jika seseorang menuliskan surat jual beli tanah secara resmi, menyepakati harga, dan menandatanganinya di atas materai, namun beberapa minggu kemudian ia menolak menyerahkan sertifikat tanah dengan dalih: *"Waktu itu saya hanya bercanda di dalam hati; saya tidak benar-benar berniat menjual tanah saya!"* (seperti dalam kasus hukum terkenal *Lucy v. Zehmer*).
+
+Jika pengadilan mengizinkan orang membatalkan perjanjian hanya dengan mengklaim bahwa hatinya sedang bercanda, maka seluruh roda ekonomi perdagangan akan hancur. Pengadilan manusia tidak memiliki teknologi untuk membelah tengkorak kepala seseorang dan membaca isi hatinya; oleh karena itu kesepakatan hukum wajib ditambatkan pada manifestasi lahiriah yang tampak nyata.
 
 ### 2. Prototipe Intuitif
 Bayangkan sebuah cermin pantulan di atas meja kasir toko swalayan.
@@ -29,6 +31,8 @@ Bayangkan sebuah cermin pantulan di atas meja kasir toko swalayan.
 Cermin kasir tersebut hanya bisa merekam apa yang tampak secara fisik di depan mata: tangan pembeli yang meletakkan uang tunai di atas meja, bibir yang mengucapkan kata setuju, dan pena yang menandatangani tanda terima. Cermin tidak bisa melihat apakah di dalam hati pembeli tersebut ia sedang menggerutu, bercanda, atau melamun.
 
 Hukum bertindak persis seperti cermin kasir tersebut. Hukum tidak menilai apa yang Anda bisikkan di dalam hati; hukum menilai apa yang dilihat dan didengar oleh seorang "Orang Wajar" (*Reasonable Person*) yang berada di ruangan tersebut.
+
+Jika gerak-gerik fisik, kata-kata yang diucapkan, dan tulisan yang ditandatangani mencerminkan transaksi serius di mata pengamat wajar, maka cermin merekam terjadinya kesepakatan sah yang mengikat kedua belah pihak tanpa celah keraguan subjektif.
 
 ```mermaid
 flowchart LR
@@ -38,9 +42,13 @@ flowchart LR
 ```
 
 ### 3. Invarian & Operasi Inti
-Invarian mutlak sistem ini adalah **Teori Objektif Perjanjian (Objective Theory of Contracts)**: keabsahan suatu kesepakatan hukum diukur semata-mata dari manifestasi lahiriah yang dapat ditangkap oleh akal sehat orang wajar (*reasonable person*), bukan dari niat subjektif atau reservasi mental rahasia yang tidak diucapkan.
+Invarian mutlak sistem ini adalah **Teori Objektif Perjanjian (Objective Theory of Contracts)**: keabsahan suatu kesepakatan hukum diukur semata-mata dari manifestasi lahiriah yang dapat ditangkap oleh akal sehat orang wajar (*reasonable person*).
 
-Jika kata-kata dan tindakan Anda menunjukkan kesungguhan seorang penjual yang wajar, maka Anda terikat secara hukum, terlepas dari apa pun lelucon batin yang Anda simpan di dalam kepala.
+Keterikatan hukum tidak bertumpu pada niat subjektif atau reservasi mental rahasia yang tidak diucapkan. Jika kata-kata dan tindakan Anda menunjukkan kesungguhan seorang penjual yang wajar, maka Anda terikat secara hukum, terlepas dari apa pun lelucon batin yang Anda simpan di dalam kepala.
+
+Pihak lawan berhak mengandalkan tanda-tanda eksternal tersebut untuk mulai menanamkan modal, mengatur logistik, dan mengalokasikan sumber daya tanpa rasa cemas akan pembatalan sepihak.
+
+Pemula sering mengira bahwa iktikad batiniah adalah penentu tunggal, padahal kepastian hukum perdata modern mengunci manifestasi obyektif sebagai invarian tertinggi guna mencegah kekacauan dalam lalu lintas bisnis.
 
 | Apa yang Dipikirkan Pemula (Salah) | Apa yang Sebenarnya Terjadi dalam Model Mental |
 |---|---|
@@ -49,10 +57,15 @@ Jika kata-kata dan tindakan Anda menunjukkan kesungguhan seorang penjual yang wa
 | Pengadilan wajib memanggil saksi paranormal untuk membaca isi hati terdakwa. | Pengadilan hanya memeriksa bukti fisik rekaman kata-kata, tindakan, dan teks dokumen tertulis. |
 
 ### 4. Notasi Sebagai Kontrak
-Kesepakatan objektif dirumuskan dalam kontrak steno:
+Formalisasi pembentukan kontrak dibutuhkan untuk menetapkan batas tegas kapan sebuah dialog informal bertransformasi menjadi ikatan hukum yang mengikat.
+
+Persamaan aljabar hukum di bawah ini merangkum kontrak pembentukan perjanjian yang sah:
 $$K = Offer(O) + Acceptance(A)$$
 
-Persamaan formal di atas merangkum syarat pembentukan kontrak:
+Persamaan di atas menetapkan bahwa kontrak ($K$) lahir seketika saat penawaran definitif ($Offer$) disambut oleh penerimaan tegas yang setara ($Acceptance$) tanpa adanya modifikasi syarat.
+
+Dengan mengunci persamaan ini, pengadilan tidak perlu berspekulasi mengenai motif psikologis para pihak; pembuktian cukup difokuskan pada ketersediaan bukti penawaran obyektif dan penerimaan lahiriah yang kongruen.
+
 * `K`: Kontrak yang mengikat secara sah menurut hukum (*binding legal contract*).
 * `Offer(O)`: Penawaran definitif yang dimanifestasikan secara lahiriah dengan syarat-syarat yang jelas.
 * `Acceptance(A)`: Penerimaan tegas tanpa syarat (*mirror image*) yang dikomunikasikan ke pihak penawar.
@@ -62,12 +75,10 @@ Persamaan formal di atas merangkum syarat pembentukan kontrak:
 
 | Istilah | Konsep Formal | Jembatan Konsep SMA |
 |---|---|---|
-| Objective Mutual Assent | Kesepakatan bersama yang dinilai dari kata-kata dan perbuatan lahiriah yang tampak | Mengacungkan tangan dan menyebut "Saya beli" di kantin sekolah; penjual menganggap transaksi sah |
-| Reasonable Person | Standar hipotetis orang berakal sehat dengan kehati-hatian dan pertimbangan wajar | Teman sekelas yang berpikiran logis dan tidak mudah tertipu oleh alasan aneh |
-| Lucy v. Zehmer | Kasus hukum penting tahun 1954 yang menetapkan objektivitas kontrak di atas candaan rahasia | Peristiwa nyata di mana perjanjian di atas serbet restoran tetap sah karena tampak serius |
-| Offer (Penawaran) | Pernyataan kesediaan untuk terikat pada syarat tertentu jika pihak lain menyetujuinya | Murid yang menawarkan pensilnya seharga Rp 5.000 kepada teman sebangkunya |
-| Acceptance (Penerimaan) | Pernyataan persetujuan tanpa syarat terhadap seluruh butir penawaran yang diajukan | Teman sebangku yang langsung menyerahkan uang Rp 5.000 dan mengambil pensil tersebut |
-| Subjective Intent | Niat, maksud, atau pikiran tersembunyi di dalam batin seseorang yang tidak diungkapkan | Memikirkan lelucon April Mop di dalam hati tanpa memberi tahu siapa pun |
+| Objective Mutual Assent | Kesepakatan bersama yang dinilai dari kata-kata dan perbuatan lahiriah | Mengacungkan tangan dan menyebut "Beli" di kantin; penjual menganggap transaksi sah |
+| Reasonable Person | Standar hipotetis orang berakal sehat dengan kehati-hatian wajar | Teman sekelas yang berpikiran logis dan tidak mudah tertipu oleh alasan bercanda |
+| Lucy v. Zehmer | Kasus hukum penting tahun 1954 yang menetapkan objektivitas kontrak | Perjanjian di atas serbet restoran tetap sah mengikat karena tampak serius bagi pembeli |
+| Offer (Penawaran) | Pernyataan kesediaan terikat pada syarat tertentu jika pihak lain setuju | Murid yang menawarkan pensilnya seharga Rp 5.000 kepada teman sebangkunya |
 
 ---
 
@@ -89,19 +100,20 @@ Persamaan formal di atas merangkum syarat pembentukan kontrak:
 ### 1. Pangkal Anomali
 Dalam pergaulan sosial sehari-hari, kita sering membuat janji karena rasa terima kasih atau kesopanan moral. Misalnya seorang paman berkata kepada keponakannya: *"Sebagai hadiah karena kamu sudah menjadi anak baik tahun lalu, paman berjanji akan membelikanmu sepeda motor baru bulan depan."*
 
-Namun dalam hukum kontrak, jika paman tersebut berubah pikiran dan membatalkan janjinya, keponakan tidak bisa menggugat paman ke pengadilan! Mengapa janji hadiah tidak dianggap sebagai kontrak yang mengikat?
+Di lingkungan keluarga, janji semacam ini dipandang terhormat dan diharapkan ditepati sebagai kewajiban etika moral. Namun dalam hukum kontrak perdata, relasi sosial ini membentur dinding pemisah yurisdiksi yang sangat tegas.
 
-Masalahnya terletak pada ketiadaan timbal balik (*Consideration*). Kontrak hukum bukanlah yayasan amal. Pengadilan tidak mau membuang waktu dan biaya negara untuk menegakkan janji hadiah cuma-cuma (*gratuitous promise*). Agar sebuah janji memiliki kekuatan mengikat di mata hukum, janji tersebut harus dibeli melalui pertukaran timbal balik yang dinegosiasikan (*bargained-for exchange*).
+Jika paman tersebut berubah pikiran dan membatalkan janjinya, keponakan tidak bisa menggugat paman ke pengadilan perdata untuk menuntut penyerahan motor! Mengapa hukum menolak menegakkan janji hadiah cuma-cuma (*gratuitous promise*)?
+
+Masalahnya terletak pada ketiadaan timbal balik bernilai hukum (*Consideration*). Pengadilan perdata dibiayai oleh pajak negara untuk memfasilitasi pertukaran ekonomi produktif, bukan untuk mengadili perselisihan janji hadiah sepihak; oleh sebab itu janji wajib dibeli lewat tawar-menawar timbal balik (*bargained-for exchange*).
 
 ### 2. Prototipe Intuitif
 Bayangkan sebuah papan jungkat-jungkit dua arah di taman bermain sekolah.
 
-Sebuah kontrak hukum persis seperti jungkat-jungkit yang harus bergerak seimbang:
-* Anda tidak bisa menuntut sisi lawan turun jika sisi Anda sendiri tidak diisi beban apapun!
-* Sisi A meletakkan beban berupa barang atau jasa (pengorbanan hukum / *legal detriment*).
-* Sisi B meletakkan beban berupa uang atau pembayaran (imbalan hukum / *legal benefit*).
+Sebuah kontrak hukum persis seperti jungkat-jungkit yang harus bergerak seimbang: Anda tidak bisa menuntut sisi lawan turun jika sisi Anda sendiri tidak diisi beban nyata apa pun.
 
-Jika Anda meminta janji baru dari seseorang hanya atas dasar jasa Anda yang sudah selesai 10 tahun lalu (*Past Consideration*), jungkat-jungkit tidak akan bergerak. Beban masa lalu sudah mengendap di tanah dan tidak bisa dijadikan alat tukar untuk menggerakkan janji di masa depan.
+Sisi A meletakkan beban berupa barang, jasa, atau penahanan hak (*legal detriment*), sementara Sisi B meletakkan beban berupa pembayaran uang atau penyerahan kompensasi (*legal benefit*).
+
+Jika Anda meminta janji baru dari seseorang hanya atas dasar jasa Anda yang sudah selesai 10 tahun lalu (*Past Consideration*), jungkat-jungkit tidak akan bergerak karena beban masa lalu sudah mengendap di tanah dan tidak bisa dijadikan alat tukar segar untuk menggerakkan janji masa depan.
 
 ```mermaid
 flowchart LR
@@ -109,9 +121,13 @@ flowchart LR
 ```
 
 ### 3. Invarian & Operasi Inti
-Invarian mutlak sistem ini adalah **Mutualitas Kewajiban Timbal Balik (Consideration Doctrine)**: janji yang dapat dipaksakan di pengadilan wajib lahir dari pertukaran tawar-menawar (*bargained-for exchange*) di mana setiap pihak memberikan sesuatu yang bernilai hukum sebagai imbalan atas janji pihak lain.
+Invarian mutlak sistem ini adalah **Mutualitas Kewajiban Timbal Balik (Consideration Doctrine)**: janji yang dapat dipaksakan di pengadilan wajib lahir dari pertukaran tawar-menawar (*bargained-for exchange*).
 
-*Past Consideration is No Consideration*: perbuatan atau jasa yang telah selesai dilakukan di masa lalu tanpa kaitan dengan janji baru tidak memiliki nilai hukum untuk mengikat janji yang baru diucapkan.
+Setiap pihak wajib memberikan sesuatu yang bernilai hukum sebagai imbalan langsung atas janji pihak lain (*quid pro quo*). Nilai hukum ini dapat berupa melakukan sesuatu yang tidak wajib dilakukan, atau menahan diri dari tindakan yang sah menurut hukum.
+
+Prinsip fundamental *Past Consideration is No Consideration* menegaskan bahwa perbuatan yang telah selesai dilakukan di masa lalu tanpa kaitan dengan janji baru tidak memiliki nilai tukar untuk mengikat janji yang baru diucapkan.
+
+Pemula sering mengira janji tertulis otomatis mengikat, padahal tanpa adanya timbal balik segar, janji tersebut tetap berstatus hibah cuma-cuma yang tidak dapat dipaksakan pemenuhannya melalui gugatan kontrak.
 
 | Apa yang Dipikirkan Pemula (Salah) | Apa yang Sebenarnya Terjadi dalam Model Mental |
 |---|---|
@@ -120,25 +136,28 @@ Invarian mutlak sistem ini adalah **Mutualitas Kewajiban Timbal Balik (Considera
 | Hadiah cuma-cuma dapat dituntut di pengadilan jika pemberi janji mengingkarinya. | Janji hadiah sepihak tidak memiliki kekuatan eksekusi hukum kontrak. |
 
 ### 4. Notasi Sebagai Kontrak
-Doktrin consideration dirumuskan dalam kontrak tawar-menawar:
+Formula pertukaran timbal balik merumuskan kesetaraan beban hukum yang harus ada pada setiap perjanjian yang sah.
+
+Hubungan tawar-menawar ini diformalkan dalam kontrak aljabar berikut:
 $$C = Detriment(A) \leftrightarrow Benefit(B)$$
 
-Formula aljabar kesetaraan pertukaran hukum:
+Persamaan di atas mendefinisikan bahwa consideration ($C$) tercipta hanya jika pengorbanan hukum Pihak A ditukar secara langsung dengan manfaat hukum Pihak B melalui negosiasi aktif.
+
+Kontrak ini menjadi saringan yuridis yang melindungi warga dari tuntutan sewenang-wenang atas ucapan santai, memastikan hanya transaksi yang memiliki komitmen dua arah yang memperoleh perlindungan aparat penegak hukum.
+
 * `C`: *Consideration* (prestasi timbal balik yang sah menurut hukum).
-* `Detriment(A)`: Pengorbanan hukum pihak A (melakukan sesuatu yang tidak wajib dilakukan atau menahan diri dari hak legalnya).
+* `Detriment(A)`: Pengorbanan hukum pihak A (melakukan prestasi atau menahan hak legal).
 * `Benefit(B)`: Manfaat hukum yang diperoleh pihak B sebagai hasil pertukaran langsung.
-* `Quid Pro Quo`: Prinsip dasar ada barang ada harga dalam pembentukan perjanjian.
+* `Quid Pro Quo`: Prinsip dasar ada barang ada imbalan dalam pembentukan perjanjian.
 
 ### Glosarium & Jembatan Konsep SMA
 
 | Istilah | Konsep Formal | Jembatan Konsep SMA |
 |---|---|---|
-| Consideration | Nilai hukum timbal balik yang disepakati untuk ditukarkan sebagai syarat sahnya kontrak | Barter atau jual beli di kantin; kamu dapat roti bakar karena kamu menyerahkan uang jajan |
-| Bargained-for Exchange | Proses tawar-menawar di mana janji pihak A memicu prestasi pihak B dan sebaliknya | Negosiasi jual beli: "Aku beri kamu buku ini asalkan kamu bantu aku membetulkan rantai sepeda" |
-| Past Consideration | Prestasi atau jasa yang telah selesai dilakukan sebelum janji baru diucapkan | Meminta uang jajan hari ini atas dasar kemarin kamu sudah merapikan tempat tidur |
-| Gratuitous Promise | Janji memberi hadiah sepihak tanpa menuntut imbalan apa pun dari penerima | Janji traktiran ulang tahun yang tidak bisa digugat ke pengadilan jika temanmu batal mentraktir |
-| Legal Detriment | Menyerahkan hak atau menahan diri dari melakukan tindakan yang sebenarnya sah menurut hukum | Siswa berjanji tidak merokok sampai usia 21 tahun demi mendapatkan hadiah dari orang tua |
-| Promissory Estoppel | Doktrin keadilan untuk menegakkan janji tanpa consideration jika korban menderita kerugian reliance nyata | Pengecualian khusus pengadilan untuk mencegah ketidakadilan ekstrem saat seseorang telanjur rugi modal |
+| Consideration | Nilai hukum timbal balik yang disepakati untuk ditukarkan | Barter di kantin sekolah; kamu dapat roti bakar karena kamu menyerahkan uang jajan |
+| Bargained-for Exchange | Proses tawar-menawar di mana janji memicu prestasi timbal balik | Negosiasi: "Aku beri buku ini asalkan kamu bantu membetulkan rantai sepeda" |
+| Past Consideration | Prestasi yang telah selesai dilakukan sebelum janji baru diucapkan | Meminta uang jajan hari ini atas dasar kemarin sudah merapikan tempat tidur |
+| Gratuitous Promise | Janji memberi hadiah sepihak tanpa menuntut imbalan dari penerima | Traktiran ulang tahun yang tidak bisa digugat ke pengadilan jika temanmu batal mentraktir |
 
 ---
 
@@ -169,9 +188,11 @@ Jika hukum mengizinkan pembatalan total atas pelanggaran sepele semacam ini, mak
 ### 2. Prototipe Intuitif
 Bayangkan instalasi pipa air di sebuah bangunan bertingkat.
 
-Terdapat dua jenis kebocoran yang sangat berbeda:
+Terdapat dua jenis kebocoran yang sangat berbeda dalam operasional gedung:
 * **Kasus 1: Pipa Utama Pecah (Material Breach)**: Pipa saluran utama pecah sehingga air membanjiri ruang tamu dan membahayakan pondasi bangunan. Tujuan pokok rumah tidak tercapai. Di sini, katup air utama wajib ditutup total dan pembayaran dihentikan sementara.
 * **Kasus 2: Warna Cat Pipa Sedikit Pudar (Immaterial Breach)**: Air tetap mengalir jernih dan lancar dengan tekanan sempurna, hanya warna cat pipa di dalam gudang sedikit pudar. Katup air utama tidak boleh ditutup! Pemilik rumah cukup meminta ganti rugi seharga satu kaleng cat untuk mengecat ulang.
+
+Pembedaan tingkat keparahan ini mencegah tindakan reaksioner yang merusak keseluruhan sistem hanya karena ketidaksempurnaan kosmetik yang mudah diperbaiki.
 
 ```mermaid
 flowchart TD
@@ -185,6 +206,10 @@ Invarian mutlak sistem adalah **Doktrin Pelaksanaan Substansial (Substantial Per
 
 Kewajiban pembayaran tetap berlaku penuh, dikurangi selisih depresiasi riil (*difference-in-value*) antara apa yang dijanjikan dan apa yang diserahkan.
 
+Prinsip keadilan (*equity*) menolak penghancuran nilai ekonomi yang tidak proporsional hanya demi menegakkan kepatuhan kata-demi-kata yang kaku.
+
+Pemula sering mengira setiap wanprestasi memberi hak membatalkan perjanjian, padahal hukum secara cermat membedakan pelanggaran material yang menggagalkan tujuan dengan pelanggaran non-material yang cukup diselesaikan lewat ganti rugi selisih nilai.
+
 | Apa yang Dipikirkan Pemula (Salah) | Apa yang Sebenarnya Terjadi dalam Model Mental |
 |---|---|
 | Setiap kesalahan kecil dalam kontrak otomatis memberi hak pembatalan total. | Hukum membedakan pelanggaran material (hak terminasi) dengan pelanggaran minor (hak ganti rugi selisih nilai). |
@@ -192,25 +217,28 @@ Kewajiban pembayaran tetap berlaku penuh, dikurangi selisih depresiasi riil (*di
 | Pelaksanaan substansial berarti pembuat janji bebas melanggar perjanjian kapan saja. | Pelanggaran yang disengaja dengan niat jahat (*willful breach*) tidak dilindungi oleh doktrin ini. |
 
 ### 4. Notasi Sebagai Kontrak
-Pembedaan akibat hukum pelanggaran dikontrakkan sebagai berikut:
+Batasan pemulihan hukum atas pelanggaran kontrak diformalkan dalam hubungan pemisahan ganti rugi versus pembatalan.
+
+Persamaan kontrak di bawah ini membatasi pemulihan pada kompensasi selisih nilai riil:
 $$Remedy = DifferenceInValue \neq ContractForfeiture$$
 
-Formula penentu solusi hukum:
+Persamaan di atas menegaskan bahwa pemulihan (*Remedy*) untuk penyimpangan immaterial dibatasi pada selisih nilai (*DifferenceInValue*), dan secara tegas menolak pemutusan perjanjian sepihak (*ContractForfeiture*).
+
+Dengan berpatokan pada formula ini, hakim dan para pihak memiliki kepastian matematis bahwa penyimpangan minor bernilai selisih nol (seperti pipa identik merek berbeda) tidak akan menghanguskan hak tagih atas pekerjaan yang telah diselesaikan dengan itikad baik.
+
 * `Substantial Performance`: Pemenuhan tujuan pokok kontrak di atas 95% dengan itikad baik.
 * `Jacob & Youngs v. Kent`: Putusan hakim legendaris Benjamin Cardozo yang menolak pembatalan kontrak atas deviasi pipa minor.
-* `DifferenceInValue`: Kompensasi selisih nilai pasar antara pipa Reading dan pipa Cohoes (yang dalam kasus ini bernilai Rp 0).
+* `DifferenceInValue`: Kompensasi selisih nilai pasar antara pipa Reading dan pipa Cohoes (bernilai nol).
 * `Material Breach`: Pelanggaran substansial yang menggagalkan tujuan pokok perjanjian.
 
 ### Glosarium & Jembatan Konsep SMA
 
 | Istilah | Konsep Formal | Jembatan Konsep SMA |
 |---|---|---|
-| Material Breach | Pelanggaran kontrak yang begitu mendasar sehingga menggagalkan tujuan pokok perjanjian | Memesan seragam olahraga ukuran L tetapi yang dikirim seragam ukuran balita |
-| Immaterial Breach | Penyimpangan kecil atau cacat minor yang tidak merusak fungsi utama dari apa yang dijanjikan | Memesan buku cetak bersampul biru tua tetapi yang dikirim bersampul biru dongker |
-| Substantial Performance | Doktrin hukum yang melindungi pihak yang telah menyelesaikan hampir seluruh kewajibannya dengan itikad baik | Mengerjakan 98 soal ujian dengan benar; guru tidak boleh memberi nilai 0 hanya karena salah di 2 soal |
-| Economic Forfeiture | Kerugian finansial yang sangat tidak proporsional yang dialami pelaku janji akibat pembatalan sepihak | Mengambil alih rumah megah secara gratis hanya karena gagang pintu kamar mandi sedikit longgar |
-| Jacob & Youngs v. Kent | Putusan pengadilan banding New York tahun 1921 yang menetapkan doktrin pelaksanaan substansial | Kasus hukum nyata tentang perselisihan merek pipa air di sebuah rumah tinggal mewah |
-| Difference in Value | Ukuran ganti rugi berupa selisih harga pasar antara barang yang diminta dan barang yang diterima | Harga pipa merek A Rp 50.000 vs merek B Rp 48.000; selisih yang harus diganti adalah Rp 2.000 |
+| Material Breach | Pelanggaran kontrak mendasar yang menggagalkan tujuan pokok perjanjian | Memesan seragam olahraga ukuran L tetapi yang dikirim seragam ukuran balita |
+| Immaterial Breach | Penyimpangan minor yang tidak merusak fungsi utama perjanjian | Memesan buku sampul biru tua tetapi yang dikirim bersampul biru dongker |
+| Substantial Performance | Doktrin melindungi pihak yang telah menyelesaikan hampir seluruh kewajibannya | Mengerjakan 98 soal ujian dengan benar; guru tidak boleh memberi nilai nol |
+| Jacob & Youngs v. Kent | Putusan yurisprudensi penting yang menetapkan doktrin pelaksanaan substansial | Kasus nyata perselisihan merek pipa air di rumah tinggal mewah New York |
 
 ---
 
@@ -234,14 +262,18 @@ Bayangkan seorang manajer keuangan memiliki kontrak kerja selama 1 tahun dengan 
 
 Satu minggu kemudian, perusahaan saingan yang berada di seberang jalan menawarkan posisi dan gaji yang persis sama. Namun sang manajer menolak tawaran tersebut dan memilih berlibur santai di rumah selama 10 bulan penuh sambil berpikir: *"Biar saja aku menganggur, nanti di pengadilan aku akan menuntut bekas perusahaanku membayar ganti rugi penuh 10 bulan gaji yaitu Rp 200.000.000!"*
 
-Apakah pengadilan akan mengabulkan tuntutan tersebut? Jika hukum mengizinkan korban pemutusan kontrak untuk bermalas-malasan dan membiarkan kerugian membengkak tanpa berusaha mencari pengganti, maka efisiensi perekonomian nasional akan mengalami pemborosan sumber daya yang masif (*economic waste*).
+Apakah pengadilan akan mengabulkan tuntutan tersebut secara membabi-buta? Jika hukum mengizinkan korban pemutusan kontrak untuk bermalas-malasan dan membiarkan kerugian membengkak tanpa berusaha mencari pengganti, maka efisiensi perekonomian nasional akan mengalami pemborosan sumber daya yang masif (*economic waste*).
+
+Hukum perdata tidak boleh dijadikan instrumen pemerasan atau tempat mencari keuntungan pasif; kompensasi harus mencerminkan kerugian bersih setelah upaya wajar dilakukan.
 
 ### 2. Prototipe Intuitif
 Bayangkan sebuah perahu nelayan yang sedang bersandar di dermaga dan lambungnya tertabrak oleh perahu lain hingga mengalami kebocoran kecil.
 
-Pemilik perahu yang tertabrak tentu berhak meminta ganti rugi biaya penambalan lambung perahu. Namun ia tidak boleh sengaja duduk bersila di pinggir dermaga sambil tersenyum menonton air perlahan menenggelamkan perahunya ke dasar danau tanpa berusaha menimba air keluar (*mitigasi kerugian*), lalu menuntut ganti rugi kapal selam mewah yang baru!
+Pemilik perahu yang tertabrak tentu berhak meminta ganti rugi biaya penambalan lambung perahu kepada pihak penabrak. Namun ia tidak boleh sengaja duduk bersila di pinggir dermaga sambil tersenyum menonton air perlahan menenggelamkan perahunya ke dasar danau tanpa berusaha menimba air keluar (*mitigasi kerugian*), lalu menuntut ganti rugi kapal selam mewah yang baru!
 
-Hukum mengharuskan korban untuk mengambil ember dan berusaha menimba air agar kerusakan tidak meluas. Biaya ember dan tenaga menimba air akan diganti oleh pihak penabrak, tetapi kerusakan tambahan akibat sengaja membiarkan kapal tenggelam adalah tanggung jawab korban sendiri.
+Hukum mengharuskan korban untuk mengambil ember dan berusaha menimba air agar kerusakan tidak meluas ke muatan kargo. Biaya pembelian ember dan tenaga menimba air akan diganti penuh oleh pihak penabrak, tetapi kerusakan tambahan akibat sengaja membiarkan kapal tenggelam adalah tanggung jawab korban sendiri.
+
+Prinsip ini menegaskan bahwa keadilan mengharuskan kedua belah pihak bertindak wajar guna meminimalkan kehancuran aset produktif di masyarakat.
 
 ```mermaid
 flowchart LR
@@ -253,7 +285,11 @@ flowchart LR
 ### 3. Invarian & Operasi Inti
 Invarian mutlak sistem pemulihan kontrak adalah **Kewajiban Mitigasi Kerugian (Doctrine of Avoidable Consequences)**: tujuan ganti rugi kontrak (*Expectation Damages*) adalah menempatkan korban pada posisi finansial yang semestinya ia nikmati seandainya kontrak dilaksanakan secara sempurna.
 
-Namun, kerugian yang secara nyata dapat dihindari melalui upaya wajar (*reasonable effort*) **tidak dapat ditagihkan kepada pelaku wanprestasi**. Ganti rugi kontrak bersifat kompensasi murni (*compensatory*), bukan hukuman (*punitive*).
+Namun, kerugian yang secara nyata dapat dihindari melalui upaya wajar (*reasonable effort*) **tidak dapat ditagihkan kepada pelaku wanprestasi**. Ganti rugi kontrak bersifat kompensasi murni (*compensatory*), bukan hukuman denda (*punitive*).
+
+Korban memiliki kewajiban afirmatif untuk mencari pengganti yang sepadan di pasar, dan hasil penghematan atau pendapatan dari upaya mitigasi tersebut akan diperhitungkan sebagai pengurang klaim ganti rugi.
+
+Pemikiran awam sering keliru menduga bahwa pihak yang melanggar kontrak dapat dipenjara atau dijatuhi ganti rugi hukuman, padahal hukum perdata murni berfokus pada pemulihan kerugian ekonomi aktual.
 
 | Apa yang Dipikirkan Pemula (Salah) | Apa yang Sebenarnya Terjadi dalam Model Mental |
 |---|---|
@@ -262,22 +298,25 @@ Namun, kerugian yang secara nyata dapat dihindari melalui upaya wajar (*reasonab
 | Menolak pekerjaan pengganti otomatis menghapuskan seluruh hak gugat korban. | Penolakan hanya memotong nilai kerugian yang dapat dihindari, hak gugat atas sisa kerugian tetap ada. |
 
 ### 4. Notasi Sebagai Kontrak
-Formula pemulihan expectation damages dirumuskan sebagai:
+Formula pemulihan expectation damages mengikat kalkulasi ganti rugi bersih ke dalam perhitungan selisih matematis yang obyektif.
+
+Persamaan di bawah ini mendefinisikan batas klaim yang dapat dituntut di hadapan majelis hakim:
 $$Damages = Loss(Expectation) - Avoidable(Mitigation)$$
 
-Persamaan matematika pemulihan ganti rugi:
+Persamaan di atas menegaskan bahwa ganti rugi bersih ($Damages$) diperoleh dari total ekspektasi pendapatan ($Loss(Expectation)$) dikurangi nilai kerugian yang semestinya bisa dicegah melalui ikhtiar mitigasi wajar ($Avoidable(Mitigation)$).
+
+Melalui kontrak aljabar ini, sistem peradilan menjamin bahwa korban wanprestasi dipulihkan hak ekonominya secara penuh tanpa membuka celah pengayaan diri yang tidak sah (*unjust enrichment*).
+
 * `Damages`: Jumlah uang kompensasi bersih yang wajib dibayarkan oleh pihak yang melanggar.
 * `Loss(Expectation)`: Posisi keuntungan finansial yang semestinya dinikmati korban jika kontrak berjalan lancar.
-* `Avoidable(Mitigation)`: Nilai penghasilan atau penghematan yang semestinya bisa diperoleh korban melalui ikhtiar wajar.
-* `Incidental Damages`: Biaya tambahan yang wajar dikeluarkan korban dalam proses mitigasi (misal ongkos transportasi melamar pekerjaan baru).
+* `Avoidable(Mitigation)`: Nilai penghasilan yang semestinya bisa diperoleh korban melalui ikhtiar wajar.
+* `Incidental Damages`: Biaya tambahan yang wajar dikeluarkan korban dalam proses mitigasi pencarian kerja baru.
 
 ### Glosarium & Jembatan Konsep SMA
 
 | Istilah | Konsep Formal | Jembatan Konsep SMA |
 |---|---|---|
-| Expectation Damages | Ganti rugi yang menempatkan korban pada posisi seolah-olah kontrak telah terlaksana sempurna | Mengganti uang tiket konser yang dibatalkan ditambah selisih biaya agar tetap bisa menonton di hari lain |
-| Mitigation of Damages | Kewajiban hukum pihak yang dirugikan untuk mengambil langkah wajar guna memperkecil kerugian | Mengambil ember untuk menimba air saat perahu bocor agar barang dagangan di atasnya tidak ikut hanyut |
-| Avoidable Consequences | Doktrin bahwa kerugian yang sebenarnya bisa dicegah tidak boleh dibebankan ke pihak lawan | Tidak boleh menuntut ganti rugi seragam basah kuyup jika kamu sengaja berdiri di bawah air hujan setelah payungmu rusak |
-| Compensatory Damages | Uang ganti rugi yang dihitung semata-mata untuk mengembalikan kerugian ekonomi aktual | Membayar tepat seharga barang yang rusak, tidak lebih dan tidak kurang |
-| Punitive Damages | Ganti rugi berupa denda hukuman tambahan di luar kerugian riil (dilarang dalam hukum kontrak biasa) | Hukuman denda uang sanksi yang biasa diterapkan dalam kasus kejahatan kriminal, bukan kontrak bisnis |
-| Reliance Damages | Pengembalian biaya yang telah dikeluarkan korban karena mempercayai janji pihak lawan | Mengganti ongkos cat dan renovasi ruko yang telanjur dikeluarkan sebelum pemilik ruko membatalkan sewa |
+| Expectation Damages | Ganti rugi menempatkan korban pada posisi seolah kontrak terlaksana sempurna | Mengganti uang tiket konser yang batal ditambah selisih harga tiket pengganti |
+| Mitigation of Damages | Kewajiban pihak yang dirugikan mengambil langkah wajar memperkecil kerugian | Mengambil ember menimba air saat perahu bocor agar muatan tidak ikut hanyut |
+| Avoidable Consequences | Doktrin kerugian yang bisa dicegah tidak boleh dibebankan ke lawan | Tidak boleh menuntut ganti rugi seragam basah jika sengaja hujan-hujanan saat payung rusak |
+| Compensatory Damages | Uang ganti rugi semata-mata menutup kerugian ekonomi aktual | Membayar tepat seharga barang yang rusak, tidak lebih dan tidak kurang |

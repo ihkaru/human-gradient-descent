@@ -14,7 +14,7 @@
       "prerequisites": [
         "hgd://knowledgebase/rust-io-uring/node-001"
       ],
-      "conceptSummary": "<!-- hgd:options: [\n  {\"optionId\": \"opt_a\", \"text\": \"The submission ring overflows and returns an explicit -EBUSY status, requiring the application to submit pending entries and await completions.\", \"isCorrect\": true, \"causalRationale\": \"Accurately describes circular buffer backpressure under queue saturation.\"},\n  {\"optionId\": \"opt_b\", \"text\": \"The kernel silently drops old socket connections without notifying the application.\", \"isCorrect\": false, \"diagnosticAxis\": \"conceptGap\", \"causalRationale\": \"Mistakes ring buffer saturation for ungraceful network packet dropping.\"},\n  {\"optionId\": \"opt_c\", \"text\": \"The ring dynamically doubles its size in physical RAM without kernel reallocation limits.\", \"isCorrect\": false, \"diagnosticAxis\": \"notationBreakdown\", \"causalRationale\": \"Ignores the fixed mmap ring capacity negotiated at initialization.\"},\n  {\"optionId\": \"opt_d\", \"text\": \"The CPU crashes with a blue-screen kernel panic because ring buffers are forbidden from reaching 100% capacity.\"",
+      "conceptSummary": "### 1. Pangkal Anomali\nKetika dua proses atau dua domain proteksi berbeda ingin berbagi antrean data di dalam memori komputer, solusi paling lumrah dalam buku teks ilmu komputer adalah memasang kunci pengaman (*Mutex / Mutual Exclusion Lock*).\n\nDalam pendekatan penguncian konvensional, pihak mana pun yang ingin memasukkan atau mengambil data wajib mengunci antrean, memodifikasi status memori, lalu melepaskan kunci tersebut agar pihak lain dapat mengaksesnya secara bergiliran.\n\nNamun pada sistem multi-core modern yang memproses jutaan paket per detik, penguncian mutex menjadi bencana performa (*lock contention*). Ketika belasan inti prosesor (CPU) berebut memegang satu gembok kunci yang sama, sebagian besar inti prosesor akan membeku menganggur (*spinning / sleeping*) menunggu gilirannya.\n\nKebutuhan akan throughput tinggi menuntut arsitektur antrean bebas kunci (*lockless*) di mana aplikasi Rust dan kernel Linux dapat menulis dan membaca secara simultan di memori RAM bersama tanpa perna",
       "pacing": {
         "timeLimitSeconds": 60,
         "recommendedEpochs": 3,
@@ -25,15 +25,15 @@
         "block1_anomaly": {
           "groundState": "Initial state prior to Submission and Completion Ring Mechanics.",
           "oldWay": "Conventional assumption or baseline approach.",
-          "breakdownPoint": "Jika dua orang atau dua proses ingin berbagi antrean data di dalam memori komputer, solusi paling umum yang diajarkan dalam ilmu komputer adalah menggunakan kunci pengaman (*Mutex / Mutual Exclusion Lock*). Siapa pun yang ingin menambah atau mengambil data harus mengunci antrean terlebih dahulu, melakukan modifikasi, lalu membuka kunci tersebut.\n\nNamun pada sistem multi-core modern yang memproses jutaan paket per detik, penguncian mutex menjadi bencana performa (*lock contention*). Ketika 16 inti prosesor berebut memegang satu kunci yang sama, sebagian besar inti prosesor akan menganggur dan terpaksa membeku (*spinning / sleeping*), menunggu gilirannya memegang kunci.\n\nBagaimana mungkin aplikasi Rust kita dan kernel Linux dapat membaca dan menulis antrean secara bersamaan di memori RAM yang sama tanpa pernah mengunci satu sama lain, dan tanpa risiko data tertimpa atau rusak?"
+          "breakdownPoint": "Ketika dua proses atau dua domain proteksi berbeda ingin berbagi antrean data di dalam memori komputer, solusi paling lumrah dalam buku teks ilmu komputer adalah memasang kunci pengaman (*Mutex / Mutual Exclusion Lock*).\n\nDalam pendekatan penguncian konvensional, pihak mana pun yang ingin memasukkan atau mengambil data wajib mengunci antrean, memodifikasi status memori, lalu melepaskan kunci tersebut agar pihak lain dapat mengaksesnya secara bergiliran.\n\nNamun pada sistem multi-core modern yang memproses jutaan paket per detik, penguncian mutex menjadi bencana performa (*lock contention*). Ketika belasan inti prosesor (CPU) berebut memegang satu gembok kunci yang sama, sebagian besar inti prosesor akan membeku menganggur (*spinning / sleeping*) menunggu gilirannya.\n\nKebutuhan akan throughput tinggi menuntut arsitektur antrean bebas kunci (*lockless*) di mana aplikasi Rust dan kernel Linux dapat menulis dan membaca secara simultan di memori RAM bersama tanpa pernah saling menghalangi dan tanpa risiko korupsi data."
         },
         "block2_intuitivePrototype": {
           "physicalObject": "Physical sandbox model",
-          "isomorphicMapping": "Bayangkan sebuah piring putar kue bundar yang memiliki 8 wadah mangkok bernomor urut 0 sampai 7.\n\nDi atas piring putar ini terpasang dua jarum penunjuk yang berputar melingkar searah jarum jam:\n* **Jarum Hijau (Ekor Penulis / `Tail`)**: Dikendalikan secara eksklusif oleh tangan juru masak (aplikasi Rust Anda). Juru masak hanya bertugas menaruh kue baru di mangkok yang ditunjuk jarum hijau, lalu memajukan jarum hijau satu langkah ke depan.\n* **Jarum Merah (Kepala Pembaca / `Head`)**: Dikendalikan secara eksklusif oleh pelayan restoran (kernel Linux). Pelayan hanya bertugas mengambil kue dari mangkok yang ditunjuk jarum merah, lalu memajukan jarum merah satu langkah ke depan.\n\nKeduanya tidak pernah berebut menyentuh jarum yang sama! Juru masak hanya mengamati posisi jarum merah dari kejauhan untuk memastikan mangkok di depannya tidak sedang penuh, dan pelayan hanya mengamati jarum hijau untuk memastikan ada kue yang siap diambil. Sistem berputar harmonis tanpa satu pun kata terucap dan tanpa kunci gembok.\n\n```mermaid\nflowchart TD\n    subgraph SQ[\"Submission Ring (SQ: Ban Kirim Pesanan)\"]\n        SQ_Tail[\"Aplikasi Rust: sq_tail++ (Taruh Tiket SQE)\"] --> SQ_Entries[\"Wadah Tiket SQE (Kapasitas N)\"]\n        SQ_Entries --> SQ_Head[\"Kernel Linux: sq_head++ (Ambil Tiket SQE)\"]\n    end\n    subgraph CQ[\"Completion Ring (CQ: Ban Hasil Selesai)\"]\n        CQ_Tail[\"Kernel Linux: cq_tail++ (Taruh Hasil CQE)\"] --> CQ_Entries[\"Wadah Hasil CQE (Kapasitas 2N)\"]\n        CQ_Entries --> CQ_Head[\"Aplikasi Rust: cq_head++ (Baca Hasil CQE)\"]\n    end\n```",
+          "isomorphicMapping": "Bayangkan sebuah piring putar kue bundar berkapasitas tetap yang memiliki 8 wadah mangkok bernomor urut 0 sampai 7 di sebuah restoran sushi.\n\nDi atas piring putar ini terpasang dua jarum penunjuk yang berputar searah jarum jam: Jarum Hijau (Ekor / `Tail`) yang dikendalikan khusus oleh juru masak (aplikasi Rust), dan Jarum Merah (Kepala / `Head`) yang dikendalikan khusus oleh pelayan (kernel Linux).\n\nJuru masak hanya menaruh kue baru di mangkok yang ditunjuk Jarum Hijau lalu memajukannya satu langkah, sedangkan pelayan hanya mengambil kue dari mangkok yang ditunjuk Jarum Merah lalu memajukannya satu langkah.\n\nKeduanya tidak pernah berebut menyentuh jarum yang sama; juru masak hanya memantau Jarum Merah dari kejauhan untuk memastikan piring tidak meluap penuh, sehingga sistem berputar harmonis tanpa satu pun kata terucap dan tanpa kunci gembok.\n\n```mermaid\nflowchart TD\n    subgraph SQ[\"Submission Ring (SQ: Ban Kirim Pesanan)\"]\n        SQ_Tail[\"Aplikasi Rust: sq_tail++ (Taruh Tiket SQE)\"] --> SQ_Entries[\"Wadah Tiket SQE (Kapasitas N)\"]\n        SQ_Entries --> SQ_Head[\"Kernel Linux: sq_head++ (Ambil Tiket SQE)\"]\n    end\n    subgraph CQ[\"Completion Ring (CQ: Ban Hasil Selesai)\"]\n        CQ_Tail[\"Kernel Linux: cq_tail++ (Taruh Hasil CQE)\"] --> CQ_Entries[\"Wadah Hasil CQE (Kapasitas 2N)\"]\n        CQ_Entries --> CQ_Head[\"Aplikasi Rust: cq_head++ (Baca Hasil CQE)\"]\n    end\n```",
           "deadlockResolution": "Resolves the deadlock identified in Block 1 through isomorphic interaction."
         },
         "block3_coreMechanics": {
-          "invariantProperty": "Invarian fundamental mekanisme antrean ini adalah **Pola Produsen Tunggal Konsumen Tunggal Bebas Kunci (Lockless Single-Producer Single-Consumer / SPSC)**:\n* Pada antrean SQ: Aplikasi pengguna adalah *satu-satunya produsen* yang berhak memodifikasi penunjuk `sq_tail`, dan kernel adalah *satu-satunya konsumen* yang berhak memodifikasi penunjuk `sq_head`.\n* Pada antrean CQ: Kernel adalah *satu-satunya produsen* yang memodifikasi `cq_tail`, dan aplikasi adalah *satu-satunya konsumen* yang memodifikasi `cq_head`.\n\nKarena masing-masing variabel penunjuk dikendalikan oleh tepat satu pihak dan diposisikan pada garis cache memori yang terisolasi (*cache line alignment*), operasi penambahan indeks dilakukan dengan instruksi atomik perangkat keras tanpa pernah memicu tabrakan memori (*race condition*).",
+          "invariantProperty": "Invarian fundamental mekanisme antrean ini adalah **Pola Produsen Tunggal Konsumen Tunggal Bebas Kunci (Lockless Single-Producer Single-Consumer / SPSC)**.\n\nPada cincin pengajuan (SQ), aplikasi pengguna bertindak sebagai satu-satunya produsen yang memajukan `sq_tail`, sementara kernel bertindak sebagai satu-satunya konsumen yang memajukan `sq_head`. Sebaliknya pada cincin penyelesaian (CQ), kernel adalah produsen tunggal `cq_tail` dan aplikasi adalah konsumen tunggal `cq_head`.\n\nKarena setiap variabel penunjuk dikendalikan secara eksklusif oleh satu pihak dan diselaraskan pada garis cache memori yang terisolasi (*cache line alignment*), sinkronisasi dicapai semata-mata via operasi atomik perangkat keras tanpa tabrakan memori (*race condition*).\n\nPemula kerap berasumsi keliru bahwa antrean cincin dapat membesar secara otomatis tanpa batas, padahal kapasitasnya bersifat tetap sejak inisialisasi dan akan mengembalikan status tolak balik (`-EBUSY`) jika kapasitas terlampaui.",
           "variableComponents": [
             "System inputs",
             "Observable state amplitudes"
@@ -55,7 +55,7 @@
         },
         "block4_notationContract": {
           "formulaOrCode": "\\text{Free Slots} = \\text{Ring Capacity} - (\\text{sq\\_tail} - \\text{sq\\_head})",
-          "minimalFormalization": "Formula ketersediaan slot antrean sirkular:\n\nKontrak matematika penentu kapasitas cincin memori:",
+          "minimalFormalization": "Untuk mencegah kelebihan muatan (*queue saturation*) yang dapat merusak integritas memori, hubungan matematis antara penunjuk kepala dan ekor diikat dalam formula kapasitas antrean sirkular.\n\nPersamaan aljabar berikut mengatur ketersediaan ruang penyimpanan tugas di dalam antrean cincin submission secara deterministik:\n\nPersamaan ini menegaskan bahwa kapasitas bebas berbanding terbalik dengan selisih indeks atomik ekor (`sq_tail`) yang dimajukan produsen terhadap indeks kepala (`sq_head`) yang dikonsumsi oleh kernel.\n\nKontrak ini memastikan bahwa aplikasi dapat menghitung ruang kosong secara lokal tanpa memanggil sistem operasi, dan jika nilai slot bebas mencapai tepat nol, sistem secara tegas menerapkan penolakan balik (`-EBUSY`) demi mencegah penimpaan data.",
           "termsDeconstruction": [
             {
               "symbol": "Ring Capacity",
@@ -120,30 +120,20 @@
         },
         {
           "term": "Lockless SPSC",
-          "definition": "Arsitektur konkurensi di mana satu produsen dan satu konsumen berkomunikasi tanpa penguncian",
-          "highSchoolAnchor": "Dua orang bermain tenis meja; satu orang hanya memukul bola servis, satu orang hanya mengembalikan bola"
-        },
-        {
-          "term": "Mutex Lock",
-          "definition": "Primitif sinkronisasi pemrograman untuk mencegah akses data simultan pada bagian kritis",
-          "highSchoolAnchor": "Gembok pintu kamar mandi; hanya satu orang yang boleh masuk pada satu waktu"
+          "definition": "Arsitektur konkurensi satu produsen dan satu konsumen tanpa penguncian mutex",
+          "highSchoolAnchor": "Dua orang bermain tenis meja; satu orang hanya memukul servis, satu orang mengembalikan bola"
         },
         {
           "term": "Backpressure",
-          "definition": "Mekanisme pembatasan laju ketika produsen menghasilkan data lebih cepat dari kemampuan konsumen",
+          "definition": "Pembatasan laju ketika produsen menghasilkan data lebih cepat dari kemampuan konsumen",
           "highSchoolAnchor": "Pelampung tangki air di rumah yang menutup katup otomatis saat bak mandi sudah penuh"
-        },
-        {
-          "term": "Operasi Atomik",
-          "definition": "Instruksi tingkat mesin prosesor yang dieksekusi secara tak terpisahkan tanpa gangguan",
-          "highSchoolAnchor": "Saklar lampu yang dalam sekali klik langsung menyala tanpa ada status setengah hidup"
         }
       ],
       "variationProbes": {
         "conceptualVariants": [
           {
             "representationType": "verbal",
-            "content": "Invarian & Operasi Inti\nInvarian fundamental mekanisme antrean ini adalah **Pola Produsen Tunggal Konsumen Tunggal Bebas Kunci (Lockless Single-Producer Single-Consumer / SPSC)**:\n* Pada antrean SQ: Aplikasi pengguna adalah *satu-satunya produsen* yang berhak memodifikasi penunjuk `sq_tail`, dan kernel adalah *satu-satunya konsumen* yang berhak memodifikasi penunjuk `sq_head`."
+            "content": "Invarian & Operasi Inti\nInvarian fundamental mekanisme antrean ini adalah **Pola Produsen Tunggal Konsumen Tunggal Bebas Kunci (Lockless Single-Producer Single-Consumer / SPSC)**."
           },
           {
             "representationType": "symbolic",
@@ -162,30 +152,35 @@
       "forwardPass": {
         "probeType": "prediction_what_if",
         "microPrimer": "\"io_uring operates via two lockless ring buffers: the Submission Queue (SQ) where user space writes I/O requests, and the Completion Queue (CQ) where the kernel posts completed results without mutex lock contention.\"",
-        "readingContext": "<!-- hgd:options: [\n  {\"optionId\": \"opt_a\", \"text\": \"The submission ring overflows and returns an explicit -EBUSY status, requiring the application to submit pending entries and await completions.\", \"isCorrect\": true, \"causalRationale\": \"Accurately describes circular buffer backpressure under queue saturation.\"},\n  {\"optionId\": \"opt_b\", \"text\": \"The kernel silently drops old socket connections without notifying the application.\", \"isCorrect\": false, \"diagnosticAxis\": \"conceptGap\", \"causalRationa",
+        "readingContext": "### 1. Pangkal Anomali\nKetika dua proses atau dua domain proteksi berbeda ingin berbagi antrean data di dalam memori komputer, solusi paling lumrah dalam buku teks ilmu komputer adalah memasang kunci pengaman (*Mutex / Mutual Exclusion Lock*).\n\nDalam pendekatan penguncian konvensional, pihak mana pun yang ingin memasukkan atau mengambil data wajib mengunci antrean, memodifikasi status memori, lalu melepaskan kunci tersebut agar pihak lain dapat mengaksesnya secara bergiliran.\n\nNamun pada sistem",
         "prompt": "\"Predict: What occurs when the user application enqueues Submission Queue Entries (SQEs) faster than the kernel consumes them, filling the ring buffer?\"",
         "options": [
           {
             "optionId": "opt_a",
-            "text": "\"The submission ring overflows and returns an explicit -EBUSY or backpressure status, requiring the user application to submit pending entries and wait for completion queue drains.\"",
+            "text": "The submission ring overflows and returns an explicit -EBUSY status, requiring the application to submit pending entries and await completions.",
             "isCorrect": true,
-            "causalRationale": "Correct: \"The submission ring overflows and returns an explicit -EBUSY or backpressure status, requiring the user application to submit pending entries and wait for completion queue drains.\". This adheres strictly to the governing invariant of Submission and Completion Ring Mechanics."
+            "causalRationale": "Accurately describes circular buffer backpressure under queue saturation."
           },
           {
             "optionId": "opt_b",
-            "text": "The system remains completely unchanged because Submission and Completion Ring Mechanics acts as an invariant identity operator without state transitions.",
+            "text": "The kernel silently drops old socket connections without notifying the application.",
             "isCorrect": false,
             "diagnosticAxis": "conceptGap",
-            "causalRationale": "Misconception: Assumes operations produce zero observable effect, ignoring active transformation.",
-            "specificRemediation": "Review core mechanism: Invarian & Operasi Inti\nInvarian fundamental mekanisme antrean ini adalah **Pola Produsen Tunggal Konsumen Tunggal Bebas Kunci (Lockless Single-Producer Single-Consumer / SPSC)**:\n* Pada antrean SQ: Aplikasi pengguna adalah *satu-satunya produsen* yang berhak memodifikasi penunjuk `sq_tail`, dan kernel adalah *satu-satunya konsumen* yang berhak memodifikasi penunjuk `sq_head`."
+            "causalRationale": "Mistakes ring buffer saturation for ungraceful network packet dropping."
           },
           {
             "optionId": "opt_c",
-            "text": "The state diverges uncontrollably because boundary conditions are violated immediately.",
+            "text": "The ring dynamically doubles its size in physical RAM without kernel reallocation limits.",
+            "isCorrect": false,
+            "diagnosticAxis": "notationBreakdown",
+            "causalRationale": "Ignores the fixed mmap ring capacity negotiated at initialization."
+          },
+          {
+            "optionId": "opt_d",
+            "text": "The CPU crashes with a blue-screen kernel panic because ring buffers are forbidden from reaching 100% capacity.",
             "isCorrect": false,
             "diagnosticAxis": "reasoningBug",
-            "causalRationale": "Reasoning Slip: Assumes instability without verifying whether mathematical bounds are preserved.",
-            "specificRemediation": "Trace boundary constraints step-by-step."
+            "causalRationale": "Fails to understand standard error code backpressure handling in Linux kernel APIs."
           }
         ],
         "expectedMentalModel": [
@@ -201,7 +196,7 @@
       },
       "lossRubric": {
         "conceptGapCriteria": [
-          "Fails to identify core mechanism: Invarian & Operasi Inti\nInvarian fundamental mekanisme antrean ini adalah **Pola Produsen Tunggal Konsumen Tunggal Bebas Kunci (Lockless Single-Producer Single-Consumer / SPSC)**:\n* Pada antrean SQ: Aplikasi pengguna adalah *satu-satunya produsen* yang berhak memodifikasi penunjuk `sq_tail`, dan kernel adalah *satu-satunya konsumen* yang berhak memodifikasi penunjuk `sq_head`.",
+          "Fails to identify core mechanism: Invarian & Operasi Inti\nInvarian fundamental mekanisme antrean ini adalah **Pola Produsen Tunggal Konsumen Tunggal Bebas Kunci (Lockless Single-Producer Single-Consumer / SPSC)**.",
           "Confuses cause and effect in state transitions"
         ],
         "missingPrerequisiteMap": {
@@ -222,7 +217,7 @@
         "learningRate": 0.25,
         "hintLadder": {
           "level0Reflective": "Reflective: What fundamental invariant governs Submission and Completion Ring Mechanics?",
-          "level1Directional": "Directional Clue: Examine how Submission and Completion Ring Mechanics handles boundary conditions: Invarian & Operasi Inti\nInvarian fundamental mekanisme antrean ini adalah **Pola Produsen Tunggal Konsumen Tunggal Bebas Kunci (Lockless Single-Producer Single-Consumer / SPSC)**:\n* Pada antrean SQ: Aplikasi pengguna adalah *satu-satunya produsen* yang berhak memodifikasi penunjuk `sq_tail`, dan kernel adalah *satu-satunya konsumen* yang berhak memodifikasi penunjuk `sq_head`.",
+          "level1Directional": "Directional Clue: Examine how Submission and Completion Ring Mechanics handles boundary conditions: Invarian & Operasi Inti\nInvarian fundamental mekanisme antrean ini adalah **Pola Produsen Tunggal Konsumen Tunggal Bebas Kunci (Lockless Single-Producer Single-Consumer / SPSC)**.",
           "level2Constraint": "Constraint: Eliminate unconstrained assumptions. Ground truth: \"The submission ring overflows and returns an explicit -EBUSY or backpressure status, requiring the user application to submit pending entries and wait for completion queue drains.\"",
           "level3WorkedExample": "\"Worked Solution: The SQ ring uses atomic head and tail pointers. When tail - head equals the ring capacity, the ring is full. Calling io_uring_enter flushes the batch to kernel execution, clearing room for subsequent submissions.\""
         },
@@ -238,7 +233,7 @@
         {
           "sourceRef": "markdown-source",
           "locationTag": "Section: Submission and Completion Ring Mechanics",
-          "verbatimQuote": "<!-- hgd:options: [\n  {\"optionId\": \"opt_a\", \"text\": \"The submission ring overflows and returns an ex"
+          "verbatimQuote": "### 1. Pangkal Anomali\nKetika dua proses atau dua domain proteksi berbeda ingin berbagi antrean data"
         }
       ]
     }

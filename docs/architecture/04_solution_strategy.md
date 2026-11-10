@@ -65,12 +65,12 @@ The curriculum and telemetry are 100% represented in standard JSON Draft 2020-12
 
 ## 4.7 Universal Invariant Learning Architecture (UILA 5-Block Grounding)
 
-Blind prediction without mental model initialization causes cognitive paralysis. UILA establishes weight initialization prior to the forward pass:
-* **Block 1: Pangkal Anomali**: Exposes failure points of legacy methods without early jargon.
-* **Block 2: Prototipe Intuitif**: Anchors an isomorphic real-world physical model resolving the anomaly.
-* **Block 3: Invarian & Operasi Inti**: Isolates conserved invariants with Side-by-Side Contrasting Cases.
-* **Block 4: Notasi Sebagai Kontrak**: Formalizes symbols and formulas as shorthand contracts.
-* **Block 5: Uji Tegangan Batas**: The active Forward Pass evaluating boundary edge conditions.
+Blind prediction without mental model initialization causes cognitive paralysis. UILA establishes weight initialization prior to the forward pass, mandating deep explanatory narrative (> 3 paragraphs per explanatory block):
+* **Block 1: Pangkal Anomali**: Exposes failure points of legacy methods without early jargon ($\ge 4$ paragraphs).
+* **Block 2: Prototipe Intuitif**: Anchors an isomorphic real-world physical model resolving the anomaly ($\ge 4$ paragraphs + Mermaid).
+* **Block 3: Invarian & Operasi Inti**: Isolates conserved invariants with Side-by-Side Contrasting Cases ($\ge 4$ paragraphs + Table).
+* **Block 4: Notasi Sebagai Kontrak**: Formalizes symbols and formulas as shorthand contracts ($\ge 4$ paragraphs + Chips).
+* **Block 5: Uji Tegangan Batas**: The active Forward Pass evaluating boundary edge conditions ($\le 50$ words prompt).
 
 ---
 

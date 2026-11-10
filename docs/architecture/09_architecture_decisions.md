@@ -58,9 +58,9 @@
 
 ## ADR-007: Universal Invariant Learning Architecture (UILA) Grounding vs Blind Prediction
 * **Status**: Accepted
-* **Context**: Forcing novice learners to predict system states from a vacuum (*zero-shot blind guessing*) causes cognitive paralysis and demoralization.
-* **Decision**: Structure every competency node into the 5-block UILA sequence. Blocks 1 to 4 provide foundational model initialization (breakdown scenario, isomorphic physical sandbox, invariant contrasting cases, and notation contracts), while Block 5 executes the boundary stress-test (Forward Pass).
-* **Consequences**: Eliminates the "Draw the Rest of the Owl" fallacy and grounds active prediction in rigorous causal mental models.
+* **Context**: Forcing novice learners to predict system states from a vacuum (*zero-shot blind guessing*) causes cognitive paralysis and demoralization. Furthermore, superficial 1–2 sentence explanations leave critical causal gaps.
+* **Decision**: Structure every competency node into the 5-block UILA sequence. Blocks 1 to 4 provide foundational model initialization (breakdown scenario, isomorphic physical sandbox, invariant contrasting cases, and notation contracts) with mandatory narrative depth (> 3 paragraphs per block), while Block 5 executes the boundary stress-test (Forward Pass, $\le 50$ words).
+* **Consequences**: Eliminates the "Draw the Rest of the Owl" fallacy, eliminates terse explanatory stubs, and grounds active prediction in rigorous causal mental models.
 
 ---
 

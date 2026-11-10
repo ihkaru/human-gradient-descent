@@ -45,11 +45,13 @@ To prevent terminological confusion across academic, corporate, and technical do
 * **Strict Prohibition**: **NEVER** force a learner to make an ungrounded zero-shot prediction from a conceptual vacuum. Blind guessing induces cognitive paralysis and triggers the "Draw the Rest of the Owl" fallacy.
 * **Mandatory Agent Action**:
   Every competency node must initialize the learner's mental model sequentially through **Blocks 1 to 4** before executing the Forward Pass:
-  - **Block 1 (Pangkal Anomali)**: Expose failure modes of legacy/naive approaches without introducing ungrounded jargon.
-  - **Block 2 (Prototipe Intuitif)**: Anchor a real-world physical analog + **Mermaid flowchart** mapping spatial-temporal dynamics.
-  - **Block 3 (Invarian & Operasi Inti)**: Isolate the conserved property + Side-by-side **Contrasting Cases Table** (*Pemula Salah* vs *Kenyataan Fisik*).
-  - **Block 4 (Notasi Sebagai Kontrak)**: Formalize symbolism/code as shorthand contracts, deconstructing every symbol into its physical meaning.
+  - **Block 1 (Pangkal Anomali)**: Expose failure modes of legacy/naive approaches without introducing ungrounded jargon across **$\ge 4$ cohesive paragraphs**.
+  - **Block 2 (Prototipe Intuitif)**: Anchor a real-world physical analog + **Mermaid flowchart** across **$\ge 4$ cohesive paragraphs** mapping spatial-temporal dynamics.
+  - **Block 3 (Invarian & Operasi Inti)**: Isolate the conserved property across **$\ge 4$ cohesive paragraphs** + Side-by-side **Contrasting Cases Table** (*Pemula Salah* vs *Kenyataan Fisik*).
+  - **Block 4 (Notasi Sebagai Kontrak)**: Formalize symbolism/code as shorthand contracts across **$\ge 4$ cohesive paragraphs**, deconstructing every symbol into its physical meaning.
   - **Block 5 (Uji Tegangan Batas / Forward Pass)**: Active challenge evaluating edge conditions ($0, \infty$, collapse) with 5-axis diagnostic multiple-choice options.
+* **Deep Explanatory Narrative Invariant (> 3 Paragraphs per Block)**:
+  Explanatory blocks (Blocks 1 to 4) **MUST** each contain strictly more than 3 paragraphs (minimal 4 well-developed paragraphs) of structured, relevant narrative. Each paragraph systematically unpacks the mental model without vacuous filler (common-sense intuition $\to$ baseline adequacy $\to$ operational breakdown $\to$ physical sandbox $\to$ invariant conservation $\to$ symbolic contract guarantees). Terse 1–2 sentence summaries are strictly prohibited.
 
 ### Invariant 2: Causal Closure & Zero Orphan Probe Entities
 * **Trigger**: Synthesizing or auditing Block 5 Forward Pass probes.

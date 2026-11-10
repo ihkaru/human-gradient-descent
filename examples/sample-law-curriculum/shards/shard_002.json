@@ -25,15 +25,15 @@
         "block1_anomaly": {
           "groundState": "Initial state prior to Consideration and Bargained-for Exchange.",
           "oldWay": "Conventional assumption or baseline approach.",
-          "breakdownPoint": "Dalam pergaulan sosial sehari-hari, kita sering membuat janji karena rasa terima kasih atau kesopanan moral. Misalnya seorang paman berkata kepada keponakannya: *\"Sebagai hadiah karena kamu sudah menjadi anak baik tahun lalu, paman berjanji akan membelikanmu sepeda motor baru bulan depan.\"*\n\nNamun dalam hukum kontrak, jika paman tersebut berubah pikiran dan membatalkan janjinya, keponakan tidak bisa menggugat paman ke pengadilan! Mengapa janji hadiah tidak dianggap sebagai kontrak yang mengikat?\n\nMasalahnya terletak pada ketiadaan timbal balik (*Consideration*). Kontrak hukum bukanlah yayasan amal. Pengadilan tidak mau membuang waktu dan biaya negara untuk menegakkan janji hadiah cuma-cuma (*gratuitous promise*). Agar sebuah janji memiliki kekuatan mengikat di mata hukum, janji tersebut harus dibeli melalui pertukaran timbal balik yang dinegosiasikan (*bargained-for exchange*)."
+          "breakdownPoint": "Dalam pergaulan sosial sehari-hari, kita sering membuat janji karena rasa terima kasih atau kesopanan moral. Misalnya seorang paman berkata kepada keponakannya: *\"Sebagai hadiah karena kamu sudah menjadi anak baik tahun lalu, paman berjanji akan membelikanmu sepeda motor baru bulan depan.\"*\n\nDi lingkungan keluarga, janji semacam ini dipandang terhormat dan diharapkan ditepati sebagai kewajiban etika moral. Namun dalam hukum kontrak perdata, relasi sosial ini membentur dinding pemisah yurisdiksi yang sangat tegas.\n\nJika paman tersebut berubah pikiran dan membatalkan janjinya, keponakan tidak bisa menggugat paman ke pengadilan perdata untuk menuntut penyerahan motor! Mengapa hukum menolak menegakkan janji hadiah cuma-cuma (*gratuitous promise*)?\n\nMasalahnya terletak pada ketiadaan timbal balik bernilai hukum (*Consideration*). Pengadilan perdata dibiayai oleh pajak negara untuk memfasilitasi pertukaran ekonomi produktif, bukan untuk mengadili perselisihan janji hadiah sepihak; oleh sebab itu janji wajib dibeli lewat tawar-menawar timbal balik (*bargained-for exchange*)."
         },
         "block2_intuitivePrototype": {
           "physicalObject": "Physical sandbox model",
-          "isomorphicMapping": "Bayangkan sebuah papan jungkat-jungkit dua arah di taman bermain sekolah.\n\nSebuah kontrak hukum persis seperti jungkat-jungkit yang harus bergerak seimbang:\n* Anda tidak bisa menuntut sisi lawan turun jika sisi Anda sendiri tidak diisi beban apapun!\n* Sisi A meletakkan beban berupa barang atau jasa (pengorbanan hukum / *legal detriment*).\n* Sisi B meletakkan beban berupa uang atau pembayaran (imbalan hukum / *legal benefit*).\n\nJika Anda meminta janji baru dari seseorang hanya atas dasar jasa Anda yang sudah selesai 10 tahun lalu (*Past Consideration*), jungkat-jungkit tidak akan bergerak. Beban masa lalu sudah mengendap di tanah dan tidak bisa dijadikan alat tukar untuk menggerakkan janji di masa depan.\n\n```mermaid\nflowchart LR\n    PartyA[\"Pihak A (Menyerahkan Pengorbanan Hukum)\"] <-->|Bargained-For Exchange (Imbalan Langsung)| PartyB[\"Pihak B (Menyerahkan Imbalan Hukum)\"]\n```",
+          "isomorphicMapping": "Bayangkan sebuah papan jungkat-jungkit dua arah di taman bermain sekolah.\n\nSebuah kontrak hukum persis seperti jungkat-jungkit yang harus bergerak seimbang: Anda tidak bisa menuntut sisi lawan turun jika sisi Anda sendiri tidak diisi beban nyata apa pun.\n\nSisi A meletakkan beban berupa barang, jasa, atau penahanan hak (*legal detriment*), sementara Sisi B meletakkan beban berupa pembayaran uang atau penyerahan kompensasi (*legal benefit*).\n\nJika Anda meminta janji baru dari seseorang hanya atas dasar jasa Anda yang sudah selesai 10 tahun lalu (*Past Consideration*), jungkat-jungkit tidak akan bergerak karena beban masa lalu sudah mengendap di tanah dan tidak bisa dijadikan alat tukar segar untuk menggerakkan janji masa depan.\n\n```mermaid\nflowchart LR\n    PartyA[\"Pihak A (Menyerahkan Pengorbanan Hukum)\"] <-->|Bargained-For Exchange (Imbalan Langsung)| PartyB[\"Pihak B (Menyerahkan Imbalan Hukum)\"]\n```",
           "deadlockResolution": "Resolves the deadlock identified in Block 1 through isomorphic interaction."
         },
         "block3_coreMechanics": {
-          "invariantProperty": "Invarian mutlak sistem ini adalah **Mutualitas Kewajiban Timbal Balik (Consideration Doctrine)**: janji yang dapat dipaksakan di pengadilan wajib lahir dari pertukaran tawar-menawar (*bargained-for exchange*) di mana setiap pihak memberikan sesuatu yang bernilai hukum sebagai imbalan atas janji pihak lain.\n\n*Past Consideration is No Consideration*: perbuatan atau jasa yang telah selesai dilakukan di masa lalu tanpa kaitan dengan janji baru tidak memiliki nilai hukum untuk mengikat janji yang baru diucapkan.",
+          "invariantProperty": "Invarian mutlak sistem ini adalah **Mutualitas Kewajiban Timbal Balik (Consideration Doctrine)**: janji yang dapat dipaksakan di pengadilan wajib lahir dari pertukaran tawar-menawar (*bargained-for exchange*).\n\nSetiap pihak wajib memberikan sesuatu yang bernilai hukum sebagai imbalan langsung atas janji pihak lain (*quid pro quo*). Nilai hukum ini dapat berupa melakukan sesuatu yang tidak wajib dilakukan, atau menahan diri dari tindakan yang sah menurut hukum.\n\nPrinsip fundamental *Past Consideration is No Consideration* menegaskan bahwa perbuatan yang telah selesai dilakukan di masa lalu tanpa kaitan dengan janji baru tidak memiliki nilai tukar untuk mengikat janji yang baru diucapkan.\n\nPemula sering mengira janji tertulis otomatis mengikat, padahal tanpa adanya timbal balik segar, janji tersebut tetap berstatus hibah cuma-cuma yang tidak dapat dipaksakan pemenuhannya melalui gugatan kontrak.",
           "variableComponents": [
             "System inputs",
             "Observable state amplitudes"
@@ -55,7 +55,7 @@
         },
         "block4_notationContract": {
           "formulaOrCode": "C = Detriment(A) \\leftrightarrow Benefit(B)",
-          "minimalFormalization": "Doktrin consideration dirumuskan dalam kontrak tawar-menawar:\n\nFormula aljabar kesetaraan pertukaran hukum:",
+          "minimalFormalization": "Formula pertukaran timbal balik merumuskan kesetaraan beban hukum yang harus ada pada setiap perjanjian yang sah.\n\nHubungan tawar-menawar ini diformalkan dalam kontrak aljabar berikut:\n\nPersamaan di atas mendefinisikan bahwa consideration ($C$) tercipta hanya jika pengorbanan hukum Pihak A ditukar secara langsung dengan manfaat hukum Pihak B melalui negosiasi aktif.\n\nKontrak ini menjadi saringan yuridis yang melindungi warga dari tuntutan sewenang-wenang atas ucapan santai, memastikan hanya transaksi yang memiliki komitmen dua arah yang memperoleh perlindungan aparat penegak hukum.",
           "termsDeconstruction": [
             {
               "symbol": "C",
@@ -63,7 +63,7 @@
             },
             {
               "symbol": "Detriment(A)",
-              "physicalMeaning": "Pengorbanan hukum pihak A (melakukan sesuatu yang tidak wajib dilakukan atau menahan diri dari hak legalnya)."
+              "physicalMeaning": "Pengorbanan hukum pihak A (melakukan prestasi atau menahan hak legal)."
             },
             {
               "symbol": "Benefit(B)",
@@ -71,7 +71,7 @@
             },
             {
               "symbol": "Quid Pro Quo",
-              "physicalMeaning": "Prinsip dasar ada barang ada harga dalam pembentukan perjanjian."
+              "physicalMeaning": "Prinsip dasar ada barang ada imbalan dalam pembentukan perjanjian."
             }
           ]
         }
@@ -102,40 +102,30 @@
       "glossary": [
         {
           "term": "Consideration",
-          "definition": "Nilai hukum timbal balik yang disepakati untuk ditukarkan sebagai syarat sahnya kontrak",
-          "highSchoolAnchor": "Barter atau jual beli di kantin; kamu dapat roti bakar karena kamu menyerahkan uang jajan"
+          "definition": "Nilai hukum timbal balik yang disepakati untuk ditukarkan",
+          "highSchoolAnchor": "Barter di kantin sekolah; kamu dapat roti bakar karena kamu menyerahkan uang jajan"
         },
         {
           "term": "Bargained-for Exchange",
-          "definition": "Proses tawar-menawar di mana janji pihak A memicu prestasi pihak B dan sebaliknya",
-          "highSchoolAnchor": "Negosiasi jual beli: \"Aku beri kamu buku ini asalkan kamu bantu aku membetulkan rantai sepeda\""
+          "definition": "Proses tawar-menawar di mana janji memicu prestasi timbal balik",
+          "highSchoolAnchor": "Negosiasi: \"Aku beri buku ini asalkan kamu bantu membetulkan rantai sepeda\""
         },
         {
           "term": "Past Consideration",
-          "definition": "Prestasi atau jasa yang telah selesai dilakukan sebelum janji baru diucapkan",
-          "highSchoolAnchor": "Meminta uang jajan hari ini atas dasar kemarin kamu sudah merapikan tempat tidur"
+          "definition": "Prestasi yang telah selesai dilakukan sebelum janji baru diucapkan",
+          "highSchoolAnchor": "Meminta uang jajan hari ini atas dasar kemarin sudah merapikan tempat tidur"
         },
         {
           "term": "Gratuitous Promise",
-          "definition": "Janji memberi hadiah sepihak tanpa menuntut imbalan apa pun dari penerima",
-          "highSchoolAnchor": "Janji traktiran ulang tahun yang tidak bisa digugat ke pengadilan jika temanmu batal mentraktir"
-        },
-        {
-          "term": "Legal Detriment",
-          "definition": "Menyerahkan hak atau menahan diri dari melakukan tindakan yang sebenarnya sah menurut hukum",
-          "highSchoolAnchor": "Siswa berjanji tidak merokok sampai usia 21 tahun demi mendapatkan hadiah dari orang tua"
-        },
-        {
-          "term": "Promissory Estoppel",
-          "definition": "Doktrin keadilan untuk menegakkan janji tanpa consideration jika korban menderita kerugian reliance nyata",
-          "highSchoolAnchor": "Pengecualian khusus pengadilan untuk mencegah ketidakadilan ekstrem saat seseorang telanjur rugi modal"
+          "definition": "Janji memberi hadiah sepihak tanpa menuntut imbalan dari penerima",
+          "highSchoolAnchor": "Traktiran ulang tahun yang tidak bisa digugat ke pengadilan jika temanmu batal mentraktir"
         }
       ],
       "variationProbes": {
         "conceptualVariants": [
           {
             "representationType": "verbal",
-            "content": "<!-- hgd:options: [\n  {\"optionId\":\"opt_a\",\"text\":\"Unenforceable for lack of consideration: past consideration was not bargained-for in exchange for the new promise, unless promissory estoppel or written statutory reliance applies.\",\"isCorrect\":true,\"causalRationale\":\"Correct: Past service cannot serve as fresh bargained-for exchange for a future promise.\"},\n  {\"optionId\":\"opt_b\",\"text\":\"Enforceable because 30 years of loyal service constitutes sufficient moral obligation.\",\"isCorrect\":false,\"diagnosticAxis\":\"conceptGap\",\"causalRationale\":\"Moral Obligation Fallacy: Moral gratitude is not recognized as legal consideration in contract law.\"},\n  {\"optionId\":\"opt_c\",\"text\":\"Enforceable under the doctrine of substantial performance.\",\"isCorrect\":false,\"diagnosticAxis\":\"methodChoice\",\"causalRationale\":\"Doctrine Confusion: Substantial performance applies to breach remedies, not formation consideration.\"},\n  {\"optionId\":\"opt_d\",\"text\":\"Enforceable only if the retiring employee was born on a leap year.\",\"isCorrect\":false,\"diagnosticAxis\":\"reasoningBug\",\"causalRationale\":\"Arbitrary superstitious condition unrelated to common law contract jurisprudence.\"}\n] -->\n\n### 1."
+            "content": "Prinsip fundamental *Past Consideration is No Consideration* menegaskan bahwa perbuatan yang telah selesai dilakukan di masa lalu tanpa kaitan dengan janji baru tidak memiliki nilai tukar untuk mengikat janji yang baru diucapkan."
           },
           {
             "representationType": "symbolic",
@@ -169,7 +159,7 @@
             "isCorrect": false,
             "diagnosticAxis": "conceptGap",
             "causalRationale": "Misconception: Assumes operations produce zero observable effect, ignoring active transformation.",
-            "specificRemediation": "Review core mechanism: <!-- hgd:options: [\n  {\"optionId\":\"opt_a\",\"text\":\"Unenforceable for lack of consideration: past consideration was not bargained-for in exchange for the new promise, unless promissory estoppel or written statutory reliance applies.\",\"isCorrect\":true,\"causalRationale\":\"Correct: Past service cannot serve as fresh bargained-for exchange for a future promise.\"},\n  {\"optionId\":\"opt_b\",\"text\":\"Enforceable because 30 years of loyal service constitutes sufficient moral obligation.\",\"isCorrect\":false,\"diagnosticAxis\":\"conceptGap\",\"causalRationale\":\"Moral Obligation Fallacy: Moral gratitude is not recognized as legal consideration in contract law.\"},\n  {\"optionId\":\"opt_c\",\"text\":\"Enforceable under the doctrine of substantial performance.\",\"isCorrect\":false,\"diagnosticAxis\":\"methodChoice\",\"causalRationale\":\"Doctrine Confusion: Substantial performance applies to breach remedies, not formation consideration.\"},\n  {\"optionId\":\"opt_d\",\"text\":\"Enforceable only if the retiring employee was born on a leap year.\",\"isCorrect\":false,\"diagnosticAxis\":\"reasoningBug\",\"causalRationale\":\"Arbitrary superstitious condition unrelated to common law contract jurisprudence.\"}\n] -->\n\n### 1."
+            "specificRemediation": "Review core mechanism: Prinsip fundamental *Past Consideration is No Consideration* menegaskan bahwa perbuatan yang telah selesai dilakukan di masa lalu tanpa kaitan dengan janji baru tidak memiliki nilai tukar untuk mengikat janji yang baru diucapkan."
           },
           {
             "optionId": "opt_c",
@@ -190,7 +180,7 @@
       },
       "lossRubric": {
         "conceptGapCriteria": [
-          "Fails to identify core mechanism: <!-- hgd:options: [\n  {\"optionId\":\"opt_a\",\"text\":\"Unenforceable for lack of consideration: past consideration was not bargained-for in exchange for the new promise, unless promissory estoppel or written statutory reliance applies.\",\"isCorrect\":true,\"causalRationale\":\"Correct: Past service cannot serve as fresh bargained-for exchange for a future promise.\"},\n  {\"optionId\":\"opt_b\",\"text\":\"Enforceable because 30 years of loyal service constitutes sufficient moral obligation.\",\"isCorrect\":false,\"diagnosticAxis\":\"conceptGap\",\"causalRationale\":\"Moral Obligation Fallacy: Moral gratitude is not recognized as legal consideration in contract law.\"},\n  {\"optionId\":\"opt_c\",\"text\":\"Enforceable under the doctrine of substantial performance.\",\"isCorrect\":false,\"diagnosticAxis\":\"methodChoice\",\"causalRationale\":\"Doctrine Confusion: Substantial performance applies to breach remedies, not formation consideration.\"},\n  {\"optionId\":\"opt_d\",\"text\":\"Enforceable only if the retiring employee was born on a leap year.\",\"isCorrect\":false,\"diagnosticAxis\":\"reasoningBug\",\"causalRationale\":\"Arbitrary superstitious condition unrelated to common law contract jurisprudence.\"}\n] -->\n\n### 1.",
+          "Fails to identify core mechanism: Prinsip fundamental *Past Consideration is No Consideration* menegaskan bahwa perbuatan yang telah selesai dilakukan di masa lalu tanpa kaitan dengan janji baru tidak memiliki nilai tukar untuk mengikat janji yang baru diucapkan.",
           "Confuses cause and effect in state transitions"
         ],
         "missingPrerequisiteMap": {
@@ -211,7 +201,7 @@
         "learningRate": 0.25,
         "hintLadder": {
           "level0Reflective": "Reflective: What fundamental invariant governs Consideration and Bargained-for Exchange?",
-          "level1Directional": "Directional Clue: Examine how Consideration and Bargained-for Exchange handles boundary conditions: <!-- hgd:options: [\n  {\"optionId\":\"opt_a\",\"text\":\"Unenforceable for lack of consideration: past consideration was not bargained-for in exchange for the new promise, unless promissory estoppel or written statutory reliance applies.\",\"isCorrect\":true,\"causalRationale\":\"Correct: Past service cannot serve as fresh bargained-for exchange for a future promise.\"},\n  {\"optionId\":\"opt_b\",\"text\":\"Enforceable because 30 years of loyal service constitutes sufficient moral obligation.\",\"isCorrect\":false,\"diagnosticAxis\":\"conceptGap\",\"causalRationale\":\"Moral Obligation Fallacy: Moral gratitude is not recognized as legal consideration in contract law.\"},\n  {\"optionId\":\"opt_c\",\"text\":\"Enforceable under the doctrine of substantial performance.\",\"isCorrect\":false,\"diagnosticAxis\":\"methodChoice\",\"causalRationale\":\"Doctrine Confusion: Substantial performance applies to breach remedies, not formation consideration.\"},\n  {\"optionId\":\"opt_d\",\"text\":\"Enforceable only if the retiring employee was born on a leap year.\",\"isCorrect\":false,\"diagnosticAxis\":\"reasoningBug\",\"causalRationale\":\"Arbitrary superstitious condition unrelated to common law contract jurisprudence.\"}\n] -->\n\n### 1.",
+          "level1Directional": "Directional Clue: Examine how Consideration and Bargained-for Exchange handles boundary conditions: Prinsip fundamental *Past Consideration is No Consideration* menegaskan bahwa perbuatan yang telah selesai dilakukan di masa lalu tanpa kaitan dengan janji baru tidak memiliki nilai tukar untuk mengikat janji yang baru diucapkan.",
           "level2Constraint": "Constraint: Eliminate unconstrained assumptions. Ground truth: \"Unenforceable for lack of consideration: past consideration was not bargained-for in exchange for the new promise, unless promissory estoppel or written statutory reliance applies.\"",
           "level3WorkedExample": "\"Worked Solution: Past consideration is no consideration. Because the 30 years of service were performed before the employer's promise was made, the service was not bargained for in exchange for the bonus.\""
         },

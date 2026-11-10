@@ -29,11 +29,11 @@
         },
         "block2_intuitivePrototype": {
           "physicalObject": "Physical sandbox model",
-          "isomorphicMapping": "Bayangkan instalasi pipa air di sebuah bangunan bertingkat.\n\nTerdapat dua jenis kebocoran yang sangat berbeda:\n* **Kasus 1: Pipa Utama Pecah (Material Breach)**: Pipa saluran utama pecah sehingga air membanjiri ruang tamu dan membahayakan pondasi bangunan. Tujuan pokok rumah tidak tercapai. Di sini, katup air utama wajib ditutup total dan pembayaran dihentikan sementara.\n* **Kasus 2: Warna Cat Pipa Sedikit Pudar (Immaterial Breach)**: Air tetap mengalir jernih dan lancar dengan tekanan sempurna, hanya warna cat pipa di dalam gudang sedikit pudar. Katup air utama tidak boleh ditutup! Pemilik rumah cukup meminta ganti rugi seharga satu kaleng cat untuk mengecat ulang.\n\n```mermaid\nflowchart TD\n    Performance[\"Pelaksanaan Kontrak Selesai Secara Esensial (99%)\"] --> Evaluation{\"Apakah Pelanggaran Merusak Tujuan Pokok Kontrak?\"}\n    Evaluation -->|Ya: Material Breach| Forfeiture[\"Hak Membatalkan Kontrak & Menolak Bayar\"]\n    Evaluation -->|Tidak: Immaterial Breach| Substantial[\"Doktrin Substantial Performance: Wajib Bayar Penuh Dikurangi Selisih Nilai\"]\n```",
+          "isomorphicMapping": "Bayangkan instalasi pipa air di sebuah bangunan bertingkat.\n\nTerdapat dua jenis kebocoran yang sangat berbeda dalam operasional gedung:\n* **Kasus 1: Pipa Utama Pecah (Material Breach)**: Pipa saluran utama pecah sehingga air membanjiri ruang tamu dan membahayakan pondasi bangunan. Tujuan pokok rumah tidak tercapai. Di sini, katup air utama wajib ditutup total dan pembayaran dihentikan sementara.\n* **Kasus 2: Warna Cat Pipa Sedikit Pudar (Immaterial Breach)**: Air tetap mengalir jernih dan lancar dengan tekanan sempurna, hanya warna cat pipa di dalam gudang sedikit pudar. Katup air utama tidak boleh ditutup! Pemilik rumah cukup meminta ganti rugi seharga satu kaleng cat untuk mengecat ulang.\n\nPembedaan tingkat keparahan ini mencegah tindakan reaksioner yang merusak keseluruhan sistem hanya karena ketidaksempurnaan kosmetik yang mudah diperbaiki.\n\n```mermaid\nflowchart TD\n    Performance[\"Pelaksanaan Kontrak Selesai Secara Esensial (99%)\"] --> Evaluation{\"Apakah Pelanggaran Merusak Tujuan Pokok Kontrak?\"}\n    Evaluation -->|Ya: Material Breach| Forfeiture[\"Hak Membatalkan Kontrak & Menolak Bayar\"]\n    Evaluation -->|Tidak: Immaterial Breach| Substantial[\"Doktrin Substantial Performance: Wajib Bayar Penuh Dikurangi Selisih Nilai\"]\n```",
           "deadlockResolution": "Resolves the deadlock identified in Block 1 through isomorphic interaction."
         },
         "block3_coreMechanics": {
-          "invariantProperty": "Invarian mutlak sistem adalah **Doktrin Pelaksanaan Substansial (Substantial Performance - Jacob & Youngs v. Kent)**: jika satu pihak telah melaksanakan kewajiban pokoknya dengan itikad baik dan hanya melakukan penyimpangan minor yang tidak melukai esensi kontrak, pihak lain **dilarang membatalkan kontrak** (*cannot forfeit*).\n\nKewajiban pembayaran tetap berlaku penuh, dikurangi selisih depresiasi riil (*difference-in-value*) antara apa yang dijanjikan dan apa yang diserahkan.",
+          "invariantProperty": "Invarian mutlak sistem adalah **Doktrin Pelaksanaan Substansial (Substantial Performance - Jacob & Youngs v. Kent)**: jika satu pihak telah melaksanakan kewajiban pokoknya dengan itikad baik dan hanya melakukan penyimpangan minor yang tidak melukai esensi kontrak, pihak lain **dilarang membatalkan kontrak** (*cannot forfeit*).\n\nKewajiban pembayaran tetap berlaku penuh, dikurangi selisih depresiasi riil (*difference-in-value*) antara apa yang dijanjikan dan apa yang diserahkan.\n\nPrinsip keadilan (*equity*) menolak penghancuran nilai ekonomi yang tidak proporsional hanya demi menegakkan kepatuhan kata-demi-kata yang kaku.\n\nPemula sering mengira setiap wanprestasi memberi hak membatalkan perjanjian, padahal hukum secara cermat membedakan pelanggaran material yang menggagalkan tujuan dengan pelanggaran non-material yang cukup diselesaikan lewat ganti rugi selisih nilai.",
           "variableComponents": [
             "System inputs",
             "Observable state amplitudes"
@@ -55,7 +55,7 @@
         },
         "block4_notationContract": {
           "formulaOrCode": "Remedy = DifferenceInValue \\neq ContractForfeiture",
-          "minimalFormalization": "Pembedaan akibat hukum pelanggaran dikontrakkan sebagai berikut:\n\nFormula penentu solusi hukum:",
+          "minimalFormalization": "Batasan pemulihan hukum atas pelanggaran kontrak diformalkan dalam hubungan pemisahan ganti rugi versus pembatalan.\n\nPersamaan kontrak di bawah ini membatasi pemulihan pada kompensasi selisih nilai riil:\n\nPersamaan di atas menegaskan bahwa pemulihan (*Remedy*) untuk penyimpangan immaterial dibatasi pada selisih nilai (*DifferenceInValue*), dan secara tegas menolak pemutusan perjanjian sepihak (*ContractForfeiture*).\n\nDengan berpatokan pada formula ini, hakim dan para pihak memiliki kepastian matematis bahwa penyimpangan minor bernilai selisih nol (seperti pipa identik merek berbeda) tidak akan menghanguskan hak tagih atas pekerjaan yang telah diselesaikan dengan itikad baik.",
           "termsDeconstruction": [
             {
               "symbol": "Substantial Performance",
@@ -67,7 +67,7 @@
             },
             {
               "symbol": "DifferenceInValue",
-              "physicalMeaning": "Kompensasi selisih nilai pasar antara pipa Reading dan pipa Cohoes (yang dalam kasus ini bernilai Rp 0)."
+              "physicalMeaning": "Kompensasi selisih nilai pasar antara pipa Reading dan pipa Cohoes (bernilai nol)."
             },
             {
               "symbol": "Material Breach",
@@ -102,33 +102,23 @@
       "glossary": [
         {
           "term": "Material Breach",
-          "definition": "Pelanggaran kontrak yang begitu mendasar sehingga menggagalkan tujuan pokok perjanjian",
+          "definition": "Pelanggaran kontrak mendasar yang menggagalkan tujuan pokok perjanjian",
           "highSchoolAnchor": "Memesan seragam olahraga ukuran L tetapi yang dikirim seragam ukuran balita"
         },
         {
           "term": "Immaterial Breach",
-          "definition": "Penyimpangan kecil atau cacat minor yang tidak merusak fungsi utama dari apa yang dijanjikan",
-          "highSchoolAnchor": "Memesan buku cetak bersampul biru tua tetapi yang dikirim bersampul biru dongker"
+          "definition": "Penyimpangan minor yang tidak merusak fungsi utama perjanjian",
+          "highSchoolAnchor": "Memesan buku sampul biru tua tetapi yang dikirim bersampul biru dongker"
         },
         {
           "term": "Substantial Performance",
-          "definition": "Doktrin hukum yang melindungi pihak yang telah menyelesaikan hampir seluruh kewajibannya dengan itikad baik",
-          "highSchoolAnchor": "Mengerjakan 98 soal ujian dengan benar; guru tidak boleh memberi nilai 0 hanya karena salah di 2 soal"
-        },
-        {
-          "term": "Economic Forfeiture",
-          "definition": "Kerugian finansial yang sangat tidak proporsional yang dialami pelaku janji akibat pembatalan sepihak",
-          "highSchoolAnchor": "Mengambil alih rumah megah secara gratis hanya karena gagang pintu kamar mandi sedikit longgar"
+          "definition": "Doktrin melindungi pihak yang telah menyelesaikan hampir seluruh kewajibannya",
+          "highSchoolAnchor": "Mengerjakan 98 soal ujian dengan benar; guru tidak boleh memberi nilai nol"
         },
         {
           "term": "Jacob & Youngs v. Kent",
-          "definition": "Putusan pengadilan banding New York tahun 1921 yang menetapkan doktrin pelaksanaan substansial",
-          "highSchoolAnchor": "Kasus hukum nyata tentang perselisihan merek pipa air di sebuah rumah tinggal mewah"
-        },
-        {
-          "term": "Difference in Value",
-          "definition": "Ukuran ganti rugi berupa selisih harga pasar antara barang yang diminta dan barang yang diterima",
-          "highSchoolAnchor": "Harga pipa merek A Rp 50.000 vs merek B Rp 48.000; selisih yang harus diganti adalah Rp 2.000"
+          "definition": "Putusan yurisprudensi penting yang menetapkan doktrin pelaksanaan substansial",
+          "highSchoolAnchor": "Kasus nyata perselisihan merek pipa air di rumah tinggal mewah New York"
         }
       ],
       "variationProbes": {
