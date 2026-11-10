@@ -77,6 +77,11 @@ flowchart TD
      - Perbedaan jalur antara ekspektasi salah vs mekanisme fisik sebenarnya.
    * Diagram Mermaid menjembatani narasi analogi di Blok 2 dengan abstraksi formal di Blok 4, mengunci intuisi spasial-temporal pembelajar sebelum disajikan simbol matematika/steno.
 
+9. **Zero-Failure Math Delimiters & Mermaid Sanitization (ADR-010)**:
+   * **Mermaid Node Labels**: Any mathematical formula or LaTeX symbol inside a Mermaid node label `["..."]` **MUST** be explicitly wrapped in `$$...$$` (e.g., `["Kernel Trap ($$\\tau_{\\text{trap}}$$)"]`). **NEVER** write unescaped raw LaTeX backslashes or curly braces like `(\tau_{trap})` inside Mermaid labels.
+   * **Notation Deconstruction Chips**: All mathematical symbols in `termsDeconstruction` must be wrapped in `$` delimiters (e.g., `$\tau_{\text{switch}}$`, `$\mathcal{O}(1)$`) so KaTeX auto-renders them with zero failure.
+   * **Educational Taxonomy Compliance (ADR-009)**: Use formal Instructional Design / CBE terminology: *Program Pembelajaran* (Learning Program), *Cetak Biru Instruksional* (Instructional Blueprint), *Peta Jalur Prasyarat* (Prerequisite Map), *Unit Kompetensi* (Competency Unit). Avoid campus-specific terms like "kuliah" or vague terms like "bab".
+
 ---
 
 ## Author's Diagnostic Checklist (Matriks Uji Mandiri Penulis)
