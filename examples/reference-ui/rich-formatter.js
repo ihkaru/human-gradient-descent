@@ -194,6 +194,16 @@ export async function renderMermaidElement(code, containerEl) {
     const uniqueId = `mermaid-${Math.random().toString(36).slice(2, 9)}`;
     const sanitized = sanitizeMermaidCode(code);
     try {
+      // Deterministic pre-flight syntax check before attempting DOM layout or render
+      if (typeof window.mermaid.parse === "function") {
+        const isValid = await window.mermaid.parse(sanitized, { suppressErrors: true });
+        if (!isValid) {
+          console.warn("Mermaid pre-flight parse validation rejected syntax, falling back safely.");
+          containerEl.innerHTML = `<pre class="fallback-code">${escapeHtml(code)}</pre>`;
+          return;
+        }
+      }
+
       const { svg } = await window.mermaid.render(uniqueId, sanitized);
       containerEl.innerHTML = svg;
       return;
