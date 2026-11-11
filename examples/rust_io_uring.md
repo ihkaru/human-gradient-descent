@@ -32,9 +32,9 @@ Sistem baru *io_uring* membuang ritual bolak-balik tersebut dengan memasang sebu
 ```mermaid
 flowchart LR
     subgraph Classical["Model Lama: Epoll (2 Syscalls Per Request)"]
-        U1["Aplikasi User (Juru Ketik)"] -->|Syscall read (Ketuk Pintu)| K1["Kernel Trap Barrier ($$\\tau_{\\text{trap}}$$)"]
+        U1["Aplikasi User (Juru Ketik)"] -->|Syscall read (Ketuk Pintu)| K1["Kernel Trap Barrier (Penalti CPU: τ_trap)"]
         K1 -->|Ganti Konteks CPU| U2["Proses Dokumen JSON"]
-        U2 -->|Syscall write (Ketuk Pintu)| K2["Kernel Trap Barrier ($$\\tau_{\\text{trap}}$$)"]
+        U2 -->|Syscall write (Ketuk Pintu)| K2["Kernel Trap Barrier (Penalti CPU: τ_trap)"]
     end
     subgraph Ring["Model io_uring: Ban Berjalan (Shared Memory)"]
         SQ["Submission Queue (Ban Kirim)"] -->|Ambil Tanpa Gangguan| KW["Kernel Worker (Kurir Luar)"]

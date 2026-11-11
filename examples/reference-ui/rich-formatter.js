@@ -8,6 +8,7 @@ export function initFormatters() {
         theme: "dark",
         securityLevel: "loose",
         htmlLabels: true,
+        suppressErrorRendering: true,
         themeCSS: ".node foreignObject { overflow: visible !important; } .edgeLabel foreignObject { overflow: visible !important; }",
         fontFamily: "Google Sans, sans-serif",
         themeVariables: {
@@ -141,20 +142,53 @@ export async function renderDisplayFormula(rawFormula, containerEl) {
 export function sanitizeMermaidCode(rawCode) {
   if (!rawCode) return "";
   let code = rawCode;
-  // Convert raw LaTeX commands in node labels into $$...$$ so Mermaid with htmlLabels:true passes them to KaTeX
-  code = code.replace(/\["([^"]*?)"\]/g, (match, label) => {
-    if (label.includes("\\") && !label.includes("$$")) {
-      const fixed = label.replace(/\\([a-zA-Z]+)(_\{[^}]+\}|[a-zA-Z0-9_{}]+)?/g, (m) => `$$${m}$$`);
-      return `["${fixed}"]`;
-    }
-    return match;
-  });
+
+  const cleanMathText = (str) => {
+    return str
+      .replace(/\\tau_?\{?([a-zA-Z0-9]+)\}?/g, "τ_$1")
+      .replace(/\\tau/g, "τ")
+      .replace(/\\alpha/g, "α")
+      .replace(/\\beta/g, "β")
+      .replace(/\\psi/g, "ψ")
+      .replace(/\\Phi/g, "Φ")
+      .replace(/\\dagger/g, "†")
+      .replace(/\\neq/g, "≠")
+      .replace(/\\approx/g, "≈")
+      .replace(/\\frac\{1\}\{\\sqrt\{2\}\}/g, "1/√2")
+      .replace(/\\sqrt\{2\}/g, "√2")
+      .replace(/\\lvert/g, "|")
+      .replace(/\\rangle/g, "⟩")
+      .replace(/\\langle/g, "⟨")
+      .replace(/\\rvert/g, "|")
+      .replace(/\\text\{([^}]+)\}/g, "$1")
+      .replace(/\$\$/g, "")
+      .replace(/\\/g, "")
+      .replace(/\|\s+/g, "|")
+      .replace(/\s+⟩/g, "⟩")
+      .trim();
+  };
+
+  // 1. Sanitize node labels ["..."]
+  code = code.replace(/\["([^"]*?)"\]/g, (_, label) => `["${cleanMathText(label)}"]`);
+
+  // 2. Sanitize edge labels |...|
+  code = code.replace(/\|([^|\n]+)\|/g, (_, edgeLabel) => `|${cleanMathText(edgeLabel)}|`);
+
   return code;
 }
 
 export async function renderMermaidElement(code, containerEl) {
   if (!containerEl || !code) return;
   containerEl.className = "mermaid-diagram-box";
+
+  // Clean up any stray elements attached to document.body by previous render attempts
+  if (typeof document !== "undefined") {
+    document.querySelectorAll('[id^="dmermaid-"], [id^="mermaid-"]').forEach((el) => {
+      if (el.parentNode === document.body) {
+        el.remove();
+      }
+    });
+  }
 
   if (window.mermaid) {
     const uniqueId = `mermaid-${Math.random().toString(36).slice(2, 9)}`;
@@ -164,17 +198,16 @@ export async function renderMermaidElement(code, containerEl) {
       containerEl.innerHTML = svg;
       return;
     } catch (err) {
-      console.warn("Mermaid render error, trying sanitized fallback:", err);
-      try {
-        const safeCode = code.replace(/\["([^"]*?)"\]/g, (_, l) => `["${l.replace(/[\\]/g, "").replace(/\{/g, "(").replace(/\}/g, ")")}"]`);
-        const { svg } = await window.mermaid.render(`${uniqueId}-fb`, safeCode);
-        containerEl.innerHTML = svg;
-        return;
-      } catch (err2) {
-        console.warn("Mermaid fallback error:", err2);
-        containerEl.innerHTML = `<pre class="fallback-code">${escapeHtml(code)}</pre>`;
-        return;
+      console.warn("Mermaid render error:", err);
+      if (typeof document !== "undefined") {
+        document.querySelectorAll(`[id="d${uniqueId}"], [id="${uniqueId}"]`).forEach((el) => {
+          if (el.parentNode === document.body) {
+            el.remove();
+          }
+        });
       }
+      containerEl.innerHTML = `<pre class="fallback-code">${escapeHtml(code)}</pre>`;
+      return;
     }
   }
 

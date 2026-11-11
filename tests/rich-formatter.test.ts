@@ -104,17 +104,23 @@ describe("Rich Formatter & Parser Suite (Reference UI)", () => {
   });
 
   describe("sanitizeMermaidCode", () => {
-    it("wraps raw LaTeX commands in Mermaid node labels into $$ delimiters", () => {
+    it("converts raw LaTeX commands in Mermaid node labels into clean Unicode", () => {
       const input = 'K1["Kernel Trap Barrier (\\tau_{trap})"]';
       const output = sanitizeMermaidCode(input);
-      expect(output).toContain("$$");
-      expect(output).toBe('K1["Kernel Trap Barrier ($$\\tau_{trap}$$)"]');
+      expect(output).not.toContain("\\");
+      expect(output).toBe('K1["Kernel Trap Barrier (τ_trap)"]');
     });
 
-    it("preserves labels already properly wrapped in $$", () => {
+    it("sanitizes quantum bra-ket and mathematical expressions in node labels", () => {
       const input = 'Sup["$$\\lvert \\psi \\rangle$$"]';
       const output = sanitizeMermaidCode(input);
-      expect(output).toBe('Sup["$$\\lvert \\psi \\rangle$$"]');
+      expect(output).toBe('Sup["|ψ⟩"]');
+    });
+
+    it("sanitizes edge labels containing backslashes and LaTeX operators", () => {
+      const input = 'LinOut -.->|Kontradiksi 2\\alpha\\beta \\neq 0| IdealOut';
+      const output = sanitizeMermaidCode(input);
+      expect(output).toBe('LinOut -.->|Kontradiksi 2αβ ≠ 0| IdealOut');
     });
   });
 });

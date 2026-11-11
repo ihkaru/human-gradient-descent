@@ -26,7 +26,7 @@
         },
         "block2_intuitivePrototype": {
           "physicalObject": "Physical sandbox model",
-          "isomorphicMapping": "Bayangkan alih-alih saklar lampu dinding yang kaku, kita meletakkan sebuah koin logam di atas meja laboratorium.\n\nKetika koin diam terlentang di sisi angka, ia merepresentasikan bit klasik bernilai '0'. Ketika koin dibalik terlentang di sisi gambar, ia bernilai '1'. Namun di atas meja ini terpasang tuas mekanis presisi yang disebut Tuas Hadamard (Gerbang Hadamard).\n\nKetika tuas Hadamard disentak dengan ketukan presisi, koin logam tersebut diputar kencang berdiri di atas meja. Selama koin berputar seimbang, status fisiknya bukan angka mutlak dan bukan gambar mutlak; koin berada dalam status dinamis superposisi.\n\nKoin menyimpan potensi simetris 50% memunculkan angka dan 50% memunculkan gambar saat seseorang menepuk meja untuk menghentikan putaran tersebut (runtuhnya gelombang / collapse).\n\n```mermaid\nflowchart LR\n    Bit0[\"Koin |0>\"] -->|Tuas Hadamard| Sup[\"Koin Berputar $$\\\\lvert \\\\psi \\\\rangle = \\\\frac{1}{\\\\sqrt{2}}(\\\\lvert 0 \\\\rangle + \\\\lvert 1 \\\\rangle)$$\"]\n    Sup -->|Ukur| Out0[\"Mendarat |0> (50%)\"]\n    Sup -->|Ukur| Out1[\"Mendarat |1> (50%)\"]\n```",
+          "isomorphicMapping": "Bayangkan alih-alih saklar lampu dinding yang kaku, kita meletakkan sebuah koin logam di atas meja laboratorium.\n\nKetika koin diam terlentang di sisi angka, ia merepresentasikan bit klasik bernilai '0'. Ketika koin dibalik terlentang di sisi gambar, ia bernilai '1'. Namun di atas meja ini terpasang tuas mekanis presisi yang disebut Tuas Hadamard (Gerbang Hadamard).\n\nKetika tuas Hadamard disentak dengan ketukan presisi, koin logam tersebut diputar kencang berdiri di atas meja. Selama koin berputar seimbang, status fisiknya bukan angka mutlak dan bukan gambar mutlak; koin berada dalam status dinamis superposisi.\n\nKoin menyimpan potensi simetris 50% memunculkan angka dan 50% memunculkan gambar saat seseorang menepuk meja untuk menghentikan putaran tersebut (runtuhnya gelombang / collapse).\n\n```mermaid\nflowchart LR\n    Bit0[\"Koin |0⟩\"] -->|Tuas Hadamard| Sup[\"Koin Berputar |ψ⟩ = (|0⟩ + |1⟩)/√2\"]\n    Sup -->|Ukur| Out0[\"Mendarat |0⟩ (50%)\"]\n    Sup -->|Ukur| Out1[\"Mendarat |1⟩ (50%)\"]\n```",
           "deadlockResolution": "Resolves the deadlock identified in Block 1 through isomorphic interaction."
         },
         "block3_coreMechanics": {
@@ -107,7 +107,7 @@
           },
           {
             "representationType": "symbolic",
-            "content": "\\\\lvert \\\\psi \\\\rangle = \\\\frac{1}{\\\\sqrt{2}}(\\\\lvert 0 \\\\rangle + \\\\lvert 1 \\\\rangle)"
+            "content": "H|0\\rangle = \\frac{1}{\\sqrt{2}}|0\\rangle + \\frac{1}{\\sqrt{2}}|1\\rangle"
           }
         ],
         "proceduralPerturbations": [

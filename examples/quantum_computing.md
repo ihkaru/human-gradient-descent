@@ -31,9 +31,9 @@ Koin menyimpan potensi simetris 50% memunculkan angka dan 50% memunculkan gambar
 
 ```mermaid
 flowchart LR
-    Bit0["Koin |0>"] -->|Tuas Hadamard| Sup["Koin Berputar $$\\lvert \\psi \\rangle = \\frac{1}{\\sqrt{2}}(\\lvert 0 \\rangle + \\lvert 1 \\rangle)$$"]
-    Sup -->|Ukur| Out0["Mendarat |0> (50%)"]
-    Sup -->|Ukur| Out1["Mendarat |1> (50%)"]
+    Bit0["Koin |0⟩"] -->|Tuas Hadamard| Sup["Koin Berputar |ψ⟩ = (|0⟩ + |1⟩)/√2"]
+    Sup -->|Ukur| Out0["Mendarat |0⟩ (50%)"]
+    Sup -->|Ukur| Out1["Mendarat |1⟩ (50%)"]
 ```
 
 ### 3. Invarian & Operasi Inti
@@ -99,8 +99,8 @@ Tidak ada seberkas cahaya pun yang diserap atau diubah menjadi panas; seluruh in
 
 ```mermaid
 flowchart LR
-    StateIn["Masuk |\\psi\\rangle"] -->|Uniter U (Putar Cermin)| Trans["Terputar U|\\psi\\rangle"]
-    Trans -->|Hermisian U^\\dagger (Putar Balik)| StateIn
+    StateIn["Masuk |ψ⟩"] -->|Uniter U (Putar Cermin)| Trans["Terputar U|ψ⟩"]
+    Trans -->|Pembalik Hermisian U†| StateIn
 ```
 
 ### 3. Invarian & Operasi Inti
@@ -166,7 +166,7 @@ Namun Alice tidak pernah bisa memilih apakah koinnya mendarat pada Angka atau Ga
 
 ```mermaid
 flowchart LR
-    Source["Sumber |\\Phi^+\\rangle"] -->|Koin A| Alice["Alice di Jakarta (Ukur Koin)"]
+    Source["Sumber |Φ+⟩ (Entangled EPR Pair)"] -->|Koin A| Alice["Alice di Jakarta (Ukur Koin)"]
     Source -->|Koin B| Bob["Bob di London (Korelasi Spontan)"]
     Alice -.->|Korelasi Terikat Seketika| Bob
     Alice -->|Kanal Klasik (Telepon/Internet)| Bob
@@ -235,11 +235,11 @@ Namun hukum alam menyatakan bahwa begitu jarum sensor menyentuh kulit gelembung 
 
 ```mermaid
 flowchart TD
-    Original["Qubit Asli: |\\psi\\rangle"] --> Copier["Mesin Kloning Uniter U"]
-    TargetBlank["Qubit Kosong: |0\\rangle"] --> Copier
-    Copier -->|Linearitas| LinOut["\\alpha|00\\rangle + \\beta|11\\rangle"]
-    Copier -.->|Ekspektasi Salinan| IdealOut["|\\psi\\rangle|\\psi\\rangle = \\alpha^2|00\\rangle + \\dots"]
-    LinOut -.->|Kontradiksi 2\\alpha\\beta \\neq 0| IdealOut
+    Original["Qubit Asli: |ψ⟩"] --> Copier["Mesin Kloning Uniter U"]
+    TargetBlank["Qubit Kosong: |0⟩"] --> Copier
+    Copier -->|Linearitas| LinOut["α|00⟩ + β|11⟩"]
+    Copier -.->|Ekspektasi Salinan| IdealOut["|ψ⟩|ψ⟩ = α²|00⟩ + ..."]
+    LinOut -.->|Kontradiksi 2αβ ≠ 0| IdealOut
 ```
 
 ### 3. Invarian & Operasi Inti
@@ -307,7 +307,7 @@ Ketukan kedua (Operator Difusi) memasang dinding pemantul yang membalik seluruh 
 flowchart LR
     Step0["1. Superposisi Rata"] --> Step1["2. Oracle: Balik Tanda Target (-1)"]
     Step1 --> Step2["3. Operator Difusi: Refleksi Mean"]
-    Step2 --> Step3["4. Target Melonjak Tinggi (P \\approx 100%)"]
+    Step2 --> Step3["4. Target Melonjak Tinggi (P ≈ 100%)"]
 ```
 
 ### 3. Invarian & Operasi Inti
